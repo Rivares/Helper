@@ -1,10 +1,10 @@
 # coding: utf8
 
-from openpyxl import Workbook
 import datetime
 from fuzzywuzzy import fuzz
+import numpy as np
+import pandas as pd
 import pymorphy2
-import pandas
 import json
 import xlrd
 import csv
@@ -65,7 +65,7 @@ def convert_json_to_xlsx():
     from_extension = '.json'
     to_extension = '.xlsx'
 
-    pandas.read_json(path + file_name + from_extension, encoding="utf-8").to_excel(path + file_name + to_extension,
+    pd.read_json(path + file_name + from_extension, encoding="utf-8").to_excel(path + file_name + to_extension,
                                                                                    encoding="utf-8")
 
 
@@ -116,6 +116,9 @@ def read_article_csv():
 
 
 def main():
+
+    length_sentence = 20
+
     # _________________________________________________________________________________
 
     # Creating list of news + to Lower Case + delete ',' and  '.'
@@ -191,18 +194,28 @@ def main():
 
     # Finding reference words to array words
 
+    future_weigths = np.zeros((len(pd.Series(np.random.randn(length_sentence)))))
+    print(future_weigths)
+
+    cnt = 0
     for item in listWords:
         for obj in item:
             for params in listParams_E_N:
-                if (fuzz.ratio(params.get('name'), obj.title().lower()) > 90):
-                    print("I found of name! --->>> " + str(obj))
+                if fuzz.ratio(params.get('name'), obj.title().lower()) > 90:
+                    # print("I found of name! --->>> " + str(obj))
+                    future_weigths[cnt] = float(params.get('impact'))
+                    break
                 else:
                     if len(params.get('synonyms')) > 1:
                         for it in params.get('synonyms'):
-                            if (fuzz.ratio(it, obj.title().lower()) > 70):
-                                print("I found of synonyms! --->>> " + str(obj.title().lower()))
+                            if fuzz.ratio(str(it), str(obj.title().lower())) > 70:
+                                # print("I found of synonyms! --->>> " + str(obj.title().lower()))
+                                future_weigths[cnt] = float(params.get('impact'))
+                                break
+    ++cnt
 
 
+    print(future_weigths)
 
 if __name__ == '__main__':
     main()
