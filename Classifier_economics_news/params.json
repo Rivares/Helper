@@ -1,0 +1,792 @@
+[
+    {
+        "name": "абхазия",
+        "synonyms": ["абхазский"],
+        "impact": 0.05
+    },
+    {
+        "name": "австралия",
+        "synonyms": ["австралийский"],
+        "impact": 0.5
+    },
+    {
+        "name": "австрия",
+        "synonyms": ["альпийский республика", "австрийка", "австриец"],
+        "impact": 0.05
+    },
+    {
+        "name": "азербайджан",
+        "synonyms": ["страна огней", "азербайджан", "азербайджанский"],
+        "impact": 0.05
+    },
+    {
+        "name": "албания",
+        "synonyms": ["албанский", "албанец"],
+        "impact": 0.05
+    },
+    {
+        "name": "алжир",
+        "synonyms": ["алжирский"],
+        "impact": 0.25
+    },
+    {
+        "name": "ангола",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "андорра",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "аргентина",
+        "synonyms": ["аргентинский"],
+        "impact": 0.0
+    },
+    {
+        "name": "армения",
+        "synonyms": ["армяне", "армянский"],
+        "impact": 0.1
+    },
+    {
+        "name": "афганистан",
+        "synonyms": ["афганский"],
+        "impact": 0.05
+    },
+    {
+        "name": "багамы",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "бангладеш",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "барбадос",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "бахрейн",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "беларусь",
+        "synonyms": ["беларусь", "белоруссия", "белорусский"],
+        "impact": 0.1
+    },
+    {
+        "name": "бельгия",
+        "synonyms": ["бельгийский"],
+        "impact": 0.1
+    },
+    {
+        "name": "болгария",
+        "synonyms": ["болгарский"],
+        "impact": 0.05
+    },
+    {
+        "name": "боливия",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "босния и герцеговина",
+        "synonyms": ["боснийский"],
+        "impact": 0.05
+    },
+    {
+        "name": "ботсвана",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "бразилия",
+        "synonyms": ["бразильский"],
+        "impact": 0.5
+    },
+    {
+        "name": "бутан",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "ватикан",
+        "synonyms": [""],
+        "impact": 0.05
+    },
+    {
+        "name": "великобритания",
+        "synonyms": ["альбион", "англия", "британия", "соединенный королевство", "англичане", "брить"],
+        "impact": -0.8
+    },
+    {
+        "name": "венгрия",
+        "synonyms": ["венгр", "венгерка", "венгры", "венгерский"],
+        "impact": 0.0
+    },
+    {
+        "name": "венесуэла",
+        "synonyms": [""],
+        "impact": 0.4
+    },
+    {
+        "name": "вьетнам",
+        "synonyms": ["вьетнамец", "вьетнамка", "вьетнамский", "вьетнамец"],
+        "impact": 0.15
+    },
+    {
+        "name": "гаити",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "гамбия",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "гана",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "гватемала",
+        "synonyms": ["гватемальский"],
+        "impact": 0.0
+    },
+    {
+        "name": "гвинея",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "германия",
+        "synonyms": ["германка", "германец", "германцы", "германский", "немецкий", "немка", "немец", "немец"],
+        "impact": 0.6
+    },
+    {
+        "name": "голландия",
+        "synonyms": ["голландец", "голландский"],
+        "impact": 0.25
+    },
+    {
+        "name": "гондурас",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "гонконг",
+        "synonyms": [""],
+        "impact": 0.05
+    },
+    {
+        "name": "гренада",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "гренландия",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "греция",
+        "synonyms": ["греческий", "грек", "гречанка", "грек"],
+        "impact": 0.2
+    },
+    {
+        "name": "грузия",
+        "synonyms": ["грузин", "грузинский", "грузин"],
+        "impact": 0.1
+    },
+    {
+        "name": "дания",
+        "synonyms": ["датчанин"],
+        "impact": 0.0
+    },
+    {
+        "name": "днр",
+        "synonyms": ["донбас"],
+        "impact": 0.5
+    },
+    {
+        "name": "египет",
+        "synonyms": [""],
+        "impact": 0.05
+    },
+    {
+        "name": "замбия",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "зимбабве",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "израиль",
+        "synonyms": ["еврей"],
+        "impact": 0.4
+    },
+    {
+        "name": "индия",
+        "synonyms": ["индус"],
+        "impact": 0.4
+    },
+    {
+        "name": "индонезия",
+        "synonyms": [""],
+        "impact": 0.25
+    },
+    {
+        "name": "иордания",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "ирак",
+        "synonyms": [""],
+        "impact": 0.1
+    },
+    {
+        "name": "иран",
+        "synonyms": [""],
+        "impact": 0.2
+    },
+    {
+        "name": "ирландия",
+        "synonyms": ["ирландец"],
+        "impact": 0.0
+    },
+    {
+        "name": "исландия",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "испания",
+        "synonyms": ["испанец"],
+        "impact": 0.2
+    },
+    {
+        "name": "италия",
+        "synonyms": ["итальянец"],
+        "impact": 0.3
+    },
+    {
+        "name": "йемен",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "казахстан",
+        "synonyms": ["казах"],
+        "impact": 0.5
+    },
+    {
+        "name": "камбоджа",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "камерун",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "канада",
+        "synonyms": [""],
+        "impact": 0.05
+    },
+    {
+        "name": "катар",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "кения",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "кипр",
+        "synonyms": [""],
+        "impact": 0.05
+    },
+    {
+        "name": "киргизия",
+        "synonyms": ["киргиз"],
+        "impact": 0.05
+    },
+    {
+        "name": "китай",
+        "synonyms": ["китайцы", "кнр"],
+        "impact": 0.8
+    },
+    {
+        "name": "колумбия",
+        "synonyms": [""],
+        "impact": 0.25
+    },
+    {
+        "name": "конго",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "косово",
+        "synonyms": [""],
+        "impact": -0.1
+    },
+    {
+        "name": "куб",
+        "synonyms": ["кубинец"],
+        "impact": 0.0
+    },
+    {
+        "name": "кувейт",
+        "synonyms": [""],
+        "impact": 0.25
+    },
+    {
+        "name": "лаос",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "латвия",
+        "synonyms": ["латыш"],
+        "impact": -0.05
+    },
+    {
+        "name": "либерия",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "ливан",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "ливия",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "литва",
+        "synonyms": [""],
+        "impact": -0.05
+    },
+    {
+        "name": "лихтенштейн",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "лнр",
+        "synonyms": ["луганск"],
+        "impact": 0.1
+    },
+    {
+        "name": "люксембург",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "мавритания",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "мадагаскар",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "малайзия",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "мальдивы",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "мальта",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "марокко",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "мексика",
+        "synonyms": [""],
+        "impact": 0.05
+    },
+    {
+        "name": "мозамбик",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "молдавия",
+        "synonyms": [""],
+        "impact": 0.2
+    },
+    {
+        "name": "монако",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "монголия",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "мьянма",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "намибия",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "непал",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "нигер",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "нигерия",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "никарагуа",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "нкр",
+        "synonyms": ["карабах"],
+        "impact": 0.0
+    },
+    {
+        "name": "норвегия",
+        "synonyms": [""],
+        "impact": 0.15
+    },
+    {
+        "name": "оаэ",
+        "synonyms": ["эмират"],
+        "impact": 0.0
+    },
+    {
+        "name": "оман",
+        "synonyms": [""],
+        "impact": 0.1
+    },
+    {
+        "name": "пакистан",
+        "synonyms": [""],
+        "impact": 0.3
+    },
+    {
+        "name": "палестина",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "панама",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "парагвай",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "перу",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "польша",
+        "synonyms": ["поляк"],
+        "impact": -0.5
+    },
+    {
+        "name": "португалия",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "приднестровье",
+        "synonyms": [""],
+        "impact": 0.05
+    },
+    {
+        "name": "руанда",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "румыния",
+        "synonyms": [""],
+        "impact": 0.1
+    },
+    {
+        "name": "российский федерация",
+        "synonyms": ["рф", "россия", "русский"],
+        "impact": 1.0
+    },
+    {
+        "name": "сальвадор",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "самоа",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "саудовский аравия",
+        "synonyms": [""],
+        "impact": 0.5
+    },
+    {
+        "name": "северный корея",
+        "synonyms": ["корейцы", "кндр"],
+        "impact": 0.0
+    },
+    {
+        "name": "сенегал",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "сербия",
+        "synonyms": ["серб"],
+        "impact": 0.3
+    },
+    {
+        "name": "сингапур",
+        "synonyms": [""],
+        "impact": 0.1
+    },
+    {
+        "name": "сирия",
+        "synonyms": ["сириец"],
+        "impact": 0.2
+    },
+    {
+        "name": "словакия",
+        "synonyms": [""],
+        "impact": 0.15
+    },
+    {
+        "name": "словения",
+        "synonyms": [""],
+        "impact": 0.15
+    },
+    {
+        "name": "соединить штат америка",
+        "synonyms": ["сша", "америка", "американец"],
+        "impact": -1
+    },
+    {
+        "name": "сомали",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "сомалиленд",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "судан",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "суринам",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "таджикистан",
+        "synonyms": ["таджик"],
+        "impact": 0.0
+    },
+    {
+        "name": "таиланд",
+        "synonyms": [""],
+        "impact": 0.1
+    },
+    {
+        "name": "тайвань",
+        "synonyms": [""],
+        "impact": 0.1
+    },
+    {
+        "name": "танзания",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "тонга",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "тунис",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "туркменистан",
+        "synonyms": ["туркмен"],
+        "impact": 0.0
+    },
+    {
+        "name": "турция",
+        "synonyms": ["турок"],
+        "impact": 0.5
+    },
+    {
+        "name": "уганда",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "узбекистан",
+        "synonyms": ["узбек"],
+        "impact": 0.0
+    },
+    {
+        "name": "украина",
+        "synonyms": ["малороссия", "украинец"],
+        "impact": -0.05
+    },
+    {
+        "name": "уругвай",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "фиджи",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "филиппина",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "финляндия",
+        "synonyms": ["фина"],
+        "impact": 0.0
+    },
+    {
+        "name": "франция",
+        "synonyms": ["француз"],
+        "impact": 0.5
+    },
+    {
+        "name": "хорватия",
+        "synonyms": ["хорват"],
+        "impact": 0.0
+    },
+    {
+        "name": "чад",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "черногория",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "чехия",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "чили",
+        "synonyms": [""],
+        "impact": 0.1
+    },
+    {
+        "name": "швейцария",
+        "synonyms": [""],
+        "impact": 0.1
+    },
+    {
+        "name": "швеция",
+        "synonyms": ["швед"],
+        "impact": 0.1
+    },
+    {
+        "name": "шри-ланка",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "эквадор",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "эстония",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "эфиопия",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "южный корея",
+        "synonyms": ["кореец"],
+        "impact": -0.4
+    },
+    {
+        "name": "южный осетия",
+        "synonyms": ["осетинец"],
+        "impact": 0.5
+    },
+    {
+        "name": "ямайка",
+        "synonyms": [""],
+        "impact": 0.0
+    },
+    {
+        "name": "япония",
+        "synonyms": ["японец"],
+        "impact": 0.3
+    }
+]
