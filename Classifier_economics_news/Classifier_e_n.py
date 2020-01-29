@@ -188,34 +188,66 @@ def main():
     for obj in listSpider_E_N:
         listWords.append(obj.split())
 
-    print(listWords)
-
     # _________________________________________________________________________________
 
     # Finding reference words to array words
 
-    future_weigths = np.zeros((len(pd.Series(np.random.randn(length_sentence)))))
-    print(future_weigths)
+    # For Real-Time mode
+    #
+    # future_weigths = np.zeros(length_sentence, dtype=float)
+    #
+    # cnt = 0
+    # # for item in listWords:
+    #
+    # header = listWords[1]
+    # print(header)
+    # print(len(header))
+    #
+    # for obj in header:
+    #     # print(obj.lower())
+    #     for params in listParams_E_N:
+    #         if fuzz.ratio(params.get('name'), obj.lower()) > 90:
+    #             # print("I found of name! --->>> " + str(obj))
+    #             future_weigths[cnt] = float(params.get('impact'))
+    #             break
+    #         else:
+    #             if len(params.get('synonyms')) >= 1:
+    #                 for it in params.get('synonyms'):
+    #                     if fuzz.ratio(str(it), str(obj.lower())) > 80:
+    #                         # print("I found of synonyms! --->>> " + str(obj.lower()))
+    #                         future_weigths[cnt] = float(params.get('impact'))
+    #                         break
+    #     cnt = cnt + 1
 
-    cnt = 0
-    for item in listWords:
-        for obj in item:
+    # For Trainging NN
+
+    # future_weigths = np.zeros(length_sentence, dtype=float)
+    list_future_weigths = np.zeros((len(listWords), length_sentence+100), dtype=float)
+
+    print(list_future_weigths)
+    idx_word = 0
+    idx_sentence = 0
+    for header in listWords:
+        print(header)
+
+        for obj in header:
+            # print(obj.lower())
             for params in listParams_E_N:
-                if fuzz.ratio(params.get('name'), obj.title().lower()) > 90:
+                if fuzz.ratio(params.get('name'), obj.lower()) > 90:
                     # print("I found of name! --->>> " + str(obj))
-                    future_weigths[cnt] = float(params.get('impact'))
+                    list_future_weigths[idx_sentence][idx_word] = float(params.get('impact'))
                     break
                 else:
-                    if len(params.get('synonyms')) > 1:
+                    if len(params.get('synonyms')) >= 1:
                         for it in params.get('synonyms'):
-                            if fuzz.ratio(str(it), str(obj.title().lower())) > 70:
-                                # print("I found of synonyms! --->>> " + str(obj.title().lower()))
-                                future_weigths[cnt] = float(params.get('impact'))
+                            if fuzz.ratio(str(it), str(obj.lower())) > 80:
+                                # print("I found of synonyms! --->>> " + str(obj.lower()))
+                                list_future_weigths[idx_sentence][idx_word] = float(params.get('impact'))
                                 break
-    ++cnt
+            idx_word = idx_word + 1
+        idx_sentence = idx_sentence + 1
 
-
-    print(future_weigths)
+    print(list_future_weigths[0])
 
 if __name__ == '__main__':
     main()
