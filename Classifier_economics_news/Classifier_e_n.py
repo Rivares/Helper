@@ -81,6 +81,18 @@ def read_params_json():
 
     return listParams_E_N
 
+def read_article_json():
+    path = 'C:\\Users\\user\\0_Py\\Helper\\Parser_economics_news\\'
+    file_name = 'economics_news'
+    extension = '.json'
+
+    listNews_E_N = []
+
+    with open(path + file_name + extension, encoding="utf-8") as json_file:
+        listNews_E_N = json.load(json_file)
+
+    return listNews_E_N
+
 
 def write_params_json(listParams_E_N):
     path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
@@ -123,11 +135,12 @@ def main():
 
     # Creating list of news + to Lower Case + delete ',' and  '.'
 
-    listSpider_E_N = read_article_csv()
+    listSpider_E_N = read_article_json()
+    # listSpider_E_N = read_article_csv()
     # print(listSpider_E_N.__len__())
 
     reg = re.compile('[^а-яА-Я -]')
-    print()
+    print(listSpider_E_N)
     for obj in listSpider_E_N:
         obj.title = obj.title.lower()
         obj.title = reg.sub('', obj.title)
@@ -222,7 +235,7 @@ def main():
     # For Trainging NN
 
     # future_weigths = np.zeros(length_sentence, dtype=float)
-    list_future_weigths = np.zeros((len(listWords), length_sentence+100), dtype=float)
+    list_future_weigths = np.zeros((len(listWords), length_sentence), dtype=float)
 
     print(list_future_weigths)
     idx_word = 0
@@ -245,9 +258,10 @@ def main():
                                 list_future_weigths[idx_sentence][idx_word] = float(params.get('impact'))
                                 break
             idx_word = idx_word + 1
+        idx_word = 0
         idx_sentence = idx_sentence + 1
 
-    print(list_future_weigths[0])
+    print(list_future_weigths[len(listWords)-1])
 
 if __name__ == '__main__':
     main()
