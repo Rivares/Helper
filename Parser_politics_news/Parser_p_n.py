@@ -75,7 +75,7 @@ def get_page_data(html):
 def main():
     base_url = "https://ria.ru/politics/"
 
-    for i in range(1, 1):       # 8 is maximum
+    for i in range(1, 11):       # 8 is maximum
         url_gen = base_url
         html = get_html(url_gen)
         get_page_data(html)

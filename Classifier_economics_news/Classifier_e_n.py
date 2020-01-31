@@ -12,7 +12,6 @@ import os
 import re
 
 
-
 class Spider(object):
     def __init__(self, title, additionally, href, date):
         """Constructor"""
@@ -26,10 +25,6 @@ class Spider(object):
 
 
 '''______________________________________________________________________'''
-
-#
-# def similar(a, b):
-#     return SequenceMatcher(None, a, b).ratio()
 
 
 def read_params_xlsx():
@@ -66,7 +61,7 @@ def convert_json_to_xlsx():
     to_extension = '.xlsx'
 
     pd.read_json(path + file_name + from_extension, encoding="utf-8").to_excel(path + file_name + to_extension,
-                                                                                   encoding="utf-8")
+                                                                               encoding="utf-8")
 
 
 def read_params_json():
@@ -81,17 +76,26 @@ def read_params_json():
 
     return listParams_E_N
 
+
 def read_article_json():
     path = 'C:\\Users\\user\\0_Py\\Helper\\Parser_economics_news\\'
     file_name = 'economics_news'
     extension = '.json'
 
-    listNews_E_N = []
-
+    tmp = []
     with open(path + file_name + extension, encoding="utf-8") as json_file:
-        listNews_E_N = json.load(json_file)
+        tmp = json.load(json_file)
 
-    return listNews_E_N
+    listSpider_E_N = []
+    for ithem in tmp:
+        listSpider_E_N.append(Spider(ithem['title']
+                                     , ithem['additionally']
+                                     , ithem['href']
+                                     , ithem['date']
+                                     )
+                              )
+
+    return listSpider_E_N
 
 
 def write_params_json(listParams_E_N):
@@ -100,7 +104,7 @@ def write_params_json(listParams_E_N):
     extension = '.json'
 
     with open(path + file_name + extension, "w", encoding="utf-8") as json_file:
-            json.dump(listParams_E_N, json_file, ensure_ascii=False, indent=4)
+        json.dump(listParams_E_N, json_file, ensure_ascii=False, indent=4)
 
 
 def read_article_csv():
@@ -128,7 +132,6 @@ def read_article_csv():
 
 
 def main():
-
     length_sentence = 20
 
     # _________________________________________________________________________________
@@ -140,13 +143,42 @@ def main():
     # print(listSpider_E_N.__len__())
 
     reg = re.compile('[^а-яА-Я -]')
-    print(listSpider_E_N)
+
     for obj in listSpider_E_N:
         obj.title = obj.title.lower()
         obj.title = reg.sub('', obj.title)
         obj.additionally = obj.additionally.lower()
         obj.additionally = reg.sub('', obj.additionally)
         # print(obj.title, obj.additionally, obj.href, obj.date, sep=' ')
+
+    # _________________________________________________________________________________
+
+    # Deleting repeats hrefs
+
+    # print(listSpider_E_N[0].title,
+    #       listSpider_E_N[0].additionally,
+    #       listSpider_E_N[0].href,
+    #       listSpider_E_N[0].date,
+    #       sep=' ')
+
+    idx_1 = 0
+    idx_2 = 0
+    for idx_1 in range(1, len(listSpider_E_N) - 1):
+        ref_href = listSpider_E_N[idx_1].href
+        idx_2 = idx_1 + 1
+        for j in range(idx_2, len(listSpider_E_N) - 1):
+            if listSpider_E_N[j].href == ref_href:
+                listSpider_E_N.remove(listSpider_E_N[j])
+                # listSpider_E_N.pop(idx).title
+                # listSpider_E_N.pop(idx).additionally
+                # listSpider_E_N.pop(idx).href
+                # listSpider_E_N.pop(idx).date
+
+    # print(listSpider_E_N[0].title,
+    #       listSpider_E_N[0].additionally,
+    #       listSpider_E_N[0].href,
+    #       listSpider_E_N[0].date,
+    #       sep=' ')
 
     # _________________________________________________________________________________
 
@@ -203,6 +235,17 @@ def main():
 
     # _________________________________________________________________________________
 
+    # Delete to array words
+
+    for sentence in listWords:
+        # print(sentence)
+        for word in sentence:
+            p = morph.parse(word)[0]
+            if p.tag.POS == 'PREP':
+                sentence.remove(word)
+        # print(sentence)
+    # _________________________________________________________________________________
+
     # Finding reference words to array words
 
     # For Real-Time mode
@@ -237,11 +280,10 @@ def main():
     # future_weigths = np.zeros(length_sentence, dtype=float)
     list_future_weigths = np.zeros((len(listWords), length_sentence), dtype=float)
 
-    print(list_future_weigths)
     idx_word = 0
     idx_sentence = 0
     for header in listWords:
-        print(header)
+        # print(header)
 
         for obj in header:
             # print(obj.lower())
@@ -261,7 +303,8 @@ def main():
         idx_word = 0
         idx_sentence = idx_sentence + 1
 
-    print(list_future_weigths[len(listWords)-1])
+    print(list_future_weigths[len(listWords) - 2])
+
 
 if __name__ == '__main__':
     main()

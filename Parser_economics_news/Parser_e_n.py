@@ -85,8 +85,8 @@ def get_page_data(html):
 def main():
     base_url = "https://ria.ru/economy/"
 
-    os.remove(file_name + '.csv')
-    os.remove(file_name + '.xlsx')
+    # os.remove(file_name + '.csv')
+    # os.remove(file_name + '.xlsx')
     os.remove(file_name + '.json')
 
     for i in range(1, 11):  # 8 is maximum
@@ -94,6 +94,7 @@ def main():
         html = get_html(url_gen)
         get_page_data(html)
 
+    print(article_data)
     write_article_json(article_data)
 
 if __name__ == '__main__':

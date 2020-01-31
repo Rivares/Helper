@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5dd7dac2-a3d0-4d23-9152-f659e5b3f720" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Parser_economics_news/economics_news.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classifier_economics_news/Classifier_e_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/Classifier_e_n.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parser_economics_news/Parser_e_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parser_economics_news/Parser_e_n.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser_economics_news/economics_news.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser_economics_news/economics_news.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parser_economics_news/economics_news.json" beforeDir="false" afterPath="$PROJECT_DIR$/Parser_economics_news/economics_news.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parser_politics_news/Parser_p_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parser_politics_news/Parser_p_n.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,10 +154,20 @@
       <option name="presentableId" value="Default" />
       <updated>1579896383239</updated>
     </task>
+    <task id="LOCAL-00001" summary="Fixing Parser_e_n - csv to json">
+      <created>1580416159331</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1580416159331</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Fixing Parser_e_n - csv to json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing Parser_e_n - csv to json" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579898392695">
@@ -169,26 +178,30 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="690" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1579896447425" />
+    <state x="614" y="117" key="CommitChangelistDialog2" timestamp="1580416157372">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="614" y="117" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1580416157372" />
     <state x="740" y="278" key="FileChooserDialogImpl" timestamp="1579898390805">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="278" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1579898390805" />
-    <state width="1898" height="280" key="GridCell.Tab.0.bottom" timestamp="1580415836703">
+    <state width="1898" height="280" key="GridCell.Tab.0.bottom" timestamp="1580501751543">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1898" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1580415836703" />
-    <state width="1898" height="280" key="GridCell.Tab.0.center" timestamp="1580415836703">
+    <state width="1898" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1580501751543" />
+    <state width="1898" height="280" key="GridCell.Tab.0.center" timestamp="1580501751543">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1898" height="280" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1580415836703" />
-    <state width="1898" height="280" key="GridCell.Tab.0.left" timestamp="1580415836703">
+    <state width="1898" height="280" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1580501751543" />
+    <state width="1898" height="280" key="GridCell.Tab.0.left" timestamp="1580501751543">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1898" height="280" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1580415836703" />
-    <state width="1898" height="280" key="GridCell.Tab.0.right" timestamp="1580415836703">
+    <state width="1898" height="280" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1580501751543" />
+    <state width="1898" height="280" key="GridCell.Tab.0.right" timestamp="1580501751543">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1898" height="280" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1580415836703" />
+    <state width="1898" height="280" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1580501751543" />
     <state x="461" y="155" key="SettingsEditor" timestamp="1579896474068">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
