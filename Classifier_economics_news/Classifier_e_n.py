@@ -77,6 +77,19 @@ def read_params_json():
     return listParams_E_N
 
 
+def read_applicants_json():
+    path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
+    file_name = 'applicants'
+    extension = '.json'
+
+    listApplicants = []
+
+    with open(path + file_name + extension, encoding="utf-8") as json_file:
+        listApplicants = json.load(json_file)
+
+    return listApplicants
+
+
 def read_article_json():
     path = 'C:\\Users\\user\\0_Py\\Helper\\Parser_economics_news\\'
     file_name = 'economics_news'
@@ -100,11 +113,20 @@ def read_article_json():
 
 def write_params_json(listParams_E_N):
     path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
-    file_name = 'params_new'
+    file_name = 'params'
     extension = '.json'
 
     with open(path + file_name + extension, "w", encoding="utf-8") as json_file:
         json.dump(listParams_E_N, json_file, ensure_ascii=False, indent=4)
+
+
+def write_applicants_json(listApplicants):
+    path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
+    file_name = 'applicants'
+    extension = '.json'
+
+    with open(path + file_name + extension, "w", encoding="utf-8") as json_file:
+        json.dump(listApplicants, json_file, ensure_ascii=False, indent=4)
 
 
 def read_article_csv():
@@ -248,6 +270,8 @@ def main():
 
     # Finding reference words to array words
 
+    # _________________________________________________________________________________
+
     # For Real-Time mode
     #
     # future_weigths = np.zeros(length_sentence, dtype=float)
@@ -274,8 +298,12 @@ def main():
     #                         future_weigths[cnt] = float(params.get('impact'))
     #                         break
     #     cnt = cnt + 1
-
+    #
+    # _________________________________________________________________________________
+    #
     # For Trainging NN
+
+    # _________________________________________________________________________________
 
     # future_weigths = np.zeros(length_sentence, dtype=float)
     list_future_weigths = np.zeros((len(listWords), length_sentence), dtype=float)
@@ -284,7 +312,6 @@ def main():
     idx_sentence = 0
     for header in listWords:
         # print(header)
-
         for obj in header:
             # print(obj.lower())
             for params in listParams_E_N:
@@ -303,7 +330,65 @@ def main():
         idx_word = 0
         idx_sentence = idx_sentence + 1
 
-    print(list_future_weigths[len(listWords) - 2])
+    # print(list_future_weigths[len(listWords) - 2])
+
+    # _________________________________________________________________________________
+
+    # Appending feature of applicants to list to json file
+    # 1 day for remove from applicants.json
+    # 240 it's 50% <- 1 day - 24 hours - 48 query * 10 news
+    # 384 it's 80% <- 1 day - 24 hours - 48 query * 10 news
+    # 3 day for appending to params.json
+
+    border = 240
+
+    idx_word = 0
+    idx_sentence = 0
+    for header in listWords:
+        # print(header)
+        for obj in header:
+            if list_future_weigths[idx_sentence][idx_word] == 0:
+                feature_list_applicants = read_applicants_json()
+
+                # find to feature_list_applicants obj
+                success = 0
+                # Increase count
+                for ithem in feature_list_applicants:
+                    # print(ithem["name"], ithem["count"], sep=' ')
+                    if obj == ithem["name"]:
+                        ithem["count"] = ithem["count"] + 1
+                        print("I found of name! --->>> " + str(ithem["count"]))
+                        write_applicants_json(feature_list_applicants)
+                        success = 1
+
+                        if ithem["count"] >= border:
+                            list_params = read_params_json()
+                            list_params.append({"name": ithem["name"],
+                                                "synonyms": [""],
+                                                "impact": np.random(-0.5, 0.5)
+                                                })
+                            write_params_json(list_params)
+                            feature_list_applicants.remove(ithem)
+                            write_applicants_json(feature_list_applicants)
+
+                        break
+                # Add new feature
+                if success == 0:
+                    new_feature_applicant = {"name": obj, "count": 1}
+                    feature_list_applicants.append(new_feature_applicant)
+                    write_applicants_json(feature_list_applicants)
+                    print(obj)
+
+            idx_word = idx_word + 1
+        idx_word = 0
+        idx_sentence = idx_sentence + 1
+
+
+    # feature_list_applicants.append()
+
+    # write_applicants_json(feature_list_applicants)
+
+    # _________________________________________________________________________________
 
 
 if __name__ == '__main__':
