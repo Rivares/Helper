@@ -1,418 +1,418 @@
 [
     {
         "name": "ржд",
-        "count": 6
+        "count": 9
     },
     {
         "name": "рассказать",
-        "count": 6
+        "count": 9
     },
     {
         "name": "пассажиропоток",
-        "count": 6
+        "count": 9
     },
     {
         "name": "сообщение",
-        "count": 6
+        "count": 9
     },
     {
         "name": "проводник",
-        "count": 6
+        "count": 9
     },
     {
         "name": "вагон",
-        "count": 6
+        "count": 9
     },
     {
         "name": "поезд",
-        "count": 6
+        "count": 9
     },
     {
         "name": "пекин-москва",
-        "count": 6
+        "count": 9
     },
     {
         "name": "железнодорожный",
-        "count": 6
+        "count": 9
     },
     {
         "name": "вокзал",
-        "count": 6
+        "count": 9
     },
     {
         "name": "иркутск-пассажирский",
-        "count": 6
+        "count": 9
     },
     {
         "name": "новак",
-        "count": 11
+        "count": 17
     },
     {
         "name": "оценить",
-        "count": 6
+        "count": 9
     },
     {
         "name": "возможный",
-        "count": 6
+        "count": 9
     },
     {
         "name": "влияние",
-        "count": 6
+        "count": 9
     },
     {
         "name": "вспышка",
-        "count": 6
+        "count": 9
     },
     {
         "name": "коронавирус",
-        "count": 16
+        "count": 25
     },
     {
         "name": "нефтяной",
-        "count": 5
+        "count": 8
     },
     {
         "name": "рынок",
-        "count": 5
+        "count": 8
     },
     {
         "name": "министр",
-        "count": 5
+        "count": 8
     },
     {
         "name": "энергетика",
-        "count": 5
+        "count": 8
     },
     {
         "name": "александр",
-        "count": 5
+        "count": 8
     },
     {
         "name": "остановить",
-        "count": 5
+        "count": 8
     },
     {
         "name": "поставка",
-        "count": 5
+        "count": 8
     },
     {
         "name": "ждать",
-        "count": 5
+        "count": 8
     },
     {
         "name": "ли",
-        "count": 5
+        "count": 8
     },
     {
         "name": "рост",
-        "count": 5
+        "count": 8
     },
     {
         "name": "цена",
-        "count": 10
+        "count": 16
     },
     {
         "name": "гаджет",
-        "count": 5
+        "count": 8
     },
     {
         "name": "смартфон",
-        "count": 5
+        "count": 8
     },
     {
         "name": "тск",
-        "count": 5
+        "count": 8
     },
     {
         "name": "мосэнерго",
-        "count": 5
+        "count": 8
     },
     {
         "name": "увеличить",
-        "count": 5
+        "count": 8
     },
     {
         "name": "собираемость",
-        "count": 5
+        "count": 8
     },
     {
         "name": "платёж",
-        "count": 5
+        "count": 8
     },
     {
         "name": "тепло",
-        "count": 5
+        "count": 8
     },
     {
         "name": "платёжный",
-        "count": 5
+        "count": 8
     },
     {
         "name": "квитанция",
-        "count": 5
+        "count": 8
     },
     {
         "name": "услуга",
-        "count": 5
+        "count": 8
     },
     {
         "name": "жкх",
-        "count": 5
+        "count": 8
     },
     {
         "name": "том",
-        "count": 5
+        "count": 8
     },
     {
         "name": "плюс",
-        "count": 5
+        "count": 8
     },
     {
         "name": "вложить",
-        "count": 5
+        "count": 8
     },
     {
         "name": "миллиард",
-        "count": 10
+        "count": 16
     },
     {
         "name": "рубль",
-        "count": 10
+        "count": 16
     },
     {
         "name": "система",
-        "count": 5
+        "count": 8
     },
     {
         "name": "теплоснабжение",
-        "count": 5
+        "count": 8
     },
     {
         "name": "ульяновск",
-        "count": 10
+        "count": 16
     },
     {
         "name": "архивный",
-        "count": 5
+        "count": 8
     },
     {
         "name": "фото",
-        "count": 5
+        "count": 8
     },
     {
         "name": "физлицо",
-        "count": 5
+        "count": 8
     },
     {
         "name": "начать",
-        "count": 5
+        "count": 8
     },
     {
         "name": "инвестировать",
-        "count": 5
+        "count": 8
     },
     {
         "name": "облигация",
-        "count": 10
+        "count": 16
     },
     {
         "name": "мсп",
-        "count": 20
+        "count": 32
     },
     {
         "name": "банка",
-        "count": 5
+        "count": 8
     },
     {
         "name": "год",
-        "count": 5
+        "count": 8
     },
     {
         "name": "председатель",
-        "count": 10
+        "count": 16
     },
     {
         "name": "правление",
-        "count": 10
+        "count": 16
     },
     {
         "name": "член",
-        "count": 5
+        "count": 8
     },
     {
         "name": "наблюдательный",
-        "count": 5
+        "count": 8
     },
     {
         "name": "совет",
-        "count": 5
+        "count": 8
     },
     {
         "name": "ао",
-        "count": 10
+        "count": 16
     },
     {
         "name": "банк",
-        "count": 15
+        "count": 24
     },
     {
         "name": "дмитрий",
-        "count": 10
+        "count": 16
     },
     {
         "name": "голованов",
-        "count": 10
+        "count": 16
     },
     {
         "name": "глава",
-        "count": 5
+        "count": 8
     },
     {
         "name": "правительство",
-        "count": 5
+        "count": 8
     },
     {
         "name": "страна",
-        "count": 5
+        "count": 8
     },
     {
         "name": "еаэс",
-        "count": 5
+        "count": 8
     },
     {
         "name": "подписать",
-        "count": 5
+        "count": 8
     },
     {
         "name": "пакет",
-        "count": 5
+        "count": 8
     },
     {
         "name": "документ",
-        "count": 5
+        "count": 8
     },
     {
         "name": "рабочий",
-        "count": 5
+        "count": 8
     },
     {
         "name": "визит",
-        "count": 5
+        "count": 8
     },
     {
         "name": "премьер-министр",
-        "count": 5
+        "count": 8
     },
     {
         "name": "метр",
-        "count": 5
+        "count": 8
     },
     {
         "name": "мишустин",
-        "count": 5
+        "count": 8
     },
     {
         "name": "российский",
-        "count": 5
+        "count": 8
     },
     {
         "name": "фармкомпания",
-        "count": 5
+        "count": 8
     },
     {
         "name": "пообещать",
-        "count": 5
+        "count": 8
     },
     {
         "name": "не",
-        "count": 5
+        "count": 8
     },
     {
         "name": "повышать",
-        "count": 5
+        "count": 8
     },
     {
         "name": "посетитель",
-        "count": 5
+        "count": 8
     },
     {
         "name": "аптека",
-        "count": 5
+        "count": 8
     },
     {
         "name": "эксперт",
-        "count": 5
+        "count": 8
     },
     {
         "name": "предложение",
-        "count": 5
+        "count": 8
     },
     {
         "name": "киев",
-        "count": 10
+        "count": 16
     },
     {
         "name": "мочь",
-        "count": 5
+        "count": 8
     },
     {
         "name": "быть",
-        "count": 5
+        "count": 8
     },
     {
         "name": "малопривлекательный",
-        "count": 5
+        "count": 8
     },
     {
         "name": "госсекретарь",
-        "count": 5
+        "count": 8
     },
     {
         "name": "майк",
-        "count": 5
+        "count": 8
     },
     {
         "name": "помпео",
-        "count": 5
+        "count": 8
     },
     {
         "name": "и",
-        "count": 5
+        "count": 8
     },
     {
         "name": "президент",
-        "count": 5
+        "count": 8
     },
     {
         "name": "владимир",
-        "count": 5
+        "count": 8
     },
     {
         "name": "зеленский",
-        "count": 5
+        "count": 8
     },
     {
         "name": "пресс-конференция",
-        "count": 5
+        "count": 8
     },
     {
         "name": "итог",
-        "count": 5
+        "count": 8
     },
     {
         "name": "встреча",
-        "count": 5
+        "count": 8
     },
     {
         "name": "осуществить",
-        "count": 5
+        "count": 8
     },
     {
         "name": "два",
-        "count": 5
+        "count": 8
     },
     {
         "name": "выпуск",
-        "count": 5
+        "count": 8
     }
 ]

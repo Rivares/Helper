@@ -362,10 +362,11 @@ def main():
                         success = 1
 
                         if ithem["count"] >= border:
+                            rng = np.random.default_rng()
                             list_params = read_params_json()
                             list_params.append({"name": ithem["name"],
                                                 "synonyms": [""],
-                                                "impact": np.random(-0.5, 0.5)
+                                                "impact": (rng.random() - 0.5)
                                                 })
                             write_params_json(list_params)
                             feature_list_applicants.remove(ithem)
