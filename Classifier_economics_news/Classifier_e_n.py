@@ -1,6 +1,8 @@
 # coding: utf8
 
+from finam.export import Exporter, Market, LookupComparator
 from openpyxl import Workbook
+import matplotlib.pyplot as plt
 from bs4 import BeautifulSoup
 from fuzzywuzzy import fuzz
 import numpy as np
@@ -8,6 +10,7 @@ import pandas as pd
 import pymorphy2
 import datetime
 import requests
+import logging
 import json
 import xlrd
 import csv
@@ -28,11 +31,6 @@ class Spider(object):
 
 
 '''______________________________________________________________________'''
-
-
-def get_html(url):
-    r = requests.get(url)
-    return r.text
 
 
 def write_article_csv(data):
@@ -133,6 +131,14 @@ def read_data_json(path, file_name):
     return data
 
 
+# ______________________________ Parser ______________________________
+
+
+def get_html(url):
+    r = requests.get(url)
+    return r.text
+
+
 def get_page_data(html, article_data):
     soup = BeautifulSoup(html, 'lxml')
     divs = soup.find('div', class_='list list-tags')
@@ -172,6 +178,138 @@ def get_page_data(html, article_data):
             time = 'Error'
 
     return article_data
+
+
+# ______________________________ NN ______________________________
+
+
+def sigmoid(x):
+    # Функция активации sigmoid:: f(x) = 1 / (1 + e^(-x))
+    return 1 / (1 + np.exp(-x))
+
+
+def deriv_sigmoid(x):
+    # Производная от sigmoid: f'(x) = f(x) * (1 - f(x))
+    fx = sigmoid(x)
+    return fx * (1 - fx)
+
+
+def mse_loss(y_true, y_pred):
+    # y_true и y_pred являются массивами numpy с одинаковой длиной
+    return ((y_true - y_pred) ** 2).mean()
+
+class Neuron:
+    def __init__(self, weights, bias):
+        self.weights = weights
+        self.bias = bias
+
+    def feedforward(self, inputs):
+        # Вводные данные о весе, добавление смещения
+        # и последующее использование функции активации
+
+        total = np.dot(self.weights, inputs) + self.bias
+        return sigmoid(total)
+
+
+class OurNeuralNetwork:
+    """
+    Нейронная сеть, у которой:
+        - 2 входа
+        - скрытый слой с двумя нейронами (h1, h2)
+        - слой вывода с одним нейроном (o1)
+
+    *** ВАЖНО ***:
+    Код ниже написан как простой, образовательный. НЕ оптимальный.
+    Настоящий код нейронной сети выглядит не так. НЕ ИСПОЛЬЗУЙТЕ этот код.
+    Вместо этого, прочитайте/запустите его, чтобы понять, как работает эта сеть.
+    """
+
+    def __init__(self):
+        # Вес
+        self.w1 = np.random.normal()
+        self.w2 = np.random.normal()
+        self.w3 = np.random.normal()
+        self.w4 = np.random.normal()
+        self.w5 = np.random.normal()
+        self.w6 = np.random.normal()
+
+        # Смещения
+        self.b1 = np.random.normal()
+        self.b2 = np.random.normal()
+        self.b3 = np.random.normal()
+
+    def feedforward(self, x):
+        # x является массивом numpy с двумя элементами
+        h1 = sigmoid(self.w1 * x[0] + self.w2 * x[1] + self.b1)
+        h2 = sigmoid(self.w3 * x[0] + self.w4 * x[1] + self.b2)
+        o1 = sigmoid(self.w5 * h1 + self.w6 * h2 + self.b3)
+        return o1
+
+    def train(self, data, all_y_trues):
+        """
+        - data is a (n x 2) numpy array, n = # of samples in the dataset.
+        - all_y_trues is a numpy array with n elements.
+            Elements in all_y_trues correspond to those in data.
+        """
+        learn_rate = 0.1
+        epochs = 10000  # количество циклов во всём наборе данных
+
+        for epoch in range(epochs):
+            for x, y_true in zip(data, all_y_trues):
+                # --- Выполняем обратную связь (нам понадобятся эти значения в дальнейшем)
+                sum_h1 = self.w1 * x[0] + self.w2 * x[1] + self.b1
+                h1 = sigmoid(sum_h1)
+
+                sum_h2 = self.w3 * x[0] + self.w4 * x[1] + self.b2
+                h2 = sigmoid(sum_h2)
+
+                sum_o1 = self.w5 * h1 + self.w6 * h2 + self.b3
+                o1 = sigmoid(sum_o1)
+                y_pred = o1
+
+                # --- Подсчет частных производных
+                # --- Наименование: d_L_d_w1 представляет "частично L / частично w1"
+                d_L_d_ypred = -2 * (y_true - y_pred)
+
+                # Нейрон o1
+                d_ypred_d_w5 = h1 * deriv_sigmoid(sum_o1)
+                d_ypred_d_w6 = h2 * deriv_sigmoid(sum_o1)
+                d_ypred_d_b3 = deriv_sigmoid(sum_o1)
+
+                d_ypred_d_h1 = self.w5 * deriv_sigmoid(sum_o1)
+                d_ypred_d_h2 = self.w6 * deriv_sigmoid(sum_o1)
+
+                # Нейрон h1
+                d_h1_d_w1 = x[0] * deriv_sigmoid(sum_h1)
+                d_h1_d_w2 = x[1] * deriv_sigmoid(sum_h1)
+                d_h1_d_b1 = deriv_sigmoid(sum_h1)
+
+                # Нейрон h2
+                d_h2_d_w3 = x[0] * deriv_sigmoid(sum_h2)
+                d_h2_d_w4 = x[1] * deriv_sigmoid(sum_h2)
+                d_h2_d_b2 = deriv_sigmoid(sum_h2)
+
+                # --- Обновляем вес и смещения
+                # Нейрон h1
+                self.w1 -= learn_rate * d_L_d_ypred * d_ypred_d_h1 * d_h1_d_w1
+                self.w2 -= learn_rate * d_L_d_ypred * d_ypred_d_h1 * d_h1_d_w2
+                self.b1 -= learn_rate * d_L_d_ypred * d_ypred_d_h1 * d_h1_d_b1
+
+                # Нейрон h2
+                self.w3 -= learn_rate * d_L_d_ypred * d_ypred_d_h2 * d_h2_d_w3
+                self.w4 -= learn_rate * d_L_d_ypred * d_ypred_d_h2 * d_h2_d_w4
+                self.b2 -= learn_rate * d_L_d_ypred * d_ypred_d_h2 * d_h2_d_b2
+
+                # Нейрон o1
+                self.w5 -= learn_rate * d_L_d_ypred * d_ypred_d_w5
+                self.w6 -= learn_rate * d_L_d_ypred * d_ypred_d_w6
+                self.b3 -= learn_rate * d_L_d_ypred * d_ypred_d_b3
+
+            # --- Подсчитываем общую потерю в конце каждой фазы
+            if epoch % 10 == 0:
+                y_preds = np.apply_along_axis(self.feedforward, 1, data)
+                loss = mse_loss(all_y_trues, y_preds)
+                print("Epoch %d loss: %.3f" % (epoch, loss))
 
 
 def main():
@@ -312,8 +450,10 @@ def main():
             p = morph.parse(word)[0]
             if p.tag.POS == 'PREP':
                 sentence.remove(word)
-        # print(sentence)
+        print(sentence)
     # _________________________________________________________________________________
+
+
 
     # # Finding reference words to array words
     #
@@ -379,77 +519,135 @@ def main():
 
     # print(list_future_weigths[len(listWords) - 2])
 
-    # _________________________________________________________________________________
-
-    # Appending feature of applicants to list to json file
-    # 1 day for remove from applicants.json
-    # 240 it's 50% <- 1 day - 24 hours - 48 query * 10 news
-    # 384 it's 80% <- 1 day - 24 hours - 48 query * 10 news
-    # 3 day for appending to params.json
-
-    border = 240
-
-    idx_word = 0
-    idx_sentence = 0
-    for header in listWords:
-        # print(header)
-        for obj in header:
-            if list_future_weigths[idx_sentence][idx_word] == 0:
-                path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
-                file_name = 'applicants'
-                feature_list_applicants = read_data_json(path, file_name)
-
-                # find to feature_list_applicants obj
-                success = 0
-                # Increase count
-                for item in feature_list_applicants:
-                    # print(ithem["name"], ithem["count"], sep=' ')
-                    if obj == item["name"]:
-                        item["count"] = item["count"] + 1
-                        print("I found of name! --->>> " + str(item["count"]))
-                        path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
-                        file_name = 'applicants'
-                        write_data_json(feature_list_applicants, path, file_name)
-                        success = 1
-
-                        if item["count"] >= border:
-                            rng = np.random.default_rng()
-                            path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
-                            file_name = 'params'
-                            list_params = read_data_json(path, file_name)
-
-                            list_params.append({"name": item["name"],
-                                                "synonyms": [""],
-                                                "impact": (rng.random() - 0.5)
-                                                })
-                            path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
-                            file_name = 'applicants'
-                            write_data_json(list_params, path, file_name)
-                            feature_list_applicants.remove(item)
-                            path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
-                            file_name = 'applicants'
-                            write_data_json(feature_list_applicants, path, file_name)
-
-                        break
-                # Add new feature
-                if success == 0:
-                    new_feature_applicant = {"name": obj, "count": 1}
-                    feature_list_applicants.append(new_feature_applicant)
-                    path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
-                    file_name = 'applicants'
-                    write_data_json(feature_list_applicants, path, file_name)
-                    print(obj)
-
-            idx_word = idx_word + 1
-        idx_word = 0
-        idx_sentence = idx_sentence + 1
-
-
-    # feature_list_applicants.append()
-
-    # write_applicants_json(feature_list_applicants)
-
-    # _________________________________________________________________________________
+    # # _________________________________________________________________________________
+    #
+    # # Appending feature of applicants to list to json file
+    # # 1 day for remove from applicants.json
+    # # 240 it's 50% <- 1 day - 24 hours - 48 query * 10 news
+    # # 384 it's 80% <- 1 day - 24 hours - 48 query * 10 news
+    # # 3 day for appending to params.json
+    #
+    # border = 240
+    #
+    # idx_word = 0
+    # idx_sentence = 0
+    # for header in listWords:
+    #     # print(header)
+    #     for obj in header:
+    #         if list_future_weigths[idx_sentence][idx_word] == 0:
+    #             path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
+    #             file_name = 'applicants'
+    #             feature_list_applicants = read_data_json(path, file_name)
+    #
+    #             # find to feature_list_applicants obj
+    #             success = 0
+    #             # Increase count
+    #             for item in feature_list_applicants:
+    #                 # print(ithem["name"], ithem["count"], sep=' ')
+    #                 if obj == item["name"]:
+    #                     item["count"] = item["count"] + 1
+    #                     print("I found of name! --->>> " + str(item["count"]))
+    #                     path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
+    #                     file_name = 'applicants'
+    #                     write_data_json(feature_list_applicants, path, file_name)
+    #                     success = 1
+    #
+    #                     if item["count"] >= border:
+    #                         rng = np.random.default_rng()
+    #                         path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
+    #                         file_name = 'params'
+    #                         list_params = read_data_json(path, file_name)
+    #
+    #                         list_params.append({"name": item["name"],
+    #                                             "synonyms": [""],
+    #                                             "impact": (rng.random() - 0.5)
+    #                                             })
+    #                         path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
+    #                         file_name = 'applicants'
+    #                         write_data_json(list_params, path, file_name)
+    #                         feature_list_applicants.remove(item)
+    #                         path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
+    #                         file_name = 'applicants'
+    #                         write_data_json(feature_list_applicants, path, file_name)
+    #
+    #                     break
+    #             # Add new feature
+    #             if success == 0:
+    #                 new_feature_applicant = {"name": obj, "count": 1}
+    #                 feature_list_applicants.append(new_feature_applicant)
+    #                 path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
+    #                 file_name = 'applicants'
+    #                 write_data_json(feature_list_applicants, path, file_name)
+    #                 print(obj)
+    #
+    #         idx_word = idx_word + 1
+    #     idx_word = 0
+    #     idx_sentence = idx_sentence + 1
+    #
+    #
+    # # feature_list_applicants.append()
+    #
+    # # write_applicants_json(feature_list_applicants)
+    #
+    # # ______________________________ NN ______________________________
+    #
+    # SYMBOLS = ['FXRB',
+    #            'FXMM'
+    #            'FXRU',
+    #            'FXRB',
+    #            'FXWO',
+    #            'FXWR',
+    #            'SU26214RMFS5',
+    #            'RU000A100089',
+    #            'RU000A0ZZH84',
+    #            'RU000A0ZYBS1'
+    #            ]
+    #
+    # logging.basicConfig(level=logging.DEBUG)
+    #
+    # path = 'C:\\Users\\user\\0_Py\\Helper\\Parser_stoks\\'
+    # file_name = 'stocks' + '_' + '.csv'
+    # stock = pd.read_csv(path + file_name)
+    #
+    # print(stock.head())
+    #
+    # open_value = stock.get('<OPEN>')
+    # close_value = stock.get('<CLOSE>')
+    # high_value = stock.get('<HIGH>')
+    # low_value = stock.get('<LOW>')
+    # volume_value = stock.get('<VOL>')
+    #
+    # open_value.plot()
+    # # close_value.plot()
+    # # high_value.plot()
+    # # low_value.plot()
+    # # volume_value.plot()
+    # plt.show()
+    #
+    # # Определение набора данных
+    # data = np.array([
+    #     [-2, -1],  # Alice
+    #     [25, 6],  # Bob
+    #     [17, 4],  # Charlie
+    #     [-15, -6],  # Diana
+    # ])
+    #
+    # all_y_trues = np.array([
+    #     1,  # Alice
+    #     0,  # Bob
+    #     0,  # Charlie
+    #     1,  # Diana
+    # ])
+    #
+    # # Тренируем нашу нейронную сеть!
+    # network = OurNeuralNetwork()
+    # network.train(data, all_y_trues)
+    #
+    # # Делаем предсказания
+    # emily = np.array([-7, -3])  # 128 фунтов, 63 дюйма
+    # frank = np.array([20, 2])  # 155 фунтов, 68 дюймов
+    # print("Emily: %.3f" % network.feedforward(emily))  # 0.951 - F
+    # print("Frank: %.3f" % network.feedforward(frank))  # 0.039 - M
 
 
 if __name__ == '__main__':
