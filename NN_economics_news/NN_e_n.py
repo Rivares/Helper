@@ -178,16 +178,16 @@ def main():
 
 
 
-    weights = np.array([0, 1])  # w1 = 0, w2 = 1
-    bias = 4  # b = 4
-    n = Neuron(weights, bias)
-
-    x = np.array([2, 3])  # x1 = 2, x2 = 3
-    print(n.feedforward(x))  # 0.9990889488055994
-
-    network = OurNeuralNetwork()
-    x = np.array([2, 3])
-    print(network.feedforward(x))  # 0.7216325609518421
+    # weights = np.array([0, 1])  # w1 = 0, w2 = 1
+    # bias = 4  # b = 4
+    # n = Neuron(weights, bias)
+    #
+    # x = np.array([2, 3])  # x1 = 2, x2 = 3
+    # print(n.feedforward(x))  # 0.9990889488055994
+    #
+    # network = OurNeuralNetwork()
+    # x = np.array([2, 3])
+    # print(network.feedforward(x))  # 0.7216325609518421
 
     # Определение набора данных
     data = np.array([

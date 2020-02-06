@@ -1,418 +1,722 @@
 [
     {
         "name": "ржд",
-        "count": 10
+        "count": 11
     },
     {
         "name": "рассказать",
-        "count": 10
+        "count": 11
     },
     {
         "name": "пассажиропоток",
-        "count": 10
+        "count": 11
     },
     {
         "name": "сообщение",
-        "count": 10
+        "count": 11
     },
     {
         "name": "проводник",
-        "count": 10
+        "count": 11
     },
     {
         "name": "вагон",
-        "count": 10
+        "count": 11
     },
     {
         "name": "поезд",
-        "count": 10
+        "count": 11
     },
     {
         "name": "пекин-москва",
-        "count": 10
+        "count": 11
     },
     {
         "name": "железнодорожный",
-        "count": 10
+        "count": 11
     },
     {
         "name": "вокзал",
-        "count": 10
+        "count": 11
     },
     {
         "name": "иркутск-пассажирский",
-        "count": 10
+        "count": 11
     },
     {
         "name": "новак",
-        "count": 19
+        "count": 21
     },
     {
         "name": "оценить",
-        "count": 10
+        "count": 15
     },
     {
         "name": "возможный",
-        "count": 10
+        "count": 13
     },
     {
         "name": "влияние",
-        "count": 10
+        "count": 13
     },
     {
         "name": "вспышка",
-        "count": 10
+        "count": 11
     },
     {
         "name": "коронавирус",
-        "count": 28
+        "count": 33
     },
     {
         "name": "нефтяной",
-        "count": 9
+        "count": 10
     },
     {
         "name": "рынок",
-        "count": 9
+        "count": 10
     },
     {
         "name": "министр",
-        "count": 9
+        "count": 10
     },
     {
         "name": "энергетика",
-        "count": 9
+        "count": 10
     },
     {
         "name": "александр",
-        "count": 9
+        "count": 10
     },
     {
         "name": "остановить",
-        "count": 9
+        "count": 10
     },
     {
         "name": "поставка",
-        "count": 9
+        "count": 10
     },
     {
         "name": "ждать",
-        "count": 9
+        "count": 10
     },
     {
         "name": "ли",
-        "count": 9
+        "count": 10
     },
     {
         "name": "рост",
-        "count": 9
+        "count": 10
     },
     {
         "name": "цена",
-        "count": 18
+        "count": 20
     },
     {
         "name": "гаджет",
-        "count": 9
+        "count": 10
     },
     {
         "name": "смартфон",
-        "count": 9
+        "count": 10
     },
     {
         "name": "тск",
-        "count": 9
+        "count": 10
     },
     {
         "name": "мосэнерго",
-        "count": 9
+        "count": 10
     },
     {
         "name": "увеличить",
-        "count": 9
+        "count": 10
     },
     {
         "name": "собираемость",
-        "count": 9
+        "count": 10
     },
     {
         "name": "платёж",
-        "count": 9
+        "count": 10
     },
     {
         "name": "тепло",
-        "count": 9
+        "count": 10
     },
     {
         "name": "платёжный",
-        "count": 9
+        "count": 10
     },
     {
         "name": "квитанция",
-        "count": 9
+        "count": 10
     },
     {
         "name": "услуга",
-        "count": 9
+        "count": 10
     },
     {
         "name": "жкх",
-        "count": 9
+        "count": 10
     },
     {
         "name": "том",
-        "count": 9
+        "count": 10
     },
     {
         "name": "плюс",
-        "count": 9
+        "count": 10
     },
     {
         "name": "вложить",
-        "count": 9
+        "count": 10
     },
     {
         "name": "миллиард",
-        "count": 18
+        "count": 20
     },
     {
         "name": "рубль",
-        "count": 18
+        "count": 20
     },
     {
         "name": "система",
-        "count": 9
+        "count": 10
     },
     {
         "name": "теплоснабжение",
-        "count": 9
+        "count": 10
     },
     {
         "name": "ульяновск",
-        "count": 18
+        "count": 20
     },
     {
         "name": "архивный",
-        "count": 9
+        "count": 10
     },
     {
         "name": "фото",
-        "count": 9
+        "count": 10
     },
     {
         "name": "физлицо",
-        "count": 9
+        "count": 10
     },
     {
         "name": "начать",
-        "count": 9
+        "count": 10
     },
     {
         "name": "инвестировать",
-        "count": 9
+        "count": 10
     },
     {
         "name": "облигация",
-        "count": 18
+        "count": 20
     },
     {
         "name": "мсп",
-        "count": 36
+        "count": 40
     },
     {
         "name": "банка",
-        "count": 9
+        "count": 10
     },
     {
         "name": "год",
-        "count": 9
+        "count": 16
     },
     {
         "name": "председатель",
-        "count": 18
+        "count": 22
     },
     {
         "name": "правление",
-        "count": 18
+        "count": 22
     },
     {
         "name": "член",
-        "count": 9
+        "count": 10
     },
     {
         "name": "наблюдательный",
-        "count": 9
+        "count": 10
     },
     {
         "name": "совет",
-        "count": 9
+        "count": 10
     },
     {
         "name": "ао",
-        "count": 18
+        "count": 20
     },
     {
         "name": "банк",
-        "count": 27
+        "count": 30
     },
     {
         "name": "дмитрий",
-        "count": 18
+        "count": 20
     },
     {
         "name": "голованов",
-        "count": 18
+        "count": 20
     },
     {
         "name": "глава",
-        "count": 9
+        "count": 10
     },
     {
         "name": "правительство",
-        "count": 9
+        "count": 10
     },
     {
         "name": "страна",
-        "count": 9
+        "count": 12
     },
     {
         "name": "еаэс",
-        "count": 9
+        "count": 10
     },
     {
         "name": "подписать",
-        "count": 9
+        "count": 10
     },
     {
         "name": "пакет",
-        "count": 9
+        "count": 10
     },
     {
         "name": "документ",
-        "count": 9
+        "count": 10
     },
     {
         "name": "рабочий",
-        "count": 9
+        "count": 10
     },
     {
         "name": "визит",
-        "count": 9
+        "count": 10
     },
     {
         "name": "премьер-министр",
-        "count": 9
+        "count": 10
     },
     {
         "name": "метр",
-        "count": 9
+        "count": 10
     },
     {
         "name": "мишустин",
-        "count": 9
+        "count": 10
     },
     {
         "name": "российский",
-        "count": 9
+        "count": 16
     },
     {
         "name": "фармкомпания",
-        "count": 9
+        "count": 10
     },
     {
         "name": "пообещать",
-        "count": 9
+        "count": 10
     },
     {
         "name": "не",
-        "count": 9
+        "count": 10
     },
     {
         "name": "повышать",
-        "count": 9
+        "count": 10
     },
     {
         "name": "посетитель",
-        "count": 9
+        "count": 10
     },
     {
         "name": "аптека",
-        "count": 9
+        "count": 10
     },
     {
         "name": "эксперт",
-        "count": 9
+        "count": 14
     },
     {
         "name": "предложение",
-        "count": 9
+        "count": 10
     },
     {
         "name": "киев",
-        "count": 18
+        "count": 20
     },
     {
         "name": "мочь",
-        "count": 9
+        "count": 10
     },
     {
         "name": "быть",
-        "count": 9
+        "count": 12
     },
     {
         "name": "малопривлекательный",
-        "count": 9
+        "count": 10
     },
     {
         "name": "госсекретарь",
-        "count": 9
+        "count": 10
     },
     {
         "name": "майк",
-        "count": 9
+        "count": 10
     },
     {
         "name": "помпео",
-        "count": 9
+        "count": 10
     },
     {
         "name": "и",
-        "count": 9
+        "count": 12
     },
     {
         "name": "президент",
-        "count": 9
+        "count": 16
     },
     {
         "name": "владимир",
-        "count": 9
+        "count": 12
     },
     {
         "name": "зеленский",
-        "count": 9
+        "count": 10
     },
     {
         "name": "пресс-конференция",
-        "count": 9
+        "count": 10
     },
     {
         "name": "итог",
-        "count": 9
+        "count": 10
     },
     {
         "name": "встреча",
-        "count": 9
+        "count": 12
     },
     {
         "name": "осуществить",
-        "count": 9
+        "count": 10
     },
     {
         "name": "два",
-        "count": 9
+        "count": 10
     },
     {
         "name": "выпуск",
-        "count": 9
+        "count": 10
+    },
+    {
+        "name": "пушок",
+        "count": 2
+    },
+    {
+        "name": "отмена",
+        "count": 2
+    },
+    {
+        "name": "часть",
+        "count": 4
+    },
+    {
+        "name": "пошлина",
+        "count": 6
+    },
+    {
+        "name": "товар",
+        "count": 6
+    },
+    {
+        "name": "ребёнок",
+        "count": 2
+    },
+    {
+        "name": "зонт",
+        "count": 2
+    },
+    {
+        "name": "цвета",
+        "count": 2
+    },
+    {
+        "name": "флаг",
+        "count": 2
+    },
+    {
+        "name": "ковент-гарден",
+        "count": 2
+    },
+    {
+        "name": "лондон",
+        "count": 4
+    },
+    {
+        "name": "продолжить",
+        "count": 2
+    },
+    {
+        "name": "закупать",
+        "count": 2
+    },
+    {
+        "name": "высококалорийный",
+        "count": 2
+    },
+    {
+        "name": "уголь",
+        "count": 2
+    },
+    {
+        "name": "шахтёр",
+        "count": 2
+    },
+    {
+        "name": "угольный",
+        "count": 2
+    },
+    {
+        "name": "шахта",
+        "count": 2
+    },
+    {
+        "name": "вуйка",
+        "count": 2
+    },
+    {
+        "name": "катовице",
+        "count": 2
+    },
+    {
+        "name": "снять",
+        "count": 2
+    },
+    {
+        "name": "ряд",
+        "count": 2
+    },
+    {
+        "name": "вестминстерский",
+        "count": 2
+    },
+    {
+        "name": "дворец",
+        "count": 2
+    },
+    {
+        "name": "решить",
+        "count": 2
+    },
+    {
+        "name": "отменить",
+        "count": 2
+    },
+    {
+        "name": "татарстан",
+        "count": 4
+    },
+    {
+        "name": "сбербанк",
+        "count": 4
+    },
+    {
+        "name": "сотрудничать",
+        "count": 2
+    },
+    {
+        "name": "сфера",
+        "count": 2
+    },
+    {
+        "name": "цифровизаци",
+        "count": 2
+    },
+    {
+        "name": "республика",
+        "count": 2
+    },
+    {
+        "name": "рустам",
+        "count": 2
+    },
+    {
+        "name": "миннихан",
+        "count": 2
+    },
+    {
+        "name": "время",
+        "count": 2
+    },
+    {
+        "name": "путин",
+        "count": 2
+    },
+    {
+        "name": "февраль",
+        "count": 2
+    },
+    {
+        "name": "комплимент",
+        "count": 2
+    },
+    {
+        "name": "выгода",
+        "count": 2
+    },
+    {
+        "name": "минск",
+        "count": 4
+    },
+    {
+        "name": "слово",
+        "count": 2
+    },
+    {
+        "name": "рыночный",
+        "count": 2
+    },
+    {
+        "name": "экономика",
+        "count": 4
+    },
+    {
+        "name": "здание",
+        "count": 2
+    },
+    {
+        "name": "посольство",
+        "count": 2
+    },
+    {
+        "name": "греф",
+        "count": 4
+    },
+    {
+        "name": "пао",
+        "count": 2
+    },
+    {
+        "name": "московский",
+        "count": 2
+    },
+    {
+        "name": "финансовый",
+        "count": 2
+    },
+    {
+        "name": "форум",
+        "count": 2
+    },
+    {
+        "name": "топ-менеджер",
+        "count": 2
+    },
+    {
+        "name": "сравнить",
+        "count": 2
+    },
+    {
+        "name": "сказочный",
+        "count": 2
+    },
+    {
+        "name": "эльдорадо",
+        "count": 2
+    },
+    {
+        "name": "небоскрёб",
+        "count": 2
+    },
+    {
+        "name": "деловой",
+        "count": 2
+    },
+    {
+        "name": "центр",
+        "count": 2
+    },
+    {
+        "name": "москва-сити",
+        "count": 2
+    },
+    {
+        "name": "финалист",
+        "count": 2
+    },
+    {
+        "name": "конкурс",
+        "count": 4
+    },
+    {
+        "name": "хороший",
+        "count": 4
+    },
+    {
+        "name": "социальный",
+        "count": 4
+    },
+    {
+        "name": "проект",
+        "count": 4
+    },
+    {
+        "name": "стать",
+        "count": 2
+    },
+    {
+        "name": "человек",
+        "count": 2
+    },
+    {
+        "name": "статуэтка",
+        "count": 2
+    },
+    {
+        "name": "победитель",
+        "count": 2
+    },
+    {
+        "name": "всероссийский",
+        "count": 2
+    },
+    {
+        "name": "москва",
+        "count": 4
+    },
+    {
+        "name": "снова",
+        "count": 2
+    },
+    {
+        "name": "провести",
+        "count": 2
+    },
+    {
+        "name": "кадастровый",
+        "count": 2
+    },
+    {
+        "name": "оценка",
+        "count": 2
+    },
+    {
+        "name": "недвижимость",
+        "count": 2
+    },
+    {
+        "name": "пречистенский",
+        "count": 2
+    },
+    {
+        "name": "набережная",
+        "count": 2
     }
 ]
