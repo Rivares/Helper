@@ -476,18 +476,22 @@ def main():
                 # numbers
                 for i in range(48, 57 + 1):
                     if charter == chr(i):
+                        idx = i
                         new_word.append(i)
                 # Latin uppers
                 for i in range(65, 90 + 1):
                     if charter == chr(i):
+                        idx = i
                         new_word.append(i)
                 # Latin downs
                 for i in range(97, 122 + 1):
                     if charter == chr(i):
+                        idx = i
                         new_word.append(i)
                 # Cyrillic
                 for i in range(1072, 1103 + 1):
                     if charter == chr(i):
+                        idx = i
                         new_word.append(i)
 
                 listWordsToNN[idx_sentence][idx_word][idx_charter] = idx
@@ -500,22 +504,15 @@ def main():
 
     # print(newListWords)
 
-    print(listWordsToNN[2])
+    # print(listWordsToNN[0])
 
     # _________________________________________________________________________________
 
-    # Transform to digital mode
-
+    # Prepare weights
+    # Finding reference words to array words
 
     # _________________________________________________________________________________
 
-    # Transform to digital mode
-
-
-    # # Finding reference words to array words
-    #
-    # # _________________________________________________________________________________
-    #
     # # For Real-Time mode
     # #
     # # future_weigths = np.zeros(length_sentence, dtype=float)
@@ -544,7 +541,7 @@ def main():
     # #     cnt = cnt + 1
     # #
     # # _________________________________________________________________________________
-    # #
+    #
     # For Trainging NN
 
     # _________________________________________________________________________________
@@ -575,104 +572,106 @@ def main():
         idx_sentence = idx_sentence + 1
 
     # print(list_future_weigths[len(listWords) - 2])
+    # print(list_future_weigths)
+    # _________________________________________________________________________________
 
-    # # _________________________________________________________________________________
-    #
-    # # Appending feature of applicants to list to json file
-    # # 1 day for remove from applicants.json
-    # # 240 it's 50% <- 1 day - 24 hours - 48 query * 10 news
-    # # 384 it's 80% <- 1 day - 24 hours - 48 query * 10 news
-    # # 3 day for appending to params.json
-    #
-    # border = 240
-    #
-    # idx_word = 0
-    # idx_sentence = 0
-    # for header in listWords:
-    #     # print(header)
-    #     for obj in header:
-    #         if list_future_weigths[idx_sentence][idx_word] == 0:
-    #             path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
-    #             file_name = 'applicants'
-    #             feature_list_applicants = read_data_json(path, file_name)
-    #
-    #             # find to feature_list_applicants obj
-    #             success = 0
-    #             # Increase count
-    #             for item in feature_list_applicants:
-    #                 # print(ithem["name"], ithem["count"], sep=' ')
-    #                 if obj == item["name"]:
-    #                     item["count"] = item["count"] + 1
-    #                     print("I found of name! --->>> " + str(item["count"]))
-    #                     path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
-    #                     file_name = 'applicants'
-    #                     write_data_json(feature_list_applicants, path, file_name)
-    #                     success = 1
-    #
-    #                     if item["count"] >= border:
-    #                         rng = np.random.default_rng()
-    #                         path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
-    #                         file_name = 'params'
-    #                         list_params = read_data_json(path, file_name)
-    #
-    #                         list_params.append({"name": item["name"],
-    #                                             "synonyms": [""],
-    #                                             "impact": (rng.random() - 0.5)
-    #                                             })
-    #                         path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
-    #                         file_name = 'applicants'
-    #                         write_data_json(list_params, path, file_name)
-    #                         feature_list_applicants.remove(item)
-    #                         path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
-    #                         file_name = 'applicants'
-    #                         write_data_json(feature_list_applicants, path, file_name)
-    #
-    #                     break
-    #             # Add new feature
-    #             if success == 0:
-    #                 new_feature_applicant = {"name": obj, "count": 1}
-    #                 feature_list_applicants.append(new_feature_applicant)
-    #                 path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
-    #                 file_name = 'applicants'
-    #                 write_data_json(feature_list_applicants, path, file_name)
-    #                 print(obj)
-    #
-    #         idx_word = idx_word + 1
-    #     idx_word = 0
-    #     idx_sentence = idx_sentence + 1
-    #
-    #
-    # # feature_list_applicants.append()
-    #
-    # # write_applicants_json(feature_list_applicants)
-    #
+    # Appending feature of applicants to list to json file
+    # 1 day for remove from applicants.json
+    # 240 it's 50% <- 1 day - 24 hours - 48 query * 10 news
+    # 384 it's 80% <- 1 day - 24 hours - 48 query * 10 news
+    # 3 day for appending to params.json
+
+    border = 100
+    path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
+
+    idx_word = 0
+    idx_sentence = 0
+    for header in listWords:
+        # print(header)
+        for obj in header:
+            if list_future_weigths[idx_sentence][idx_word] == 0:
+                file_name = 'applicants'
+                feature_list_applicants = read_data_json(path, file_name)
+
+                # find to feature_list_applicants obj
+                success = 0
+                # Increase count
+                for item in feature_list_applicants:
+                    # print(item["name"], item["count"], sep=' ')
+                    if obj == item["name"]:
+                        item["count"] = item["count"] + 1
+                        # print("I found of name! --->>> " + str(item["count"]))
+                        file_name = 'applicants'
+                        write_data_json(feature_list_applicants, path, file_name)
+                        success = 1
+
+                        if item["count"] >= border:
+                            rng = np.random.default_rng()
+                            file_name = 'params'
+                            list_params = read_data_json(path, file_name)
+
+                            list_params.append({"name": item["name"],
+                                                "synonyms": [""],
+                                                "impact": (rng.random() - 0.5)
+                                                })
+                            file_name = 'applicants'
+                            write_data_json(list_params, path, file_name)
+                            feature_list_applicants.remove(item)
+
+                            file_name = 'applicants'
+                            write_data_json(feature_list_applicants, path, file_name)
+
+                        break
+                # Add new feature
+                if success == 0:
+                    new_feature_applicant = {"name": obj, "count": 1}
+                    feature_list_applicants.append(new_feature_applicant)
+                    file_name = 'applicants'
+                    write_data_json(feature_list_applicants, path, file_name)
+                    # print(obj)
+
+            idx_word = idx_word + 1
+        idx_word = 0
+        idx_sentence = idx_sentence + 1
+
+
+    # feature_list_applicants.append()
+
     # # ______________________________ NN ______________________________
-    #
-    # SYMBOLS = ['FXRB',
-    #            'FXMM'
-    #            'FXRU',
-    #            'FXRB',
-    #            'FXWO',
-    #            'FXWR',
-    #            'SU26214RMFS5',
-    #            'RU000A100089',
-    #            'RU000A0ZZH84',
-    #            'RU000A0ZYBS1'
-    #            ]
-    #
-    # logging.basicConfig(level=logging.DEBUG)
-    #
-    # path = 'C:\\Users\\user\\0_Py\\Helper\\Parser_stoks\\'
-    # file_name = 'stocks' + '_' + '.csv'
-    # stock = pd.read_csv(path + file_name)
-    #
+
+    tickers = ['FXRB',
+               'FXMM',
+               'FXRU',
+               'FXRB',
+               'FXWO',
+               'FXWR',
+               'SU26214RMFS5',
+               'RU000A100089',
+               'RU000A0ZZH84',
+               'RU000A0ZYBS1'
+               ]
+
+    logging.basicConfig(level=logging.DEBUG)
+
+    exporter = Exporter()
+    data = exporter.lookup(name=tickers[2], market=Market.ETF_MOEX)
+    # print(data.head())
+    stock = exporter.download(data.index[0], market=Market.ETF_MOEX)
     # print(stock.head())
-    #
-    # open_value = stock.get('<OPEN>')
-    # close_value = stock.get('<CLOSE>')
-    # high_value = stock.get('<HIGH>')
-    # low_value = stock.get('<LOW>')
-    # volume_value = stock.get('<VOL>')
+
+    file_name = 'stocks_' + str(tickers[2]) + '.csv'
+    stock.to_csv(file_name)
+
+    fxru = pd.read_csv(file_name)
+
+    print(fxru.head())
+
+    date_time = stock.get('<index>')
+    open_value = stock.get('<OPEN>')
+    close_value = stock.get('<CLOSE>')
+    high_value = stock.get('<HIGH>')
+    low_value = stock.get('<LOW>')
+    volume_value = stock.get('<VOL>')
     #
     # open_value.plot()
     # # close_value.plot()
@@ -680,22 +679,22 @@ def main():
     # # low_value.plot()
     # # volume_value.plot()
     # plt.show()
-    #
-    # # Определение набора данных
-    # data = np.array([
-    #     [-2, -1],  # Alice
-    #     [25, 6],  # Bob
-    #     [17, 4],  # Charlie
-    #     [-15, -6],  # Diana
-    # ])
-    #
-    # all_y_trues = np.array([
-    #     1,  # Alice
-    #     0,  # Bob
-    #     0,  # Charlie
-    #     1,  # Diana
-    # ])
-    #
+
+    # Определение набора данных
+    data = np.array([
+        [-2, -1],  # Alice
+        [25, 6],  # Bob
+        [17, 4],  # Charlie
+        [-15, -6],  # Diana
+    ])
+
+    all_y_trues = np.array([
+        1,  # Alice
+        0,  # Bob
+        0,  # Charlie
+        1,  # Diana
+    ])
+
     # # Тренируем нашу нейронную сеть!
     # network = OurNeuralNetwork()
     # network.train(data, all_y_trues)
