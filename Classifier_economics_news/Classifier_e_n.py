@@ -44,6 +44,7 @@ def write_article_csv(data):
                          'time': data['time']
                          })
 
+
 def read_article_csv():
     path = '../Parser_economics_news/'
     file_name = 'economics_news'
@@ -165,12 +166,13 @@ def get_page_data(html, article_data):
             addit = title_picture;
 
             time = ad.find('div', class_='list-item__info') \
-                .find('div', class_='list-item__date').text;
-            time = time.split(' ')
-            time = time[1]
+                .find('div', class_='list-item__date').text
+            time = time.split(', ')
+            time = time[-1]
 
             data = {'title': title, 'additionally': addit, 'href': href, 'time': time}
             article_data.append(data)
+
         except:
             title = 'Error'
             addit = 'Error'
@@ -197,6 +199,7 @@ def deriv_sigmoid(x):
 def mse_loss(y_true, y_pred):
     # y_true и y_pred являются массивами numpy с одинаковой длиной
     return ((y_true - y_pred) ** 2).mean()
+
 
 class Neuron:
     def __init__(self, weights, bias):
@@ -325,17 +328,19 @@ def main():
     article_data = get_page_data(html, article_data)
 
     # print(article_data.__len__())
-    path = 'C:\\Users\\user\\0_Py\\Helper\\Parser_economics_news\\'
+    path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
     file_name = 'economics_news'
     write_data_json(article_data, path, file_name)
 
-    length_sentence = 20
+    count_sentences = article_data.__len__()
+    count_words = 30
+    count_charters = 30
 
     # _________________________________________________________________________________
 
     # Creating list of news + to Lower Case + delete ',' and  '.'
 
-    path = 'C:\\Users\\user\\0_Py\\Helper\\Parser_economics_news\\'
+    path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
     file_name = 'economics_news'
     news = read_data_json(path, file_name)
 
@@ -450,9 +455,61 @@ def main():
             p = morph.parse(word)[0]
             if p.tag.POS == 'PREP':
                 sentence.remove(word)
-        print(sentence)
+        # print(sentence)
     # _________________________________________________________________________________
 
+    # Transform to digital mode
+
+    # print(listWords[0][0])
+
+    newListWords = []
+    listWordsToNN = np.zeros((count_sentences, count_words, count_charters))
+
+    idx_sentence = 0
+    for sentence in listWords:
+        idx_word = 0
+        for word in sentence:
+            new_word = []
+            idx_charter = 0
+            for charter in word:
+                idx = 0;
+                # numbers
+                for i in range(48, 57 + 1):
+                    if charter == chr(i):
+                        new_word.append(i)
+                # Latin uppers
+                for i in range(65, 90 + 1):
+                    if charter == chr(i):
+                        new_word.append(i)
+                # Latin downs
+                for i in range(97, 122 + 1):
+                    if charter == chr(i):
+                        new_word.append(i)
+                # Cyrillic
+                for i in range(1072, 1103 + 1):
+                    if charter == chr(i):
+                        new_word.append(i)
+
+                listWordsToNN[idx_sentence][idx_word][idx_charter] = idx
+                idx_charter = idx_charter + 1
+
+            idx_word = idx_word + 1
+            newListWords.append(new_word)
+
+        idx_sentence = idx_sentence + 1
+
+    # print(newListWords)
+
+    print(listWordsToNN[2])
+
+    # _________________________________________________________________________________
+
+    # Transform to digital mode
+
+
+    # _________________________________________________________________________________
+
+    # Transform to digital mode
 
 
     # # Finding reference words to array words
@@ -493,7 +550,7 @@ def main():
     # _________________________________________________________________________________
 
     # future_weigths = np.zeros(length_sentence, dtype=float)
-    list_future_weigths = np.zeros((len(listWords), length_sentence), dtype=float)
+    list_future_weigths = np.zeros((len(listWords), count_words), dtype=float)
 
     idx_word = 0
     idx_sentence = 0
