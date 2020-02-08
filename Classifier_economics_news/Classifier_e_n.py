@@ -432,8 +432,10 @@ def main():
     # Get only text information from title and additionally
 
     newListSpider_E_N = []
-    for obj in listSpider_E_N:
-        newListSpider_E_N.append(obj.title + ' ' + obj.additionally)
+    time_news = []
+    for news in listSpider_E_N:
+        newListSpider_E_N.append(news.title + ' ' + news.additionally)
+        time_news.append(news.time)
 
     listSpider_E_N = newListSpider_E_N
 
@@ -442,8 +444,8 @@ def main():
     # Transform to array words
 
     listWords = []
-    for obj in listSpider_E_N:
-        listWords.append(obj.split())
+    for news in listSpider_E_N:
+        listWords.append(news.split())
 
     # _________________________________________________________________________________
 
@@ -651,7 +653,7 @@ def main():
                'RU000A0ZYBS1'
                ]
 
-    logging.basicConfig(level=logging.DEBUG)
+    # logging.basicConfig(level=logging.DEBUG)
 
     exporter = Exporter()
     data = exporter.lookup(name=tickers[2], market=Market.ETF_MOEX)
@@ -662,23 +664,35 @@ def main():
     file_name = 'stocks_' + str(tickers[2]) + '.csv'
     stock.to_csv(file_name)
 
-    fxru = pd.read_csv(file_name)
+    # fxru = pd.read_csv(file_name)
 
-    print(fxru.head())
-
-    date_time = stock.get('<index>')
+    date_value = stock.get('<DATE>')
+    time_value = stock.get('<TIME>')
     open_value = stock.get('<OPEN>')
     close_value = stock.get('<CLOSE>')
     high_value = stock.get('<HIGH>')
     low_value = stock.get('<LOW>')
     volume_value = stock.get('<VOL>')
-    #
-    # open_value.plot()
-    # # close_value.plot()
-    # # high_value.plot()
-    # # low_value.plot()
-    # # volume_value.plot()
+
+    # plt.plot(time_value, low_value)
+    # close_value.plot()
+    # high_value.plot()
+    # low_value.plot()
+    # volume_value.plot()
     # plt.show()
+
+    new_time_value = time_value.to_list()
+
+    reg_exp = re.compile(':00$')
+    print(new_time_value[0].replace(reg_exp.search(reg_exp)), '')
+    for point in time_news:
+        frame_minute = low_value.get('index')
+        print(frame_minute)
+        # frame_minute = frame_minute[-1]
+        # frame_minute = frame_minute[:-4]
+        # print(frame_minute)
+        # print(point)
+
 
     # Определение набора данных
     data = np.array([
