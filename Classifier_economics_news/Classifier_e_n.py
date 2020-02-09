@@ -184,6 +184,22 @@ def get_page_data(html, article_data):
 
 # ______________________________ NN ______________________________
 
+def list_true_value(list_values_to_nn):
+    list_diff_values = []
+    prev_value = list_values_to_nn[0]
+    for idx in range(1, len(list_values_to_nn)):
+        if list_values_to_nn[idx] > prev_value:
+            list_diff_values.append(1)
+
+        if list_values_to_nn[idx] < prev_value:
+            list_diff_values.append(-1)
+
+        if list_values_to_nn[idx] == prev_value:
+            list_diff_values.append(0)
+
+        prev_value = list_values_to_nn[idx]
+
+    return list_diff_values
 
 def sigmoid(x):
     # Функция активации sigmoid:: f(x) = 1 / (1 + e^(-x))
@@ -655,10 +671,15 @@ def main():
 
     # logging.basicConfig(level=logging.DEBUG)
 
+    curr_day = datetime.date(2020, 1, 1)
+    # curr_day = datetime.date(datetime.datetime.now().year,
+    #                          datetime.datetime.now().month,
+    #                          datetime.datetime.now().day)
+    # print(curr_day)
     exporter = Exporter()
     data = exporter.lookup(name=tickers[2], market=Market.ETF_MOEX)
     # print(data.head())
-    stock = exporter.download(data.index[0], market=Market.ETF_MOEX)
+    stock = exporter.download(data.index[0], market=Market.ETF_MOEX, start_date=curr_day)
     # print(stock.head())
 
     file_name = 'stocks_' + str(tickers[2]) + '.csv'
@@ -681,32 +702,51 @@ def main():
     # volume_value.plot()
     # plt.show()
 
-    new_time_value = time_value.to_list()
+    list_time_value = time_value.to_list()
+    list_open_value = open_value.to_list()
+    list_close_value = close_value.to_list()
+    list_high_value = high_value.to_list()
+    list_low_value = low_value.to_list()
+    list_volume_value = volume_value.to_list()
 
-    reg_exp = re.compile(':00$')
-    print(new_time_value[0].replace(reg_exp.search(reg_exp)), '')
-    for point in time_news:
-        frame_minute = low_value.get('index')
-        print(frame_minute)
-        # frame_minute = frame_minute[-1]
-        # frame_minute = frame_minute[:-4]
-        # print(frame_minute)
-        # print(point)
+    listOpenValuesToNN = []
+    listCloseValuesToNN = []
+    listHighValuesToNN = []
+    listLowValuesToNN = []
+    listVolumeValuesToNN = []
+    listTimePointsToNN = []
+    for dt_news in time_news:
+        for dt in list_time_value:
+            regex = r":00$"
+            frame_minute = str(dt)
+            matches = re.findall(regex, frame_minute)
+            frame_minute = frame_minute.replace(matches[0], '')
 
+            if len(frame_minute) < 3:
+                frame_minute = frame_minute + ':00'
+
+            if dt_news == frame_minute:
+                listTimePointsToNN.append(dt)
+                listOpenValuesToNN.append(list_open_value[list_time_value.index(dt)])
+                listCloseValuesToNN.append(list_close_value[list_time_value.index(dt)])
+                listHighValuesToNN.append(list_high_value[list_time_value.index(dt)])
+                listLowValuesToNN.append(list_low_value[list_time_value.index(dt)])
+                listVolumeValuesToNN.append(list_volume_value[list_time_value.index(dt)])
+                break
+
+            # print(frame_minute)
+
+    print(listWordsToNN)
+    listTrueValue = list_true_value(listOpenValuesToNN)
+    listTrueValue.insert(0, listTrueValue[0])
 
     # Определение набора данных
     data = np.array([
-        [-2, -1],  # Alice
-        [25, 6],  # Bob
-        [17, 4],  # Charlie
-        [-15, -6],  # Diana
+        [-2, -1]
     ])
 
     all_y_trues = np.array([
-        1,  # Alice
-        0,  # Bob
-        0,  # Charlie
-        1,  # Diana
+        listTrueValue
     ])
 
     # # Тренируем нашу нейронную сеть!

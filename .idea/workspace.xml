@@ -5,7 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classifier_economics_news/Classifier_e_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/Classifier_e_n.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classifier_economics_news/applicants.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/applicants.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/stocks_FXRU.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/stocks_FXRU.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/economics_news.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/economics_news.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,7 +274,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581189590860</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Implement: finding matched time news and value of ticker">
+      <created>1581201234015</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1581201234015</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -303,7 +310,8 @@
     <MESSAGE value="Implement: merging..(+stoks+NN)" />
     <MESSAGE value="Implement: prepare to NN.." />
     <MESSAGE value="Implement: continue prepare to NN.." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement: continue prepare to NN.." />
+    <MESSAGE value="Implement: finding matched time news and value of ticker" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement: finding matched time news and value of ticker" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581030771128">
@@ -314,38 +322,38 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="690" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1579896447425" />
-    <state x="614" y="117" width="792" height="815" key="CommitChangelistDialog2" timestamp="1581189590004">
+    <state x="614" y="117" width="792" height="815" key="CommitChangelistDialog2" timestamp="1581201233117">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="614" y="117" width="792" height="815" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1581189590004" />
+    <state x="614" y="117" width="792" height="815" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1581201233117" />
     <state x="740" y="278" key="FileChooserDialogImpl" timestamp="1581030768937">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="278" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1581030768937" />
-    <state width="1898" height="280" key="GridCell.Tab.0.bottom" timestamp="1581201092530">
+    <state width="1898" height="280" key="GridCell.Tab.0.bottom" timestamp="1581281183443">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1898" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1581201092530" />
-    <state width="1898" height="280" key="GridCell.Tab.0.center" timestamp="1581201092530">
+    <state width="1898" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1581281183443" />
+    <state width="1898" height="280" key="GridCell.Tab.0.center" timestamp="1581281183442">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1898" height="280" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1581201092530" />
-    <state width="1898" height="280" key="GridCell.Tab.0.left" timestamp="1581201092529">
+    <state width="1898" height="280" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1581281183442" />
+    <state width="1898" height="280" key="GridCell.Tab.0.left" timestamp="1581281183442">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1898" height="280" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1581201092529" />
-    <state width="1898" height="280" key="GridCell.Tab.0.right" timestamp="1581201092530">
+    <state width="1898" height="280" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1581281183442" />
+    <state width="1898" height="280" key="GridCell.Tab.0.right" timestamp="1581281183442">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1898" height="280" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1581201092530" />
+    <state width="1898" height="280" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1581281183442" />
     <state x="461" y="155" key="SettingsEditor" timestamp="1579896474068">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="461" y="155" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1579896474068" />
-    <state x="552" y="256" key="Vcs.Push.Dialog.v2" timestamp="1581189593318">
+    <state x="552" y="256" key="Vcs.Push.Dialog.v2" timestamp="1581201235488">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="552" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1581189593318" />
+    <state x="552" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1581201235488" />
     <state x="769" y="440" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580416096648">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
