@@ -1,6 +1,8 @@
 # coding: utf8
 
 from finam.export import Exporter, Market, LookupComparator
+from keras.models import Sequential
+from keras.layers import Dense
 from openpyxl import Workbook
 import matplotlib.pyplot as plt
 from bs4 import BeautifulSoup
@@ -18,6 +20,7 @@ import os
 import re
 
 
+
 class Spider(object):
     def __init__(self, title, additionally, href, time):
         """Constructor"""
@@ -31,6 +34,19 @@ class Spider(object):
 
 
 '''______________________________________________________________________'''
+
+def write_data_csv(data, path, file_name):
+    with open(path + file_name + '.csv', 'w', newline='') as f:
+        fieldnames = []
+        for item in data:
+            fieldnames.append(data.)
+        writer = csv.DictWriter(f, delimiter=',', fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerow({'title': data['title'],
+                         'additionally': data['additionally'],
+                         'href': data['href'],
+                         'date': data['date']
+                         })
 
 
 def write_article_csv(data):
@@ -243,8 +259,10 @@ class OurNeuralNetwork:
     Вместо этого, прочитайте/запустите его, чтобы понять, как работает эта сеть.
     """
 
-    def __init__(self):
+    def __init__(self, dim_in, dim_h, count_h):
         # Вес
+        # self.list_weights = []
+        # for
         self.w1 = np.random.normal()
         self.w2 = np.random.normal()
         self.w3 = np.random.normal()
@@ -740,24 +758,51 @@ def main():
     listTrueValue = list_true_value(listOpenValuesToNN)
     listTrueValue.insert(0, listTrueValue[0])
 
-    # Определение набора данных
-    data = np.array([
-        [-2, -1]
-    ])
+    # задаем для воспроизводимости результатов
+    np.random.seed(2)
 
-    all_y_trues = np.array([
-        listTrueValue
-    ])
+    # загружаем датасет, соответствующий последним пяти годам до определение диагноза
+    write_data_csv(listWordsToNN, '', 'listWordsToNN')
+    dataset = np.loadtxt("prima-indians-diabetes.csv", delimiter=",")
+    # разбиваем датасет на матрицу параметров (X) и вектор целевой переменной (Y)
+    X, Y = dataset[:, 0:8], dataset[:, 8]
+
+    # создаем модели, добавляем слои один за другим
+    model = Sequential()
+    model.add(Dense(12, input_dim=8, activation='relu'))  # входной слой требует задать input_dim
+    model.add(Dense(15, activation='relu'))
+    model.add(Dense(8, activation='relu'))
+    model.add(Dense(10, activation='relu'))
+    model.add(Dense(1, activation='sigmoid'))  # сигмоида вместо relu для определения вероятности
+
+    # компилируем модель, используем градиентный спуск adam
+    model.compile(loss="binary_crossentropy", optimizer="adam", metrics=['accuracy'])
+
+    # обучаем нейронную сеть
+    model.fit(X, Y, epochs=1000, batch_size=10)
+
+    # оцениваем результат
+    scores = model.evaluate(X, Y)
+    print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1] * 100))
+
 
     # # Тренируем нашу нейронную сеть!
-    # network = OurNeuralNetwork()
-    # network.train(data, all_y_trues)
+    # dim_in = count_words * count_charters
+    # dim_h = 10
+    # count_h = 5
+    # network = OurNeuralNetwork(dim_in, dim_h, count_h)
+    # idx = 0
+    # for sentence in listWordsToNN:
+    #     for word in sentence:
+    #         network.train(word, listTrueValue[idx])
     #
-    # # Делаем предсказания
-    # emily = np.array([-7, -3])  # 128 фунтов, 63 дюйма
-    # frank = np.array([20, 2])  # 155 фунтов, 68 дюймов
-    # print("Emily: %.3f" % network.feedforward(emily))  # 0.951 - F
-    # print("Frank: %.3f" % network.feedforward(frank))  # 0.039 - M
+    #     idx = idx + 1
+    #
+    # # # Делаем предсказания
+    # # emily = np.array([-7, -3])  # 128 фунтов, 63 дюйма
+    # # frank = np.array([20, 2])  # 155 фунтов, 68 дюймов
+    # # print("Emily: %.3f" % network.feedforward(emily))  # 0.951 - F
+    # # print("Frank: %.3f" % network.feedforward(frank))  # 0.039 - M
 
 
 if __name__ == '__main__':
