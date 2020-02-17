@@ -756,7 +756,18 @@ def main():
 
     # print(listWordsToNN)
     print(listOpenValuesToNN)
+
+    arr = 0
+    size = 9 - len(listOpenValuesToNN)
+    lastValue = listOpenValuesToNN[-1]
+    for item in range(1, size):
+        if item < 10:
+            listOpenValuesToNN.append(lastValue)
+
+    print(listOpenValuesToNN)
+
     listTrueValue = list_true_value(listOpenValuesToNN)
+    print(listTrueValue)
     print(len(listTrueValue))
     listTrueValue.insert(0, listTrueValue[0])
 
