@@ -95,7 +95,7 @@ def convert_csv_to_xls():
 
 
 def read_params_xlsx():
-    country_path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
+    country_path = ''
     country_file_name = 'params'
     country_extension = '.xlsx'
 
@@ -122,7 +122,7 @@ def read_params_xlsx():
 
 
 def convert_json_to_xlsx():
-    path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
+    path = ''
     file_name = 'params'
     from_extension = '.json'
     to_extension = '.xlsx'
@@ -362,7 +362,7 @@ def main():
     article_data = get_page_data(html, article_data)
 
     # print(article_data.__len__())
-    path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
+    path = ''
     file_name = 'economics_news'
     write_data_json(article_data, path, file_name)
 
@@ -374,7 +374,7 @@ def main():
 
     # Creating list of news + to Lower Case + delete ',' and  '.'
 
-    path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
+    path = ''
     file_name = 'economics_news'
     news = read_data_json(path, file_name)
 
@@ -439,7 +439,7 @@ def main():
     # Read reference words from json file
 
     # listParams_E_N = read_params_xlsx()
-    path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
+    path = ''
     file_name = 'params'
     listParams_E_N = read_data_json(path, file_name)
     # write_params_json(listParams_E_N)
@@ -618,7 +618,7 @@ def main():
     # 3 day for appending to params.json
 
     border = 100
-    path = 'C:\\Users\\user\\0_Py\\Helper\\Classifier_economics_news\\'
+    path = ''
 
     idx_word = 0
     idx_sentence = 0
@@ -758,71 +758,65 @@ def main():
     print(listOpenValuesToNN)
 
     arr = 0
-    size = 9 - len(listOpenValuesToNN)
-    lastValue = listOpenValuesToNN[-1]
-    for item in range(1, size):
-        if item < 10:
-            listOpenValuesToNN.append(lastValue)
+    size = 10 - len(listOpenValuesToNN)
+
+    # Morning
+    firstValue = listOpenValuesToNN[0]
+    for item in range(0, size):
+        listOpenValuesToNN.insert(0, firstValue)
+
+    time_point = "10:00"
+
+    # # Evening
+    # lastValue = listOpenValuesToNN[-1]
+    # for item in range(0, size):
+    #    listOpenValuesToNN.append(lastValue)
+    #
+    # time_point = "18:44"
+
+    time_point += ":00"
+    listOpenValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
 
     print(listOpenValuesToNN)
+    print(len(listOpenValuesToNN))
 
     listTrueValue = list_true_value(listOpenValuesToNN)
     print(listTrueValue)
     print(len(listTrueValue))
-    listTrueValue.insert(0, listTrueValue[0])
+    # listTrueValue.insert(0, listTrueValue[0])
 
     # задаем для воспроизводимости результатов
     np.random.seed(2)
 
     # создаем модели, добавляем слои один за другим
     model = Sequential()
-    model.add(Dense(12, input_dim=count_words * count_charters, activation='relu'))  # входной слой требует задать input_dim
-    model.add(Dense(15, activation='relu'))
-    model.add(Dense(8, activation='relu'))
-    model.add(Dense(10, activation='relu'))
+    model.add(Dense(5 * count_words, input_dim=(count_words * count_charters), activation='relu'))  # входной слой требует задать input_dim
+    model.add(Dense(4 * count_words, input_dim=(count_words * count_charters), activation='relu'))
+    model.add(Dense(3 * count_words, input_dim=(count_words * count_charters), activation='relu'))
+    model.add(Dense(2 * count_words, input_dim=(count_words * count_charters), activation='relu'))
+    model.add(Dense(count_words, input_dim=(count_words * count_charters), activation='relu'))
     model.add(Dense(1, activation='sigmoid'))  # сигмоида вместо relu для определения вероятности
 
     # компилируем модель, используем градиентный спуск adam
     model.compile(loss="binary_crossentropy", optimizer="adam", metrics=['accuracy'])
 
-    print(len(listTrueValue))
-    idx = 0
+    X = []
+
     for news in listWordsToNN:
         # разбиваем датасет на матрицу параметров (X) и вектор целевой переменной (Y)
         one_sentence_news = news.ravel()
-        X = one_sentence_news
-        Y = listTrueValue[idx]
-        # print(listTrueValue)
 
-        # обучаем нейронную сеть
-        model.fit(X, Y, epochs=1000, batch_size=10)
+        X.append(one_sentence_news)
 
-        idx = idx + 1
+    X = np.asarray(X, dtype=np.float32)
+    Y = np.asarray(listTrueValue, dtype=np.float32)
 
-
+    # обучаем нейронную сеть
+    model.fit(X, Y, epochs=1000, batch_size=32)
 
     # # оцениваем результат
     # scores = model.evaluate(X, Y)
     # print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1] * 100))
-
-
-    # # Тренируем нашу нейронную сеть!
-    # dim_in = count_words * count_charters
-    # dim_h = 10
-    # count_h = 5
-    # network = OurNeuralNetwork(dim_in, dim_h, count_h)
-    # idx = 0
-    # for sentence in listWordsToNN:
-    #     for word in sentence:
-    #         network.train(word, listTrueValue[idx])
-    #
-    #     idx = idx + 1
-    #
-    # # # Делаем предсказания
-    # # emily = np.array([-7, -3])  # 128 фунтов, 63 дюйма
-    # # frank = np.array([20, 2])  # 155 фунтов, 68 дюймов
-    # # print("Emily: %.3f" % network.feedforward(emily))  # 0.951 - F
-    # # print("Frank: %.3f" % network.feedforward(frank))  # 0.039 - M
 
 
 if __name__ == '__main__':
