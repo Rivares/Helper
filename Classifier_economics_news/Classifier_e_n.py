@@ -791,14 +791,18 @@ def main():
     # создаем модели, добавляем слои один за другим
     model = Sequential()
     model.add(Dense(5 * count_words, input_dim=(count_words * count_charters), activation='relu'))  # входной слой требует задать input_dim
-    model.add(Dense(4 * count_words, input_dim=(count_words * count_charters), activation='relu'))
-    model.add(Dense(3 * count_words, input_dim=(count_words * count_charters), activation='relu'))
-    model.add(Dense(2 * count_words, input_dim=(count_words * count_charters), activation='relu'))
-    model.add(Dense(count_words, input_dim=(count_words * count_charters), activation='relu'))
+    model.add(Dense(4 * count_words, activation='relu'))
+    model.add(Dense(3 * count_words, activation='tanh'))
+    model.add(Dense(2 * count_words, activation='tanh'))
+    model.add(Dense(count_words, activation='tanh'))
+    model.add(Dense(count_words - 10, activation='sigmoid'))
+    model.add(Dense(count_words - 20, activation='sigmoid'))
+    model.add(Dense(count_words - 25, activation='sigmoid'))
+    model.add(Dense(count_words - 27, activation='sigmoid'))
     model.add(Dense(1, activation='sigmoid'))  # сигмоида вместо relu для определения вероятности
 
     # компилируем модель, используем градиентный спуск adam
-    model.compile(loss="binary_crossentropy", optimizer="adam", metrics=['accuracy'])
+    model.compile(loss="mean_squared_error", optimizer="adam", metrics=['accuracy'])
 
     X = []
 
@@ -812,11 +816,11 @@ def main():
     Y = np.asarray(listTrueValue, dtype=np.float32)
 
     # обучаем нейронную сеть
-    model.fit(X, Y, epochs=1000, batch_size=32)
+    model.fit(X, Y, epochs=10000, batch_size=64)
 
-    # # оцениваем результат
-    # scores = model.evaluate(X, Y)
-    # print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1] * 100))
+    # оцениваем результат
+    scores = model.evaluate(X, Y)
+    print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1] * 100))
 
 
 if __name__ == '__main__':
