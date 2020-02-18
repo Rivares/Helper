@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/Classifier_economics_news/country.json" charset="windows-1251" />
-    <file url="file://$PROJECT_DIR$/Parser_economics_news/economics_news.csv" charset="windows-1251" />
-    <file url="file://$PROJECT_DIR$/Parser_politics_news/politics_news.csv" charset="windows-1251" />
-  </component>
-</project>
