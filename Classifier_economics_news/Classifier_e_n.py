@@ -13,6 +13,7 @@ import pymorphy2
 import datetime
 import requests
 import logging
+import keras
 import json
 import xlrd
 import csv
@@ -787,6 +788,7 @@ def main():
 
     # задаем для воспроизводимости результатов
     np.random.seed(2)
+    model_name = 'NN_model.h5'
 
     # создаем модели, добавляем слои один за другим
     model = Sequential()
@@ -815,12 +817,24 @@ def main():
     X = np.asarray(X, dtype=np.float32)
     Y = np.asarray(listTrueValue, dtype=np.float32)
 
+    if os.path.exists(model_name) != False:
+        # Recreate the exact same model
+        new_model = keras.models.load_model(model_name)
+    else:
+        new_model = model
+
+    # Check that the state is preserved
+    new_predictions = new_model.predict(X)
+
     # обучаем нейронную сеть
-    model.fit(X, Y, epochs=10000, batch_size=64)
+    new_model.fit(X, Y, epochs=1000, batch_size=64)
+
+    # Export the model to a SavedModel
+    new_model.save(model_name)
 
     # оцениваем результат
-    scores = model.evaluate(X, Y)
-    print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1] * 100))
+    scores = new_model.evaluate(X, Y)
+    print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
 
 
 if __name__ == '__main__':
