@@ -205,10 +205,10 @@ def list_true_value(list_values_to_nn):
     list_diff_values = []
     prev_value = list_values_to_nn[0]
     for idx in range(1, len(list_values_to_nn)):
-        if list_values_to_nn[idx] > prev_value:
+        if list_values_to_nn[idx] > prev_value: # prev_value + 3%
             list_diff_values.append(1)
 
-        if list_values_to_nn[idx] < prev_value:
+        if list_values_to_nn[idx] < prev_value: # prev_value + 3%
             list_diff_values.append(-1)
 
         if list_values_to_nn[idx] == prev_value:
@@ -232,122 +232,6 @@ def deriv_sigmoid(x):
 def mse_loss(y_true, y_pred):
     # y_true и y_pred являются массивами numpy с одинаковой длиной
     return ((y_true - y_pred) ** 2).mean()
-
-
-class Neuron:
-    def __init__(self, weights, bias):
-        self.weights = weights
-        self.bias = bias
-
-    def feedforward(self, inputs):
-        # Вводные данные о весе, добавление смещения
-        # и последующее использование функции активации
-
-        total = np.dot(self.weights, inputs) + self.bias
-        return sigmoid(total)
-
-
-class OurNeuralNetwork:
-    """
-    Нейронная сеть, у которой:
-        - 2 входа
-        - скрытый слой с двумя нейронами (h1, h2)
-        - слой вывода с одним нейроном (o1)
-
-    *** ВАЖНО ***:
-    Код ниже написан как простой, образовательный. НЕ оптимальный.
-    Настоящий код нейронной сети выглядит не так. НЕ ИСПОЛЬЗУЙТЕ этот код.
-    Вместо этого, прочитайте/запустите его, чтобы понять, как работает эта сеть.
-    """
-
-    def __init__(self, dim_in, dim_h, count_h):
-        # Вес
-        # self.list_weights = []
-        # for
-        self.w1 = np.random.normal()
-        self.w2 = np.random.normal()
-        self.w3 = np.random.normal()
-        self.w4 = np.random.normal()
-        self.w5 = np.random.normal()
-        self.w6 = np.random.normal()
-
-        # Смещения
-        self.b1 = np.random.normal()
-        self.b2 = np.random.normal()
-        self.b3 = np.random.normal()
-
-    def feedforward(self, x):
-        # x является массивом numpy с двумя элементами
-        h1 = sigmoid(self.w1 * x[0] + self.w2 * x[1] + self.b1)
-        h2 = sigmoid(self.w3 * x[0] + self.w4 * x[1] + self.b2)
-        o1 = sigmoid(self.w5 * h1 + self.w6 * h2 + self.b3)
-        return o1
-
-    def train(self, data, all_y_trues):
-        """
-        - data is a (n x 2) numpy array, n = # of samples in the dataset.
-        - all_y_trues is a numpy array with n elements.
-            Elements in all_y_trues correspond to those in data.
-        """
-        learn_rate = 0.1
-        epochs = 10000  # количество циклов во всём наборе данных
-
-        for epoch in range(epochs):
-            for x, y_true in zip(data, all_y_trues):
-                # --- Выполняем обратную связь (нам понадобятся эти значения в дальнейшем)
-                sum_h1 = self.w1 * x[0] + self.w2 * x[1] + self.b1
-                h1 = sigmoid(sum_h1)
-
-                sum_h2 = self.w3 * x[0] + self.w4 * x[1] + self.b2
-                h2 = sigmoid(sum_h2)
-
-                sum_o1 = self.w5 * h1 + self.w6 * h2 + self.b3
-                o1 = sigmoid(sum_o1)
-                y_pred = o1
-
-                # --- Подсчет частных производных
-                # --- Наименование: d_L_d_w1 представляет "частично L / частично w1"
-                d_L_d_ypred = -2 * (y_true - y_pred)
-
-                # Нейрон o1
-                d_ypred_d_w5 = h1 * deriv_sigmoid(sum_o1)
-                d_ypred_d_w6 = h2 * deriv_sigmoid(sum_o1)
-                d_ypred_d_b3 = deriv_sigmoid(sum_o1)
-
-                d_ypred_d_h1 = self.w5 * deriv_sigmoid(sum_o1)
-                d_ypred_d_h2 = self.w6 * deriv_sigmoid(sum_o1)
-
-                # Нейрон h1
-                d_h1_d_w1 = x[0] * deriv_sigmoid(sum_h1)
-                d_h1_d_w2 = x[1] * deriv_sigmoid(sum_h1)
-                d_h1_d_b1 = deriv_sigmoid(sum_h1)
-
-                # Нейрон h2
-                d_h2_d_w3 = x[0] * deriv_sigmoid(sum_h2)
-                d_h2_d_w4 = x[1] * deriv_sigmoid(sum_h2)
-                d_h2_d_b2 = deriv_sigmoid(sum_h2)
-
-                # --- Обновляем вес и смещения
-                # Нейрон h1
-                self.w1 -= learn_rate * d_L_d_ypred * d_ypred_d_h1 * d_h1_d_w1
-                self.w2 -= learn_rate * d_L_d_ypred * d_ypred_d_h1 * d_h1_d_w2
-                self.b1 -= learn_rate * d_L_d_ypred * d_ypred_d_h1 * d_h1_d_b1
-
-                # Нейрон h2
-                self.w3 -= learn_rate * d_L_d_ypred * d_ypred_d_h2 * d_h2_d_w3
-                self.w4 -= learn_rate * d_L_d_ypred * d_ypred_d_h2 * d_h2_d_w4
-                self.b2 -= learn_rate * d_L_d_ypred * d_ypred_d_h2 * d_h2_d_b2
-
-                # Нейрон o1
-                self.w5 -= learn_rate * d_L_d_ypred * d_ypred_d_w5
-                self.w6 -= learn_rate * d_L_d_ypred * d_ypred_d_w6
-                self.b3 -= learn_rate * d_L_d_ypred * d_ypred_d_b3
-
-            # --- Подсчитываем общую потерю в конце каждой фазы
-            if epoch % 10 == 0:
-                y_preds = np.apply_along_axis(self.feedforward, 1, data)
-                loss = mse_loss(all_y_trues, y_preds)
-                print("Epoch %d loss: %.3f" % (epoch, loss))
 
 
 def main():
@@ -550,35 +434,6 @@ def main():
 
     # _________________________________________________________________________________
 
-    # # For Real-Time mode
-    # #
-    # # future_weigths = np.zeros(length_sentence, dtype=float)
-    # #
-    # # cnt = 0
-    # # # for item in listWords:
-    # #
-    # # header = listWords[1]
-    # # print(header)
-    # # print(len(header))
-    # #
-    # # for obj in header:
-    # #     # print(obj.lower())
-    # #     for params in listParams_E_N:
-    # #         if fuzz.ratio(params.get('name'), obj.lower()) > 90:
-    # #             # print("I found of name! --->>> " + str(obj))
-    # #             future_weigths[cnt] = float(params.get('impact'))
-    # #             break
-    # #         else:
-    # #             if len(params.get('synonyms')) >= 1:
-    # #                 for it in params.get('synonyms'):
-    # #                     if fuzz.ratio(str(it), str(obj.lower())) > 80:
-    # #                         # print("I found of synonyms! --->>> " + str(obj.lower()))
-    # #                         future_weigths[cnt] = float(params.get('impact'))
-    # #                         break
-    # #     cnt = cnt + 1
-    # #
-    # # _________________________________________________________________________________
-    #
     # For Trainging NN
 
     # _________________________________________________________________________________
@@ -674,7 +529,7 @@ def main():
 
     # feature_list_applicants.append()
 
-    # # ______________________________ NN ______________________________
+    # ______________________________ NN ______________________________
 
     tickers = ['FXRB',
                'FXMM',
@@ -823,11 +678,22 @@ def main():
     else:
         new_model = model
 
-    # Check that the state is preserved
-    new_predictions = new_model.predict(X)
-
     # обучаем нейронную сеть
-    new_model.fit(X, Y, epochs=1000, batch_size=64)
+    history = new_model.fit(X, Y, epochs=1000, batch_size=64)
+
+    print(history.history.keys())
+    loss = history.history['loss']
+    accuracy = history.history['accuracy']
+    epochs = range(1, len(loss) + 1)
+    plt.plot(epochs, loss, color='red', label='Training loss')
+    plt.plot(epochs, accuracy, color='green', label='Accuracy')
+    plt.title('Training and accuracy')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.show()
+
+
 
     # Export the model to a SavedModel
     new_model.save(model_name)
