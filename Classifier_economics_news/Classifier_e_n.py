@@ -613,94 +613,96 @@ def main():
     # print(listWordsToNN)
     print(listOpenValuesToNN)
 
-    arr = 0
-    size = 10 - len(listOpenValuesToNN)
+    if len(listOpenValuesToNN) > 0:
+        arr = 0
+        size = 10 - len(listOpenValuesToNN)
 
-    # Morning
-    firstValue = listOpenValuesToNN[0]
-    for item in range(0, size):
-        listOpenValuesToNN.insert(0, firstValue)
+        # Morning
+        firstValue = listOpenValuesToNN[0]
+        for item in range(0, size):
+            listOpenValuesToNN.insert(0, firstValue)
 
-    time_point = "10:00"
+        time_point = "10:00"
 
-    # # Evening
-    # lastValue = listOpenValuesToNN[-1]
-    # for item in range(0, size):
-    #    listOpenValuesToNN.append(lastValue)
-    #
-    # time_point = "18:44"
+        # # Evening
+        # lastValue = listOpenValuesToNN[-1]
+        # for item in range(0, size):
+        #    listOpenValuesToNN.append(lastValue)
+        #
+        # time_point = "18:44"
 
-    time_point += ":00"
-    listOpenValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+        time_point += ":00"
+        listOpenValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
 
-    print(listOpenValuesToNN)
-    print(len(listOpenValuesToNN))
+        print(listOpenValuesToNN)
+        print(len(listOpenValuesToNN))
 
-    listTrueValue = list_true_value(listOpenValuesToNN)
-    print(listTrueValue)
-    print(len(listTrueValue))
-    # listTrueValue.insert(0, listTrueValue[0])
+        listTrueValue = list_true_value(listOpenValuesToNN)
+        print(listTrueValue)
+        print(len(listTrueValue))
+        # listTrueValue.insert(0, listTrueValue[0])
 
-    # задаем для воспроизводимости результатов
-    np.random.seed(2)
-    model_name = 'NN_model.h5'
+        # задаем для воспроизводимости результатов
+        np.random.seed(2)
+        model_name = 'NN_model.h5'
 
-    # создаем модели, добавляем слои один за другим
-    model = Sequential()
-    model.add(Dense(5 * count_words, input_dim=(count_words * count_charters), activation='relu'))  # входной слой требует задать input_dim
-    model.add(Dense(4 * count_words, activation='relu'))
-    model.add(Dense(3 * count_words, activation='tanh'))
-    model.add(Dense(2 * count_words, activation='tanh'))
-    model.add(Dense(count_words, activation='tanh'))
-    model.add(Dense(count_words - 10, activation='sigmoid'))
-    model.add(Dense(count_words - 20, activation='sigmoid'))
-    model.add(Dense(count_words - 25, activation='sigmoid'))
-    model.add(Dense(count_words - 27, activation='sigmoid'))
-    model.add(Dense(1, activation='sigmoid'))  # сигмоида вместо relu для определения вероятности
+        # создаем модели, добавляем слои один за другим
+        model = Sequential()
+        model.add(Dense(5 * count_words, input_dim=(count_words * count_charters), activation='relu'))  # входной слой требует задать input_dim
+        model.add(Dense(4 * count_words, activation='relu'))
+        model.add(Dense(3 * count_words, activation='tanh'))
+        model.add(Dense(2 * count_words, activation='tanh'))
+        model.add(Dense(count_words, activation='tanh'))
+        model.add(Dense(count_words - 10, activation='sigmoid'))
+        model.add(Dense(count_words - 20, activation='sigmoid'))
+        model.add(Dense(count_words - 25, activation='sigmoid'))
+        model.add(Dense(count_words - 27, activation='sigmoid'))
+        model.add(Dense(1, activation='sigmoid'))  # сигмоида вместо relu для определения вероятности
 
-    # компилируем модель, используем градиентный спуск adam
-    model.compile(loss="mean_squared_error", optimizer="adam", metrics=['accuracy'])
+        # компилируем модель, используем градиентный спуск adam
+        model.compile(loss="mean_squared_error", optimizer="adam", metrics=['accuracy'])
 
-    X = []
+        X = []
 
-    for news in listWordsToNN:
-        # разбиваем датасет на матрицу параметров (X) и вектор целевой переменной (Y)
-        one_sentence_news = news.ravel()
+        for news in listWordsToNN:
+            # разбиваем датасет на матрицу параметров (X) и вектор целевой переменной (Y)
+            one_sentence_news = news.ravel()
 
-        X.append(one_sentence_news)
+            X.append(one_sentence_news)
 
-    X = np.asarray(X, dtype=np.float32)
-    Y = np.asarray(listTrueValue, dtype=np.float32)
+        X = np.asarray(X, dtype=np.float32)
+        Y = np.asarray(listTrueValue, dtype=np.float32)
 
-    if os.path.exists(model_name) != False:
-        # Recreate the exact same model
-        new_model = keras.models.load_model(model_name)
+        if os.path.exists(model_name) != False:
+            # Recreate the exact same model
+            new_model = keras.models.load_model(model_name)
+        else:
+            new_model = model
+
+        # обучаем нейронную сеть
+        history = new_model.fit(X, Y, epochs=1000, batch_size=64)
+
+        print(history.history.keys())
+        loss = history.history['loss']
+        accuracy = history.history['accuracy']
+        epochs = range(1, len(loss) + 1)
+        plt.plot(epochs, loss, color='red', label='Training loss')
+        plt.plot(epochs, accuracy, color='green', label='Accuracy')
+        plt.title('Training and accuracy')
+        plt.xlabel('Epochs')
+        plt.ylabel('Loss')
+        plt.legend()
+        plt.show()
+
+        # Export the model to a SavedModel
+        new_model.save(model_name)
+
+        # оцениваем результат
+        scores = new_model.evaluate(X, Y)
+        print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
+
     else:
-        new_model = model
-
-    # обучаем нейронную сеть
-    history = new_model.fit(X, Y, epochs=1000, batch_size=64)
-
-    print(history.history.keys())
-    loss = history.history['loss']
-    accuracy = history.history['accuracy']
-    epochs = range(1, len(loss) + 1)
-    plt.plot(epochs, loss, color='red', label='Training loss')
-    plt.plot(epochs, accuracy, color='green', label='Accuracy')
-    plt.title('Training and accuracy')
-    plt.xlabel('Epochs')
-    plt.ylabel('Loss')
-    plt.legend()
-    plt.show()
-
-
-
-    # Export the model to a SavedModel
-    new_model.save(model_name)
-
-    # оцениваем результат
-    scores = new_model.evaluate(X, Y)
-    print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
+        print("Moscow Exchange has not yet opened")
 
 
 if __name__ == '__main__':
