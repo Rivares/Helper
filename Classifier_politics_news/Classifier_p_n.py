@@ -64,8 +64,8 @@ def write_article_csv(data):
 
 
 def read_article_csv():
-    path = root_path + 'Helper\\Classifier_economics_news\\'
-    file_name = 'economics_news'
+    path = root_path + 'Helper\\Classifier_politics_news\\'
+    file_name = 'politics_news'
     extension = '.csv'
     listSpider_E_N = []
 
@@ -97,7 +97,7 @@ def convert_csv_to_xls():
 
 
 def read_params_xlsx():
-    country_path = root_path + 'Helper\\Classifier_economics_news\\'
+    country_path = root_path + 'Helper\\Classifier_politics_news\\'
     country_file_name = 'params'
     country_extension = '.xlsx'
 
@@ -124,7 +124,7 @@ def read_params_xlsx():
 
 
 def convert_json_to_xlsx():
-    path = root_path + 'Helper\\Classifier_economics_news\\'
+    path = root_path + 'Helper\\Classifier_politics_news\\'
     file_name = 'params'
     from_extension = '.json'
     to_extension = '.xlsx'
@@ -236,7 +236,7 @@ def mse_loss(y_true, y_pred):
 
 
 def main():
-    base_url = "https://ria.ru/economy/"
+    base_url = "https://ria.ru/politics/"
     article_data = []
 
     # os.remove(file_name + '.csv')
@@ -248,8 +248,8 @@ def main():
     article_data = get_page_data(html, article_data)
 
     # print(article_data.__len__())
-    path = root_path + 'Helper\\Classifier_economics_news\\'
-    file_name = 'economics_news'
+    path = root_path + 'Helper\\Classifier_politics_news\\'
+    file_name = 'politics_news'
     write_data_json(article_data, path, file_name)
 
     count_sentences = article_data.__len__()
@@ -260,8 +260,8 @@ def main():
 
     # Creating list of news + to Lower Case + delete ',' and  '.'
 
-    path = root_path + 'Helper\\Classifier_economics_news\\'
-    file_name = 'economics_news'
+    path = root_path + 'Helper\\Classifier_politics_news\\'
+    file_name = 'politics_news'
     news = read_data_json(path, file_name)
 
     listSpider_E_N = []
@@ -325,7 +325,7 @@ def main():
     # Read reference words from json file
 
     # listParams_E_N = read_params_xlsx()
-    path = root_path + 'Helper\\Classifier_economics_news\\'
+    path = root_path + 'Helper\\Classifier_politics_news\\'
     file_name = 'params'
     listParams_E_N = read_data_json(path, file_name)
     # write_params_json(listParams_E_N)
@@ -375,13 +375,13 @@ def main():
         # print(sentence)
         for word in sentence:
             p = morph.parse(word)[0]
-            if (p.tag.POS == 'ADVB') or \
-                    (p.tag.POS == 'NPRO') or \
-                    (p.tag.POS == 'PRED') or \
-                    (p.tag.POS == 'PREP') or \
-                    (p.tag.POS == 'CONJ') or \
-                    (p.tag.POS == 'PRCL') or \
-                    (p.tag.POS == 'INTJ'):
+            if (p.tag.POS == 'ADVB') or\
+               (p.tag.POS == 'NPRO') or\
+               (p.tag.POS == 'PRED') or\
+               (p.tag.POS == 'PREP') or\
+               (p.tag.POS == 'CONJ') or\
+               (p.tag.POS == 'PRCL') or\
+               (p.tag.POS == 'INTJ'):
                 sentence.remove(word)
         # print(sentence)
     # _________________________________________________________________________________
@@ -481,7 +481,7 @@ def main():
     # 3 day for appending to params.json
 
     border = 100
-    path = root_path + 'Helper\\Classifier_economics_news\\'
+    path = root_path + 'Helper\\Classifier_politics_news\\'
 
     idx_word = 0
     idx_sentence = 0
@@ -636,7 +636,7 @@ def main():
         if datetime.datetime.now().hour < 18:
             lastValue = listOpenValuesToNN[-1]
             for item in range(0, size):
-                listOpenValuesToNN.append(lastValue)
+               listOpenValuesToNN.append(lastValue)
 
             time_point = "18:44"
 
