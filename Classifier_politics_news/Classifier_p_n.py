@@ -21,6 +21,7 @@ import os
 import re
 
 
+root_path = 'C:\\Users\\serditov\\PycharmProjects\\'
 
 class Spider(object):
     def __init__(self, title, additionally, href, time):
@@ -63,8 +64,8 @@ def write_article_csv(data):
 
 
 def read_article_csv():
-    path = '../Parser_economics_news/'
-    file_name = 'economics_news'
+    path = root_path + 'Helper\\Classifier_politics_news\\'
+    file_name = 'politics_news'
     extension = '.csv'
     listSpider_E_N = []
 
@@ -96,7 +97,7 @@ def convert_csv_to_xls():
 
 
 def read_params_xlsx():
-    country_path = ''
+    country_path = root_path + 'Helper\\Classifier_politics_news\\'
     country_file_name = 'params'
     country_extension = '.xlsx'
 
@@ -123,7 +124,7 @@ def read_params_xlsx():
 
 
 def convert_json_to_xlsx():
-    path = ''
+    path = root_path + 'Helper\\Classifier_politics_news\\'
     file_name = 'params'
     from_extension = '.json'
     to_extension = '.xlsx'
@@ -235,7 +236,7 @@ def mse_loss(y_true, y_pred):
 
 
 def main():
-    base_url = "https://ria.ru/economy/"
+    base_url = "https://ria.ru/politics/"
     article_data = []
 
     # os.remove(file_name + '.csv')
@@ -247,8 +248,8 @@ def main():
     article_data = get_page_data(html, article_data)
 
     # print(article_data.__len__())
-    path = ''
-    file_name = 'economics_news'
+    path = root_path + 'Helper\\Classifier_politics_news\\'
+    file_name = 'politics_news'
     write_data_json(article_data, path, file_name)
 
     count_sentences = article_data.__len__()
@@ -259,8 +260,8 @@ def main():
 
     # Creating list of news + to Lower Case + delete ',' and  '.'
 
-    path = ''
-    file_name = 'economics_news'
+    path = root_path + 'Helper\\Classifier_politics_news\\'
+    file_name = 'politics_news'
     news = read_data_json(path, file_name)
 
     listSpider_E_N = []
@@ -324,7 +325,7 @@ def main():
     # Read reference words from json file
 
     # listParams_E_N = read_params_xlsx()
-    path = ''
+    path = root_path + 'Helper\\Classifier_politics_news\\'
     file_name = 'params'
     listParams_E_N = read_data_json(path, file_name)
     # write_params_json(listParams_E_N)
@@ -480,7 +481,7 @@ def main():
     # 3 day for appending to params.json
 
     border = 100
-    path = ''
+    path = root_path + 'Helper\\Classifier_politics_news\\'
 
     idx_word = 0
     idx_sentence = 0
@@ -562,7 +563,7 @@ def main():
     stock = exporter.download(data.index[0], market=Market.ETF_MOEX, start_date=curr_day)
     # print(stock.head())
 
-    file_name = 'stocks_' + str(tickers[2]) + '.csv'
+    file_name = path + 'stocks_' + str(tickers[2]) + '.csv'
     stock.to_csv(file_name)
 
     # fxru = pd.read_csv(file_name)
@@ -652,7 +653,7 @@ def main():
 
         # задаем для воспроизводимости результатов
         np.random.seed(2)
-        model_name = 'NN_model.h5'
+        model_name = path + 'NN_model.h5'
 
         # создаем модели, добавляем слои один за другим
         model = Sequential()
