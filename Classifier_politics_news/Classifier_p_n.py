@@ -21,7 +21,6 @@ import os
 import re
 
 
-root_path = 'C:\\Users\\serditov\\PycharmProjects\\'
 
 class Spider(object):
     def __init__(self, title, additionally, href, time):
@@ -64,7 +63,7 @@ def write_article_csv(data):
 
 
 def read_article_csv():
-    path = root_path + 'Helper\\Classifier_economics_news\\'
+    path = '../Parser_economics_news/'
     file_name = 'economics_news'
     extension = '.csv'
     listSpider_E_N = []
@@ -97,7 +96,7 @@ def convert_csv_to_xls():
 
 
 def read_params_xlsx():
-    country_path = root_path + 'Helper\\Classifier_economics_news\\'
+    country_path = ''
     country_file_name = 'params'
     country_extension = '.xlsx'
 
@@ -124,7 +123,7 @@ def read_params_xlsx():
 
 
 def convert_json_to_xlsx():
-    path = root_path + 'Helper\\Classifier_economics_news\\'
+    path = ''
     file_name = 'params'
     from_extension = '.json'
     to_extension = '.xlsx'
@@ -248,7 +247,7 @@ def main():
     article_data = get_page_data(html, article_data)
 
     # print(article_data.__len__())
-    path = root_path + 'Helper\\Classifier_economics_news\\'
+    path = ''
     file_name = 'economics_news'
     write_data_json(article_data, path, file_name)
 
@@ -260,7 +259,7 @@ def main():
 
     # Creating list of news + to Lower Case + delete ',' and  '.'
 
-    path = root_path + 'Helper\\Classifier_economics_news\\'
+    path = ''
     file_name = 'economics_news'
     news = read_data_json(path, file_name)
 
@@ -325,7 +324,7 @@ def main():
     # Read reference words from json file
 
     # listParams_E_N = read_params_xlsx()
-    path = root_path + 'Helper\\Classifier_economics_news\\'
+    path = ''
     file_name = 'params'
     listParams_E_N = read_data_json(path, file_name)
     # write_params_json(listParams_E_N)
@@ -375,13 +374,13 @@ def main():
         # print(sentence)
         for word in sentence:
             p = morph.parse(word)[0]
-            if (p.tag.POS == 'ADVB') or \
-                    (p.tag.POS == 'NPRO') or \
-                    (p.tag.POS == 'PRED') or \
-                    (p.tag.POS == 'PREP') or \
-                    (p.tag.POS == 'CONJ') or \
-                    (p.tag.POS == 'PRCL') or \
-                    (p.tag.POS == 'INTJ'):
+            if (p.tag.POS == 'ADVB') or\
+               (p.tag.POS == 'NPRO') or\
+               (p.tag.POS == 'PRED') or\
+               (p.tag.POS == 'PREP') or\
+               (p.tag.POS == 'CONJ') or\
+               (p.tag.POS == 'PRCL') or\
+               (p.tag.POS == 'INTJ'):
                 sentence.remove(word)
         # print(sentence)
     # _________________________________________________________________________________
@@ -481,7 +480,7 @@ def main():
     # 3 day for appending to params.json
 
     border = 100
-    path = root_path + 'Helper\\Classifier_economics_news\\'
+    path = ''
 
     idx_word = 0
     idx_sentence = 0
@@ -563,7 +562,7 @@ def main():
     stock = exporter.download(data.index[0], market=Market.ETF_MOEX, start_date=curr_day)
     # print(stock.head())
 
-    file_name = path + 'stocks_' + str(tickers[2]) + '.csv'
+    file_name = 'stocks_' + str(tickers[2]) + '.csv'
     stock.to_csv(file_name)
 
     # fxru = pd.read_csv(file_name)
@@ -636,7 +635,7 @@ def main():
         if datetime.datetime.now().hour < 18:
             lastValue = listOpenValuesToNN[-1]
             for item in range(0, size):
-                listOpenValuesToNN.append(lastValue)
+               listOpenValuesToNN.append(lastValue)
 
             time_point = "18:44"
 
@@ -653,7 +652,7 @@ def main():
 
         # задаем для воспроизводимости результатов
         np.random.seed(2)
-        model_name = path + 'NN_model.h5'
+        model_name = 'NN_model.h5'
 
         # создаем модели, добавляем слои один за другим
         model = Sequential()

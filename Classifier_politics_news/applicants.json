@@ -1,227 +1,227 @@
 [
     {
         "name": "песок",
-        "count": 6
+        "count": 1
     },
     {
         "name": "ответить",
-        "count": 6
+        "count": 1
     },
     {
         "name": "вопрос",
-        "count": 6
+        "count": 1
     },
     {
         "name": "низкий",
-        "count": 6
+        "count": 1
     },
     {
         "name": "доход",
-        "count": 6
+        "count": 1
     },
     {
         "name": "рубль",
-        "count": 6
+        "count": 1
     },
     {
         "name": "официальный",
-        "count": 6
+        "count": 1
     },
     {
         "name": "курс",
-        "count": 6
+        "count": 1
     },
     {
         "name": "евро",
-        "count": 12
+        "count": 2
     },
     {
         "name": "пятница",
-        "count": 6
+        "count": 1
     },
     {
         "name": "снизиться",
-        "count": 6
+        "count": 1
     },
     {
         "name": "копейка",
-        "count": 6
+        "count": 1
     },
     {
         "name": "банкнот",
-        "count": 6
+        "count": 1
     },
     {
         "name": "номинал",
-        "count": 6
+        "count": 1
     },
     {
         "name": "мишустин",
-        "count": 12
+        "count": 2
     },
     {
         "name": "возмутиться",
-        "count": 6
+        "count": 1
     },
     {
         "name": "объём",
-        "count": 6
+        "count": 1
     },
     {
         "name": "неизрасходованный",
-        "count": 6
+        "count": 1
     },
     {
         "name": "часть",
-        "count": 6
+        "count": 1
     },
     {
         "name": "бюджета-",
-        "count": 6
+        "count": 1
     },
     {
         "name": "председатель",
-        "count": 18
+        "count": 3
     },
     {
         "name": "правительство",
-        "count": 6
+        "count": 1
     },
     {
         "name": "михаил",
-        "count": 6
+        "count": 1
     },
     {
         "name": "проводить",
-        "count": 6
+        "count": 1
     },
     {
         "name": "совещание",
-        "count": 6
+        "count": 1
     },
     {
         "name": "член",
-        "count": 6
+        "count": 1
     },
     {
         "name": "кабинет",
-        "count": 6
+        "count": 1
     },
     {
         "name": "министр",
-        "count": 6
+        "count": 1
     },
     {
         "name": "матвиенко",
-        "count": 12
+        "count": 2
     },
     {
         "name": "предложить",
-        "count": 6
+        "count": 1
     },
     {
         "name": "премьера",
-        "count": 6
+        "count": 1
     },
     {
         "name": "намибия",
-        "count": 6
+        "count": 1
     },
     {
         "name": "создать",
-        "count": 12
+        "count": 2
     },
     {
         "name": "карта",
-        "count": 6
+        "count": 1
     },
     {
         "name": "инвестор",
-        "count": 6
+        "count": 1
     },
     {
         "name": "совет",
-        "count": 6
+        "count": 1
     },
     {
         "name": "федерация",
-        "count": 6
+        "count": 1
     },
     {
         "name": "валентин",
-        "count": 6
+        "count": 1
     },
     {
         "name": "узбекистан",
-        "count": 6
+        "count": 1
     },
     {
         "name": "планировать",
-        "count": 6
+        "count": 1
     },
     {
         "name": "локализовать",
-        "count": 6
+        "count": 1
     },
     {
         "name": "сервис",
-        "count": 11
+        "count": 1
     },
     {
         "name": "бизнес-навигатор",
-        "count": 6
+        "count": 1
     },
     {
         "name": "мсп",
-        "count": 6
+        "count": 1
     },
     {
         "name": "ташкентский",
-        "count": 6
+        "count": 1
     },
     {
         "name": "телебашня",
-        "count": 6
+        "count": 1
     },
     {
         "name": "ростовский",
-        "count": 12
+        "count": 2
     },
     {
         "name": "область",
-        "count": 12
+        "count": 2
     },
     {
         "name": "резерв",
-        "count": 6
+        "count": 1
     },
     {
         "name": "реализация",
-        "count": 6
+        "count": 1
     },
     {
         "name": "послание",
-        "count": 6
+        "count": 1
     },
     {
         "name": "президент",
-        "count": 11
+        "count": 1
     },
     {
         "name": "законодательный",
-        "count": 6
+        "count": 1
     },
     {
         "name": "собрание",
-        "count": 6
+        "count": 1
     },
     {
         "name": "александр",
-        "count": 6
+        "count": 1
     },
     {
         "name": "ищенко",
-        "count": 6
+        "count": 1
     },
     {
         "name": "аспирин",
@@ -390,125 +390,5 @@
     {
         "name": "адмиралти",
         "count": 1
-    },
-    {
-        "name": "открытие",
-        "count": 5
-    },
-    {
-        "name": "холдинг",
-        "count": 5
-    },
-    {
-        "name": "подать",
-        "count": 5
-    },
-    {
-        "name": "суд",
-        "count": 5
-    },
-    {
-        "name": "заявление",
-        "count": 5
-    },
-    {
-        "name": "банкротство",
-        "count": 10
-    },
-    {
-        "name": "ранний",
-        "count": 5
-    },
-    {
-        "name": "срок",
-        "count": 5
-    },
-    {
-        "name": "какой",
-        "count": 5
-    },
-    {
-        "name": "новшество",
-        "count": 5
-    },
-    {
-        "name": "внедрить",
-        "count": 5
-    },
-    {
-        "name": "бета-версия",
-        "count": 5
-    },
-    {
-        "name": "презентация",
-        "count": 5
-    },
-    {
-        "name": "новое",
-        "count": 5
-    },
-    {
-        "name": "рассказать",
-        "count": 5
-    },
-    {
-        "name": "встреча",
-        "count": 5
-    },
-    {
-        "name": "путин",
-        "count": 10
-    },
-    {
-        "name": "греф",
-        "count": 10
-    },
-    {
-        "name": "владимир",
-        "count": 5
-    },
-    {
-        "name": "глава",
-        "count": 5
-    },
-    {
-        "name": "сбербанк",
-        "count": 5
-    },
-    {
-        "name": "исследование",
-        "count": 5
-    },
-    {
-        "name": "пять",
-        "count": 5
-    },
-    {
-        "name": "день",
-        "count": 5
-    },
-    {
-        "name": "хакер",
-        "count": 5
-    },
-    {
-        "name": "мочь",
-        "count": 5
-    },
-    {
-        "name": "взломать",
-        "count": 5
-    },
-    {
-        "name": "люба",
-        "count": 5
-    },
-    {
-        "name": "банк",
-        "count": 5
-    },
-    {
-        "name": "программирование",
-        "count": 5
     }
 ]
