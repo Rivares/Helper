@@ -648,11 +648,14 @@ def main():
 
         # создаем модели, добавляем слои один за другим
         model = Sequential()
-        model.add(Dense(5 * count_words, input_dim=(count_words * count_charters), activation='relu'))  # входной слой требует задать input_dim
-        model.add(Dense(4 * count_words, activation='relu'))
-        model.add(Dense(3 * count_words, activation='tanh'))
-        model.add(Dense(2 * count_words, activation='tanh'))
-        model.add(Dense(count_words, activation='tanh'))
+        model.add(Dense(5 * count_words, input_dim=(count_words * count_charters), activation='relu'))  # 0
+        model.add(Dense(4 * count_words, activation='relu'))    # 1
+        model.add(Dense(3 * count_words, activation='tanh'))    # 2
+        model.add(Dense(2 * count_words, activation='tanh'))    # 3
+        model.add(Dense(count_words, activation='tanh'))        # 4
+        number_layer_words = 4
+        native_weights = model.layers[number_layer_words].get_weights()
+
         model.add(Dense(count_words - 10, activation='sigmoid'))
         model.add(Dense(count_words - 20, activation='sigmoid'))
         model.add(Dense(count_words - 25, activation='sigmoid'))
