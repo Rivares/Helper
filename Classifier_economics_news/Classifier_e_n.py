@@ -374,7 +374,13 @@ def main():
         # print(sentence)
         for word in sentence:
             p = morph.parse(word)[0]
-            if p.tag.POS == 'PREP':
+            if (p.tag.POS == 'ADVB') or\
+               (p.tag.POS == 'NPRO') or\
+               (p.tag.POS == 'PRED') or\
+               (p.tag.POS == 'PREP') or\
+               (p.tag.POS == 'CONJ') or\
+               (p.tag.POS == 'PRCL') or\
+               (p.tag.POS == 'INTJ'):
                 sentence.remove(word)
         # print(sentence)
     # _________________________________________________________________________________
@@ -618,18 +624,20 @@ def main():
         size = 10 - len(listOpenValuesToNN)
 
         # Morning
-        firstValue = listOpenValuesToNN[0]
-        for item in range(0, size):
-            listOpenValuesToNN.insert(0, firstValue)
+        if datetime.datetime.now().hour < 11:
+            firstValue = listOpenValuesToNN[0]
+            for item in range(0, size):
+                listOpenValuesToNN.insert(0, firstValue)
 
-        time_point = "10:00"
+            time_point = "10:00"
 
-        # # Evening
-        # lastValue = listOpenValuesToNN[-1]
-        # for item in range(0, size):
-        #    listOpenValuesToNN.append(lastValue)
-        #
-        # time_point = "18:44"
+        # Evening
+        if datetime.datetime.now().hour < 18:
+            lastValue = listOpenValuesToNN[-1]
+            for item in range(0, size):
+               listOpenValuesToNN.append(lastValue)
+
+            time_point = "18:44"
 
         time_point += ":00"
         listOpenValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
@@ -653,60 +661,82 @@ def main():
         model.add(Dense(3 * count_words, activation='tanh'))    # 2
         model.add(Dense(2 * count_words, activation='tanh'))    # 3
         model.add(Dense(count_words, activation='tanh'))        # 4
-        number_layer_words = 4
-        native_weights = model.layers[number_layer_words].get_weights()
-
         model.add(Dense(count_words - 10, activation='sigmoid'))
         model.add(Dense(count_words - 20, activation='sigmoid'))
         model.add(Dense(count_words - 25, activation='sigmoid'))
         model.add(Dense(count_words - 27, activation='sigmoid'))
         model.add(Dense(1, activation='sigmoid'))  # сигмоида вместо relu для определения вероятности
 
-        # компилируем модель, используем градиентный спуск adam
-        model.compile(loss="mean_squared_error", optimizer="adam", metrics=['accuracy'])
+        number_layer_words = 5
+        native_weights = model.layers[number_layer_words].get_weights()[0]  # 0 - weights
+        native_biases = model.layers[number_layer_words].get_weights()[1]   # 1 - biases
 
-        X = []
+        print("Old")
+        print(len(native_weights))
 
-        for news in listWordsToNN:
-            # разбиваем датасет на матрицу параметров (X) и вектор целевой переменной (Y)
-            one_sentence_news = news.ravel()
+        new_weights = np.zeros((len(native_weights), len(native_weights[0])), dtype=float)
+        for future_news in list_future_weigths:
+            idx_1 = 0
+            for weights in native_weights:
+                add = future_news[idx_1]
+                idx_2 = 0
 
-            X.append(one_sentence_news)
+                for weight in weights:
+                    new_weights[idx_1][idx_2] = float(weight + add)
+                    idx_2 = idx_2 + 1
 
-        X = np.asarray(X, dtype=np.float32)
-        Y = np.asarray(listTrueValue, dtype=np.float32)
+                idx_1 = idx_1 + 1
 
-        if os.path.exists(model_name) != False:
-            # Recreate the exact same model
-            new_model = keras.models.load_model(model_name)
+            print("New")
+            print(len(new_weights))
+            keras_weights = [new_weights, native_biases]
+            model.layers[number_layer_words].set_weights(keras_weights)
+
+            # компилируем модель, используем градиентный спуск adam
+            model.compile(loss="mean_squared_error", optimizer="adam", metrics=['accuracy'])
+
+            X = []
+
+            for news in listWordsToNN:
+                # разбиваем датасет на матрицу параметров (X) и вектор целевой переменной (Y)
+                one_sentence_news = news.ravel()
+
+                X.append(one_sentence_news)
+
+            X = np.asarray(X, dtype=np.float32)
+            Y = np.asarray(listTrueValue, dtype=np.float32)
+
+            if os.path.exists(model_name) != False:
+                # Recreate the exact same model
+                new_model = keras.models.load_model(model_name)
+            else:
+                new_model = model
+
+            # обучаем нейронную сеть
+            history = new_model.fit(X, Y, epochs=500, batch_size=64)
+
+            # Export the model to a SavedModel
+            new_model.save(model_name)
+
+            # оцениваем результат
+            scores = new_model.evaluate(X, Y)
+            print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
+
         else:
-            new_model = model
+            print("Moscow Exchange has not yet opened")
 
-        # обучаем нейронную сеть
-        history = new_model.fit(X, Y, epochs=1000, batch_size=64)
 
-        print(history.history.keys())
-        loss = history.history['loss']
-        accuracy = history.history['accuracy']
-        epochs = range(1, len(loss) + 1)
-        plt.plot(epochs, loss, color='red', label='Training loss')
-        plt.plot(epochs, accuracy, color='green', label='Accuracy')
-        plt.title('Training and accuracy')
-        plt.xlabel('Epochs')
-        plt.ylabel('Loss')
-        plt.legend()
-        plt.show()
-
-        # Export the model to a SavedModel
-        new_model.save(model_name)
-
-        # оцениваем результат
-        scores = new_model.evaluate(X, Y)
-        print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
-
-    else:
-        print("Moscow Exchange has not yet opened")
-
+        # print(history.history.keys())
+        # loss = history.history['loss']
+        # accuracy = history.history['accuracy']
+        # epochs = range(1, len(loss) + 1)
+        # plt.plot(epochs, loss, color='red', label='Training loss')
+        # plt.plot(epochs, accuracy, color='green', label='Accuracy')
+        # plt.title('Training and accuracy')
+        # plt.xlabel('Epochs')
+        # plt.ylabel('Loss')
+        # plt.legend()
+        # plt.show()
 
 if __name__ == '__main__':
     main()
