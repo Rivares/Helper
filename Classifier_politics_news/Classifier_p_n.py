@@ -552,10 +552,10 @@ def main():
 
     # logging.basicConfig(level=logging.DEBUG)
 
-    curr_day = datetime.date(2020, 1, 1)
-    # curr_day = datetime.date(datetime.datetime.now().year,
-    #                          datetime.datetime.now().month,
-    #                          datetime.datetime.now().day)
+    # curr_day = datetime.date(2020, 1, 1)
+    curr_day = datetime.date(datetime.datetime.now().year,
+                             datetime.datetime.now().month,
+                             datetime.datetime.now().day)
     # print(curr_day)
     exporter = Exporter()
     data = exporter.lookup(name=tickers[2], market=Market.ETF_MOEX)
@@ -596,6 +596,9 @@ def main():
     listLowValuesToNN = []
     listVolumeValuesToNN = []
     listTimePointsToNN = []
+    list_distances = []
+    list_distances.append(0)
+
     for dt_news in time_news:
         for dt in list_time_value:
             regex = r":00$"
@@ -617,37 +620,52 @@ def main():
 
             # print(frame_minute)
 
+    listOpenValuesToNN.reverse()
+    listCloseValuesToNN.reverse()
+    listHighValuesToNN.reverse()
+    listLowValuesToNN.reverse()
+    listVolumeValuesToNN.reverse()
+    listTimePointsToNN.reverse()
+
+    time_point = "10:00:00"
+    listOpenValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+    listCloseValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+    listHighValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+    listLowValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+    listVolumeValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+    listTimePointsToNN.insert(0, time_point)
+
     # print(listWordsToNN)
     print(listOpenValuesToNN)
 
     if len(listOpenValuesToNN) > 0:
-        size = 10 - len(listOpenValuesToNN)
-
         # Morning
-        if datetime.datetime.now().hour < 11:
+        if len(listOpenValuesToNN) < 10:
+            size = 10 - len(listOpenValuesToNN)
             firstValue = listOpenValuesToNN[0]
             for item in range(0, size):
                 listOpenValuesToNN.insert(0, firstValue)
 
-            time_point = "10:00:00"
-            listOpenValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
-        else:
-            # Evening
-            if datetime.datetime.now().hour > 18:
-                lastValue = listOpenValuesToNN[-1]
-                for item in range(0, size):
-                    listOpenValuesToNN.append(lastValue)
+            for idx in range(0, len(listTimePointsToNN) - 1):
+                curr_i = str(listTimePointsToNN[idx])
+                next_i = str(listTimePointsToNN[idx + 1])
+                list_distances.append(int(next_i.replace(':', '')) - int(curr_i.replace(':', '')))
 
-                time_point = "18:44:00"
-                listOpenValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+            print(sum(list_distances))
 
         print(listOpenValuesToNN)
         print(len(listOpenValuesToNN))
 
+        listOpenValuesToNN.insert(0, listOpenValuesToNN[0])
+        listCloseValuesToNN.insert(0, listCloseValuesToNN[0])
+        listHighValuesToNN.insert(0, listHighValuesToNN[0])
+        listLowValuesToNN.insert(0, listLowValuesToNN[0])
+        listVolumeValuesToNN.insert(0, listVolumeValuesToNN[0])
+        listTimePointsToNN.insert(0, listTimePointsToNN[0])
+
         listTrueValue = list_true_value(listOpenValuesToNN)
         print(listTrueValue)
         print(len(listTrueValue))
-        # listTrueValue.insert(0, listTrueValue[0])
 
         # задаем для воспроизводимости результатов
         np.random.seed(2)
