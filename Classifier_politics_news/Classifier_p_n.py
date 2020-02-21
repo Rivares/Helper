@@ -732,7 +732,7 @@ def main():
                 new_model = model
 
             # обучаем нейронную сеть
-            history = new_model.fit(X, Y, epochs=1000, batch_size=64)
+            history = new_model.fit(X, Y, epochs=500, batch_size=64)
 
             # Export the model to a SavedModel
             new_model.save(model_name)

@@ -60,7 +60,7 @@ def main():
             th_1.join()
             th_2.join()
 
-            time.sleep(5 * 60)  # sec
+            time.sleep(20 * 60)  # sec
 
     else:
         print("Sleep...")
