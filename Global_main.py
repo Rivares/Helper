@@ -48,7 +48,7 @@ def main():
 
     while (datetime.datetime.now().hour > 9) and (datetime.datetime.now().hour < 23):
 
-        while (datetime.datetime.now().minute == 0) or (datetime.datetime.now().minute == 30):
+        while (datetime.datetime.now().minute != 0) or (datetime.datetime.now().minute == 30):
             print("Infinity and Beyond!!!")
 
             th_1 = Thread(target=call_classifier, args=(path_name_class_e_n,))

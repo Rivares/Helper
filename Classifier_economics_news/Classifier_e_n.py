@@ -2,7 +2,7 @@
 
 from finam.export import Exporter, Market, LookupComparator
 from keras.models import Sequential
-from keras.layers import Dense
+from keras.layers import Dense, Dropout
 from openpyxl import Workbook
 import matplotlib.pyplot as plt
 from bs4 import BeautifulSoup
@@ -21,7 +21,7 @@ import os
 import re
 
 
-root_path = 'C:\\Users\\serditov\\PycharmProjects\\'
+root_path = 'C:\\Users\\user\\0_Py\\'
 
 class Spider(object):
     def __init__(self, title, additionally, href, time):
@@ -624,6 +624,8 @@ def main():
         arr = 0
         size = 10 - len(listOpenValuesToNN)
 
+        time_point = ""
+
         # Morning
         if datetime.datetime.now().hour < 11:
             firstValue = listOpenValuesToNN[0]
@@ -633,14 +635,14 @@ def main():
             time_point = "10:00"
 
         # Evening
-        if datetime.datetime.now().hour < 18:
+        if datetime.datetime.now().hour > 18:
             lastValue = listOpenValuesToNN[-1]
             for item in range(0, size):
                 listOpenValuesToNN.append(lastValue)
 
             time_point = "18:44"
 
-        time_point += ":00"
+        time_point = time_point + ":00"
         listOpenValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
 
         print(listOpenValuesToNN)
@@ -663,10 +665,12 @@ def main():
         model.add(Dense(2 * count_words, activation='tanh'))    # 3
         model.add(Dense(count_words, activation='tanh'))        # 4
         model.add(Dense(count_words - 10, activation='sigmoid'))
+        model.add(Dropout(0.2))
         model.add(Dense(count_words - 20, activation='sigmoid'))
+        model.add(Dropout(0.2))
         model.add(Dense(count_words - 25, activation='sigmoid'))
         model.add(Dense(count_words - 27, activation='sigmoid'))
-        model.add(Dense(1, activation='sigmoid'))  # сигмоида вместо relu для определения вероятности
+        model.add(Dense(1, activation='sigmoid'))
 
         number_layer_words = 5
         native_weights = model.layers[number_layer_words].get_weights()[0]  # 0 - weights
@@ -680,8 +684,8 @@ def main():
             idx_1 = 0
             for weights in native_weights:
                 add = future_news[idx_1]
-                idx_2 = 0
 
+                idx_2 = 0
                 for weight in weights:
                     new_weights[idx_1][idx_2] = float(weight + add)
                     idx_2 = idx_2 + 1
@@ -714,7 +718,7 @@ def main():
                 new_model = model
 
             # обучаем нейронную сеть
-            history = new_model.fit(X, Y, epochs=500, batch_size=64)
+            history = new_model.fit(X, Y, epochs=1000, batch_size=64)
 
             # Export the model to a SavedModel
             new_model.save(model_name)
