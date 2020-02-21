@@ -621,10 +621,7 @@ def main():
     print(listOpenValuesToNN)
 
     if len(listOpenValuesToNN) > 0:
-        arr = 0
         size = 10 - len(listOpenValuesToNN)
-
-        time_point = ""
 
         # Morning
         if datetime.datetime.now().hour < 11:
@@ -632,18 +629,17 @@ def main():
             for item in range(0, size):
                 listOpenValuesToNN.insert(0, firstValue)
 
-            time_point = "10:00"
+            time_point = "10:00:00"
+            listOpenValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+        else:
+            # Evening
+            if datetime.datetime.now().hour > 18:
+                lastValue = listOpenValuesToNN[-1]
+                for item in range(0, size):
+                    listOpenValuesToNN.append(lastValue)
 
-        # Evening
-        if datetime.datetime.now().hour > 18:
-            lastValue = listOpenValuesToNN[-1]
-            for item in range(0, size):
-               listOpenValuesToNN.append(lastValue)
-
-            time_point = "18:44"
-
-        time_point = time_point + ":00"
-        listOpenValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+                time_point = "18:44:00"
+                listOpenValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
 
         print(listOpenValuesToNN)
         print(len(listOpenValuesToNN))

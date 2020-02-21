@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5dd7dac2-a3d0-4d23-9152-f659e5b3f720" name="Default Changelist" comment="">
+    <list default="true" id="4441bb43-1cd5-4ba4-86af-27e2389a8515" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/Helper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Helper.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -11,11 +11,19 @@
       <change beforePath="$PROJECT_DIR$/Classifier_economics_news/economics_news.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/economics_news.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classifier_economics_news/stocks_FXRU.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/stocks_FXRU.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classifier_politics_news/Classifier_p_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/Classifier_p_n.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_politics_news/NN_model.h5" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/NN_model.h5" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classifier_politics_news/applicants.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/applicants.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classifier_politics_news/politics_news.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/politics_news.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classifier_politics_news/stocks_FXRU.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/stocks_FXRU.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Global_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Global_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_windows/laf.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codestyles/Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/colors.scheme.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/debugger.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor.rich.copy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/filetypes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ide.general.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inspection/Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vcs.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +41,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="ProjectId" id="1Wr8WEYyhGscW9O8WDUxhFuGsq0" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectId" id="1XyI9B8Z5XXaeNhmwBI9ZRpPuvz" />
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -45,9 +53,13 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Global_main.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\serditov\PycharmProjects\Helper" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.Global_main">
     <configuration name="Classifier_e_n" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
@@ -57,7 +69,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="A:\Programs\Anaconda\python.exe" />
+      <option name="SDK_HOME" value="C:\Projects_Python\envs\test\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Classifier_economics_news" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -78,7 +90,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="A:\Programs\Anaconda\python.exe" />
+      <option name="SDK_HOME" value="C:\Projects_Python\envs\test\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -92,271 +104,79 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="NN_e_n" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="Helper" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="A:\Programs\Anaconda\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NN_economics_news" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NN_economics_news/NN_e_n.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Parser_e_n" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="Helper" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="A:\Programs\Anaconda\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Parser_economics_news" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Parser_economics_news/Parser_e_n.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Parser_p_n" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="Helper" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="A:\Programs\Anaconda\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Parser_politics_news" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Parser_politics_news/Parser_p_n.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Parser_stoks" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="Helper" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="A:\Programs\Anaconda\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Parser_stoks" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Parser_stoks/Parser_stoks.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TA_stoks" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="Helper" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="A:\Programs\Anaconda\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TA_stoks" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TA_stoks/TA_stoks.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.Classifier_e_n" />
       <item itemvalue="Python.Global_main" />
-      <item itemvalue="Python.NN_e_n" />
-      <item itemvalue="Python.Parser_e_n" />
-      <item itemvalue="Python.Parser_p_n" />
-      <item itemvalue="Python.Parser_stoks" />
-      <item itemvalue="Python.TA_stoks" />
     </list>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5dd7dac2-a3d0-4d23-9152-f659e5b3f720" name="Default Changelist" comment="" />
-      <created>1579896383239</created>
+      <changelist id="4441bb43-1cd5-4ba4-86af-27e2389a8515" name="Default Changelist" comment="" />
+      <created>1582011753895</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1579896383239</updated>
+      <updated>1582011753895</updated>
     </task>
-    <task id="LOCAL-00001" summary="Fixing Parser_e_n - csv to json">
-      <created>1580416159331</created>
+    <task id="LOCAL-00001" summary="Prepare Keras..">
+      <created>1582024491788</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1580416159331</updated>
+      <updated>1582024491788</updated>
     </task>
-    <task id="LOCAL-00002" summary="Implement: delete repeat strings; delete 'PREP' of list words">
-      <created>1580502052354</created>
+    <task id="LOCAL-00002" summary="Prepare NN..">
+      <created>1582025570809</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1580502052354</updated>
+      <updated>1582025570809</updated>
     </task>
-    <task id="LOCAL-00003" summary="Implement: appending block">
-      <created>1580682048115</created>
+    <task id="LOCAL-00003" summary="fixing..1">
+      <created>1582182852394</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1580682048116</updated>
+      <updated>1582182852394</updated>
     </task>
-    <task id="LOCAL-00004" summary="Implement: get value stocks">
-      <created>1580751367398</created>
+    <task id="LOCAL-00004" summary="fixing..2">
+      <created>1582183583297</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1580751367398</updated>
+      <updated>1582183583297</updated>
     </task>
-    <task id="LOCAL-00005" summary="Implement: volatility indicators">
-      <created>1580764723352</created>
+    <task id="LOCAL-00005" summary="NN is done?..">
+      <created>1582198258758</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1580764723352</updated>
+      <updated>1582198258758</updated>
     </task>
-    <task id="LOCAL-00006" summary="Implement: Trend Indicators">
-      <created>1580767823130</created>
+    <task id="LOCAL-00006" summary="Global_main. Fixing structures">
+      <created>1582199336003</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1580767823130</updated>
+      <updated>1582199336003</updated>
     </task>
-    <task id="LOCAL-00007" summary="Implement: Momentum and Volume Indicators">
-      <created>1580852482832</created>
+    <task id="LOCAL-00007" summary="Global_main.">
+      <created>1582201181615</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1580852482832</updated>
+      <updated>1582201181615</updated>
     </task>
-    <task id="LOCAL-00008" summary="Implement: merging..(parser+classifier)">
-      <created>1581029712723</created>
+    <task id="LOCAL-00008" summary="Added timer and threads">
+      <created>1582205133828</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1581029712723</updated>
+      <updated>1582205133828</updated>
     </task>
-    <task id="LOCAL-00009" summary="Implement: merging..(+stoks+NN)">
-      <created>1581031519010</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1581031519010</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Implement: prepare to NN..">
-      <created>1581185127165</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1581185127165</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Implement: continue prepare to NN..">
-      <created>1581189590860</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1581189590860</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Implement: finding matched time news and value of ticker">
-      <created>1581201234015</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1581201234015</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Implement: prepared true values for output NN">
-      <created>1581281515230</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1581281515230</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Implement: may be to use Keras for creating NN">
-      <created>1581451614581</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1581451614581</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Implement: prepare Keras for creating NN">
-      <created>1581884855722</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1581884855722</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Implement: prepare Keras for creating NN_2">
-      <created>1581971070003</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1581971070003</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Implement: prepare Keras for creating NN_3">
-      <created>1582141119411</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1582141119411</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Implement: prepare Keras for creating NN_4">
-      <created>1582151051081</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1582151051081</updated>
-    </task>
-    <option name="localTasksCounter" value="19" />
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -374,86 +194,68 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixing Parser_e_n - csv to json" />
-    <MESSAGE value="Implement: delete repeat strings; delete 'PREP' of list words" />
-    <MESSAGE value="Implement: appending block" />
-    <MESSAGE value="Implement: get value stocks" />
-    <MESSAGE value="Implement: volatility indicators" />
-    <MESSAGE value="Implement: Trend Indicators" />
-    <MESSAGE value="Implement: Momentum and Volume Indicators" />
-    <MESSAGE value="Implement: merging..(parser+classifier)" />
-    <MESSAGE value="Implement: merging..(+stoks+NN)" />
-    <MESSAGE value="Implement: prepare to NN.." />
-    <MESSAGE value="Implement: continue prepare to NN.." />
-    <MESSAGE value="Implement: finding matched time news and value of ticker" />
-    <MESSAGE value="Implement: prepared true values for output NN" />
-    <MESSAGE value="Implement: may be to use Keras for creating NN" />
-    <MESSAGE value="Implement: prepare Keras for creating NN" />
-    <MESSAGE value="Implement: prepare Keras for creating NN_2" />
-    <MESSAGE value="Implement: prepare Keras for creating NN_3" />
-    <MESSAGE value="Implement: prepare Keras for creating NN_4" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement: prepare Keras for creating NN_4" />
+    <MESSAGE value="Prepare Keras.." />
+    <MESSAGE value="Prepare NN.." />
+    <MESSAGE value="fixing..1" />
+    <MESSAGE value="fixing..2" />
+    <MESSAGE value="NN is done?.." />
+    <MESSAGE value="Global_main. Fixing structures" />
+    <MESSAGE value="Global_main." />
+    <MESSAGE value="Added timer and threads" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added timer and threads" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582212674344">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582198680603">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="414" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1582212674344" />
-    <state x="708" y="326" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582140685440">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582198680603" />
+    <state x="708" y="382" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582192534049">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="708" y="326" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1582140685440" />
-    <state x="640" y="251" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1581967194147">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="708" y="382" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582192534049" />
+    <state x="864" y="173" key="CommitChangelistDialog2" timestamp="1582205131588">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="640" y="251" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1581967194147" />
-    <state x="690" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1579896447425">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="864" y="173" key="CommitChangelistDialog2/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582205131588" />
+    <state x="740" y="334" key="FileChooserDialogImpl" timestamp="1582198675446">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="690" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1579896447425" />
-    <state x="614" y="117" width="792" height="815" key="CommitChangelistDialog2" timestamp="1582151049962">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="740" y="334" key="FileChooserDialogImpl/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582198675446" />
+    <state width="1898" height="317" key="GridCell.Tab.0.bottom" timestamp="1582277562540">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="614" y="117" width="792" height="815" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1582151049962" />
-    <state x="740" y="278" key="FileChooserDialogImpl" timestamp="1582212671588">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1898" height="317" key="GridCell.Tab.0.bottom/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582277562540" />
+    <state width="1898" height="317" key="GridCell.Tab.0.center" timestamp="1582277562540">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="740" y="278" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1582212671588" />
-    <state width="1898" height="351" key="GridCell.Tab.0.bottom" timestamp="1582224022988">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1898" height="317" key="GridCell.Tab.0.center/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582277562540" />
+    <state width="1898" height="317" key="GridCell.Tab.0.left" timestamp="1582277562540">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="351" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1582224022988" />
-    <state width="1898" height="351" key="GridCell.Tab.0.center" timestamp="1582224022988">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1898" height="317" key="GridCell.Tab.0.left/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582277562540" />
+    <state width="1898" height="317" key="GridCell.Tab.0.right" timestamp="1582277562540">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="351" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1582224022988" />
-    <state width="1898" height="351" key="GridCell.Tab.0.left" timestamp="1582224022988">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1898" height="317" key="GridCell.Tab.0.right/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582277562540" />
+    <state x="672" y="295" key="MultipleFileMergeDialog" timestamp="1582269213560">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="351" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1582224022988" />
-    <state width="1898" height="351" key="GridCell.Tab.0.right" timestamp="1582224022988">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="672" y="295" key="MultipleFileMergeDialog/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582269213560" />
+    <state x="461" y="211" key="SettingsEditor" timestamp="1582266093641">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="351" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1582224022988" />
-    <state x="664" y="239" key="MultipleFileMergeDialog" timestamp="1582212481397">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="461" y="211" key="SettingsEditor/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582266093641" />
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2" timestamp="1582205135380">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="664" y="239" key="MultipleFileMergeDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1582212481397" />
-    <state x="461" y="155" key="SettingsEditor" timestamp="1582212502242">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582205135380" />
+    <state x="609" y="194" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1582189654738">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="461" y="155" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1582212502242" />
-    <state x="552" y="256" key="Vcs.Push.Dialog.v2" timestamp="1582151054451">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="609" y="194" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582189654738" />
+    <state x="769" y="496" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582265791836">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="552" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1582151054451" />
-    <state x="769" y="440" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582212469784">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="769" y="440" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1050@0.0.1920.1050" timestamp="1582212469784" />
-    <state x="701" y="166" key="refactoring.ChangeSignatureDialog" timestamp="1580330250298">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="701" y="166" key="refactoring.ChangeSignatureDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1580330250298" />
+    <state x="769" y="496" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582265791836" />
   </component>
 </project>

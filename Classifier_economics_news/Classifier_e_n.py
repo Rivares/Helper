@@ -596,6 +596,15 @@ def main():
     listLowValuesToNN = []
     listVolumeValuesToNN = []
     listTimePointsToNN = []
+
+    time_point = "10:00:00"
+    listOpenValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+    listCloseValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+    listHighValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+    listLowValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+    listVolumeValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+    listTimePointsToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+
     for dt_news in time_news:
         for dt in list_time_value:
             regex = r":00$"
@@ -621,29 +630,19 @@ def main():
     print(listOpenValuesToNN)
 
     if len(listOpenValuesToNN) > 0:
-        arr = 0
         size = 10 - len(listOpenValuesToNN)
 
-        time_point = ""
-
         # Morning
-        if datetime.datetime.now().hour < 11:
+        if len(listOpenValuesToNN) < 10:
             firstValue = listOpenValuesToNN[0]
             for item in range(0, size):
                 listOpenValuesToNN.insert(0, firstValue)
 
-            time_point = "10:00"
+            list_distances = []
+            for idx in range(0, len(listOpenValuesToNN) - 1):
+                list_distances.append(list_time_value.index(listOpenValuesToNN[idx + 1]) - list_time_value.index(listOpenValuesToNN[idx]))
 
-        # Evening
-        if datetime.datetime.now().hour > 18:
-            lastValue = listOpenValuesToNN[-1]
-            for item in range(0, size):
-                listOpenValuesToNN.append(lastValue)
-
-            time_point = "18:44"
-
-        time_point = time_point + ":00"
-        listOpenValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
+            print(list_distances)
 
         print(listOpenValuesToNN)
         print(len(listOpenValuesToNN))
