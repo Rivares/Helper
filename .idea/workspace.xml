@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4441bb43-1cd5-4ba4-86af-27e2389a8515" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Classifier_economics_news/NN_model.h5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Parser_macro_params/Parser_macro_params.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/Classifier_e_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/Classifier_e_n.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/applicants.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/applicants.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/stocks_FXRU.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/stocks_FXRU.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_politics_news/Classifier_p_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/Classifier_p_n.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_politics_news/applicants.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/applicants.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_politics_news/politics_news.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/politics_news.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_politics_news/stocks_FXRU.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/stocks_FXRU.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Global_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Global_main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +33,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Parser_macro_params/Parser_macro_params.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -49,7 +41,7 @@
       <recent name="C:\Users\serditov\PycharmProjects\Helper" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Global_main">
+  <component name="RunManager" selected="Python.Parser_macro_params">
     <configuration name="Classifier_e_n" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Helper" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -92,9 +84,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Parser_macro_params" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Helper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Projects_Python\envs\test\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Parser_macro_params" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Parser_macro_params/Parser_macro_params.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.Classifier_e_n" />
       <item itemvalue="Python.Global_main" />
+      <item itemvalue="Python.Parser_macro_params" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -178,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582284806289</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fixed">
+      <created>1582285148071</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1582285148071</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -206,41 +227,42 @@
     <MESSAGE value="Added timer and threads" />
     <MESSAGE value="Fixing time_point in listOpenValuesToNN" />
     <MESSAGE value="Continue fixing..._0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Continue fixing..._0" />
+    <MESSAGE value="Fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582198680603">
+    <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582288302155">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582198680603" />
+    <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582288302155" />
     <state x="708" y="382" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582192534049">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="708" y="382" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582192534049" />
-    <state x="864" y="173" key="CommitChangelistDialog2" timestamp="1582284804909">
+    <state x="864" y="173" key="CommitChangelistDialog2" timestamp="1582285146692">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="864" y="173" key="CommitChangelistDialog2/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582284804909" />
-    <state x="740" y="334" key="FileChooserDialogImpl" timestamp="1582198675446">
+    <state x="864" y="173" key="CommitChangelistDialog2/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582285146692" />
+    <state x="740" y="334" key="FileChooserDialogImpl" timestamp="1582288297037">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="740" y="334" key="FileChooserDialogImpl/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582198675446" />
-    <state width="1898" height="307" key="GridCell.Tab.0.bottom" timestamp="1582285040430">
+    <state x="740" y="334" key="FileChooserDialogImpl/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582288297037" />
+    <state width="1898" height="307" key="GridCell.Tab.0.bottom" timestamp="1582290870085">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="307" key="GridCell.Tab.0.bottom/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582285040430" />
-    <state width="1898" height="307" key="GridCell.Tab.0.center" timestamp="1582285040430">
+    <state width="1898" height="307" key="GridCell.Tab.0.bottom/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582290870085" />
+    <state width="1898" height="307" key="GridCell.Tab.0.center" timestamp="1582290870085">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="307" key="GridCell.Tab.0.center/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582285040430" />
-    <state width="1898" height="307" key="GridCell.Tab.0.left" timestamp="1582285040430">
+    <state width="1898" height="307" key="GridCell.Tab.0.center/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582290870085" />
+    <state width="1898" height="307" key="GridCell.Tab.0.left" timestamp="1582290870085">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="307" key="GridCell.Tab.0.left/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582285040430" />
-    <state width="1898" height="307" key="GridCell.Tab.0.right" timestamp="1582285040430">
+    <state width="1898" height="307" key="GridCell.Tab.0.left/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582290870085" />
+    <state width="1898" height="307" key="GridCell.Tab.0.right" timestamp="1582290870085">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="307" key="GridCell.Tab.0.right/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582285040430" />
+    <state width="1898" height="307" key="GridCell.Tab.0.right/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582290870085" />
     <state x="672" y="295" key="MultipleFileMergeDialog" timestamp="1582269213560">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
@@ -249,10 +271,10 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="461" y="211" key="SettingsEditor/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582266093641" />
-    <state x="552" y="312" key="Vcs.Push.Dialog.v2" timestamp="1582284808484">
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2" timestamp="1582285155227">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="552" y="312" key="Vcs.Push.Dialog.v2/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582284808484" />
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582285155227" />
     <state x="609" y="194" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1582189654738">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
