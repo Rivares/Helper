@@ -38,14 +38,8 @@ def get_html(url):
 
 def get_page_data(html, data):
     soup = BeautifulSoup(html, 'lxml')
-    imfs = soup.find('div', class_='dm-wrapper').find('div', class_='dm-dataset-panels')
-    print(imfs)
-    divs = imfs.find('imf-dataset-panel', class_='default')
-    # profile-page > div > div.dm-dataset-panels > imf-dataset-panel.default.expanded > div
-    # document.querySelector("#profile-page > div > div.dm-dataset-panels > imf-dataset-panel.default.expanded > div")
-    # /html/body/imf-component/div/div[3]/imf-dataset-panel[1]/div
-
-    print(divs)
+    tr = soup.find('table', class_='infobox').find_all('tr')
+    # print(tr)
 
     data.clear()
     header = ''
@@ -53,7 +47,17 @@ def get_page_data(html, data):
     value = ''
     wordify = ''
     year = ''
-    # for ad in ads:
+    for item in tr:
+        th = item.find('th')
+        if th is not None:
+            th = th.text
+            # print(th)
+
+        td = item.find('td')
+        if td is not None:
+            td = td.text
+            print(td)
+
     #     try:
     #         div = ad.find('div', class_='list-item__content').find('a',
     #                                                                class_='list-item__title color-font-hover-only');
@@ -86,7 +90,7 @@ def get_page_data(html, data):
 
 
 def main():
-    base_url = "https://www.imf.org/external/datamapper/profile/RUS/WEO"
+    base_url = "https://ru.wikipedia.org/wiki/Экономика_Российской_Федерации"
     macro_data = []
 
     # os.remove(file_name + '.json')
