@@ -38,25 +38,28 @@ def get_html(url):
 
 def get_page_data(html, data):
     soup = BeautifulSoup(html, 'lxml')
-    tr = soup.find('table', class_='infobox').find_all('tr')
+    tr = soup.find('table', class_='simple-little-table little trades-table').find_all('tr')
     # print(tr)
 
     data.clear()
-    header = ''
-    unit = ''
-    value = ''
-    wordify = ''
-    year = ''
+    list_indicators = []
+
     for item in tr:
+        item_indic = []
         th = item.find('th')
         if th is not None:
             th = th.text
-            # print(th)
+            item_indic.append(th)
+            print(th)
 
         td = item.find('td')
         if td is not None:
             td = td.text
+            item_indic.append(td)
             print(td)
+
+        if len(item_indic) > 1:
+            list_indicators.append(item_indic)
 
     #     try:
     #         div = ad.find('div', class_='list-item__content').find('a',
@@ -86,11 +89,13 @@ def get_page_data(html, data):
     #         wordify = 'Error'
     #         year = 'Error'
 
+    print(len(list_indicators))
+
     return data
 
 
 def main():
-    base_url = "https://ru.wikipedia.org/wiki/Экономика_Российской_Федерации"
+    base_url = "https://smart-lab.ru/q/shares_fundamental/"
     macro_data = []
 
     # os.remove(file_name + '.json')
