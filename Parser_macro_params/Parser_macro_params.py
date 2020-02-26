@@ -6,7 +6,8 @@ import requests
 import datetime
 import logging
 import json
-import csv
+import re
+
 
 start = datetime.datetime(2020, 1, 1);
 end = datetime.datetime(datetime.datetime.now().year,
@@ -46,66 +47,55 @@ def get_page_data(html, data):
 
     for item in tr:
         item_indic = []
-        th = item.find('th')
-        if th is not None:
-            th = th.text
-            item_indic.append(th)
-            print(th)
+        tds = item.find_all('td')
 
-        td = item.find('td')
-        if td is not None:
-            td = td.text
-            item_indic.append(td)
-            print(td)
+        for td in tds:
+            if td is not '':
+                td = td.text
+                item_indic.append(td)
+                # print(td)
 
         if len(item_indic) > 1:
             list_indicators.append(item_indic)
 
-    #     try:
-    #         div = ad.find('div', class_='list-item__content').find('a',
-    #                                                                class_='list-item__title color-font-hover-only');
-    #         title = div.text;
-    #
-    #         href = div.get('href');
-    #
-    #         title_picture = ad.find('div', class_='list-item__content') \
-    #             .find('a', class_='list-item__image') \
-    #             .find('picture') \
-    #             .find('img') \
-    #             .get('title')
-    #         addit = title_picture;
-    #
-    #         time = ad.find('div', class_='list-item__info') \
-    #             .find('div', class_='list-item__date').text
-    #         time = time.split(', ')
-    #         time = time[-1]
-    #
-    #         data.append({'header': header, 'unit': unit, 'value': value, 'wordify': wordify, 'year': year})
-    #
-    #     except:
-    #         header = 'Error'
-    #         unit = 'Error'
-    #         value = 'Error'
-    #         wordify = 'Error'
-    #         year = 'Error'
+        # print(item_indic)
 
-    print(len(list_indicators))
+    # print(len(list_indicators))
+    # print(list_indicators)
 
-    return data
+    return list_indicators
 
 
 def main():
     base_url = "https://smart-lab.ru/q/shares_fundamental/"
-    macro_data = []
+    list_micro_data = [[]]
 
     # os.remove(file_name + '.json')
 
     url_gen = base_url
     html = get_html(url_gen)
-    article_data = get_page_data(html, macro_data)
+    list_micro_data = get_page_data(html, list_micro_data)
 
-    print("Parsed data ---->>> ")
-    print(article_data)
+    list_micro_data.pop(0)
+    for ticker in list_micro_data:
+        ticker.pop(0)               # Delete №
+        ticker.pop(1)               # Delete Name
+        ticker.pop(-1)              # Delete report name
+        for idx in range(0, len(ticker)):
+            if ticker[idx] == '':
+                ticker[idx] = 0
+
+        # print(ticker)
+        # print(len(ticker))
+
+    reg = re.compile('[aA-zZа-яА-Я+%]')
+
+    for ticker in list_micro_data:
+        for idx in range(0, len(ticker)):
+            ticker[idx] = str(ticker[idx]).lower()
+            ticker[idx] = reg.sub('', ticker[idx])
+
+        print(ticker)
 
 
 if __name__ == '__main__':
