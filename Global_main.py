@@ -10,6 +10,7 @@ import json
 import csv
 import os
 
+root_path = 'C:\\Users\\user\\0_Py\\'
 
 SYMBOLS = ['FXRB',
            'FXMM',
@@ -29,6 +30,21 @@ path_name_class_e_n = 'Classifier_economics_news\\Classifier_e_n.py'
 path_name_class_p_n = 'Classifier_politics_news\\Classifier_p_n.py'
 path_name_ta_stocks = 'TA_stocks\\TA_stocks.py'
 path_name_parser_stocks = 'Parser_stocks\\Parser_stocks.py'
+
+prediction_e_n = []
+prediction_p_n = []
+market = []
+target_ticker = []
+
+
+def read_data_json(path, file_name):
+    extension = '.json'
+    data = []
+
+    with open(path + file_name + extension, encoding="utf-8") as json_file:
+        data = json.load(json_file)
+
+    return data
 
 
 def exec_full(file_path):
@@ -57,6 +73,12 @@ def call_classifiers(path_name_class_e_n, path_name_class_p_n):
         th_1.join()
         th_2.join()
 
+        path = 'Helper\\Classifier_economics_news'
+        prediction_e_n = read_data_json(root_path + path, prediction_e_n)
+
+        path = 'Helper\\Classifier_politics_news'
+        prediction_p_n = read_data_json(root_path + path, prediction_p_n)
+
         time.sleep(20 * 60)  # sec
 
 
@@ -73,6 +95,12 @@ def call_stocks(path_name_ta_stocks, path_name_parser_stocks):
         th_3.join()
         th_4.join()
 
+        path = 'Helper\\TA_stocks'
+        market = read_data_json(root_path + path, market)
+
+        path = 'Helper\\Parser_stocks'
+        target_ticker = read_data_json(root_path + path, target_ticker)
+
         time.sleep(10 * 60)  # sec
 
 
@@ -85,6 +113,12 @@ def main():
 
         th_01.start()
         th_02.start()
+
+
+        print(prediction_e_n)
+        print(prediction_p_n)
+        print(market)
+        print(target_ticker)
 
         th_01.join()
         th_02.join()
