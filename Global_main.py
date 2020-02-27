@@ -1,14 +1,43 @@
 # coding: UTF-8
 
+
+
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.image import Image
+from kivy.uix.label import Label
+from kivy.app import App
+
 from threading import Thread
 from openpyxl import Workbook
 import matplotlib.pyplot as plt
 import datetime
 import logging
+import random
 import time
 import json
 import csv
 import os
+
+red = [1, 0, 0, 1]
+green = [0, 1, 0, 1]
+blue = [0, 0, 1, 1]
+purple = [1, 0, 1, 1]
+
+
+class HBoxLayoutExample(App):
+    def build(self):
+        layout = BoxLayout(padding=10)
+        colors = [red, green, blue, purple]
+
+        for i in range(5):
+            btn = Button(text="Button #%s" % (i + 1),
+                         background_color=random.choice(colors)
+                         )
+
+            layout.add_widget(btn)
+        return layout
+
 
 root_path = 'C:\\Users\\user\\0_Py\\'
 
@@ -105,6 +134,8 @@ def call_stocks(path_name_ta_stocks, path_name_parser_stocks):
 
 
 def main():
+    app = HBoxLayoutExample()
+    app.run()
 
     while (datetime.datetime.now().hour > 9) and (datetime.datetime.now().hour < 23):
 
@@ -113,7 +144,6 @@ def main():
 
         th_01.start()
         th_02.start()
-
 
         print(prediction_e_n)
         print(prediction_p_n)
