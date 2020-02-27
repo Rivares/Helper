@@ -30,6 +30,11 @@ class HBoxLayoutExample(App):
         layout = BoxLayout(padding=10)
         colors = [red, green, blue, purple]
 
+        button = Button(text='Hello from Kivy',
+                        size_hint=(.5, .5),
+                        pos_hint={'center_x': .5, 'center_y': .5})
+        button.bind(on_press=self.on_press_button)
+        layout.add_widget(button)
         for i in range(5):
             btn = Button(text="Button #%s" % (i + 1),
                          background_color=random.choice(colors)
@@ -37,6 +42,9 @@ class HBoxLayoutExample(App):
 
             layout.add_widget(btn)
         return layout
+
+    def on_press_button(self, instance):
+        print('Вы нажали на кнопку!')
 
 
 root_path = 'C:\\Users\\user\\0_Py\\'
