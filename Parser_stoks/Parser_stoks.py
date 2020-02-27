@@ -7,13 +7,41 @@ import time
 import json
 import csv
 
-SYMBOLS = ['FXRB',
-           'FXMM',
-           'FXRU',
-           'FXRB',
-           'FXWO',
-           'FXWR'
+MY_SYMBOLS = ['FXRB ETF',
+           'FXMM ETF',
+           'FXRU ETF',
+           'FXRB ETF',
+           'FXWO ETF',
+           'FXRW ETF'
            ]
+
+SYMBOLS = [
+    'FXCN ETF',
+    'FXDE ETF',
+    'FXGD ETF',
+    'FXKZ ETF',
+    'FXMM ETF',
+    'FXRB ETF',
+    'FXRL ETF',
+    'FXRU ETF',
+    'FXRW ETF',
+    'FXTB ETF',
+    'FXUS ETF',
+    'FXWO ETF',
+    'RUSB ETF',
+    'RUSE ETF',
+    'SBCB ETF',
+    'SBGB ETF',
+    'SBMX ETF',
+    'SBRB ETF',
+    'SBSP ETF',
+    'TRUR ETF',
+    'VTBA ETF',
+    'VTBB ETF',
+    'VTBE ETF',
+    'VTBH ETF',
+    'VTBM ETF'
+]
 
 curr_moment = datetime.date(datetime.datetime.now().year,
                              datetime.datetime.now().month,
@@ -40,13 +68,74 @@ def main():
 
     # print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~ Currency ~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
     #
-    # list_currency = ['USDRUB_TOD', 'EURRUB_TOD', 'EURUSD_TOD']
+    # list_currency = ['USDRUB_TOD', 'EURRUB_TOD', 'EURUSD_TOD', 'CNYRUB_TOD']
     # for currency in list_currency:
     #     time.sleep(2)  # sec
     #     print('\n__________________ ' + currency + ' __________________\n')
     #     ticker = exporter.lookup(name=currency, market=Market.CURRENCIES,
     #                              name_comparator=LookupComparator.EQUALS)
     #     data = exporter.download(ticker.index[0], market=Market.CURRENCIES, start_date=curr_moment)
+    #     print(data.tail(1))
+
+    # print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~ Indexes ~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
+    #
+    # list_indexes = [
+    #     'BSE Sensex (Индия)',
+    #     'Bovespa (Бразилия)',
+    #     'CAC 40',
+    #     'CSI200 (Китай)',
+    #     'CSI300 (Китай)',
+    #     'D&J-Ind*',
+    #     'Futsee-100*',
+    #     'Hang Seng (Гонконг)',
+    #     'KOSPI (Корея)',
+    #     'N225Jap*',
+    #     'NASDAQ 100**',
+    #     'NASDAQ**',
+    #     'SandP-500*',
+    #     'Shanghai Composite(Китай)',
+    #     'TA-125 Index',
+    #     'TA-35 Index',
+    #     'Индекс МосБиржи',
+    #     'Индекс МосБиржи 10',
+    #     'Индекс МосБиржи голубых фишек',
+    #     'Индекс МосБиржи инноваций',
+    #     'Индекс МосБиржи широкого рынка',
+    #     'Индекс РТС',
+    #     'Индекс РТС металлов и добычи',
+    #     'Индекс РТС нефти и газа',
+    #     'Индекс РТС потреб. сектора',
+    #     'Индекс РТС телекоммуникаций',
+    #     'Индекс РТС транспорта',
+    #     'Индекс РТС финансов',
+    #     'Индекс РТС химии и нефтехимии',
+    #     'Индекс РТС широкого рынка',
+    #     'Индекс РТС электроэнергетики',
+    #     'Индекс гос обл RGBI',
+    #     'Индекс гос обл RGBI TR',
+    #     'Индекс корп обл MOEX CBICP',
+    #     'Индекс корп обл MOEX CBITR',
+    #     'Индекс корп обл MOEX CP 3',
+    #     'Индекс корп обл MOEX CP 5',
+    #     'Индекс корп обл MOEX TR 3',
+    #     'Индекс корп обл MOEX TR 5',
+    #     'Индекс металлов и добычи',
+    #     'Индекс мун обл MOEX MBICP',
+    #     'Индекс мун обл MOEX MBITR',
+    #     'Индекс нефти и газа',
+    #     'Индекс потребит сектора',
+    #     'Индекс телекоммуникаций',
+    #     'Индекс транспорта',
+    #     'Индекс финансов',
+    #     'Индекс химии и нефтехимии',
+    #     'Индекс электроэнергетики'
+    # ]
+    # for index in list_indexes:
+    #     time.sleep(2)  # sec
+    #     print('\n__________________ ' + index + ' __________________\n')
+    #     ticker = exporter.lookup(name=index, market=Market.INDEXES,
+    #                              name_comparator=LookupComparator.EQUALS)
+    #     data = exporter.download(ticker.index[0], market=Market.INDEXES, start_date=curr_moment)
     #     print(data.tail(1))
 
     print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~ Stock ~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
