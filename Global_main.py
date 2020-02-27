@@ -53,12 +53,15 @@ def main():
 
             th_1 = Thread(target=call_classifier, args=(path_name_class_e_n,))
             th_2 = Thread(target=call_classifier, args=(path_name_class_p_n,))
+            # th_3 = Thread(target=call_classifier, args=(path_name_class_p_n,))
 
             th_1.start()
             th_2.start()
+            # th_3.start()
 
             th_1.join()
             th_2.join()
+            # th_3.join()
 
             time.sleep(20 * 60)  # sec
 
