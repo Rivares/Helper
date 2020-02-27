@@ -40,6 +40,7 @@ def main():
     target_ticker = SYMBOLS[0]
     list_indicators_target_ticker = []
     print(target_ticker)
+    list_tiker_params = []
     data = exporter.lookup(name=target_ticker, market=Market.ETF_MOEX)
     # print(data.head())
     stock = exporter.download(data.index[0], market=Market.ETF_MOEX, start_date=start, end_date=curr_moment)
@@ -59,6 +60,18 @@ def main():
     # plt.show()
 
     stock.to_csv('target_ticker' + '.csv')
+
+    list_open_value = open_value.to_list()
+    list_close_value = close_value.to_list()
+    list_high_value = high_value.to_list()
+    list_low_value = low_value.to_list()
+    list_volume_value = volume_value.to_list()
+
+    list_tiker_params.append({"open_value": list_open_value[-1],
+                              "close_value": list_close_value[-1],
+                              "high_value": list_high_value[-1],
+                              "low_value": list_low_value[-1],
+                              "volume_value": list_volume_value[-1]})
 
     # Load datas
     df = pd.read_csv('target_ticker' + '.csv', sep=',')
@@ -846,6 +859,7 @@ def main():
 
     list_indicator_wr.append({"wr_i": wr_i[-1]})
 
+    list_indicators_target_ticker.append(list_tiker_params)
     list_indicators_target_ticker.append(list_indicator_adi)
     list_indicators_target_ticker.append(list_indicator_adx)
     list_indicators_target_ticker.append(list_indicator_ai)
