@@ -186,21 +186,22 @@ def main():
 
     list_indicator_dc.append({"dc_dch": dc_dch[-1], "dc_dcl": dc_dcl[-1]})
 
-    # # _____________________________________________________________________________________________________
-    # # __________________________________________ Trend Indicators _________________________________________
-    # # _____________________________________________________________________________________________________
-    # # _____________________________ Average Directional Movement Index (ADX) ________________________________
-    #
-    # # Initialize ADX Indicator
-    # indicator_adx = ta.trend.ADXIndicator(high=df["<HIGH>"],
-    #                                       low=df["<LOW>"],
-    #                                       close=df["<CLOSE>"], n=20, fillna=True)
-    #
-    # # Add ADX features
-    # df['adx_aver'] = indicator_adx.adx()
-    # df['adx_DI_pos'] = indicator_adx.adx_pos()
-    # df['adx_DI_neg'] = indicator_adx.adx_neg()
-    #
+    # _____________________________________________________________________________________________________
+    # __________________________________________ Trend Indicators _________________________________________
+    # _____________________________________________________________________________________________________
+    # _____________________________ Average Directional Movement Index (ADX) ________________________________
+
+    # Initialize ADX Indicator
+    list_indicator_adx = []
+    indicator_adx = ta.trend.ADXIndicator(high=df["<HIGH>"],
+                                          low=df["<LOW>"],
+                                          close=df["<CLOSE>"], n=20, fillna=True)
+
+    # Add ADX features
+    df['adx_aver'] = indicator_adx.adx()
+    df['adx_DI_pos'] = indicator_adx.adx_pos()
+    df['adx_DI_neg'] = indicator_adx.adx_neg()
+
     # plt.plot(df["<CLOSE>"])
     # plt.plot(df['adx_aver'], label='ADX')
     # plt.plot(df['adx_DI_pos'], label='+DI')
@@ -208,17 +209,24 @@ def main():
     # plt.title('ADX')
     # plt.legend()
     # plt.show()
-    #
-    # # _____________________________ Aroon Indicator ________________________________
-    #
-    # # Initialize ADX Indicator
-    # indicator_ai = ta.trend.AroonIndicator(close=df["<CLOSE>"], n=20, fillna=True)
-    #
-    # # Add ADX features
-    # df['ai_i'] = indicator_ai.aroon_indicator()
-    # df['ai_up'] = indicator_ai.aroon_up()
-    # df['ai_down'] = indicator_ai.aroon_down()
-    #
+
+    adx_aver = df['adx_aver'].to_list()
+    adx_DI_pos = df['adx_DI_pos'].to_list()
+    adx_DI_neg = df['adx_DI_neg'].to_list()
+
+    list_indicator_adx.append({"adx_aver": adx_aver[-1], "adx_DI_pos": adx_DI_pos[-1], "adx_DI_neg": adx_DI_neg[-1]})
+
+    # _____________________________ Aroon Indicator ________________________________
+
+    # Initialize ADX Indicator
+    list_indicator_ai = []
+    indicator_ai = ta.trend.AroonIndicator(close=df["<CLOSE>"], n=20, fillna=True)
+
+    # Add ADX features
+    df['ai_i'] = indicator_ai.aroon_indicator()
+    df['ai_up'] = indicator_ai.aroon_up()
+    df['ai_down'] = indicator_ai.aroon_down()
+
     # plt.plot(df["<CLOSE>"])
     # plt.plot(df['ai_i'], label='Aroon Indicator')
     # plt.plot(df['ai_up'], label='Aroon Up Channel')
@@ -226,77 +234,105 @@ def main():
     # plt.title('Aroon Indicator')
     # plt.legend()
     # plt.show()
-    #
-    # # _____________________________ Commodity Channel Index (CCI) ________________________________
-    #
-    # # Initialize ADX Indicator
-    # indicator_ccl = ta.trend.CCIIndicator(high=df["<HIGH>"],
-    #                                       low=df["<LOW>"],
-    #                                       close=df["<CLOSE>"], n=20, c=5, fillna=True)
-    #
-    # # Add ADX features
-    # df['ccl_i'] = indicator_ccl.cci()
-    #
+
+    ai_i = df['ai_i'].to_list()
+    ai_up = df['ai_up'].to_list()
+    ai_down = df['ai_down'].to_list()
+
+    list_indicator_ai.append({"ai_i": ai_i[-1], "ai_up": ai_up[-1], "ai_down": ai_down[-1]})
+
+    # _____________________________ Commodity Channel Index (CCI) ________________________________
+
+    # Initialize ADX Indicator
+    list_indicator_ccl = []
+    indicator_ccl = ta.trend.CCIIndicator(high=df["<HIGH>"],
+                                          low=df["<LOW>"],
+                                          close=df["<CLOSE>"], n=20, c=5, fillna=True)
+
+    # Add ADX features
+    df['ccl_i'] = indicator_ccl.cci()
+
     # # plt.plot(df["<CLOSE>"])
     # plt.plot(df['ccl_i'], label='CCI')
     # plt.title('Commodity Channel Index (CCI)')
     # plt.legend()
     # plt.show()
-    #
-    # # _____________________________ Detrended Price Oscillator (DPO) ________________________________
-    #
-    # # Initialize DPO Indicator
-    # indicator_dpo= ta.trend.DPOIndicator(close=df["<CLOSE>"], n=20, fillna=True)
-    #
-    # # Add DPO features
-    # df['dpo_i'] = indicator_dpo.dpo()
-    #
+
+    ccl_i = df['ccl_i'].to_list()
+
+    list_indicator_ccl.append({"ccl_i": ccl_i[-1]})
+
+    # _____________________________ Detrended Price Oscillator (DPO) ________________________________
+
+    # Initialize DPO Indicator
+    list_indicator_dpo = []
+    indicator_dpo = ta.trend.DPOIndicator(close=df["<CLOSE>"], n=20, fillna=True)
+
+    # Add DPO features
+    df['dpo_i'] = indicator_dpo.dpo()
+
     # plt.plot(df['dpo_i'], label='DPO')
     # plt.title('Detrended Price Oscillator (DPO)')
     # plt.legend()
     # plt.show()
-    #
-    # # _____________________________ Exponential Moving Average (EMA) ________________________________
-    #
-    # # Initialize EMA Indicator
-    # indicator_ema = ta.trend.EMAIndicator(close=df["<CLOSE>"], n=20, fillna=True)
-    #
-    # # Add EMA features
-    # df['ema_i'] = indicator_ema.ema_indicator()
-    #
+
+    dpo_i = df['dpo_i'].to_list()
+
+    list_indicator_dpo.append({"dpo_i": dpo_i[-1]})
+
+    # _____________________________ Exponential Moving Average (EMA) ________________________________
+
+    # Initialize EMA Indicator
+    list_indicator_ema = []
+    indicator_ema = ta.trend.EMAIndicator(close=df["<CLOSE>"], n=20, fillna=True)
+
+    # Add EMA features
+    df['ema_i'] = indicator_ema.ema_indicator()
+
     # plt.plot(df["<CLOSE>"])
     # plt.plot(df['ema_i'], label='EMA')
     # plt.title('Exponential Moving Average (EMA)')
     # plt.legend()
     # plt.show()
-    #
-    # # _____________________________ Ichimoku Kinkō Hyō (Ichimoku) ________________________________
-    #
-    # # Initialize Ichimoku Indicator
-    # indicator_ichimoku = ta.trend.IchimokuIndicator(high=df["<HIGH>"],
-    #                                                 low=df["<LOW>"], n1=10, n2=20, n3=30, visual=False, fillna=True)
-    #
-    # # Add Ichimoku features
-    # df['ichimoku_a'] = indicator_ichimoku.ichimoku_a()
-    # df['ichimoku_b'] = indicator_ichimoku.ichimoku_b()
-    #
+
+    ema_i = df['ema_i'].to_list()
+
+    list_indicator_ema.append({"ema_i": ema_i[-1]})
+
+    # _____________________________ Ichimoku Kinkō Hyō (Ichimoku) ________________________________
+
+    # Initialize Ichimoku Indicator
+    list_indicator_ichimoku = []
+    indicator_ichimoku = ta.trend.IchimokuIndicator(high=df["<HIGH>"],
+                                                    low=df["<LOW>"], n1=10, n2=20, n3=30, visual=False, fillna=True)
+
+    # Add Ichimoku features
+    df['ichimoku_a'] = indicator_ichimoku.ichimoku_a()
+    df['ichimoku_b'] = indicator_ichimoku.ichimoku_b()
+
     # plt.plot(df["<CLOSE>"])
     # plt.plot(df['ichimoku_a'], label='Senkou Span A (Leading Span A)')
     # plt.plot(df['ichimoku_b'], label='Senkou Span B (Leading Span B)')
     # plt.title('Ichimoku Kinkō Hyō (Ichimoku)')
     # plt.legend()
     # plt.show()
-    #
-    # # _____________________________ KST Oscillator (KST Signal) ________________________________
-    #
-    # # Initialize KST Indicator
-    # indicator_kst = ta.trend.KSTIndicator(close=df["<CLOSE>"], r1=10, r2=20, r3=30, r4=40,
-    #                                       n1=10, n2=10, n3=10, n4=15, nsig=9, fillna=True)
-    # # Add KST features
-    # df['kst'] = indicator_kst.kst()
-    # df['kst_diff'] = indicator_kst.kst_diff()
-    # df['kst_sig'] = indicator_kst.kst_sig()
-    #
+
+    ichimoku_a = df['ichimoku_a'].to_list()
+    ichimoku_b = df['ichimoku_b'].to_list()
+
+    list_indicator_ichimoku.append({"ichimoku_a": ichimoku_a[-1], "ichimoku_b": ichimoku_b[-1]})
+
+    # _____________________________ KST Oscillator (KST Signal) ________________________________
+
+    # Initialize KST Indicator
+    list_indicator_kst = []
+    indicator_kst = ta.trend.KSTIndicator(close=df["<CLOSE>"], r1=10, r2=20, r3=30, r4=40,
+                                          n1=10, n2=10, n3=10, n4=15, nsig=9, fillna=True)
+    # Add KST features
+    df['kst'] = indicator_kst.kst()
+    df['kst_diff'] = indicator_kst.kst_diff()
+    df['kst_sig'] = indicator_kst.kst_sig()
+
     # plt.plot(df["<CLOSE>"])
     # plt.plot(df['kst'], label='Know Sure Thing (KST)')
     # plt.plot(df['kst_diff'], label='Diff Know Sure Thing (KST)')
@@ -304,16 +340,23 @@ def main():
     # plt.title('KST Oscillator (KST Signal)')
     # plt.legend()
     # plt.show()
-    #
-    # # _____________________________ Moving Average Convergence Divergence (MACD) ________________________________
-    #
-    # # Initialize MACD Indicator
-    # indicator_macd = ta.trend.MACD(close=df["<CLOSE>"], n_fast=26, n_slow=12, n_sign=9, fillna=True)
-    # # Add MACD features
-    # df['macd'] = indicator_macd.macd()
-    # df['macd_diff'] = indicator_macd.macd_diff()
-    # df['macd_sig'] = indicator_macd.macd_signal()
-    #
+
+    kst = df['kst'].to_list()
+    kst_diff = df['kst_diff'].to_list()
+    kst_sig = df['kst_sig'].to_list()
+
+    list_indicator_kst.append({"kst": kst[-1], "kst_diff": kst_diff[-1], "kst_sig": kst_sig[-1]})
+
+    # _____________________________ Moving Average Convergence Divergence (MACD) ________________________________
+
+    # Initialize MACD Indicator
+    list_indicator_macd = []
+    indicator_macd = ta.trend.MACD(close=df["<CLOSE>"], n_fast=26, n_slow=12, n_sign=9, fillna=True)
+    # Add MACD features
+    df['macd'] = indicator_macd.macd()
+    df['macd_diff'] = indicator_macd.macd_diff()
+    df['macd_sig'] = indicator_macd.macd_signal()
+
     # plt.plot(df["<CLOSE>"])
     # plt.plot(df['macd'], label='MACD Line')
     # plt.plot(df['macd_diff'], label='MACD Histogram')
@@ -321,69 +364,93 @@ def main():
     # plt.title('Moving Average Convergence Divergence (MACD)')
     # plt.legend()
     # plt.show()
-    #
+
+    macd = df['macd'].to_list()
+    macd_diff = df['macd_diff'].to_list()
+    macd_sig = df['macd_sig'].to_list()
+
+    list_indicator_macd.append({"macd": macd[-1], "macd_diff": macd_diff[-1], "macd_sig": macd_sig[-1]})
+
     # # _____________________________ Mass Index (MI) ________________________________
-    #
-    # # Initialize MI Indicator
-    # indicator_mi = ta.trend.MassIndex(high=df["<HIGH>"], low=df["<LOW>"], n=10, n2=20, fillna=True)
-    # # Add MI features
-    # df['mi'] = indicator_mi.mass_index()
-    #
+
+    # Initialize MI Indicator
+    list_indicator_mi = []
+    indicator_mi = ta.trend.MassIndex(high=df["<HIGH>"], low=df["<LOW>"], n=10, n2=20, fillna=True)
+    # Add MI features
+    df['mi'] = indicator_mi.mass_index()
+
     # # plt.plot(df["<CLOSE>"])
     # plt.plot(df['mi'], label='Mass Index (MI)')
     # plt.title('Mass Index (MI)')
     # plt.legend()
     # plt.show()
-    #
-    # # _____________________________ Parabolic Stop and Reverse (Parabolic SAR) ________________________________
-    #     #
-    #     # # Initialize PSAR Indicator
-    #     # indicator_psar = ta.trend.PSARIndicator(high=df["<HIGH>"],
-    #                                               low=df["<LOW>"],
-    #                                               close=df["<CLOSE>"], step=0.02, max_step=0.2)
-    #     #
-    #     # # Add PSAR features
-    #     # df['psar_i'] = indicator_psar.psar()
-    #     # df['psar_up'] = indicator_psar.psar_up()
-    #     # df['psar_down'] = indicator_psar.psar_down()
-    #     #
-    #     # df['psar_up_i'] = indicator_psar.psar_up_indicator()
-    #     # df['psar_down_i'] = indicator_psar.psar_down_indicator()
-    #     #
-    #     # plt.plot(df["<CLOSE>"])
-    #     # plt.plot(df['psar_i'], label='PSAR value')
-    #     # plt.plot(df['psar_up'], label='PSAR up trend value')
-    #     # plt.plot(df['psar_down'], label='PSAR down trend value')
-    #     # plt.title('Parabolic Stop and Reverse (Parabolic SAR)')
-    #     # plt.legend()
-    #     # plt.show()
-    #
-    # # _____________________________ Trix (TRIX) ________________________________
-    #
-    # # Initialize TRIX Indicator
-    # indicator_trix = ta.trend.TRIXIndicator(close=df["<CLOSE>"], n=15, fillna=True)
-    #
-    # # Add TRIX features
-    # df['trix_i'] = indicator_trix.trix()
-    #
+
+    mi = df['mi'].to_list()
+
+    list_indicator_mi.append({"mi": mi[-1]})
+
+    # _____________________________ Parabolic Stop and Reverse (Parabolic SAR) ________________________________
+
+    # Initialize PSAR Indicator
+    list_indicator_psar = []
+    indicator_psar = ta.trend.PSARIndicator(high=df["<HIGH>"],
+                                            low=df["<LOW>"],
+                                            close=df["<CLOSE>"], step=0.02, max_step=0.2)
+
+    # Add PSAR features
+    df['psar_i'] = indicator_psar.psar()
+    df['psar_up'] = indicator_psar.psar_up()
+    df['psar_down'] = indicator_psar.psar_down()
+
+    df['psar_up_i'] = indicator_psar.psar_up_indicator()
+    df['psar_down_i'] = indicator_psar.psar_down_indicator()
+
+    # plt.plot(df["<CLOSE>"])
+    # plt.plot(df['psar_i'], label='PSAR value')
+    # plt.plot(df['psar_up'], label='PSAR up trend value')
+    # plt.plot(df['psar_down'], label='PSAR down trend value')
+    # plt.title('Parabolic Stop and Reverse (Parabolic SAR)')
+    # plt.legend()
+    # plt.show()
+
+    psar_i = df['psar_i'].to_list()
+    psar_up = df['psar_up'].to_list()
+    psar_down = df['psar_down'].to_list()
+
+    list_indicator_psar.append({"psar_i": psar_i[-1], "psar_up": psar_up[-1], "psar_down": psar_down[-1]})
+
+    # _____________________________ Trix (TRIX) ________________________________
+
+    # Initialize TRIX Indicator
+    list_indicator_trix = []
+    indicator_trix = ta.trend.TRIXIndicator(close=df["<CLOSE>"], n=15, fillna=True)
+
+    # Add TRIX features
+    df['trix_i'] = indicator_trix.trix()
+
     # # plt.plot(df["<CLOSE>"])
     # plt.plot(df['trix_i'], label='TRIX')
     # plt.title('Trix (TRIX)')
     # plt.legend()
     # plt.show()
-    #
-    # # _____________________________ Vortex Indicator (VI) ________________________________
-    #
-    # # Initialize VI Indicator
-    # indicator_vi = ta.trend.VortexIndicator(high=df["<HIGH>"],
-    #                                         low=df["<LOW>"],
-    #                                         close=df["<CLOSE>"], n=15, fillna=True)
-    #
-    # # Add VI features
-    # df['vi_diff'] = indicator_vi.vortex_indicator_diff()
-    # df['vi_neg'] = indicator_vi.vortex_indicator_neg()
-    # df['vi_pos'] = indicator_vi.vortex_indicator_pos()
-    #
+
+    trix_i = df['trix_i'].to_list()
+
+    list_indicator_trix.append({"trix_i": trix_i[-1]})
+
+    # _____________________________ Vortex Indicator (VI) ________________________________
+
+    # Initialize VI Indicator
+    list_indicator_macd = []
+    indicator_vi = ta.trend.VortexIndicator(high=df["<HIGH>"],
+                                            low=df["<LOW>"],
+                                            close=df["<CLOSE>"], n=15, fillna=True)
+
+    # Add VI features
+    df['vi_diff'] = indicator_vi.vortex_indicator_diff()
+    df['vi_neg'] = indicator_vi.vortex_indicator_neg()
+    df['vi_pos'] = indicator_vi.vortex_indicator_pos()
+
     # # plt.plot(df["<CLOSE>"])
     # plt.plot(df['vi_diff'], label='Diff VI')
     # plt.plot(df['vi_neg'], label='-VI')
@@ -391,6 +458,12 @@ def main():
     # plt.title('Vortex Indicator (VI)')
     # plt.legend()
     # plt.show()
+
+    vi_diff = df['vi_diff'].to_list()
+    vi_neg = df['vi_neg'].to_list()
+    vi_pos = df['vi_pos'].to_list()
+
+    list_indicator_macd.append({"vi_diff": vi_diff[-1], "vi_neg": vi_neg[-1], "vi_pos": vi_pos[-1]})
 
     # # _____________________________________________________________________________________________________
     # # _________________________________________ Others Indicators _________________________________________
@@ -687,15 +760,15 @@ def main():
     # plt.show()
 
 
-    # list_indicators_target_ticker.append(list_goods)
-    # list_indicators_target_ticker.append(list_currency)
-    # list_indicators_target_ticker.append(list_indexes)
-    # list_indicators_target_ticker.append(list_stocks)
-    #
-    # path = root_path + 'Helper\\TA_stocks\\'
-    # file_name_ta = 'result_ta'
-    #
-    # write_data_json(list_indicators_target_ticker, path, file_name_ta)
+    list_indicators_target_ticker.append(list_indicator_bb)
+    list_indicators_target_ticker.append(list_indicator_kc)
+    list_indicators_target_ticker.append(list_indicator_trix)
+    list_indicators_target_ticker.append(list_indicator_macd)
+
+    path = root_path + 'Helper\\TA_stocks\\'
+    file_name_ta = 'result_ta'
+
+    write_data_json(list_indicators_target_ticker, path, file_name_ta)
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)

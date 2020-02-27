@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4441bb43-1cd5-4ba4-86af-27e2389a8515" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Classifier_economics_news/prediction_e_n.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Classifier_politics_news/NN_model.h5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Classifier_politics_news/prediction_p_n.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TA_stocks/target_ticker.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/Classifier_e_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/Classifier_e_n.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/NN_model.h5" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/NN_model.h5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/applicants.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/applicants.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/economics_news.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/economics_news.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/stocks_FXRU.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/stocks_FXRU.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_politics_news/Classifier_p_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/Classifier_p_n.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_politics_news/applicants.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/applicants.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_politics_news/politics_news.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/politics_news.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_politics_news/stocks_FXRU.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/stocks_FXRU.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser_stocks/Parser_stocks.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parser_stocks/Parser_stocks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser_stocks/stocks_market.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/TA_stocks/TA_stocks.py" beforeDir="false" afterPath="$PROJECT_DIR$/TA_stocks/TA_stocks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TA_stocks/target_ticker.csv" beforeDir="false" afterPath="$PROJECT_DIR$/TA_stocks/target_ticker.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +272,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582798735605</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Fixing TA">
+      <created>1582803796933</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1582803796933</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -319,7 +312,8 @@
     <MESSAGE value="to smart-lab" />
     <MESSAGE value="Fix parsing stocks" />
     <MESSAGE value="Added write to json" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added write to json" />
+    <MESSAGE value="Fixing TA" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing TA" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582802445026">
@@ -334,30 +328,30 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="640" y="315" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582799087725" />
-    <state x="864" y="173" key="CommitChangelistDialog2" timestamp="1582798734477">
+    <state x="864" y="173" key="CommitChangelistDialog2" timestamp="1582803794536">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="864" y="173" key="CommitChangelistDialog2/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582798734477" />
+    <state x="864" y="173" key="CommitChangelistDialog2/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582803794536" />
     <state x="740" y="334" key="FileChooserDialogImpl" timestamp="1582802443463">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="740" y="334" key="FileChooserDialogImpl/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582802443463" />
-    <state width="1898" height="307" key="GridCell.Tab.0.bottom" timestamp="1582803659523">
+    <state width="1898" height="291" key="GridCell.Tab.0.bottom" timestamp="1582805070627">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="307" key="GridCell.Tab.0.bottom/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582803659523" />
-    <state width="1898" height="307" key="GridCell.Tab.0.center" timestamp="1582803659523">
+    <state width="1898" height="291" key="GridCell.Tab.0.bottom/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582805070627" />
+    <state width="1898" height="291" key="GridCell.Tab.0.center" timestamp="1582805070627">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="307" key="GridCell.Tab.0.center/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582803659523" />
-    <state width="1898" height="307" key="GridCell.Tab.0.left" timestamp="1582803659523">
+    <state width="1898" height="291" key="GridCell.Tab.0.center/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582805070627" />
+    <state width="1898" height="291" key="GridCell.Tab.0.left" timestamp="1582805070627">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="307" key="GridCell.Tab.0.left/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582803659523" />
-    <state width="1898" height="307" key="GridCell.Tab.0.right" timestamp="1582803659523">
+    <state width="1898" height="291" key="GridCell.Tab.0.left/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582805070627" />
+    <state width="1898" height="291" key="GridCell.Tab.0.right" timestamp="1582805070627">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="307" key="GridCell.Tab.0.right/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582803659523" />
+    <state width="1898" height="291" key="GridCell.Tab.0.right/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582805070627" />
     <state x="672" y="295" key="MultipleFileMergeDialog" timestamp="1582790030758">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
@@ -366,10 +360,10 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="461" y="211" key="SettingsEditor/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582790065951" />
-    <state x="552" y="312" key="Vcs.Push.Dialog.v2" timestamp="1582798738250">
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2" timestamp="1582803799133">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="552" y="312" key="Vcs.Push.Dialog.v2/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582798738250" />
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582803799133" />
     <state x="609" y="194" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1582189654738">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
