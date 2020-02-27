@@ -741,21 +741,18 @@ def main():
             scores = new_model.evaluate(X, Y)
             print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
 
+            print(scores)
+            prediction = {"score": float(scores[-1] * 100)}
+            print(prediction)
+
+            path = root_path + 'Helper\\Classifier_politics_news\\'
+            file_name_prediction = 'prediction_p_n'
+
+            write_data_json(prediction, path, file_name_prediction)
+
         else:
             print("Moscow Exchange has not yet opened")
 
-
-        # print(history.history.keys())
-        # loss = history.history['loss']
-        # accuracy = history.history['accuracy']
-        # epochs = range(1, len(loss) + 1)
-        # plt.plot(epochs, loss, color='red', label='Training loss')
-        # plt.plot(epochs, accuracy, color='green', label='Accuracy')
-        # plt.title('Training and accuracy')
-        # plt.xlabel('Epochs')
-        # plt.ylabel('Loss')
-        # plt.legend()
-        # plt.show()
 
 if __name__ == '__main__':
     main()

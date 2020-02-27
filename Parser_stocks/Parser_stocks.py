@@ -258,7 +258,7 @@ def main():
     market.append(list_stocks)
 
     path = root_path + 'Helper\\Parser_stocks\\'
-    file_name_market = 'stocks_market'
+    file_name_market = 'market'
 
     write_data_json(market, path, file_name_market)
 

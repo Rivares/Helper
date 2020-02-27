@@ -8,29 +8,41 @@ import json
 import csv
 import ta
 
-SYMBOLS = ['FXRB',
-           'FXMM'
-           'FXRU',
-           'FXRB',
-           'FXWO',
-           'FXWR',
-           'SU26214RMFS5',
-           'RU000A100089',
-           'RU000A0ZZH84',
-           'RU000A0ZYBS1'
+root_path = 'C:\\Users\\user\\0_Py\\'
+
+SYMBOLS = ['FXRB ETF',
+           'FXMM ETF',
+           'FXRU ETF',
+           'FXRB ETF',
+           'FXWO ETF',
+           'FXWR ETF',
            ]
 
-start = datetime.datetime(2000, 1, 1);
-end = datetime.datetime(datetime.datetime.now().year, datetime.datetime.now().month, datetime.datetime.now().day);
-file_name = 'stocks' + '_';
-extansion = '.json'
+start = datetime.date(datetime.datetime.now().year - 1,
+                      datetime.datetime.now().month,
+                      datetime.datetime.now().day)
+
+curr_moment = datetime.date(datetime.datetime.now().year,
+                            datetime.datetime.now().month,
+                            datetime.datetime.now().day)
+
+
+def write_data_json(data, path, file_name):
+    extension = '.json'
+
+    with open(path + file_name + extension, "w", encoding="utf-8") as json_file:
+        json.dump(data, json_file, ensure_ascii=False, indent=4)
 
 
 def main():
     exporter = Exporter()
-    data = exporter.lookup(name=SYMBOLS[0], market=Market.ETF_MOEX)
+
+    target_ticker = SYMBOLS[0]
+    list_indicators_target_ticker = []
+    print(target_ticker)
+    data = exporter.lookup(name=target_ticker, market=Market.ETF_MOEX)
     # print(data.head())
-    stock = exporter.download(data.index[0], market=Market.ETF_MOEX)
+    stock = exporter.download(data.index[0], market=Market.ETF_MOEX, start_date=start, end_date=curr_moment)
     # print(stock.head())
 
     open_value = stock.get('<OPEN>')
@@ -46,37 +58,37 @@ def main():
     # volume_value.plot()
     # plt.show()
 
-    stock.to_csv(file_name + '.csv')
+    stock.to_csv('target_ticker' + '.csv')
 
     # Load datas
-    df = pd.read_csv(file_name + '.csv', sep=',')
+    df = pd.read_csv('target_ticker' + '.csv', sep=',')
 
     # Clean NaN values
     df = ta.utils.dropna(df)
 
-    # # _____________________________________________________________________________________________________
-    # # _______________________________________ Volatility Inidicators ______________________________________
-    # # _____________________________________________________________________________________________________
-    # # __________________________________________ Bollinger Bands __________________________________________
-    #
-    # # Initialize Bollinger Bands Indicator
-    #
-    # indicator_bb = ta.volatility.BollingerBands(close=df["<CLOSE>"], n=20, ndev=2, fillna=True)
-    #
-    # # Add Bollinger Bands features
-    # df['bb_bbm'] = indicator_bb.bollinger_mavg()
-    # df['bb_bbh'] = indicator_bb.bollinger_hband()
-    # df['bb_bbl'] = indicator_bb.bollinger_lband()
-    #
-    # # Add Bollinger Band high indicator
-    # df['bb_bbhi'] = indicator_bb.bollinger_hband_indicator()
-    #
-    # # Add Bollinger Band low indicator
-    # df['bb_bbli'] = indicator_bb.bollinger_lband_indicator()
-    #
-    # # Add width size Bollinger Bands
-    # df['bb_bbw'] = indicator_bb.bollinger_wband()
-    #
+    # _____________________________________________________________________________________________________
+    # _______________________________________ Volatility Inidicators ______________________________________
+    # _____________________________________________________________________________________________________
+    # __________________________________________ Bollinger Bands __________________________________________
+
+    # Initialize Bollinger Bands Indicator
+    list_indicator_bb = []
+    indicator_bb = ta.volatility.BollingerBands(close=df["<CLOSE>"], n=20, ndev=2, fillna=True)
+
+    # Add Bollinger Bands features
+    df['bb_bbm'] = indicator_bb.bollinger_mavg()
+    df['bb_bbh'] = indicator_bb.bollinger_hband()
+    df['bb_bbl'] = indicator_bb.bollinger_lband()
+
+    # Add Bollinger Band high indicator
+    df['bb_bbhi'] = indicator_bb.bollinger_hband_indicator()
+
+    # Add Bollinger Band low indicator
+    df['bb_bbli'] = indicator_bb.bollinger_lband_indicator()
+
+    # Add width size Bollinger Bands
+    df['bb_bbw'] = indicator_bb.bollinger_wband()
+
     # print(df.columns)
     #
     # plt.plot(df["<CLOSE>"])
@@ -86,24 +98,31 @@ def main():
     # plt.title('Bollinger Bands')
     # plt.legend()
     # plt.show()
-    #
-    # # __________________________________________ Keltner Channel __________________________________________
-    #
-    # # Initialize Keltner Channel Indicator
-    # indicator_kc = ta.volatility.KeltnerChannel(high=df["<HIGH>"],
-    #                                             low=df["<LOW>"], close=df["<CLOSE>"], n=20, fillna=True)
-    #
-    # # Add Keltner Channel features
-    # df['kc_kcc'] = indicator_kc.keltner_channel_central()
-    # df['kc_kch'] = indicator_kc.keltner_channel_hband()
-    # df['kc_kcl'] = indicator_kc.keltner_channel_lband()
-    #
-    # # Add Keltner Channel high indicator
-    # df['kc_bbhi'] = indicator_kc.keltner_channel_hband_indicator()
-    #
-    # # Add Keltner Channel low indicator
-    # df['kc_bbli'] = indicator_kc.keltner_channel_lband_indicator()
-    #
+
+    bb_bbh = df['bb_bbh'].to_list()
+    bb_bbl = df['bb_bbl'].to_list()
+    bb_bbm = df['bb_bbm'].to_list()
+
+    list_indicator_bb.append({"bb_bbh": bb_bbh[-1], "bb_bbl": bb_bbl[-1], "bb_bbm": bb_bbm[-1]})
+
+    # __________________________________________ Keltner Channel __________________________________________
+
+    # Initialize Keltner Channel Indicator
+    list_indicator_kc = []
+    indicator_kc = ta.volatility.KeltnerChannel(high=df["<HIGH>"],
+                                                low=df["<LOW>"], close=df["<CLOSE>"], n=20, fillna=True)
+
+    # Add Keltner Channel features
+    df['kc_kcc'] = indicator_kc.keltner_channel_central()
+    df['kc_kch'] = indicator_kc.keltner_channel_hband()
+    df['kc_kcl'] = indicator_kc.keltner_channel_lband()
+
+    # Add Keltner Channel high indicator
+    df['kc_bbhi'] = indicator_kc.keltner_channel_hband_indicator()
+
+    # Add Keltner Channel low indicator
+    df['kc_bbli'] = indicator_kc.keltner_channel_lband_indicator()
+
     # plt.plot(df["<CLOSE>"])
     # plt.plot(df['kc_kcc'], label='Central KC')
     # plt.plot(df['kc_kch'], label='High KC')
@@ -111,45 +130,62 @@ def main():
     # plt.title('Keltner Channel')
     # plt.legend()
     # plt.show()
-    #
-    # # __________________________________________ Average true range (ATR) __________________________________________
-    #
-    # # Initialize Average true range Indicator
-    # indicator_atr = ta.volatility.AverageTrueRange(high=df["<HIGH>"],
-    #                                                low=df["<LOW>"],
-    #                                                close=df["<CLOSE>"], n=20, fillna=True)
-    #
-    # # Add ATR indicator
-    # df['atr_i'] = indicator_atr.average_true_range()
-    #
+
+    kc_kcc = df['kc_kcc'].to_list()
+    kc_kch = df['kc_kch'].to_list()
+    kc_kcl = df['kc_kcl'].to_list()
+
+    list_indicator_kc.append({"kc_kcc": kc_kcc[-1], "kc_kch": kc_kch[-1], "kc_kcl": kc_kcl[-1]})
+
+    # __________________________________________ Average true range (ATR) __________________________________________
+
+    # Initialize Average true range Indicator
+    list_indicator_atr = []
+    indicator_atr = ta.volatility.AverageTrueRange(high=df["<HIGH>"],
+                                                   low=df["<LOW>"],
+                                                   close=df["<CLOSE>"], n=20, fillna=True)
+
+    # Add ATR indicator
+    df['atr_i'] = indicator_atr.average_true_range()
+
     # plt.plot(df["<CLOSE>"])
     # plt.plot(df['atr_i'], label='ATR')
     # plt.title('Average true range (ATR)')
     # plt.legend()
     # plt.show()
-    #
-    # # __________________________________________ Donchian Channel __________________________________________
-    #
-    # # Initialize Donchian Channel Indicator
-    # indicator_dc = ta.volatility.DonchianChannel(close=df["<CLOSE>"], n=20, fillna=True)
-    #
-    # # Add Donchian Channel features
-    # df['dc_dch'] = indicator_dc.donchian_channel_hband()
-    # df['dc_dcl'] = indicator_dc.donchian_channel_lband()
-    #
-    # # Add Donchian Channel high indicator
-    # df['dc_dchi'] = indicator_dc.donchian_channel_hband_indicator()
-    #
-    # # Add Donchian Channel low indicator
-    # df['dc_dcli'] = indicator_dc.donchian_channel_lband_indicator()
-    #
+
+    atr_i = df['atr_i'].to_list()
+
+    list_indicator_atr.append({"atr_i": atr_i[-1]})
+
+    # __________________________________________ Donchian Channel __________________________________________
+
+    # Initialize Donchian Channel Indicator
+    list_indicator_dc = []
+    indicator_dc = ta.volatility.DonchianChannel(close=df["<CLOSE>"], n=20, fillna=True)
+
+    # Add Donchian Channel features
+    df['dc_dch'] = indicator_dc.donchian_channel_hband()
+    df['dc_dcl'] = indicator_dc.donchian_channel_lband()
+
+    # Add Donchian Channel high indicator
+    df['dc_dchi'] = indicator_dc.donchian_channel_hband_indicator()
+
+    # Add Donchian Channel low indicator
+    df['dc_dcli'] = indicator_dc.donchian_channel_lband_indicator()
+
     # plt.plot(df["<CLOSE>"])
     # plt.plot(df['dc_dch'], label='High DC')
     # plt.plot(df['dc_dcl'], label='Low DC')
     # plt.title('Donchian Channel')
     # plt.legend()
     # plt.show()
-    #
+
+    dc_dch = df['dc_dch'].to_list()
+    dc_dcl = df['dc_dcl'].to_list()
+
+    list_indicator_dc.append({"dc_dch": dc_dch[-1], "dc_dcl": dc_dcl[-1]})
+
     # # _____________________________________________________________________________________________________
     # # __________________________________________ Trend Indicators _________________________________________
     # # _____________________________________________________________________________________________________
@@ -633,30 +669,33 @@ def main():
     # plt.legend()
     # plt.show()
 
-    # # ________________________________ Williams %R __________________________________
-    # #
-    # Initialize Williams Indicator
-    indicator_wr = ta.momentum.WilliamsRIndicator(high=df["<HIGH>"],
-                                                  low=df["<LOW>"],
-                                                  close=df["<CLOSE>"],
-                                                  lbp=14, fillna=True)
+    # # # ________________________________ Williams %R __________________________________
+    # # #
+    # # Initialize Williams Indicator
+    # indicator_wr = ta.momentum.WilliamsRIndicator(high=df["<HIGH>"],
+    #                                               low=df["<LOW>"],
+    #                                               close=df["<CLOSE>"],
+    #                                               lbp=14, fillna=True)
+    #
+    # # Add Williams features
+    # df['wr_i'] = indicator_wr.wr()
+    #
+    # plt.plot(df["<CLOSE>"])
+    # plt.plot(df['wr_i'], label='Williams')
+    # plt.title('Williams %R')
+    # plt.legend()
+    # plt.show()
 
-    # Add Williams features
-    df['wr_i'] = indicator_wr.wr()
 
-    plt.plot(df["<CLOSE>"])
-    plt.plot(df['wr_i'], label='Williams')
-    plt.title('Williams %R')
-    plt.legend()
-    plt.show()
-
-    # print('*** Current Brent Oil price ***')
-    # oil = exporter.lookup(name='Brent', market=Market.COMMODITIES,
-    #                       name_comparator=LookupComparator.EQUALS)
-    # assert len(oil) == 1
-    # data = exporter.download(oil.index[0], market=Market.COMMODITIES)
-    # print(data.tail(1))
-
+    # list_indicators_target_ticker.append(list_goods)
+    # list_indicators_target_ticker.append(list_currency)
+    # list_indicators_target_ticker.append(list_indexes)
+    # list_indicators_target_ticker.append(list_stocks)
+    #
+    # path = root_path + 'Helper\\TA_stocks\\'
+    # file_name_ta = 'result_ta'
+    #
+    # write_data_json(list_indicators_target_ticker, path, file_name_ta)
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)

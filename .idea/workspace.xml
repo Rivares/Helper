@@ -2,22 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4441bb43-1cd5-4ba4-86af-27e2389a8515" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Parser_stocks/Parser_stocks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Parser_stocks/stocks_market.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Classifier_economics_news/prediction_e_n.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Classifier_politics_news/NN_model.h5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Classifier_politics_news/prediction_p_n.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TA_stocks/target_ticker.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Global_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Global_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser_stoks/.idea/Parser_stoks.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Parser_stocks/.idea/Parser_stoks.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser_stoks/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Parser_stocks/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser_stoks/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Parser_stocks/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser_stoks/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Parser_stocks/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser_stoks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Parser_stocks/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser_stoks/Parser_stoks.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TA_stoks/.idea/Parser_stoks.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TA_stocks/.idea/Parser_stoks.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TA_stoks/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TA_stocks/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TA_stoks/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TA_stocks/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TA_stoks/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TA_stocks/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TA_stoks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TA_stocks/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TA_stoks/TA_stoks.py" beforeDir="false" afterPath="$PROJECT_DIR$/TA_stocks/TA_stocks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/Classifier_e_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/Classifier_e_n.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/NN_model.h5" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/NN_model.h5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/applicants.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/applicants.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/economics_news.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/economics_news.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/stocks_FXRU.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/stocks_FXRU.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier_politics_news/Classifier_p_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/Classifier_p_n.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier_politics_news/applicants.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/applicants.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier_politics_news/politics_news.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/politics_news.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier_politics_news/stocks_FXRU.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/stocks_FXRU.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parser_stocks/Parser_stocks.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parser_stocks/Parser_stocks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parser_stocks/stocks_market.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TA_stocks/TA_stocks.py" beforeDir="false" afterPath="$PROJECT_DIR$/TA_stocks/TA_stocks.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +48,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Parser_stocks/Parser_stocks.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/TA_stocks/TA_stocks.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -55,7 +56,7 @@
       <recent name="C:\Users\serditov\PycharmProjects\Helper" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Parser_stocks">
+  <component name="RunManager" selected="Python.TA_stocks">
     <configuration name="Classifier_e_n" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Helper" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -69,6 +70,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Classifier_economics_news/Classifier_e_n.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Classifier_p_n" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Helper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Projects_Python\envs\test\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Classifier_politics_news" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Classifier_politics_news/Classifier_p_n.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -119,8 +141,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="TA_stocks" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Helper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Projects_Python\envs\test\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TA_stocks" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TA_stocks/TA_stocks.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.Classifier_e_n" />
+      <item itemvalue="Python.Classifier_p_n" />
+      <item itemvalue="Python.TA_stocks" />
       <item itemvalue="Python.Global_main" />
       <item itemvalue="Python.Parser_stocks" />
     </list>
@@ -234,7 +279,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582792656224</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added write to json">
+      <created>1582798735605</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1582798735605</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -266,41 +318,46 @@
     <MESSAGE value="Parser_macro_params" />
     <MESSAGE value="to smart-lab" />
     <MESSAGE value="Fix parsing stocks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix parsing stocks" />
+    <MESSAGE value="Added write to json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added write to json" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582798195578">
+    <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582802445026">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582798195578" />
+    <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582802445026" />
     <state x="708" y="382" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582192534049">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="708" y="382" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582192534049" />
-    <state x="864" y="173" key="CommitChangelistDialog2" timestamp="1582792655249">
+    <state x="640" y="315" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1582799087725">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="864" y="173" key="CommitChangelistDialog2/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582792655249" />
-    <state x="740" y="334" key="FileChooserDialogImpl" timestamp="1582798193935">
+    <state x="640" y="315" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582799087725" />
+    <state x="864" y="173" key="CommitChangelistDialog2" timestamp="1582798734477">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="740" y="334" key="FileChooserDialogImpl/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582798193935" />
-    <state width="1898" height="307" key="GridCell.Tab.0.bottom" timestamp="1582798199773">
+    <state x="864" y="173" key="CommitChangelistDialog2/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582798734477" />
+    <state x="740" y="334" key="FileChooserDialogImpl" timestamp="1582802443463">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="307" key="GridCell.Tab.0.bottom/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582798199773" />
-    <state width="1898" height="307" key="GridCell.Tab.0.center" timestamp="1582798199773">
+    <state x="740" y="334" key="FileChooserDialogImpl/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582802443463" />
+    <state width="1898" height="307" key="GridCell.Tab.0.bottom" timestamp="1582803659523">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="307" key="GridCell.Tab.0.center/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582798199773" />
-    <state width="1898" height="307" key="GridCell.Tab.0.left" timestamp="1582798199773">
+    <state width="1898" height="307" key="GridCell.Tab.0.bottom/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582803659523" />
+    <state width="1898" height="307" key="GridCell.Tab.0.center" timestamp="1582803659523">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="307" key="GridCell.Tab.0.left/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582798199773" />
-    <state width="1898" height="307" key="GridCell.Tab.0.right" timestamp="1582798199773">
+    <state width="1898" height="307" key="GridCell.Tab.0.center/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582803659523" />
+    <state width="1898" height="307" key="GridCell.Tab.0.left" timestamp="1582803659523">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1898" height="307" key="GridCell.Tab.0.right/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582798199773" />
+    <state width="1898" height="307" key="GridCell.Tab.0.left/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582803659523" />
+    <state width="1898" height="307" key="GridCell.Tab.0.right" timestamp="1582803659523">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1898" height="307" key="GridCell.Tab.0.right/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582803659523" />
     <state x="672" y="295" key="MultipleFileMergeDialog" timestamp="1582790030758">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
@@ -309,10 +366,10 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="461" y="211" key="SettingsEditor/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582790065951" />
-    <state x="552" y="312" key="Vcs.Push.Dialog.v2" timestamp="1582792658563">
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2" timestamp="1582798738250">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="552" y="312" key="Vcs.Push.Dialog.v2/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582792658563" />
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2/0.0.1920.1160/-1920.0.1920.1200@0.0.1920.1160" timestamp="1582798738250" />
     <state x="609" y="194" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1582189654738">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
