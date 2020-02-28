@@ -19,11 +19,23 @@ import json
 import csv
 import os
 
+
+from finam.export import Exporter, Market, LookupComparator
+from keras.layers import Dense, Dropout
+from keras.models import Sequential
+
+import numpy as np
+import pandas as pd
+import requests
+import keras
+
+
+
+
 red = [1, 0, 0, 1]
 green = [0, 1, 0, 1]
 blue = [0, 0, 1, 1]
 purple = [1, 0, 1, 1]
-
 
 class HBoxLayoutExample(App):
     def build(self):
@@ -31,13 +43,12 @@ class HBoxLayoutExample(App):
         colors = [red, green, blue, purple]
 
         button = Button(text='Hello from Kivy',
-                        size_hint=(.5, .5),
-                        pos_hint={'center_x': .5, 'center_y': .5})
+                        background_color=green)
         button.bind(on_press=self.on_press_button)
         layout.add_widget(button)
         for i in range(5):
             btn = Button(text="Button #%s" % (i + 1),
-                         background_color=random.choice(colors)
+                         background_color=red
                          )
 
             layout.add_widget(btn)
@@ -68,10 +79,10 @@ path_name_class_p_n = 'Classifier_politics_news\\Classifier_p_n.py'
 path_name_ta_stocks = 'TA_stocks\\TA_stocks.py'
 path_name_parser_stocks = 'Parser_stocks\\Parser_stocks.py'
 
-prediction_e_n = []
-prediction_p_n = []
-market = []
-target_ticker = []
+global prediction_e_n
+global prediction_p_n
+global market
+global result_ta
 
 
 def read_data_json(path, file_name):
@@ -110,11 +121,15 @@ def call_classifiers(path_name_class_e_n, path_name_class_p_n):
         th_1.join()
         th_2.join()
 
-        path = 'Helper\\Classifier_economics_news'
-        prediction_e_n = read_data_json(root_path + path, prediction_e_n)
+        path = 'Helper\\Classifier_economics_news\\'
+        filename = 'prediction_e_n'
+        prediction_e_n = read_data_json(root_path + path, filename)
+        print(prediction_e_n)
 
-        path = 'Helper\\Classifier_politics_news'
-        prediction_p_n = read_data_json(root_path + path, prediction_p_n)
+        path = 'Helper\\Classifier_politics_news\\'
+        filename = 'prediction_p_n'
+        prediction_p_n = read_data_json(root_path + path, filename)
+        print(prediction_p_n)
 
         time.sleep(20 * 60)  # sec
 
@@ -132,11 +147,13 @@ def call_stocks(path_name_ta_stocks, path_name_parser_stocks):
         th_3.join()
         th_4.join()
 
-        path = 'Helper\\TA_stocks'
-        market = read_data_json(root_path + path, market)
+        path = 'Helper\\TA_stocks\\'
+        filename = 'result_ta'
+        market = read_data_json(root_path + path, filename)
 
-        path = 'Helper\\Parser_stocks'
-        target_ticker = read_data_json(root_path + path, target_ticker)
+        path = 'Helper\\Parser_stocks\\'
+        filename = 'market'
+        result_ta = read_data_json(root_path + path, filename)
 
         time.sleep(10 * 60)  # sec
 
@@ -153,10 +170,11 @@ def main():
         th_01.start()
         th_02.start()
 
+        print("Result ->>>")
         print(prediction_e_n)
         print(prediction_p_n)
         print(market)
-        print(target_ticker)
+        print(result_ta)
 
         th_01.join()
         th_02.join()

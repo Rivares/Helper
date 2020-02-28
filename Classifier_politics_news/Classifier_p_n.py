@@ -558,17 +558,14 @@ def main():
                              datetime.datetime.now().day)
     # print(curr_day)
     exporter = Exporter()
-    data = exporter.lookup(name=tickers[2], market=Market.ETF_MOEX)
+    data = exporter.lookup(name=tickers[0], market=Market.ETF_MOEX)
     # print(data.head())
     stock = exporter.download(data.index[0], market=Market.ETF_MOEX, start_date=curr_day)
     # print(stock.head())
 
-    file_name = path + 'stocks_' + str(tickers[2]) + '.csv'
+    file_name = path + 'stocks_' + str(tickers[0]) + '.csv'
     stock.to_csv(file_name)
 
-    # fxru = pd.read_csv(file_name)
-
-    date_value = stock.get('<DATE>')
     time_value = stock.get('<TIME>')
     open_value = stock.get('<OPEN>')
     close_value = stock.get('<CLOSE>')
@@ -750,8 +747,8 @@ def main():
 
             write_data_json(prediction, path, file_name_prediction)
 
-        else:
-            print("Moscow Exchange has not yet opened")
+    else:
+        print("Moscow Exchange has not yet opened")
 
 
 if __name__ == '__main__':
