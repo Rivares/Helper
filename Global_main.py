@@ -148,11 +148,11 @@ def main():
 
         path = 'Helper\\TA_stocks\\'
         filename = 'result_ta'
-        market = read_data_json(root_path + path, filename)
+        result_ta = read_data_json(root_path + path, filename)
 
         path = 'Helper\\Parser_stocks\\'
         filename = 'market'
-        result_ta = read_data_json(root_path + path, filename)
+        market = read_data_json(root_path + path, filename)
 
         print(prediction_e_n)
         print(prediction_p_n)
@@ -184,54 +184,116 @@ def main():
 
         X = []
 
-        for input in prediction_e_n:
-            X.append(input)
+        X.append(prediction_e_n['score'])
 
-        for input in prediction_p_n:
-            X.append(input)
+        X.append(prediction_p_n['score'])
 
-        for input in market:
-            X.append(input)
+        for ticker in market:
+            for input in ticker:
+                X.append(input['open_value'])
+                X.append(input['close_value'])
+                X.append(input['high_value'])
+                X.append(input['low_value'])
+                X.append(input['volume_value'])
 
-        for input in result_ta:
-            X.append(input)
+        for parametr in result_ta:
+                X.append(item['open_value'])
+                X.append(item['close_value'])
+                X.append(item['high_value'])
+                X.append(item['low_value'])
+                X.append(item['volume_value'])
+                X.append(item['adi_i'])
+                X.append(item['adx_aver'])
+                X.append(item['adx_DI_pos'])
+                X.append(item['adx_DI_neg'])
+                X.append(item['ai_i'])
+                X.append(item['ai_up'])
+                X.append(item['ai_down'])
+                X.append(item['ao_i'])
+                X.append(item['atr_i'])
+                X.append(item['bb_bbh'])
+                X.append(item['bb_bbl'])
+                X.append(item['bb_bbm'])
+                X.append(item['ccl_i'])
+                X.append(item['cmf_i'])
+                X.append(item['cmf_signal'])
+                X.append(item['cr_i'])
+
+                X.append(item['dc_dch'])
+                X.append(item['dc_dcl'])
+                X.append(item['dlr_i'])
+                X.append(item['dpo_i'])
+                X.append(item['ema_i'])
+                X.append(item['fi_i'])
+                X.append(item['ichimoku_a'])
+                X.append(item['ichimoku_b'])
+                X.append(item['kama_i'])
+                X.append(item['kc_kcc'])
+                X.append(item['kc_kch'])
+                X.append(item['kc_kcl'])
+                X.append(item['kst'])
+                X.append(item['kst_diff'])
+                X.append(item['kst_sig'])
+                X.append(item['vi_diff'])
+                X.append(item['vi_neg'])
+                X.append(item['vi_pos'])
+
+                X.append(item['mfi_i'])
+                X.append(item['mi'])
+                X.append(item['nvi_i'])
+                X.append(item['obv_i'])
+                X.append(item['psar_i'])
+                X.append(item['psar_up'])
+                X.append(item['psar_down'])
+                X.append(item['roc_i'])
+                X.append(item['rsi_i'])
+                X.append(item['stoch_i'])
+                X.append(item['stoch_signal'])
+                X.append(item['trix_i'])
+                X.append(item['tsi_i'])
+                X.append(item['uo_i'])
+                X.append(item['vpt_i'])
 
 
-        for news in listWordsToNN:
-            # разбиваем датасет на матрицу параметров (X) и вектор целевой переменной (Y)
-            one_sentence_news = news.ravel()
 
-            X.append(one_sentence_news)
 
-        X = np.asarray(X, dtype=np.float32)
-        Y = np.asarray(listTrueValue, dtype=np.float32)
 
-        if os.path.exists(model_name) != False:
-            # Recreate the exact same model
-            new_model = keras.models.load_model(model_name)
-        else:
-            new_model = model
 
-        # обучаем нейронную сеть
-        history = new_model.fit(X, Y, epochs=500, batch_size=64)
-
-        # Export the model to a SavedModel
-        new_model.save(model_name)
-
-        # оцениваем результат
-        scores = new_model.predict(X)
-        print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
-        print(scores)
-
-        main_prediction = {"score": float(scores[-1] * 100)}
-        print(main_prediction)
-
-        path = root_path + 'Helper\\Classifier_economics_news\\'
-        file_name_prediction = 'main_prediction'
-
-        write_data_json(main_prediction, path, file_name_prediction)
-
-        time.sleep(15 * 60)  # sec
+        # for news in listWordsToNN:
+        #     # разбиваем датасет на матрицу параметров (X) и вектор целевой переменной (Y)
+        #     one_sentence_news = news.ravel()
+        #
+        #     X.append(one_sentence_news)
+        #
+        # X = np.asarray(X, dtype=np.float32)
+        # Y = np.asarray(listTrueValue, dtype=np.float32)
+        #
+        # if os.path.exists(model_name) != False:
+        #     # Recreate the exact same model
+        #     new_model = keras.models.load_model(model_name)
+        # else:
+        #     new_model = model
+        #
+        # # обучаем нейронную сеть
+        # history = new_model.fit(X, Y, epochs=500, batch_size=64)
+        #
+        # # Export the model to a SavedModel
+        # new_model.save(model_name)
+        #
+        # # оцениваем результат
+        # scores = new_model.predict(X)
+        # print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
+        # print(scores)
+        #
+        # main_prediction = {"score": float(scores[-1] * 100)}
+        # print(main_prediction)
+        #
+        # path = root_path + 'Helper\\Classifier_economics_news\\'
+        # file_name_prediction = 'main_prediction'
+        #
+        # write_data_json(main_prediction, path, file_name_prediction)
+        #
+        # time.sleep(15 * 60)  # sec
 
     else:
         print("Sleep...")

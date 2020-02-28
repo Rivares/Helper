@@ -747,9 +747,6 @@ def main():
 
             write_data_json(prediction, path, file_name_prediction)
 
-    else:
-        print("Moscow Exchange has not yet opened")
-
 
 if __name__ == '__main__':
     main()
