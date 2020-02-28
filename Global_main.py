@@ -79,10 +79,17 @@ path_name_class_p_n = 'Classifier_politics_news\\Classifier_p_n.py'
 path_name_ta_stocks = 'TA_stocks\\TA_stocks.py'
 path_name_parser_stocks = 'Parser_stocks\\Parser_stocks.py'
 
-global prediction_e_n
-global prediction_p_n
-global market
-global result_ta
+prediction_e_n = []
+prediction_p_n = []
+market = []
+result_ta = []
+
+
+def write_data_json(data, path, file_name):
+    extension = '.json'
+
+    with open(path + file_name + extension, "w", encoding="utf-8") as json_file:
+        json.dump(data, json_file, ensure_ascii=False, indent=4)
 
 
 def read_data_json(path, file_name):
@@ -108,44 +115,36 @@ def call_script(path_name_class):
     exec_full(path_name_class)
 
 
-def call_classifiers(path_name_class_e_n, path_name_class_p_n):
+def main():
+    app = HBoxLayoutExample()
+    app.run()
 
-    while (datetime.datetime.now().minute > 0) and (datetime.datetime.now().minute < 60):
+    while (datetime.datetime.now().hour > 9) and (datetime.datetime.now().hour < 23):
 
         th_1 = Thread(target=call_script, args=(path_name_class_e_n,))
         th_2 = Thread(target=call_script, args=(path_name_class_p_n,))
+        th_3 = Thread(target=call_script, args=(path_name_ta_stocks,))
+        th_4 = Thread(target=call_script, args=(path_name_parser_stocks,))
 
         th_1.start()
         th_2.start()
+        th_3.start()
+        th_4.start()
 
         th_1.join()
         th_2.join()
+        th_3.join()
+        th_4.join()
+
+        print("Result ->>>")
 
         path = 'Helper\\Classifier_economics_news\\'
         filename = 'prediction_e_n'
         prediction_e_n = read_data_json(root_path + path, filename)
-        print(prediction_e_n)
 
         path = 'Helper\\Classifier_politics_news\\'
         filename = 'prediction_p_n'
         prediction_p_n = read_data_json(root_path + path, filename)
-        print(prediction_p_n)
-
-        time.sleep(20 * 60)  # sec
-
-
-def call_stocks(path_name_ta_stocks, path_name_parser_stocks):
-
-    while (datetime.datetime.now().minute > 0) and (datetime.datetime.now().minute < 60):
-
-        th_3 = Thread(target=call_script, args=(path_name_ta_stocks,))
-        th_4 = Thread(target=call_script, args=(path_name_parser_stocks,))
-
-        th_3.start()
-        th_4.start()
-
-        th_3.join()
-        th_4.join()
 
         path = 'Helper\\TA_stocks\\'
         filename = 'result_ta'
@@ -155,29 +154,84 @@ def call_stocks(path_name_ta_stocks, path_name_parser_stocks):
         filename = 'market'
         result_ta = read_data_json(root_path + path, filename)
 
-        time.sleep(10 * 60)  # sec
-
-
-def main():
-    app = HBoxLayoutExample()
-    app.run()
-
-    while (datetime.datetime.now().hour > 9) and (datetime.datetime.now().hour < 23):
-
-        th_01 = Thread(target=call_classifiers, args=(path_name_class_e_n, path_name_class_p_n,))
-        th_02 = Thread(target=call_stocks, args=(path_name_ta_stocks, path_name_parser_stocks))
-
-        th_01.start()
-        th_02.start()
-
-        print("Result ->>>")
         print(prediction_e_n)
         print(prediction_p_n)
         print(market)
         print(result_ta)
 
-        th_01.join()
-        th_02.join()
+
+        # задаем для воспроизводимости результатов
+        np.random.seed(2)
+        path = 'Helper\\'
+        model_name = root_path + path + 'NN_Main_model.h5'
+
+        count_inputs = len(prediction_e_n) + len(prediction_p_n) + len(market) + len(result_ta)
+
+        # создаем модели, добавляем слои один за другим
+        model = Sequential()
+        model.add(Dense(count_inputs, input_dim=count_inputs, activation='relu'))
+        model.add(Dense(count_inputs - 5, activation='relu'))
+        model.add(Dense(count_inputs - 10, activation='relu'))
+        model.add(Dropout(0.2))
+        model.add(Dense(count_inputs - 20, activation='tanh'))
+        model.add(Dropout(0.2))
+        model.add(Dense(count_inputs - 30, activation='sigmoid'))
+        model.add(Dense(count_inputs, activation='sigmoid'))
+        model.add(Dense(1, activation='sigmoid'))
+
+         # компилируем модель, используем градиентный спуск adam
+        model.compile(loss="mean_squared_error", optimizer="adam", metrics=['accuracy'])
+
+        X = []
+
+        for input in prediction_e_n:
+            X.append(input)
+
+        for input in prediction_p_n:
+            X.append(input)
+
+        for input in market:
+            X.append(input)
+
+        for input in result_ta:
+            X.append(input)
+
+
+        for news in listWordsToNN:
+            # разбиваем датасет на матрицу параметров (X) и вектор целевой переменной (Y)
+            one_sentence_news = news.ravel()
+
+            X.append(one_sentence_news)
+
+        X = np.asarray(X, dtype=np.float32)
+        Y = np.asarray(listTrueValue, dtype=np.float32)
+
+        if os.path.exists(model_name) != False:
+            # Recreate the exact same model
+            new_model = keras.models.load_model(model_name)
+        else:
+            new_model = model
+
+        # обучаем нейронную сеть
+        history = new_model.fit(X, Y, epochs=500, batch_size=64)
+
+        # Export the model to a SavedModel
+        new_model.save(model_name)
+
+        # оцениваем результат
+        scores = new_model.predict(X)
+        print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
+        print(scores)
+
+        main_prediction = {"score": float(scores[-1] * 100)}
+        print(main_prediction)
+
+        path = root_path + 'Helper\\Classifier_economics_news\\'
+        file_name_prediction = 'main_prediction'
+
+        write_data_json(main_prediction, path, file_name_prediction)
+
+        time.sleep(15 * 60)  # sec
 
     else:
         print("Sleep...")
