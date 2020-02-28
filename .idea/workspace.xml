@@ -3,14 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="bdb66029-1c6c-49eb-84c0-2208e6b84e61" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_economics_news/Classifier_e_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/Classifier_e_n.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classifier_economics_news/applicants.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/applicants.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classifier_economics_news/economics_news.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/economics_news.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier_politics_news/Classifier_p_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/Classifier_p_n.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classifier_politics_news/applicants.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/applicants.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classifier_politics_news/politics_news.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/politics_news.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Global_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Global_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TA_stocks/result_ta.json" beforeDir="false" afterPath="$PROJECT_DIR$/TA_stocks/result_ta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TA_stocks/TA_stocks.py" beforeDir="false" afterPath="$PROJECT_DIR$/TA_stocks/TA_stocks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TA_stocks/result_ta.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target_ticker.csv" beforeDir="false" afterPath="$PROJECT_DIR$/target_ticker.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,50 +170,58 @@
       <option name="project" value="LOCAL" />
       <updated>1582890222681</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Prepare inputs for NN..">
+      <created>1582896407013</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1582896407013</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixing threads.." />
     <MESSAGE value="Added NN.." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added NN.." />
+    <MESSAGE value="Prepare inputs for NN.." />
+    <option name="LAST_COMMIT_MESSAGE" value="Prepare inputs for NN.." />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1506" y="237" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582881321122">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
     <state x="-1506" y="237" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582881321122" />
-    <state x="-1306" y="176" key="CommitChangelistDialog2" timestamp="1582890221115">
+    <state x="-1306" y="176" key="CommitChangelistDialog2" timestamp="1582896404560">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
-    <state x="-1306" y="176" key="CommitChangelistDialog2/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582890221115" />
+    <state x="-1306" y="176" key="CommitChangelistDialog2/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582896404560" />
     <state x="-1180" y="337" key="FileChooserDialogImpl" timestamp="1582881317515">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
     <state x="-1180" y="337" key="FileChooserDialogImpl/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582881317515" />
-    <state width="1882" height="329" key="GridCell.Tab.0.bottom" timestamp="1582896099367">
+    <state width="1882" height="329" key="GridCell.Tab.0.bottom" timestamp="1582897674203">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
-    <state width="1882" height="329" key="GridCell.Tab.0.bottom/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582896099367" />
-    <state width="1882" height="329" key="GridCell.Tab.0.center" timestamp="1582896099366">
+    <state width="1882" height="329" key="GridCell.Tab.0.bottom/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582897674203" />
+    <state width="1882" height="329" key="GridCell.Tab.0.center" timestamp="1582897674203">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
-    <state width="1882" height="329" key="GridCell.Tab.0.center/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582896099366" />
-    <state width="1882" height="329" key="GridCell.Tab.0.left" timestamp="1582896099366">
+    <state width="1882" height="329" key="GridCell.Tab.0.center/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582897674203" />
+    <state width="1882" height="329" key="GridCell.Tab.0.left" timestamp="1582897674203">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
-    <state width="1882" height="329" key="GridCell.Tab.0.left/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582896099366" />
-    <state width="1882" height="329" key="GridCell.Tab.0.right" timestamp="1582896099367">
+    <state width="1882" height="329" key="GridCell.Tab.0.left/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582897674203" />
+    <state width="1882" height="329" key="GridCell.Tab.0.right" timestamp="1582897674203">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
-    <state width="1882" height="329" key="GridCell.Tab.0.right/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582896099367" />
+    <state width="1882" height="329" key="GridCell.Tab.0.right/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582897674203" />
     <state x="-1459" y="214" key="SettingsEditor" timestamp="1582881366124">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
     <state x="-1459" y="214" key="SettingsEditor/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582881366124" />
-    <state x="-1368" y="315" key="Vcs.Push.Dialog.v2" timestamp="1582890224297">
+    <state x="-1368" y="315" key="Vcs.Push.Dialog.v2" timestamp="1582896408514">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
-    <state x="-1368" y="315" key="Vcs.Push.Dialog.v2/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582890224297" />
+    <state x="-1368" y="315" key="Vcs.Push.Dialog.v2/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582896408514" />
   </component>
 </project>
