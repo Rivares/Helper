@@ -818,6 +818,7 @@ def main():
     wr_i = df['wr_i'].to_list()
 
     list_indicators_target_ticker.append({
+                                        "diff_value": (list_close_value[-1] - list_open_value[-1]),
                                         "open_value": list_open_value[-1],
                                         "close_value": list_close_value[-1],
                                         "high_value": list_high_value[-1],

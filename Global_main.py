@@ -117,11 +117,10 @@ def main():
 
     while (datetime.datetime.now().hour > 9) and (datetime.datetime.now().hour < 23):
 
-        # exec_full(path_name_class_e_n)
-        # exec_full(path_name_class_p_n)
-        # exec_full(path_name_parser_stocks)
-        # exec_full(path_name_ta_stocks)
-
+        exec_full(path_name_class_e_n)
+        exec_full(path_name_class_p_n)
+        exec_full(path_name_parser_stocks)
+        exec_full(path_name_ta_stocks)
 
         print("Result ->>>")
 
@@ -146,13 +145,14 @@ def main():
         # print(market)
         # print(result_ta)
 
-
-        # задаем для воспроизводимости результатов
         np.random.seed(2)
         path = 'Helper\\'
         model_name = root_path + path + 'NN_Main_model.h5'
 
         X = []
+        Y = []
+
+        Y.append(result_ta[0]['diff_value'])
 
         X.append(prediction_e_n['score'])
 
@@ -165,7 +165,6 @@ def main():
                 X.append(input['high_value'])
                 X.append(input['low_value'])
                 X.append(input['volume_value'])
-
 
         X.append(result_ta[0]['open_value'])
         X.append(result_ta[0]['close_value'])
@@ -230,54 +229,51 @@ def main():
         # создаем модели, добавляем слои один за другим
         model = Sequential()
         model.add(Dense(count_inputs, input_dim=count_inputs, activation='relu'))
-        model.add(Dense(count_inputs - 5, activation='relu'))
-        model.add(Dense(count_inputs - 10, activation='relu'))
+        model.add(Dense(count_inputs, activation='tanh'))
+        model.add(Dense(count_inputs, activation='tanh'))
         model.add(Dropout(0.2))
-        model.add(Dense(count_inputs - 20, activation='tanh'))
+        model.add(Dense(count_inputs, activation='tanh'))
         model.add(Dropout(0.2))
-        model.add(Dense(count_inputs - 30, activation='sigmoid'))
+        model.add(Dense(count_inputs, activation='sigmoid'))
         model.add(Dense(count_inputs, activation='sigmoid'))
         model.add(Dense(1, activation='sigmoid'))
 
-         # компилируем модель, используем градиентный спуск adam
-        model.compile(loss="mean_squared_error", optimizer="adam", metrics=['accuracy'])
+        model.compile(loss="mean_squared_logarithmic_error", optimizer="SGD", metrics=['accuracy'])
 
+        input_nodes = []
+        output_nodes = []
+        input_nodes.append(X)
+        output_nodes.append(Y)
 
-        # for news in listWordsToNN:
-        #     # разбиваем датасет на матрицу параметров (X) и вектор целевой переменной (Y)
-        #     one_sentence_news = news.ravel()
-        #
-        #     X.append(one_sentence_news)
-        #
-        # X = np.asarray(X, dtype=np.float32)
-        # Y = np.asarray(listTrueValue, dtype=np.float32)
-        #
-        # if os.path.exists(model_name) != False:
-        #     # Recreate the exact same model
-        #     new_model = keras.models.load_model(model_name)
-        # else:
-        #     new_model = model
-        #
-        # # обучаем нейронную сеть
-        # history = new_model.fit(X, Y, epochs=500, batch_size=64)
-        #
-        # # Export the model to a SavedModel
-        # new_model.save(model_name)
-        #
-        # # оцениваем результат
-        # scores = new_model.predict(X)
-        # print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
-        # print(scores)
-        #
-        # main_prediction = {"score": float(scores[-1] * 100)}
-        # print(main_prediction)
-        #
-        # path = root_path + 'Helper\\Classifier_economics_news\\'
-        # file_name_prediction = 'main_prediction'
-        #
-        # write_data_json(main_prediction, path, file_name_prediction)
-        #
-        # time.sleep(15 * 60)  # sec
+        input_nodes = np.asarray(input_nodes, dtype=np.float32)
+        output_nodes = np.asarray(output_nodes, dtype=np.float32)
+
+        # print(output_nodes)
+
+        if os.path.exists(model_name) != False:
+            # Recreate the exact same model
+            new_model = keras.models.load_model(model_name)
+        else:
+            new_model = model
+
+        # обучаем нейронную сеть
+        history = new_model.fit(input_nodes, output_nodes, epochs=1000, batch_size=32)
+
+        # Export the model to a SavedModel
+        new_model.save(model_name)
+
+        # оцениваем результат
+        scores = new_model.predict(input_nodes)
+
+        main_prediction = {"score": float(scores[-1] * 100)}
+        print(main_prediction)
+
+        path = root_path + 'Helper\\'
+        file_name_prediction = 'main_prediction'
+
+        write_data_json(main_prediction, path, file_name_prediction)
+
+        time.sleep(2 * 60)  # minute
 
     else:
         print("Sleep...")
