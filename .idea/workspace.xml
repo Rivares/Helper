@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bdb66029-1c6c-49eb-84c0-2208e6b84e61" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/NN_Main_model.h5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_prediction.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classifier_economics_news/NN_model.h5" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/NN_model.h5" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classifier_economics_news/applicants.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_economics_news/applicants.json" afterDir="false" />
@@ -16,8 +14,8 @@
       <change beforePath="$PROJECT_DIR$/Classifier_politics_news/prediction_p_n.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/prediction_p_n.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classifier_politics_news/stocks_FXRB.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier_politics_news/stocks_FXRB.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Global_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Global_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NN_Main_model.h5" beforeDir="false" afterPath="$PROJECT_DIR$/NN_Main_model.h5" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parser_stocks/market.json" beforeDir="false" afterPath="$PROJECT_DIR$/Parser_stocks/market.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TA_stocks/TA_stocks.py" beforeDir="false" afterPath="$PROJECT_DIR$/TA_stocks/TA_stocks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TA_stocks/result_ta.json" beforeDir="false" afterPath="$PROJECT_DIR$/TA_stocks/result_ta.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TA_stocks/target_ticker.csv" beforeDir="false" afterPath="$PROJECT_DIR$/TA_stocks/target_ticker.csv" afterDir="false" />
     </list>
@@ -205,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583143073404</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Prepared structure NN">
+      <created>1583145449941</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1583145449941</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -215,45 +220,46 @@
     <MESSAGE value="Prepare inputs for NN.." />
     <MESSAGE value="Fixing TA.." />
     <MESSAGE value="Prepare inputs for NN" />
-    <option name="LAST_COMMIT_MESSAGE" value="Prepare inputs for NN" />
+    <MESSAGE value="Prepared structure NN" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prepared structure NN" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1506" y="237" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582881321122">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
     <state x="-1506" y="237" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582881321122" />
-    <state x="-1306" y="176" key="CommitChangelistDialog2" timestamp="1583143070834">
+    <state x="-1306" y="176" key="CommitChangelistDialog2" timestamp="1583145447313">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
-    <state x="-1306" y="176" key="CommitChangelistDialog2/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1583143070834" />
+    <state x="-1306" y="176" key="CommitChangelistDialog2/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1583145447313" />
     <state x="-1180" y="337" key="FileChooserDialogImpl" timestamp="1582881317515">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
     <state x="-1180" y="337" key="FileChooserDialogImpl/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582881317515" />
-    <state width="1898" height="314" key="GridCell.Tab.0.bottom" timestamp="1583144915270">
+    <state width="1898" height="314" key="GridCell.Tab.0.bottom" timestamp="1583153987589">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
-    <state width="1898" height="314" key="GridCell.Tab.0.bottom/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1583144915270" />
-    <state width="1898" height="314" key="GridCell.Tab.0.center" timestamp="1583144915270">
+    <state width="1898" height="314" key="GridCell.Tab.0.bottom/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1583153987589" />
+    <state width="1898" height="314" key="GridCell.Tab.0.center" timestamp="1583153987589">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
-    <state width="1898" height="314" key="GridCell.Tab.0.center/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1583144915270" />
-    <state width="1898" height="314" key="GridCell.Tab.0.left" timestamp="1583144915270">
+    <state width="1898" height="314" key="GridCell.Tab.0.center/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1583153987589" />
+    <state width="1898" height="314" key="GridCell.Tab.0.left" timestamp="1583153987588">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
-    <state width="1898" height="314" key="GridCell.Tab.0.left/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1583144915270" />
-    <state width="1898" height="314" key="GridCell.Tab.0.right" timestamp="1583144915270">
+    <state width="1898" height="314" key="GridCell.Tab.0.left/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1583153987588" />
+    <state width="1898" height="314" key="GridCell.Tab.0.right" timestamp="1583153987589">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
-    <state width="1898" height="314" key="GridCell.Tab.0.right/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1583144915270" />
+    <state width="1898" height="314" key="GridCell.Tab.0.right/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1583153987589" />
     <state x="-1459" y="214" key="SettingsEditor" timestamp="1582881366124">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
     <state x="-1459" y="214" key="SettingsEditor/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1582881366124" />
-    <state x="-1368" y="315" key="Vcs.Push.Dialog.v2" timestamp="1583143075408">
+    <state x="-1368" y="315" key="Vcs.Push.Dialog.v2" timestamp="1583145451938">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>
-    <state x="-1368" y="315" key="Vcs.Push.Dialog.v2/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1583143075408" />
+    <state x="-1368" y="315" key="Vcs.Push.Dialog.v2/0.0.1920.1160/-1920.0.1920.1200@-1920.0.1920.1200" timestamp="1583145451938" />
     <state x="-1151" y="516" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1583133887178">
       <screen x="-1920" y="0" width="1920" height="1200" />
     </state>

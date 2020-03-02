@@ -112,15 +112,15 @@ def exec_full(file_path):
 
 
 def main():
-    app = HBoxLayoutExample()
-    app.run()
+    # app = HBoxLayoutExample()
+    # app.run()
 
     while (datetime.datetime.now().hour > 9) and (datetime.datetime.now().hour < 23):
 
-        exec_full(path_name_class_e_n)
-        exec_full(path_name_class_p_n)
-        exec_full(path_name_parser_stocks)
-        exec_full(path_name_ta_stocks)
+        # exec_full(path_name_class_e_n)
+        # exec_full(path_name_class_p_n)
+        # exec_full(path_name_parser_stocks)
+        # exec_full(path_name_ta_stocks)
 
         print("Result ->>>")
 
@@ -257,7 +257,7 @@ def main():
             new_model = model
 
         # обучаем нейронную сеть
-        history = new_model.fit(input_nodes, output_nodes, epochs=1000, batch_size=32)
+        history = new_model.fit(input_nodes, output_nodes, epochs=10, batch_size=32)
 
         # Export the model to a SavedModel
         new_model.save(model_name)
@@ -273,7 +273,7 @@ def main():
 
         write_data_json(main_prediction, path, file_name_prediction)
 
-        time.sleep(2 * 60)  # minute
+        # time.sleep(2 * 60)  # minute
 
     else:
         print("Sleep...")
