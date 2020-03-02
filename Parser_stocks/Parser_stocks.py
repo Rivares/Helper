@@ -10,12 +10,12 @@ import csv
 root_path = 'C:\\Users\\user\\0_Py\\'
 
 MY_SYMBOLS = ['FXRB ETF',
-               'FXMM ETF',
-               'FXRU ETF',
-               'FXRB ETF',
-               'FXWO ETF',
-               'FXRW ETF'
-               ]
+              'FXMM ETF',
+              'FXRU ETF',
+              'FXRB ETF',
+              'FXWO ETF',
+              'FXRW ETF'
+              ]
 
 curr_moment = datetime.date(datetime.datetime.now().year,
                             datetime.datetime.now().month,
@@ -122,21 +122,19 @@ def main():
 
     list_name_indexes = [
         'BSE Sensex (Индия)',
-        'Bovespa (Бразилия)',
-        'CAC 40',
         'CSI200 (Китай)',
         'CSI300 (Китай)',
-        'D&J-Ind*',
+        # 'D&J-Ind*',
         'Futsee-100*',
         'Hang Seng (Гонконг)',
         'KOSPI (Корея)',
         'N225Jap*',
-        'NASDAQ 100**',
-        'NASDAQ**',
-        'SandP-500*',
+        # 'NASDAQ 100**',
+        # 'NASDAQ**',
+        # 'SandP-500*',
         'Shanghai Composite(Китай)',
-        'TA-125 Index',
-        'TA-35 Index',
+        # 'TA-125 Index',
+        # 'TA-35 Index',
         'Индекс МосБиржи',
         'Индекс МосБиржи 10',
         'Индекс МосБиржи голубых фишек',
@@ -177,6 +175,7 @@ def main():
         # print('\n__________________ ' + index + ' __________________\n')
         ticker = exporter.lookup(name=index, market=Market.INDEXES,
                                  name_comparator=LookupComparator.EQUALS)
+
         data = exporter.download(ticker.index[0], market=Market.INDEXES, start_date=curr_moment)
 
         open_value = data.get('<OPEN>')

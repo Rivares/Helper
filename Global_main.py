@@ -111,30 +111,17 @@ def exec_full(file_path):
         exec(compile(file.read(), file_path, 'exec'), global_namespace)
 
 
-def call_script(path_name_class):
-    exec_full(path_name_class)
-
-
 def main():
     app = HBoxLayoutExample()
     app.run()
 
     while (datetime.datetime.now().hour > 9) and (datetime.datetime.now().hour < 23):
 
-        th_1 = Thread(target=call_script, args=(path_name_class_e_n,))
-        th_2 = Thread(target=call_script, args=(path_name_class_p_n,))
-        th_3 = Thread(target=call_script, args=(path_name_ta_stocks,))
-        th_4 = Thread(target=call_script, args=(path_name_parser_stocks,))
+        # exec_full(path_name_class_e_n)
+        # exec_full(path_name_class_p_n)
+        # exec_full(path_name_parser_stocks)
+        # exec_full(path_name_ta_stocks)
 
-        th_1.start()
-        th_2.start()
-        th_3.start()
-        th_4.start()
-
-        th_1.join()
-        th_2.join()
-        th_3.join()
-        th_4.join()
 
         print("Result ->>>")
 
@@ -154,33 +141,16 @@ def main():
         filename = 'market'
         market = read_data_json(root_path + path, filename)
 
-        print(prediction_e_n)
-        print(prediction_p_n)
-        print(market)
-        print(result_ta)
+        # print(prediction_e_n)
+        # print(prediction_p_n)
+        # print(market)
+        # print(result_ta)
 
 
         # задаем для воспроизводимости результатов
         np.random.seed(2)
         path = 'Helper\\'
         model_name = root_path + path + 'NN_Main_model.h5'
-
-        count_inputs = len(prediction_e_n) + len(prediction_p_n) + len(market) + len(result_ta)
-
-        # создаем модели, добавляем слои один за другим
-        model = Sequential()
-        model.add(Dense(count_inputs, input_dim=count_inputs, activation='relu'))
-        model.add(Dense(count_inputs - 5, activation='relu'))
-        model.add(Dense(count_inputs - 10, activation='relu'))
-        model.add(Dropout(0.2))
-        model.add(Dense(count_inputs - 20, activation='tanh'))
-        model.add(Dropout(0.2))
-        model.add(Dense(count_inputs - 30, activation='sigmoid'))
-        model.add(Dense(count_inputs, activation='sigmoid'))
-        model.add(Dense(1, activation='sigmoid'))
-
-         # компилируем модель, используем градиентный спуск adam
-        model.compile(loss="mean_squared_error", optimizer="adam", metrics=['accuracy'])
 
         X = []
 
@@ -197,65 +167,80 @@ def main():
                 X.append(input['volume_value'])
 
 
-        X.append(result_ta['open_value'])
-        X.append(result_ta['close_value'])
-        X.append(result_ta['high_value'])
-        X.append(result_ta['low_value'])
-        X.append(result_ta['volume_value'])
-        X.append(result_ta['adi_i'])
-        X.append(result_ta['adx_aver'])
-        X.append(result_ta['adx_DI_pos'])
-        X.append(result_ta['adx_DI_neg'])
-        X.append(result_ta['ai_i'])
-        X.append(result_ta['ai_up'])
-        X.append(result_ta['ai_down'])
-        X.append(result_ta['ao_i'])
-        X.append(result_ta['atr_i'])
-        X.append(result_ta['bb_bbh'])
-        X.append(result_ta['bb_bbl'])
-        X.append(result_ta['bb_bbm'])
-        X.append(result_ta['ccl_i'])
-        X.append(result_ta['cmf_i'])
-        X.append(result_ta['cmf_signal'])
-        X.append(result_ta['cr_i'])
+        X.append(result_ta[0]['open_value'])
+        X.append(result_ta[0]['close_value'])
+        X.append(result_ta[0]['high_value'])
+        X.append(result_ta[0]['low_value'])
+        X.append(result_ta[0]['volume_value'])
+        X.append(result_ta[0]['adi_i'])
+        X.append(result_ta[0]['adx_aver'])
+        X.append(result_ta[0]['adx_DI_pos'])
+        X.append(result_ta[0]['adx_DI_neg'])
+        X.append(result_ta[0]['ai_i'])
+        X.append(result_ta[0]['ai_up'])
+        X.append(result_ta[0]['ai_down'])
+        X.append(result_ta[0]['ao_i'])
+        X.append(result_ta[0]['atr_i'])
+        X.append(result_ta[0]['bb_bbh'])
+        X.append(result_ta[0]['bb_bbl'])
+        X.append(result_ta[0]['bb_bbm'])
+        X.append(result_ta[0]['ccl_i'])
+        X.append(result_ta[0]['cmf_i'])
+        X.append(result_ta[0]['cmf_signal'])
+        X.append(result_ta[0]['cr_i'])
 
-        X.append(result_ta['dc_dch'])
-        X.append(result_ta['dc_dcl'])
-        X.append(result_ta['dlr_i'])
-        X.append(result_ta['dpo_i'])
-        X.append(result_ta['ema_i'])
-        X.append(result_ta['fi_i'])
-        X.append(result_ta['ichimoku_a'])
-        X.append(result_ta['ichimoku_b'])
-        X.append(result_ta['kama_i'])
-        X.append(result_ta['kc_kcc'])
-        X.append(result_ta['kc_kch'])
-        X.append(result_ta['kc_kcl'])
-        X.append(result_ta['kst'])
-        X.append(result_ta['kst_diff'])
-        X.append(result_ta['kst_sig'])
-        X.append(result_ta['vi_diff'])
-        X.append(result_ta['vi_neg'])
-        X.append(result_ta['vi_pos'])
+        X.append(result_ta[0]['dc_dch'])
+        X.append(result_ta[0]['dc_dcl'])
+        X.append(result_ta[0]['dlr_i'])
+        X.append(result_ta[0]['dpo_i'])
+        X.append(result_ta[0]['ema_i'])
+        X.append(result_ta[0]['fi_i'])
+        X.append(result_ta[0]['ichimoku_a'])
+        X.append(result_ta[0]['ichimoku_b'])
+        X.append(result_ta[0]['kama_i'])
+        X.append(result_ta[0]['kc_kcc'])
+        X.append(result_ta[0]['kc_kch'])
+        X.append(result_ta[0]['kc_kcl'])
+        X.append(result_ta[0]['kst'])
+        X.append(result_ta[0]['kst_diff'])
+        X.append(result_ta[0]['kst_sig'])
+        X.append(result_ta[0]['vi_diff'])
+        X.append(result_ta[0]['vi_neg'])
+        X.append(result_ta[0]['vi_pos'])
 
-        X.append(result_ta['mfi_i'])
-        X.append(result_ta['mi'])
-        X.append(result_ta['nvi_i'])
-        X.append(result_ta['obv_i'])
-        X.append(result_ta['psar_i'])
-        X.append(result_ta['psar_up'])
-        X.append(result_ta['psar_down'])
-        X.append(result_ta['roc_i'])
-        X.append(result_ta['rsi_i'])
-        X.append(result_ta['stoch_i'])
-        X.append(result_ta['stoch_signal'])
-        X.append(result_ta['trix_i'])
-        X.append(result_ta['tsi_i'])
-        X.append(result_ta['uo_i'])
-        X.append(result_ta['vpt_i'])
+        X.append(result_ta[0]['mfi_i'])
+        X.append(result_ta[0]['mi'])
+        X.append(result_ta[0]['nvi_i'])
+        X.append(result_ta[0]['obv_i'])
+        X.append(result_ta[0]['psar_i'])
+        X.append(result_ta[0]['psar_up'])
+        X.append(result_ta[0]['psar_down'])
+        X.append(result_ta[0]['roc_i'])
+        X.append(result_ta[0]['rsi_i'])
+        X.append(result_ta[0]['stoch_i'])
+        X.append(result_ta[0]['stoch_signal'])
+        X.append(result_ta[0]['trix_i'])
+        X.append(result_ta[0]['tsi_i'])
+        X.append(result_ta[0]['uo_i'])
+        X.append(result_ta[0]['vpt_i'])
 
+        count_inputs = len(X)
+        # print("Len NN: " + str(count_inputs))
 
+        # создаем модели, добавляем слои один за другим
+        model = Sequential()
+        model.add(Dense(count_inputs, input_dim=count_inputs, activation='relu'))
+        model.add(Dense(count_inputs - 5, activation='relu'))
+        model.add(Dense(count_inputs - 10, activation='relu'))
+        model.add(Dropout(0.2))
+        model.add(Dense(count_inputs - 20, activation='tanh'))
+        model.add(Dropout(0.2))
+        model.add(Dense(count_inputs - 30, activation='sigmoid'))
+        model.add(Dense(count_inputs, activation='sigmoid'))
+        model.add(Dense(1, activation='sigmoid'))
 
+         # компилируем модель, используем градиентный спуск adam
+        model.compile(loss="mean_squared_error", optimizer="adam", metrics=['accuracy'])
 
 
         # for news in listWordsToNN:

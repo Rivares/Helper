@@ -61,7 +61,8 @@ def main():
     # volume_value.plot()
     # plt.show()
 
-    stock.to_csv('target_ticker' + '.csv')
+    path = root_path + 'Helper\\TA_stocks\\'
+    stock.to_csv(path + 'target_ticker' + '.csv')
 
     list_open_value = open_value.to_list()
     list_close_value = close_value.to_list()
@@ -69,14 +70,9 @@ def main():
     list_low_value = low_value.to_list()
     list_volume_value = volume_value.to_list()
 
-    list_indicators_target_ticker.append({"open_value": list_open_value[-1],
-                                          "close_value": list_close_value[-1],
-                                          "high_value": list_high_value[-1],
-                                          "low_value": list_low_value[-1],
-                                          "volume_value": list_volume_value[-1]})
-
     # Load datas
-    df = pd.read_csv('target_ticker' + '.csv', sep=',')
+    path = root_path + 'Helper\\TA_stocks\\'
+    df = pd.read_csv(path + 'target_ticker' + '.csv', sep=',')
 
     # Clean NaN values
     df = ta.utils.dropna(df)
@@ -117,8 +113,6 @@ def main():
     bb_bbl = df['bb_bbl'].to_list()
     bb_bbm = df['bb_bbm'].to_list()
 
-    list_indicators_target_ticker.append({"bb_bbh": bb_bbh[-1], "bb_bbl": bb_bbl[-1], "bb_bbm": bb_bbm[-1]})
-
     # __________________________________________ Keltner Channel __________________________________________
 
     # Initialize Keltner Channel Indicator
@@ -148,7 +142,7 @@ def main():
     kc_kch = df['kc_kch'].to_list()
     kc_kcl = df['kc_kcl'].to_list()
 
-    list_indicators_target_ticker.append({"kc_kcc": kc_kcc[-1], "kc_kch": kc_kch[-1], "kc_kcl": kc_kcl[-1]})
+
 
     # __________________________________________ Average true range (ATR) __________________________________________
 
@@ -168,7 +162,7 @@ def main():
 
     atr_i = df['atr_i'].to_list()
 
-    list_indicators_target_ticker.append({"atr_i": atr_i[-1]})
+
 
     # __________________________________________ Donchian Channel __________________________________________
 
@@ -195,7 +189,7 @@ def main():
     dc_dch = df['dc_dch'].to_list()
     dc_dcl = df['dc_dcl'].to_list()
 
-    list_indicators_target_ticker.append({"dc_dch": dc_dch[-1], "dc_dcl": dc_dcl[-1]})
+
 
     # _____________________________________________________________________________________________________
     # __________________________________________ Trend Indicators _________________________________________
@@ -224,7 +218,7 @@ def main():
     adx_DI_pos = df['adx_DI_pos'].to_list()
     adx_DI_neg = df['adx_DI_neg'].to_list()
 
-    list_indicators_target_ticker.append({"adx_aver": adx_aver[-1], "adx_DI_pos": adx_DI_pos[-1], "adx_DI_neg": adx_DI_neg[-1]})
+
 
     # _____________________________ Aroon Indicator ________________________________
 
@@ -248,7 +242,7 @@ def main():
     ai_up = df['ai_up'].to_list()
     ai_down = df['ai_down'].to_list()
 
-    list_indicators_target_ticker.append({"ai_i": ai_i[-1], "ai_up": ai_up[-1], "ai_down": ai_down[-1]})
+
 
     # _____________________________ Commodity Channel Index (CCI) ________________________________
 
@@ -268,7 +262,7 @@ def main():
 
     ccl_i = df['ccl_i'].to_list()
 
-    list_indicators_target_ticker.append({"ccl_i": ccl_i[-1]})
+
 
     # _____________________________ Detrended Price Oscillator (DPO) ________________________________
 
@@ -285,7 +279,7 @@ def main():
 
     dpo_i = df['dpo_i'].to_list()
 
-    list_indicators_target_ticker.append({"dpo_i": dpo_i[-1]})
+
 
     # _____________________________ Exponential Moving Average (EMA) ________________________________
 
@@ -303,7 +297,7 @@ def main():
 
     ema_i = df['ema_i'].to_list()
 
-    list_indicators_target_ticker.append({"ema_i": ema_i[-1]})
+
 
     # _____________________________ Ichimoku Kinkō Hyō (Ichimoku) ________________________________
 
@@ -325,7 +319,7 @@ def main():
     ichimoku_a = df['ichimoku_a'].to_list()
     ichimoku_b = df['ichimoku_b'].to_list()
 
-    list_indicators_target_ticker.append({"ichimoku_a": ichimoku_a[-1], "ichimoku_b": ichimoku_b[-1]})
+
 
     # _____________________________ KST Oscillator (KST Signal) ________________________________
 
@@ -349,7 +343,7 @@ def main():
     kst_diff = df['kst_diff'].to_list()
     kst_sig = df['kst_sig'].to_list()
 
-    list_indicators_target_ticker.append({"kst": kst[-1], "kst_diff": kst_diff[-1], "kst_sig": kst_sig[-1]})
+
 
     # _____________________________ Moving Average Convergence Divergence (MACD) ________________________________
 
@@ -372,7 +366,7 @@ def main():
     macd_diff = df['macd_diff'].to_list()
     macd_sig = df['macd_sig'].to_list()
 
-    list_indicators_target_ticker.append({"macd": macd[-1], "macd_diff": macd_diff[-1], "macd_sig": macd_sig[-1]})
+
 
     # # _____________________________ Mass Index (MI) ________________________________
 
@@ -389,7 +383,6 @@ def main():
 
     mi = df['mi'].to_list()
 
-    list_indicators_target_ticker.append({"mi": mi[-1]})
 
     # _____________________________ Parabolic Stop and Reverse (Parabolic SAR) ________________________________
 
@@ -418,7 +411,7 @@ def main():
     psar_up = df['psar_up'].to_list()
     psar_down = df['psar_down'].to_list()
 
-    list_indicators_target_ticker.append({"psar_i": psar_i[-1], "psar_up": psar_up[-1], "psar_down": psar_down[-1]})
+
 
     # _____________________________ Trix (TRIX) ________________________________
 
@@ -436,7 +429,7 @@ def main():
 
     trix_i = df['trix_i'].to_list()
 
-    list_indicators_target_ticker.append({"trix_i": trix_i[-1]})
+
 
     # _____________________________ Vortex Indicator (VI) ________________________________
 
@@ -462,7 +455,7 @@ def main():
     vi_neg = df['vi_neg'].to_list()
     vi_pos = df['vi_pos'].to_list()
 
-    list_indicators_target_ticker.append({"vi_diff": vi_diff[-1], "vi_neg": vi_neg[-1], "vi_pos": vi_pos[-1]})
+
 
     # _____________________________________________________________________________________________________
     # _________________________________________ Others Indicators _________________________________________
@@ -482,7 +475,7 @@ def main():
 
     cr_i = df['cr_i'].to_list()
 
-    list_indicators_target_ticker.append({"cr_i": cr_i[-1]})
+
 
     # # ______________________________________ Daily Log Return (DLR) _______________________________________
     #
@@ -499,7 +492,7 @@ def main():
 
     dlr_i = df['dlr_i'].to_list()
 
-    list_indicators_target_ticker.append({"dlr_i": dlr_i[-1]})
+
 
     # _____________________________________________________________________________________________________
     # _________________________________________ Volume Indicators _________________________________________
@@ -521,7 +514,7 @@ def main():
 
     adi_i = df['adi_i'].to_list()
 
-    list_indicators_target_ticker.append({"adi_i": adi_i[-1]})
+
 
     # ______________________________ Chaikin Money Flow (CMF) ________________________________
     #
@@ -541,7 +534,6 @@ def main():
 
     cmf_i = df['cmf_i'].to_list()
 
-    list_indicators_target_ticker.append({"cmf_i": cmf_i[-1]})
 
     # ______________________________ Ease of movement (EoM, EMV) ________________________________
 
@@ -564,7 +556,7 @@ def main():
     cmf_i = df['cmf_i'].to_list()
     cmf_signal = df['cmf_signal'].to_list()
 
-    list_indicators_target_ticker.append({"cmf_i": cmf_i[-1], "cmf_signal": cmf_signal[-1]})
+
 
     # ______________________________ Force Index (FI) ________________________________
     #
@@ -583,7 +575,7 @@ def main():
 
     fi_i = df['fi_i'].to_list()
 
-    list_indicators_target_ticker.append({"fi_i": fi_i[-1]})
+
 
     # ______________________________ Negative Volume Index (NVI) ________________________________
     #
@@ -602,7 +594,7 @@ def main():
 
     nvi_i = df['nvi_i'].to_list()
 
-    list_indicators_target_ticker.append({"nvi_i": nvi_i[-1]})
+
 
     # ______________________________ On-balance volume (OBV) ________________________________
     #
@@ -621,7 +613,7 @@ def main():
 
     obv_i = df['obv_i'].to_list()
 
-    list_indicators_target_ticker.append({"obv_i": obv_i[-1]})
+
 
     # ______________________________ Volume-price trend (VPT) ________________________________
     #
@@ -640,7 +632,7 @@ def main():
 
     vpt_i = df['vpt_i'].to_list()
 
-    list_indicators_target_ticker.append({"vpt_i": vpt_i[-1]})
+
 
     # _____________________________________________________________________________________________________
     # ________________________________________ Momentum Indicators ________________________________________
@@ -662,7 +654,7 @@ def main():
 
     ao_i = df['ao_i'].to_list()
 
-    list_indicators_target_ticker.append({"ao_i": ao_i[-1]})
+
 
     # ________________________________ Kaufman’s Adaptive Moving Average (KAMA) __________________________________
     # #
@@ -682,7 +674,7 @@ def main():
 
     kama_i = df['kama_i'].to_list()
 
-    list_indicators_target_ticker.append({"kama_i": kama_i[-1]})
+
 
     # ________________________________ Money Flow Index (MFI) __________________________________
     #
@@ -704,7 +696,7 @@ def main():
 
     mfi_i = df['mfi_i'].to_list()
 
-    list_indicators_target_ticker.append({"mfi_i": mfi_i[-1]})
+
 
     # ________________________________ Rate of Change (ROC) __________________________________
     #
@@ -723,7 +715,7 @@ def main():
 
     roc_i = df['roc_i'].to_list()
 
-    list_indicators_target_ticker.append({"roc_i": roc_i[-1]})
+
 
     # ________________________________ Relative Strength Index (RSI) __________________________________
     #
@@ -742,7 +734,7 @@ def main():
 
     rsi_i = df['rsi_i'].to_list()
 
-    list_indicators_target_ticker.append({"rsi_i": rsi_i[-1]})
+
 
     # ________________________________ Stochastic Oscillator __________________________________
     # Initialize RSI Indicator
@@ -765,7 +757,7 @@ def main():
     stoch_i = df['stoch_i'].to_list()
     stoch_signal = df['stoch_signal'].to_list()
 
-    list_indicators_target_ticker.append({"stoch_i": stoch_i[-1], "stoch_signal": stoch_signal[-1]})
+
 
     # ________________________________ True strength index (TSI) __________________________________
     #
@@ -784,7 +776,7 @@ def main():
 
     tsi_i = df['tsi_i'].to_list()
 
-    list_indicators_target_ticker.append({"tsi_i": tsi_i[-1]})
+
 
     # ________________________________ Ultimate Oscillator __________________________________
     # Initialize Ultimate Oscillator Indicator
@@ -805,7 +797,7 @@ def main():
 
     uo_i = df['uo_i'].to_list()
 
-    list_indicators_target_ticker.append({"uo_i": uo_i[-1]})
+
 
     # ________________________________ Williams %R __________________________________
     # Initialize Williams Indicator
@@ -825,12 +817,50 @@ def main():
 
     wr_i = df['wr_i'].to_list()
 
-    list_indicators_target_ticker.append({"wr_i": wr_i[-1]})
+    list_indicators_target_ticker.append({
+                                        "open_value": list_open_value[-1],
+                                        "close_value": list_close_value[-1],
+                                        "high_value": list_high_value[-1],
+                                        "low_value": list_low_value[-1],
+                                        "volume_value": list_volume_value[-1],
+                                        "bb_bbh": bb_bbh[-1], "bb_bbl": bb_bbl[-1], "bb_bbm": bb_bbm[-1],
+                                        "kc_kcc": kc_kcc[-1], "kc_kch": kc_kch[-1], "kc_kcl": kc_kcl[-1],
+                                        "atr_i": atr_i[-1],
+                                        "dc_dch": dc_dch[-1], "dc_dcl": dc_dcl[-1],
+                                        "adx_aver": adx_aver[-1], "adx_DI_pos": adx_DI_pos[-1], "adx_DI_neg": adx_DI_neg[-1],
+                                        "ai_i": ai_i[-1], "ai_up": ai_up[-1], "ai_down": ai_down[-1],
+                                        "ccl_i": ccl_i[-1],
+                                        "dpo_i": dpo_i[-1],
+                                        "ema_i": ema_i[-1],
+                                        "ichimoku_a": ichimoku_a[-1], "ichimoku_b": ichimoku_b[-1],
+                                        "kst": kst[-1], "kst_diff": kst_diff[-1], "kst_sig": kst_sig[-1],
+                                        "macd": macd[-1], "macd_diff": macd_diff[-1], "macd_sig": macd_sig[-1],
+                                        "mi": mi[-1],
+                                        "psar_i": psar_i[-1], "psar_up": psar_up[-1], "psar_down": psar_down[-1],
+                                        "trix_i": trix_i[-1],
+                                        "vi_diff": vi_diff[-1], "vi_neg": vi_neg[-1], "vi_pos": vi_pos[-1],
+                                        "cr_i": cr_i[-1],
+                                        "dlr_i": dlr_i[-1],
+                                        "adi_i": adi_i[-1],
+                                        "cmf_i": cmf_i[-1], "cmf_signal": cmf_signal[-1],
+                                        "fi_i": fi_i[-1],
+                                        "nvi_i": nvi_i[-1],
+                                        "obv_i": obv_i[-1],
+                                        "ao_i": ao_i[-1],
+                                        "vpt_i": vpt_i[-1],
+                                        "kama_i": kama_i[-1],
+                                        "mfi_i": mfi_i[-1],
+                                        "roc_i": roc_i[-1],
+                                        "rsi_i": rsi_i[-1],
+                                        "tsi_i": tsi_i[-1],
+                                        "stoch_i": stoch_i[-1], "stoch_signal": stoch_signal[-1],
+                                        "uo_i": uo_i[-1],
+                                        "wr_i": wr_i[-1]
+                                        })
 
 
     path = root_path + 'Helper\\TA_stocks\\'
     file_name_ta = 'result_ta'
-
     write_data_json(list_indicators_target_ticker, path, file_name_ta)
 
 if __name__ == '__main__':
