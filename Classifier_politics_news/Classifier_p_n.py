@@ -624,7 +624,7 @@ def main():
     listVolumeValuesToNN.reverse()
     listTimePointsToNN.reverse()
 
-    time_point = "10:00:00"
+    time_point = list_time_value[0]
     listOpenValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
     listCloseValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
     listHighValuesToNN.insert(0, list_open_value[list_time_value.index(time_point)])
@@ -738,7 +738,7 @@ def main():
             scores = new_model.evaluate(X, Y)
             print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
 
-            print(scores)
+            # print(scores)
             prediction = {"score": float(scores[-1] * 100)}
             print(prediction)
 
