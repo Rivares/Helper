@@ -119,8 +119,8 @@ def main():
 
         exec_full(path_name_class_e_n)
         exec_full(path_name_class_p_n)
-        exec_full(path_name_parser_stocks)
         exec_full(path_name_ta_stocks)
+        exec_full(path_name_parser_stocks)
 
         print("Result ->>>")
 
@@ -225,20 +225,31 @@ def main():
 
         count_inputs = len(X)
         # print("Len NN: " + str(count_inputs))
+        # print("X: "); print(X)
+        # print("Y: "); print(Y)
 
         # создаем модели, добавляем слои один за другим
         model = Sequential()
         model.add(Dense(count_inputs, input_dim=count_inputs, activation='relu'))
         model.add(Dense(count_inputs, activation='tanh'))
-        model.add(Dense(count_inputs, activation='tanh'))
+        model.add(Dense(int(count_inputs/2), activation='tanh'))
+        model.add(Dense(int(count_inputs/2), activation='tanh'))
         model.add(Dropout(0.2))
-        model.add(Dense(count_inputs, activation='tanh'))
+        model.add(Dense(int(count_inputs/4), activation='sigmoid'))
+        model.add(Dense(int(count_inputs/4), activation='sigmoid'))
+        model.add(Dense(int(count_inputs/6), activation='sigmoid'))
         model.add(Dropout(0.2))
-        model.add(Dense(count_inputs, activation='sigmoid'))
-        model.add(Dense(count_inputs, activation='sigmoid'))
+        model.add(Dense(int(count_inputs/6), activation='tanh'))
+        model.add(Dense(int(count_inputs/8), activation='sigmoid'))
+        model.add(Dense(int(count_inputs/8), activation='tanh'))
+        model.add(Dropout(0.2))
+        model.add(Dense(int(count_inputs/10), activation='sigmoid'))
+        model.add(Dense(int(count_inputs/10), activation='tanh'))
+        model.add(Dense(int(count_inputs/12), activation='sigmoid'))
+        model.add(Dense(int(count_inputs/12), activation='tanh'))
         model.add(Dense(1, activation='sigmoid'))
 
-        model.compile(loss="mean_squared_logarithmic_error", optimizer="SGD", metrics=['accuracy'])
+        model.compile(loss="mean_squared_error", optimizer="adam", metrics=['accuracy'])
 
         input_nodes = []
         output_nodes = []
@@ -257,7 +268,7 @@ def main():
             new_model = model
 
         # обучаем нейронную сеть
-        history = new_model.fit(input_nodes, output_nodes, epochs=10, batch_size=32)
+        history = new_model.fit(input_nodes, output_nodes, epochs=1000, batch_size=64)
 
         # Export the model to a SavedModel
         new_model.save(model_name)
@@ -270,7 +281,6 @@ def main():
 
         path = root_path + 'Helper\\'
         file_name_prediction = 'main_prediction'
-
         write_data_json(main_prediction, path, file_name_prediction)
 
         # time.sleep(2 * 60)  # minute

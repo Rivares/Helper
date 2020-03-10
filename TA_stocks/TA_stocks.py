@@ -34,6 +34,16 @@ def write_data_json(data, path, file_name):
         json.dump(data, json_file, ensure_ascii=False, indent=4)
 
 
+def read_data_json(path, file_name):
+    extension = '.json'
+    data = []
+
+    with open(path + file_name + extension, encoding="utf-8") as json_file:
+        data = json.load(json_file)
+
+    return data
+
+
 def main():
     exporter = Exporter()
 
@@ -817,8 +827,12 @@ def main():
 
     wr_i = df['wr_i'].to_list()
 
+    path = root_path + 'Helper\\TA_stocks\\'
+    filename = 'result_ta'
+    old_list_indicators_target_ticker = read_data_json(path, filename)
+
     list_indicators_target_ticker.append({
-                                        "diff_value": (list_close_value[-1] - list_open_value[-1]),
+                                        "diff_value": (float(old_list_indicators_target_ticker[0]["close_value"]) - float(list_open_value[-1])),
                                         "open_value": list_open_value[-1],
                                         "close_value": list_close_value[-1],
                                         "high_value": list_high_value[-1],
@@ -858,7 +872,6 @@ def main():
                                         "uo_i": uo_i[-1],
                                         "wr_i": wr_i[-1]
                                         })
-
 
     path = root_path + 'Helper\\TA_stocks\\'
     file_name_ta = 'result_ta'

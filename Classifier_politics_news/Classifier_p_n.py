@@ -13,6 +13,7 @@ import pymorphy2
 import datetime
 import requests
 import logging
+import hashlib
 import keras
 import json
 import xlrd
@@ -49,6 +50,14 @@ class Spider(object):
 #                          'href': data['href'],
 #                          'date': data['date']
 #                          })
+
+
+def md5(fname):
+    hash_md5 = hashlib.md5()
+    with open(fname, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            hash_md5.update(chunk)
+    return hash_md5.hexdigest()
 
 
 def write_article_csv(data):
@@ -238,6 +247,7 @@ def mse_loss(y_true, y_pred):
 def main():
     base_url = "https://ria.ru/politics/"
     article_data = []
+    hash_news_p_n = []
 
     # os.remove(file_name + '.csv')
     # os.remove(file_name + '.xlsx')
@@ -251,6 +261,19 @@ def main():
     path = root_path + 'Helper\\Classifier_politics_news\\'
     file_name = 'politics_news'
     write_data_json(article_data, path, file_name)
+
+    # _________________________________________________________________________________
+
+    # Check on repated
+
+    hash_news_p_n = read_data_json(path, 'hash_news_p_n')
+
+    path = root_path + 'Helper\\Classifier_politics_news\\'
+    file_name = 'politics_news'
+    if md5(path + file_name + '.json') == hash_news_p_n[0]["hash"]:
+        return
+
+    # _________________________________________________________________________________
 
     count_sentences = article_data.__len__()
     count_words = 30
@@ -746,6 +769,12 @@ def main():
             file_name_prediction = 'prediction_p_n'
 
             write_data_json(prediction, path, file_name_prediction)
+
+    path = root_path + 'Helper\\Classifier_politics_news\\'
+    hash_news_p_n = [{"hash": md5(path + 'politics_news' + '.json')}]
+
+    file_name = 'hash_news_p_n'
+    write_data_json(hash_news_p_n, path, file_name)
 
 
 if __name__ == '__main__':

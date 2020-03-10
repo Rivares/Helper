@@ -121,7 +121,6 @@ def main():
     # print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~ Indexes ~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
 
     list_name_indexes = [
-        'BSE Sensex (Индия)',
         'CSI200 (Китай)',
         'CSI300 (Китай)',
         # 'D&J-Ind*',
