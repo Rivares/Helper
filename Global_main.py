@@ -122,8 +122,6 @@ def main():
         exec_full(path_name_ta_stocks)
         exec_full(path_name_parser_stocks)
 
-        print("Result ->>>")
-
         path = 'Helper\\Classifier_economics_news\\'
         filename = 'prediction_e_n'
         prediction_e_n = read_data_json(root_path + path, filename)
@@ -144,6 +142,8 @@ def main():
         # print(prediction_p_n)
         # print(market)
         # print(result_ta)
+
+        print("__________________ Global training __________________")
 
         np.random.seed(2)
         path = 'Helper\\'
@@ -259,6 +259,13 @@ def main():
         input_nodes = np.asarray(input_nodes, dtype=np.float32)
         output_nodes = np.asarray(output_nodes, dtype=np.float32)
 
+        path = root_path + 'Helper\\'
+        filename = 'X'
+        write_data_json(X, path, filename)
+
+        filename = 'Y'
+        write_data_json(Y, path, filename)
+
         # print(output_nodes)
 
         if os.path.exists(model_name) != False:
@@ -267,23 +274,25 @@ def main():
         else:
             new_model = model
 
-        # обучаем нейронную сеть
-        history = new_model.fit(input_nodes, output_nodes, epochs=1000, batch_size=64)
+        try:
+            # обучаем нейронную сеть
+            history = new_model.fit(input_nodes, output_nodes, epochs=1000, batch_size=64)
 
-        # Export the model to a SavedModel
-        new_model.save(model_name)
+            # Export the model to a SavedModel
+            new_model.save(model_name)
 
-        # оцениваем результат
-        scores = new_model.predict(input_nodes)
+            # оцениваем результат
+            scores = new_model.predict(input_nodes)
 
-        main_prediction = {"score": float(scores[-1] * 100)}
-        print(main_prediction)
+            main_prediction = {"score": float(scores[-1] * 100)}
+            print(main_prediction)
 
-        path = root_path + 'Helper\\'
-        file_name_prediction = 'main_prediction'
-        write_data_json(main_prediction, path, file_name_prediction)
+            path = root_path + 'Helper\\'
+            file_name_prediction = 'main_prediction'
+            write_data_json(main_prediction, path, file_name_prediction)
 
-        # time.sleep(2 * 60)  # minute
+        except:
+            print("Problem with – fit(Global)!")
 
     else:
         print("Sleep...")

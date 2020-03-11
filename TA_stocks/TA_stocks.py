@@ -2,8 +2,10 @@ from finam.export import Exporter, Market, LookupComparator
 from openpyxl import Workbook
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 import datetime
 import logging
+import hashlib
 import json
 import csv
 import ta
@@ -13,7 +15,6 @@ root_path = 'C:\\Users\\user\\0_Py\\'
 SYMBOLS = ['FXRB ETF',
            'FXMM ETF',
            'FXRU ETF',
-           'FXRB ETF',
            'FXWO ETF',
            'FXWR ETF',
            ]
@@ -25,6 +26,14 @@ start = datetime.date(datetime.datetime.now().year - 1,
 curr_moment = datetime.date(datetime.datetime.now().year,
                             datetime.datetime.now().month,
                             datetime.datetime.now().day)
+
+
+def md5(fname):
+    hash_md5 = hashlib.md5()
+    with open(fname, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            hash_md5.update(chunk)
+    return hash_md5.hexdigest()
 
 
 def write_data_json(data, path, file_name):
@@ -45,13 +54,14 @@ def read_data_json(path, file_name):
 
 
 def main():
+    print("\n__________________ TA " + "(FXRB)" + " __________________\n")
+
     exporter = Exporter()
 
     target_ticker = SYMBOLS[0]
 
     list_indicators_target_ticker = []
 
-    print(target_ticker)
     list_tiker_params = []
     data = exporter.lookup(name=target_ticker, market=Market.ETF_MOEX)
     # print(data.head())
@@ -838,44 +848,66 @@ def main():
                                         "high_value": list_high_value[-1],
                                         "low_value": list_low_value[-1],
                                         "volume_value": list_volume_value[-1],
-                                        "bb_bbh": bb_bbh[-1], "bb_bbl": bb_bbl[-1], "bb_bbm": bb_bbm[-1],
-                                        "kc_kcc": kc_kcc[-1], "kc_kch": kc_kch[-1], "kc_kcl": kc_kcl[-1],
-                                        "atr_i": atr_i[-1],
-                                        "dc_dch": dc_dch[-1], "dc_dcl": dc_dcl[-1],
-                                        "adx_aver": adx_aver[-1], "adx_DI_pos": adx_DI_pos[-1], "adx_DI_neg": adx_DI_neg[-1],
-                                        "ai_i": ai_i[-1], "ai_up": ai_up[-1], "ai_down": ai_down[-1],
-                                        "ccl_i": ccl_i[-1],
-                                        "dpo_i": dpo_i[-1],
-                                        "ema_i": ema_i[-1],
-                                        "ichimoku_a": ichimoku_a[-1], "ichimoku_b": ichimoku_b[-1],
-                                        "kst": kst[-1], "kst_diff": kst_diff[-1], "kst_sig": kst_sig[-1],
-                                        "macd": macd[-1], "macd_diff": macd_diff[-1], "macd_sig": macd_sig[-1],
-                                        "mi": mi[-1],
-                                        "psar_i": psar_i[-1], "psar_up": psar_up[-1], "psar_down": psar_down[-1],
-                                        "trix_i": trix_i[-1],
-                                        "vi_diff": vi_diff[-1], "vi_neg": vi_neg[-1], "vi_pos": vi_pos[-1],
-                                        "cr_i": cr_i[-1],
-                                        "dlr_i": dlr_i[-1],
-                                        "adi_i": adi_i[-1],
-                                        "cmf_i": cmf_i[-1], "cmf_signal": cmf_signal[-1],
-                                        "fi_i": fi_i[-1],
-                                        "nvi_i": nvi_i[-1],
-                                        "obv_i": obv_i[-1],
-                                        "ao_i": ao_i[-1],
-                                        "vpt_i": vpt_i[-1],
-                                        "kama_i": kama_i[-1],
-                                        "mfi_i": mfi_i[-1],
-                                        "roc_i": roc_i[-1],
-                                        "rsi_i": rsi_i[-1],
-                                        "tsi_i": tsi_i[-1],
-                                        "stoch_i": stoch_i[-1], "stoch_signal": stoch_signal[-1],
-                                        "uo_i": uo_i[-1],
-                                        "wr_i": wr_i[-1]
+                                        "bb_bbh": 0.0 if np.isnan(bb_bbh[-1]) else bb_bbh[-1], "bb_bbl": 0.0 if np.isnan(bb_bbl[-1]) else bb_bbl[-1], "bb_bbm": 0.0 if np.isnan(bb_bbm[-1]) else bb_bbm[-1],
+                                        "kc_kcc": 0.0 if np.isnan(kc_kcc[-1]) else kc_kcc[-1], "kc_kch": 0.0 if np.isnan(kc_kch[-1]) else kc_kch[-1], "kc_kcl": 0.0 if np.isnan(kc_kcl[-1]) else kc_kcl[-1],
+                                        "atr_i": 0.0 if np.isnan(atr_i[-1]) else atr_i[-1],
+                                        "dc_dch": 0.0 if np.isnan(dc_dch[-1]) else dc_dch[-1], "dc_dcl": 0.0 if np.isnan(dc_dcl[-1]) else dc_dcl[-1],
+                                        "adx_aver": 0.0 if np.isnan(adx_aver[-1]) else adx_aver[-1], "adx_DI_pos": 0.0 if np.isnan(adx_DI_pos[-1]) else adx_DI_pos[-1], "adx_DI_neg": 0.0 if np.isnan(adx_DI_neg[-1]) else adx_DI_neg[-1],
+                                        "ai_i": 0.0 if np.isnan(ai_i[-1]) else ai_i[-1], "ai_up": 0.0 if np.isnan(ai_up[-1]) else ai_up[-1], "ai_down": 0.0 if np.isnan(ai_down[-1]) else ai_down[-1],
+                                        "ccl_i": 0.0 if np.isnan(ccl_i[-1]) else ccl_i[-1],
+                                        "dpo_i": 0.0 if np.isnan(dpo_i[-1]) else dpo_i[-1],
+                                        "ema_i": 0.0 if np.isnan(ema_i[-1]) else ema_i[-1],
+                                        "ichimoku_a": 0.0 if np.isnan(ichimoku_a[-1]) else ichimoku_a[-1], "ichimoku_b": 0.0 if np.isnan(ichimoku_b[-1]) else ichimoku_b[-1],
+                                        "kst": 0.0 if np.isnan(kst[-1]) else kst[-1], "kst_diff": 0.0 if np.isnan(kst_diff[-1]) else kst_diff[-1], "kst_sig": 0.0 if np.isnan(kst_sig[-1]) else kst_sig[-1],
+                                        "macd": 0.0 if np.isnan(macd[-1]) else macd[-1], "macd_diff": 0.0 if np.isnan(macd_diff[-1]) else macd_diff[-1], "macd_sig": 0.0 if np.isnan(macd_sig[-1]) else macd_sig[-1],
+                                        "mi": 0.0 if np.isnan(mi[-1]) else mi[-1],
+                                        "psar_i": 0.0 if np.isnan(psar_i[-1]) else psar_i[-1], "psar_up": 0.0 if np.isnan(psar_up[-1]) else psar_up[-1], "psar_down": 0.0 if np.isnan(psar_down[-1]) else psar_down[-1],
+                                        "trix_i": 0.0 if np.isnan(trix_i[-1]) else trix_i[-1],
+                                        "vi_diff": 0.0 if np.isnan(vi_diff[-1]) else vi_diff[-1], "vi_neg": 0.0 if np.isnan(vi_neg[-1]) else vi_neg[-1], "vi_pos": 0.0 if np.isnan(vi_pos[-1]) else vi_pos[-1],
+                                        "cr_i": 0.0 if np.isnan(cr_i[-1]) else cr_i[-1],
+                                        "dlr_i": 0.0 if np.isnan(dlr_i[-1]) else dlr_i[-1],
+                                        "adi_i": 0.0 if np.isnan(adi_i[-1]) else adi_i[-1],
+                                        "cmf_i": 0.0 if np.isnan(cmf_i[-1]) else cmf_i[-1], "cmf_signal": 0.0 if np.isnan(cmf_signal[-1]) else cmf_signal[-1],
+                                        "fi_i": 0.0 if np.isnan(fi_i[-1]) else fi_i[-1],
+                                        "nvi_i": 0.0 if np.isnan(nvi_i[-1]) else nvi_i[-1],
+                                        "obv_i": 0.0 if np.isnan(obv_i[-1]) else obv_i[-1],
+                                        "ao_i": 0.0 if np.isnan(ao_i[-1]) else ao_i[-1],
+                                        "vpt_i": 0.0 if np.isnan(vpt_i[-1]) else vpt_i[-1],
+                                        "kama_i": 0.0 if np.isnan(kama_i[-1]) else kama_i[-1],
+                                        "mfi_i": 0.0 if np.isnan(mfi_i[-1]) else mfi_i[-1],
+                                        "roc_i": 0.0 if np.isnan(roc_i[-1]) else roc_i[-1],
+                                        "rsi_i": 0.0 if np.isnan(rsi_i[-1]) else rsi_i[-1],
+                                        "tsi_i": 0.0 if np.isnan(tsi_i[-1]) else tsi_i[-1],
+                                        "stoch_i": 0.0 if np.isnan(stoch_i[-1]) else stoch_i[-1], "stoch_signal": 0.0 if np.isnan(stoch_signal[-1]) else stoch_signal[-1],
+                                        "uo_i": 0.0 if np.isnan(uo_i[-1]) else uo_i[-1],
+                                        "wr_i": 0.0 if np.isnan(wr_i[-1]) else wr_i[-1]
                                         })
 
     path = root_path + 'Helper\\TA_stocks\\'
     file_name_ta = 'result_ta'
     write_data_json(list_indicators_target_ticker, path, file_name_ta)
+
+    # _________________________________________________________________________________
+
+    # Check on repeat
+
+    path = root_path + 'Helper\\TA_stocks\\'
+    hash_result_ta = read_data_json(path, 'hash_result_ta')
+
+    file_name = 'result_ta'
+    new_hash = md5(path + file_name + '.json')
+
+    if new_hash == hash_result_ta[0]["hash"]:
+        print("___ No the new TA values ___")
+        return
+
+    hash_result_ta = [{"hash": new_hash}]
+
+    file_name = 'hash_result_ta'
+    write_data_json(hash_result_ta, path, file_name)
+
+    # _________________________________________________________________________________
+
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)

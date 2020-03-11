@@ -244,6 +244,8 @@ def mse_loss(y_true, y_pred):
 
 
 def main():
+    print("\n__________________ Economic news __________________\n")
+
     base_url = "https://ria.ru/economy/"
     article_data = []
     hash_news_e_n = []
@@ -263,13 +265,13 @@ def main():
 
     # _________________________________________________________________________________
 
-    # Check on repated
+    # Check on repeat
 
     hash_news_e_n = read_data_json(path, 'hash_news_e_n')
 
-    path = root_path + 'Helper\\Classifier_economics_news\\'
     file_name = 'economics_news'
     if md5(path + file_name + '.json') == hash_news_e_n[0]["hash"]:
+        print("___ No the new economics news ___")
         return
 
     # _________________________________________________________________________________
@@ -535,7 +537,7 @@ def main():
                                                 "synonyms": [""],
                                                 "impact": (rng.random() - 0.5)
                                                 })
-                            file_name = 'applicants'
+                            file_name = 'params'
                             write_data_json(list_params, path, file_name)
                             feature_list_applicants.remove(item)
 
@@ -651,7 +653,7 @@ def main():
     listTimePointsToNN.insert(0, time_point)
 
     # print(listWordsToNN)
-    print(listOpenValuesToNN)
+    # print(listOpenValuesToNN)
 
     if len(listOpenValuesToNN) > 0:
         # Morning
@@ -666,10 +668,10 @@ def main():
                 next_i = str(listTimePointsToNN[idx + 1])
                 list_distances.append(int(next_i.replace(':', '')) - int(curr_i.replace(':', '')))
 
-            print(sum(list_distances))
+            # print(sum(list_distances))
 
-        print(listOpenValuesToNN)
-        print(len(listOpenValuesToNN))
+        # print(listOpenValuesToNN)
+        # print(len(listOpenValuesToNN))
 
         listOpenValuesToNN.insert(0, listOpenValuesToNN[0])
         listCloseValuesToNN.insert(0, listCloseValuesToNN[0])
@@ -679,8 +681,8 @@ def main():
         listTimePointsToNN.insert(0, listTimePointsToNN[0])
 
         listTrueValue = list_true_value(listOpenValuesToNN)
-        print(listTrueValue)
-        print(len(listTrueValue))
+        # print(listTrueValue)
+        # print(len(listTrueValue))
 
         # задаем для воспроизводимости результатов
         np.random.seed(2)
@@ -705,8 +707,8 @@ def main():
         native_weights = model.layers[number_layer_words].get_weights()[0]  # 0 - weights
         native_biases = model.layers[number_layer_words].get_weights()[1]   # 1 - biases
 
-        print("Old")
-        print(len(native_weights))
+        # print("Old")
+        # print(len(native_weights))
 
         new_weights = np.zeros((len(native_weights), len(native_weights[0])), dtype=float)
         for future_news in list_future_weigths:
@@ -721,8 +723,8 @@ def main():
 
                 idx_1 = idx_1 + 1
 
-            print("New")
-            print(len(new_weights))
+            # print("New")
+            # print(len(new_weights))
             keras_weights = [new_weights, native_biases]
             model.layers[number_layer_words].set_weights(keras_weights)
 
@@ -746,28 +748,31 @@ def main():
             else:
                 new_model = model
 
+            try:
+                # обучаем нейронную сеть
+                history = new_model.fit(X, Y, epochs=500, batch_size=64)
 
-            # обучаем нейронную сеть
-            history = new_model.fit(X, Y, epochs=500, batch_size=64)
+                # Export the model to a SavedModel
+                new_model.save(model_name)
 
-            # Export the model to a SavedModel
-            new_model.save(model_name)
+                # оцениваем результат
+                scores = new_model.predict(X)
+                print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
 
-            # оцениваем результат
-            scores = new_model.predict(X)
-            print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
+                # print(scores)
+                prediction = {"score": int(scores[-1] * 100)}
+                # print(prediction)
 
-            # print(scores)
-            prediction = {"score": float(scores[-1] * 100)}
-            print(prediction)
+                path = root_path + 'Helper\\Classifier_economics_news\\'
+                file_name_prediction = 'prediction_e_n'
 
-            path = root_path + 'Helper\\Classifier_economics_news\\'
-            file_name_prediction = 'prediction_e_n'
+                write_data_json(prediction, path, file_name_prediction)
 
-            write_data_json(prediction, path, file_name_prediction)
+            except:
+                print("Problem with – fit(C_E_N)!")
 
     path = root_path + 'Helper\\Classifier_economics_news\\'
-    hash_news_e_n = [{"hash": md5(path + 'economics_news'+ '.json')}]
+    hash_news_e_n = [{"hash": md5(path + 'economics_news' + '.json')}]
 
     file_name = 'hash_news_e_n'
     write_data_json(hash_news_e_n, path, file_name)
