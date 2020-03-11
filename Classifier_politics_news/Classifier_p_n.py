@@ -760,13 +760,17 @@ def main():
                 # Export the model to a SavedModel
                 new_model.save(model_name)
 
+                # evaluate the model
+                scores = model.evaluate(X, Y)
+                print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1] * 100))
+
                 # оцениваем результат
                 scores = new_model.evaluate(X, Y)
                 print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
 
-                # print(scores)
+                print(scores)
                 prediction = {"score": int(scores[-1] * 100)}
-                # print(prediction)
+                print(prediction)
 
                 path = root_path + 'Helper\\Classifier_politics_news\\'
                 file_name_prediction = 'prediction_p_n'
