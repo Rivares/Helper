@@ -21,7 +21,7 @@ import os
 
 
 from finam.export import Exporter, Market, LookupComparator
-from keras.layers import Dense, Dropout, LSTM
+from keras.layers import Dense, Dropout, LSTM, Embedding
 from keras.models import Sequential
 
 import numpy as np
@@ -115,12 +115,12 @@ def main():
     # app = HBoxLayoutExample()
     # app.run()
 
-    while (datetime.datetime.now().hour > 9) and (datetime.datetime.now().hour < 23):
+    while (datetime.datetime.now().hour > 9) and (datetime.datetime.now().hour < 24):
 
-        exec_full(path_name_class_e_n)
-        exec_full(path_name_class_p_n)
-        exec_full(path_name_ta_stocks)
-        exec_full(path_name_parser_stocks)
+        # exec_full(path_name_class_e_n)
+        # exec_full(path_name_class_p_n)
+        # exec_full(path_name_ta_stocks)
+        # exec_full(path_name_parser_stocks)
 
         path = 'Helper\\Classifier_economics_news\\'
         filename = 'prediction_e_n'
@@ -224,32 +224,33 @@ def main():
         X.append(result_ta[0]['vpt_i'])
 
         count_inputs = len(X)
-        # print("Len NN: " + str(count_inputs))
+        print("Len NN: " + str(count_inputs))
         # print("X: "); print(X)
         # print("Y: "); print(Y)
 
+        x_train = np.random.random((1000, 2, 3))
+        print("np.random: " + str(x_train))
+
         # создаем модели, добавляем слои один за другим
         model = Sequential()
-        model.add(LSTM(count_inputs, input_shape=(1, 1)))
-        model.add(LSTM(count_inputs))
-        model.add(LSTM(int(count_inputs/2)))
-        model.add(LSTM(int(count_inputs/2)))
-        model.add(Dropout(0.2))
-        model.add(LSTM(int(count_inputs/4)))
-        model.add(LSTM(int(count_inputs/4)))
-        model.add(LSTM(int(count_inputs/6)))
-        model.add(Dropout(0.2))
-        model.add(LSTM(int(count_inputs/6)))
-        model.add(LSTM(int(count_inputs/8)))
-        model.add(LSTM(int(count_inputs/8)))
-        model.add(Dropout(0.2))
-        model.add(LSTM(int(count_inputs/10)))
-        model.add(LSTM(int(count_inputs/10)))
-        model.add(LSTM(int(count_inputs/12)))
-        model.add(LSTM(int(count_inputs/12)))
-        model.add(LSTM(1))
 
-        model.compile(loss="mean_squared_error", optimizer="adam", metrics=['accuracy'])
+        model.add(LSTM(int(count_inputs / 2), return_sequences=True, input_shape=(1, count_inputs)))
+        model.add(LSTM(int(count_inputs / 4), return_sequences=True))
+        model.add(LSTM(int(count_inputs / 6), return_sequences=True))
+        model.add(LSTM(int(count_inputs / 8), return_sequences=True))
+        model.add(Dense(int(count_inputs / 10), activation='relu'))
+        model.add(Dense(int(count_inputs / 12), activation='relu'))
+        model.add(Dense(int(count_inputs / 14), activation='softmax'))
+        model.add(Dense(int(count_inputs / 16), activation='softmax'))
+        model.add(Dense(int(count_inputs / 18), activation='tanh'))
+        model.add(Dense(int(count_inputs / 20), activation='tanh'))
+        model.add(Dense(int(count_inputs / 40), activation='sigmoid'))
+        model.add(Dense(int(count_inputs / 60), activation='sigmoid'))
+        model.add(Dense(1, activation='sigmoid'))
+
+        model.summary()
+
+        model.compile(loss="categorical_crossentropy", optimizer="rmsprop", metrics=['accuracy'])
 
         input_nodes = []
         output_nodes = []
@@ -274,25 +275,25 @@ def main():
         else:
             new_model = model
 
-        try:
-            # обучаем нейронную сеть
-            history = new_model.fit(input_nodes, output_nodes, epochs=1000, batch_size=64)
+        # try:
+        # обучаем нейронную сеть
+        history = new_model.fit(input_nodes, output_nodes, epochs=1, batch_size=64)
 
-            # Export the model to a SavedModel
-            new_model.save(model_name)
+        # Export the model to a SavedModel
+        new_model.save(model_name)
 
-            # оцениваем результат
-            scores = new_model.predict(input_nodes)
+        # оцениваем результат
+        scores = new_model.predict(input_nodes)
 
-            main_prediction = {"score": float(scores[-1] * 100)}
-            print(main_prediction)
+        main_prediction = {"score": float(scores[-1] * 100)}
+        print(main_prediction)
 
-            path = root_path + 'Helper\\'
-            file_name_prediction = 'main_prediction'
-            write_data_json(main_prediction, path, file_name_prediction)
+        path = root_path + 'Helper\\'
+        file_name_prediction = 'main_prediction'
+        write_data_json(main_prediction, path, file_name_prediction)
 
-        except:
-            print("Problem with – fit(Global)!")
+        # except:
+        #     print("Problem with – fit(Global)!")
 
     else:
         print("Sleep...")
