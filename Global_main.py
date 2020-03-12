@@ -115,7 +115,7 @@ def main():
     # app = HBoxLayoutExample()
     # app.run()
 
-    while (datetime.datetime.now().hour > 9) and (datetime.datetime.now().hour < 24):
+    while (datetime.datetime.now().hour > 9) and (datetime.datetime.now().hour < 23):
 
         # exec_full(path_name_class_e_n)
         # exec_full(path_name_class_p_n)
@@ -228,7 +228,7 @@ def main():
         # print("X: "); print(X)
         # print("Y: "); print(Y)
 
-        x_train = np.random.random((1000, 2, 3))
+        x_train = np.random.random((1, 1, count_inputs))
         print("np.random: " + str(x_train))
 
         # создаем модели, добавляем слои один за другим
