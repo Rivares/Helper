@@ -21,7 +21,7 @@ import os
 
 
 from finam.export import Exporter, Market, LookupComparator
-from keras.layers import Dense, Dropout
+from keras.layers import Dense, Dropout, LSTM
 from keras.models import Sequential
 
 import numpy as np
@@ -230,24 +230,24 @@ def main():
 
         # создаем модели, добавляем слои один за другим
         model = Sequential()
-        model.add(Dense(count_inputs, input_dim=count_inputs, activation='relu'))
-        model.add(Dense(count_inputs, activation='tanh'))
-        model.add(Dense(int(count_inputs/2), activation='tanh'))
-        model.add(Dense(int(count_inputs/2), activation='tanh'))
+        model.add(LSTM(count_inputs, input_dim=count_inputs, activation='relu'))
+        model.add(LSTM(count_inputs, activation='tanh'))
+        model.add(LSTM(int(count_inputs/2), activation='tanh'))
+        model.add(LSTM(int(count_inputs/2), activation='tanh'))
         model.add(Dropout(0.2))
-        model.add(Dense(int(count_inputs/4), activation='sigmoid'))
-        model.add(Dense(int(count_inputs/4), activation='sigmoid'))
-        model.add(Dense(int(count_inputs/6), activation='sigmoid'))
+        model.add(LSTM(int(count_inputs/4), activation='sigmoid'))
+        model.add(LSTM(int(count_inputs/4), activation='sigmoid'))
+        model.add(LSTM(int(count_inputs/6), activation='sigmoid'))
         model.add(Dropout(0.2))
-        model.add(Dense(int(count_inputs/6), activation='tanh'))
-        model.add(Dense(int(count_inputs/8), activation='sigmoid'))
-        model.add(Dense(int(count_inputs/8), activation='tanh'))
+        model.add(LSTM(int(count_inputs/6), activation='tanh'))
+        model.add(LSTM(int(count_inputs/8), activation='sigmoid'))
+        model.add(LSTM(int(count_inputs/8), activation='tanh'))
         model.add(Dropout(0.2))
-        model.add(Dense(int(count_inputs/10), activation='sigmoid'))
-        model.add(Dense(int(count_inputs/10), activation='tanh'))
-        model.add(Dense(int(count_inputs/12), activation='sigmoid'))
-        model.add(Dense(int(count_inputs/12), activation='tanh'))
-        model.add(Dense(1, activation='sigmoid'))
+        model.add(LSTM(int(count_inputs/10), activation='sigmoid'))
+        model.add(LSTM(int(count_inputs/10), activation='tanh'))
+        model.add(LSTM(int(count_inputs/12), activation='sigmoid'))
+        model.add(LSTM(int(count_inputs/12), activation='tanh'))
+        model.add(LSTM(1, activation='sigmoid'))
 
         model.compile(loss="mean_squared_error", optimizer="adam", metrics=['accuracy'])
 

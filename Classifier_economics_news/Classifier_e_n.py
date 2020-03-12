@@ -755,9 +755,9 @@ def main():
                 # Export the model to a SavedModel
                 new_model.save(model_name)
 
-                # evaluate the model
-                scores = model.evaluate(X, Y)
-                print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1] * 100))
+                # # evaluate the model
+                # scores = model.evaluate(X, Y)
+                # print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1] * 100))
 
                 # оцениваем результат
                 scores = new_model.predict(X)

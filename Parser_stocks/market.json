@@ -1,605 +1,584 @@
 [
     [
         {
-            "open_value": 35.89,
-            "close_value": 35.86,
-            "high_value": 35.9,
-            "low_value": 35.83,
-            "volume_value": 270
+            "open_value": 33.77,
+            "close_value": 33.83,
+            "high_value": 33.83,
+            "low_value": 33.77,
+            "volume_value": 69
         },
         {
-            "open_value": 1.911,
-            "close_value": 1.911,
-            "high_value": 1.913,
-            "low_value": 1.909,
-            "volume_value": 500
+            "open_value": 1.777,
+            "close_value": 1.778,
+            "high_value": 1.779,
+            "low_value": 1.777,
+            "volume_value": 13
         },
         {
-            "open_value": 1671.5,
-            "close_value": 1671.5,
-            "high_value": 1671.5,
-            "low_value": 1671.5,
-            "volume_value": 1
-        },
-        {
-            "open_value": 1.1243,
-            "close_value": 1.1218,
-            "high_value": 1.1254,
-            "low_value": 1.1218,
-            "volume_value": 15
-        },
-        {
-            "open_value": 1643.0,
-            "close_value": 1643.0,
-            "high_value": 1643.3,
-            "low_value": 1642.9,
-            "volume_value": 48
-        },
-        {
-            "open_value": 1.2388,
-            "close_value": 1.2376,
-            "high_value": 1.2393,
-            "low_value": 1.2369,
-            "volume_value": 57
-        },
-        {
-            "open_value": 5503.858795,
-            "close_value": 5504.96111,
-            "high_value": 5504.96111,
-            "low_value": 5503.858795,
-            "volume_value": 24
-        },
-        {
-            "open_value": 12455.0,
-            "close_value": 12455.0,
-            "high_value": 12455.0,
-            "low_value": 12455.0,
-            "volume_value": 2
-        },
-        {
-            "open_value": 2225.2,
-            "close_value": 2223.9,
-            "high_value": 2229.2,
-            "low_value": 2223.9,
-            "volume_value": 7
-        },
-        {
-            "open_value": 868.0,
-            "close_value": 868.0,
-            "high_value": 868.0,
-            "low_value": 868.0,
-            "volume_value": 2
-        },
-        {
-            "open_value": 512.2,
-            "close_value": 512.4,
-            "high_value": 512.6,
-            "low_value": 512.0,
-            "volume_value": 184
-        },
-        {
-            "open_value": 16.785,
-            "close_value": 16.785,
-            "high_value": 16.785,
-            "low_value": 16.785,
-            "volume_value": 24
-        }
-    ],
-    [
-        {
-            "open_value": 72.0225,
-            "close_value": 72.05,
-            "high_value": 72.05,
-            "low_value": 72.0225,
-            "volume_value": 58000
-        },
-        {
-            "open_value": 81.0025,
-            "close_value": 81.0475,
-            "high_value": 81.0475,
-            "low_value": 80.97,
-            "volume_value": 2833000
-        },
-        {
-            "open_value": 1.13286,
-            "close_value": 1.13286,
-            "high_value": 1.13286,
-            "low_value": 1.13286,
-            "volume_value": 500000
-        },
-        {
-            "open_value": 10.37,
-            "close_value": 10.3132,
-            "high_value": 10.37,
-            "low_value": 10.3132,
-            "volume_value": 22000
-        }
-    ],
-    [
-        {
-            "open_value": 4309.7005,
-            "close_value": 4309.7005,
-            "high_value": 4309.7005,
-            "low_value": 4309.7005,
-            "volume_value": 10258700
-        },
-        {
-            "open_value": 4028.4289,
-            "close_value": 4028.4289,
-            "high_value": 4028.4289,
-            "low_value": 4028.4289,
-            "volume_value": 5
-        },
-        {
-            "open_value": 5876.52,
-            "close_value": 5876.52,
-            "high_value": 5876.52,
-            "low_value": 5876.52,
-            "volume_value": 1
-        },
-        {
-            "open_value": 25231.61,
-            "close_value": 25231.61,
-            "high_value": 25231.61,
-            "low_value": 25231.61,
-            "volume_value": 2
-        },
-        {
-            "open_value": 1908.26,
-            "close_value": 1908.27,
-            "high_value": 1908.27,
-            "low_value": 1908.26,
-            "volume_value": 2
-        },
-        {
-            "open_value": 19413.26,
-            "close_value": 19416.06,
-            "high_value": 19416.06,
-            "low_value": 19413.26,
-            "volume_value": 3
-        },
-        {
-            "open_value": 2968.5174,
-            "close_value": 2968.5174,
-            "high_value": 2968.5174,
-            "low_value": 2968.5174,
+            "open_value": 1666.5,
+            "close_value": 1666.5,
+            "high_value": 1666.5,
+            "low_value": 1666.5,
             "volume_value": 4
         },
         {
-            "open_value": 2492.88,
-            "close_value": 2492.88,
-            "high_value": 2492.88,
-            "low_value": 2492.88,
-            "volume_value": 5782112000
+            "open_value": 1.0146,
+            "close_value": 1.0146,
+            "high_value": 1.0146,
+            "low_value": 1.0146,
+            "volume_value": 1
         },
         {
-            "open_value": 4367.8,
-            "close_value": 4367.8,
-            "high_value": 4367.8,
-            "low_value": 4367.8,
-            "volume_value": 4303686830
+            "open_value": 1636.7,
+            "close_value": 1636.6,
+            "high_value": 1636.9,
+            "low_value": 1636.2,
+            "volume_value": 96
         },
         {
-            "open_value": 16357.04,
-            "close_value": 16357.04,
-            "high_value": 16357.04,
-            "low_value": 16357.04,
-            "volume_value": 4860534773
+            "open_value": 1.1502,
+            "close_value": 1.1486,
+            "high_value": 1.1514,
+            "low_value": 1.1486,
+            "volume_value": 8
         },
         {
-            "open_value": 337.02,
-            "close_value": 337.02,
-            "high_value": 337.02,
-            "low_value": 337.02,
-            "volume_value": 117064
+            "open_value": 5403.54813,
+            "close_value": 5403.54813,
+            "high_value": 5403.54813,
+            "low_value": 5403.54813,
+            "volume_value": 4
         },
         {
-            "open_value": 1803.14,
-            "close_value": 1803.14,
-            "high_value": 1803.14,
-            "low_value": 1803.14,
-            "volume_value": 5799277489
+            "open_value": 12095.0,
+            "close_value": 12105.0,
+            "high_value": 12105.0,
+            "low_value": 12095.0,
+            "volume_value": 15
         },
         {
-            "open_value": 1086.18,
-            "close_value": 1086.18,
-            "high_value": 1086.18,
-            "low_value": 1086.18,
-            "volume_value": 81609603
+            "open_value": 2141.9,
+            "close_value": 2141.9,
+            "high_value": 2141.9,
+            "low_value": 2141.9,
+            "volume_value": 1
         },
         {
-            "open_value": 208.26,
-            "close_value": 208.26,
-            "high_value": 208.26,
-            "low_value": 208.26,
-            "volume_value": 16519351
+            "open_value": 853.4,
+            "close_value": 853.4,
+            "high_value": 853.4,
+            "low_value": 853.4,
+            "volume_value": 3
         },
         {
-            "open_value": 171.58,
-            "close_value": 171.58,
-            "high_value": 171.58,
-            "low_value": 171.58,
-            "volume_value": 40056457
+            "open_value": 503.4,
+            "close_value": 503.4,
+            "high_value": 503.4,
+            "low_value": 503.4,
+            "volume_value": 1
         },
         {
-            "open_value": 165.76,
-            "close_value": 165.76,
-            "high_value": 165.76,
-            "low_value": 165.76,
-            "volume_value": 2075330
-        },
-        {
-            "open_value": 84.19,
-            "close_value": 84.19,
-            "high_value": 84.19,
-            "low_value": 84.19,
-            "volume_value": 1065623
-        },
-        {
-            "open_value": 44.63,
-            "close_value": 44.63,
-            "high_value": 44.63,
-            "low_value": 44.63,
-            "volume_value": 83251
-        },
-        {
-            "open_value": 142.24,
-            "close_value": 142.24,
-            "high_value": 142.24,
-            "low_value": 142.24,
-            "volume_value": 19013168
-        },
-        {
-            "open_value": 227.96,
-            "close_value": 227.96,
-            "high_value": 227.96,
-            "low_value": 227.96,
-            "volume_value": 35557
-        },
-        {
-            "open_value": 800.61,
-            "close_value": 800.61,
-            "high_value": 800.61,
-            "low_value": 800.61,
-            "volume_value": 81887342
-        },
-        {
-            "open_value": 64.96,
-            "close_value": 64.96,
-            "high_value": 64.96,
-            "low_value": 64.96,
-            "volume_value": 2898790
-        },
-        {
-            "open_value": 144.91,
-            "close_value": 144.91,
-            "high_value": 144.91,
-            "low_value": 144.91,
-            "volume_value": 728000000
-        },
-        {
-            "open_value": 557.78,
-            "close_value": 557.78,
-            "high_value": 557.78,
-            "low_value": 557.78,
-            "volume_value": 728000000
-        },
-        {
-            "open_value": 94.72,
-            "close_value": 94.72,
-            "high_value": 94.72,
-            "low_value": 94.72,
-            "volume_value": 2855574
-        },
-        {
-            "open_value": 422.16,
-            "close_value": 422.16,
-            "high_value": 422.16,
-            "low_value": 422.16,
-            "volume_value": 2855574
-        },
-        {
-            "open_value": 119.07,
-            "close_value": 119.07,
-            "high_value": 119.07,
-            "low_value": 119.07,
-            "volume_value": 14183
-        },
-        {
-            "open_value": 91.13,
-            "close_value": 91.13,
-            "high_value": 91.13,
-            "low_value": 91.13,
-            "volume_value": 2841391
-        },
-        {
-            "open_value": 516.32,
-            "close_value": 516.32,
-            "high_value": 516.32,
-            "low_value": 516.32,
-            "volume_value": 14183
-        },
-        {
-            "open_value": 405.77,
-            "close_value": 405.76,
-            "high_value": 405.77,
-            "low_value": 405.76,
-            "volume_value": 2841391
-        },
-        {
-            "open_value": 7162.95,
-            "close_value": 7162.95,
-            "high_value": 7162.95,
-            "low_value": 7162.95,
-            "volume_value": 1175678724
-        },
-        {
-            "open_value": 99.53,
-            "close_value": 99.53,
-            "high_value": 99.53,
-            "low_value": 99.53,
-            "volume_value": 1039
-        },
-        {
-            "open_value": 288.75,
-            "close_value": 288.75,
-            "high_value": 288.75,
-            "low_value": 288.75,
-            "volume_value": 1039
-        },
-        {
-            "open_value": 6389.58,
-            "close_value": 6389.58,
-            "high_value": 6389.58,
-            "low_value": 6389.58,
-            "volume_value": 2843324573
-        },
-        {
-            "open_value": 5291.3,
-            "close_value": 5291.3,
-            "high_value": 5291.3,
-            "low_value": 5291.3,
-            "volume_value": 144101377
-        },
-        {
-            "open_value": 1985.27,
-            "close_value": 1985.27,
-            "high_value": 1985.27,
-            "low_value": 1985.27,
-            "volume_value": 74690035
-        },
-        {
-            "open_value": 1320.59,
-            "close_value": 1320.59,
-            "high_value": 1320.59,
-            "low_value": 1320.59,
-            "volume_value": 4209224
-        },
-        {
-            "open_value": 5915.13,
-            "close_value": 5915.13,
-            "high_value": 5915.13,
-            "low_value": 5915.13,
-            "volume_value": 1342816562
-        },
-        {
-            "open_value": 15805.17,
-            "close_value": 15805.17,
-            "high_value": 15805.17,
-            "low_value": 15805.17,
-            "volume_value": 2032270
-        },
-        {
-            "open_value": 1852.62,
-            "close_value": 1852.62,
-            "high_value": 1852.62,
-            "low_value": 1852.62,
-            "volume_value": 203296837
-        },
-        {
-            "open_value": 23637.7281009,
-            "close_value": 23639.2481523,
-            "high_value": 23652.598603,
-            "low_value": 23635.0980121,
-            "volume_value": 10
-        },
-        {
-            "open_value": 8017.344,
-            "close_value": 8017.344,
-            "high_value": 8017.344,
-            "low_value": 8017.344,
-            "volume_value": 562434
-        },
-        {
-            "open_value": 7972.32,
-            "close_value": 7972.32,
-            "high_value": 7972.32,
-            "low_value": 7972.32,
-            "volume_value": 1737355
-        },
-        {
-            "open_value": 2738.64,
-            "close_value": 2738.17,
-            "high_value": 2739.38,
-            "low_value": 2738.17,
-            "volume_value": 11
+            "open_value": 16.67,
+            "close_value": 16.665,
+            "high_value": 16.67,
+            "low_value": 16.66,
+            "volume_value": 13
         }
     ],
     [
         {
-            "open_value": 2920.0,
-            "close_value": 2920.0,
-            "high_value": 2920.0,
-            "low_value": 2920.0,
-            "volume_value": 17
+            "open_value": 74.46,
+            "close_value": 74.485,
+            "high_value": 74.485,
+            "low_value": 74.4525,
+            "volume_value": 760000
         },
         {
-            "open_value": 1970.5,
-            "close_value": 1970.0,
-            "high_value": 1970.5,
-            "low_value": 1970.0,
+            "open_value": 83.6625,
+            "close_value": 83.6875,
+            "high_value": 83.6875,
+            "low_value": 83.6525,
+            "volume_value": 56000
+        },
+        {
+            "open_value": 1.1246399999999999,
+            "close_value": 1.1246399999999999,
+            "high_value": 1.1246399999999999,
+            "low_value": 1.1246399999999999,
+            "volume_value": 4000
+        },
+        {
+            "open_value": 10.5895,
+            "close_value": 10.589,
+            "high_value": 10.5895,
+            "low_value": 10.589,
+            "volume_value": 419000
+        }
+    ],
+    [
+        {
+            "open_value": 4211.4467,
+            "close_value": 4211.4108,
+            "high_value": 4211.4467,
+            "low_value": 4211.313,
+            "volume_value": 96658201
+        },
+        {
+            "open_value": 3950.9111,
+            "close_value": 3950.9111,
+            "high_value": 3950.9111,
+            "low_value": 3950.9111,
+            "volume_value": 1
+        },
+        {
+            "open_value": 5546.83,
+            "close_value": 5553.15,
+            "high_value": 5555.34,
+            "low_value": 5545.64,
+            "volume_value": 287
+        },
+        {
+            "open_value": 24309.07,
+            "close_value": 24309.07,
+            "high_value": 24309.07,
+            "low_value": 24309.07,
+            "volume_value": 2
+        },
+        {
+            "open_value": 1834.33,
+            "close_value": 1834.33,
+            "high_value": 1834.33,
+            "low_value": 1834.33,
+            "volume_value": 1
+        },
+        {
+            "open_value": 18559.39,
+            "close_value": 18559.63,
+            "high_value": 18559.63,
+            "low_value": 18559.39,
             "volume_value": 3
         },
         {
-            "open_value": 820.4,
-            "close_value": 820.4,
-            "high_value": 820.4,
-            "low_value": 820.4,
-            "volume_value": 82
-        },
-        {
-            "open_value": 179.9,
-            "close_value": 179.9,
-            "high_value": 179.9,
-            "low_value": 179.9,
-            "volume_value": 9
-        },
-        {
-            "open_value": 1601.5,
-            "close_value": 1601.5,
-            "high_value": 1601.5,
-            "low_value": 1601.5,
-            "volume_value": 22
-        },
-        {
-            "open_value": 1680.0,
-            "close_value": 1680.0,
-            "high_value": 1680.0,
-            "low_value": 1680.0,
-            "volume_value": 1
-        },
-        {
-            "open_value": 2530.0,
-            "close_value": 2530.0,
-            "high_value": 2530.0,
-            "low_value": 2530.0,
-            "volume_value": 41
-        },
-        {
-            "open_value": 872.8,
-            "close_value": 872.8,
-            "high_value": 872.8,
-            "low_value": 872.8,
-            "volume_value": 11
-        },
-        {
-            "open_value": 0.8475,
-            "close_value": 0.8472,
-            "high_value": 0.8475,
-            "low_value": 0.8472,
-            "volume_value": 143
-        },
-        {
-            "open_value": 738.0,
-            "close_value": 738.0,
-            "high_value": 738.0,
-            "low_value": 736.0,
-            "volume_value": 23
-        },
-        {
-            "open_value": 3600.0,
-            "close_value": 3600.0,
-            "high_value": 3600.0,
-            "low_value": 3600.0,
-            "volume_value": 8
-        },
-        {
-            "open_value": 1.2269,
-            "close_value": 1.2269,
-            "high_value": 1.2269,
-            "low_value": 1.2269,
-            "volume_value": 425
-        },
-        {
-            "open_value": 2037.5,
-            "close_value": 2037.5,
-            "high_value": 2037.5,
-            "low_value": 2035.0,
-            "volume_value": 7
-        },
-        {
-            "open_value": 1561.5,
-            "close_value": 1561.5,
-            "high_value": 1561.5,
-            "low_value": 1561.5,
-            "volume_value": 1
-        },
-        {
-            "open_value": 1194.4,
-            "close_value": 1194.4,
-            "high_value": 1194.4,
-            "low_value": 1194.4,
-            "volume_value": 1
-        },
-        {
-            "open_value": 1140.4,
-            "close_value": 1140.6,
-            "high_value": 1140.6,
-            "low_value": 1140.4,
+            "open_value": 2923.4856,
+            "close_value": 2923.4856,
+            "high_value": 2923.4856,
+            "low_value": 2923.4856,
             "volume_value": 5
         },
         {
-            "open_value": 1159.5,
-            "close_value": 1159.5,
-            "high_value": 1159.5,
-            "low_value": 1159.5,
-            "volume_value": 2
+            "open_value": 2349.3,
+            "close_value": 2347.57,
+            "high_value": 2350.75,
+            "low_value": 2347.54,
+            "volume_value": 147417977
         },
         {
-            "open_value": 1033.0,
-            "close_value": 1033.0,
-            "high_value": 1033.0,
-            "low_value": 1033.0,
-            "volume_value": 1
+            "open_value": 4115.91,
+            "close_value": 4112.31,
+            "high_value": 4119.01,
+            "low_value": 4112.31,
+            "volume_value": 80677479
         },
         {
-            "open_value": 1070.6,
-            "close_value": 1070.6,
-            "high_value": 1070.6,
-            "low_value": 1070.6,
-            "volume_value": 16
+            "open_value": 15391.86,
+            "close_value": 15382.49,
+            "high_value": 15403.69,
+            "low_value": 15381.54,
+            "volume_value": 89862484
         },
         {
-            "open_value": 5.05,
-            "close_value": 5.05,
-            "high_value": 5.05,
-            "low_value": 5.05,
+            "open_value": 315.29,
+            "close_value": 315.35,
+            "high_value": 315.35,
+            "low_value": 315.29,
+            "volume_value": 322176
+        },
+        {
+            "open_value": 1696.77,
+            "close_value": 1695.75,
+            "high_value": 1696.77,
+            "low_value": 1695.75,
+            "volume_value": 232510705
+        },
+        {
+            "open_value": 993.56,
+            "close_value": 992.94,
+            "high_value": 994.25,
+            "low_value": 992.92,
+            "volume_value": 2151895
+        },
+        {
+            "open_value": 192.51,
+            "close_value": 192.39,
+            "high_value": 192.54,
+            "low_value": 192.39,
+            "volume_value": 351549
+        },
+        {
+            "open_value": 157.81,
+            "close_value": 157.73,
+            "high_value": 157.83,
+            "low_value": 157.71,
+            "volume_value": 933726
+        },
+        {
+            "open_value": 150.28,
+            "close_value": 150.28,
+            "high_value": 150.28,
+            "low_value": 150.28,
+            "volume_value": 99130
+        },
+        {
+            "open_value": 77.04,
+            "close_value": 77.04,
+            "high_value": 77.04,
+            "low_value": 77.04,
+            "volume_value": 1508
+        },
+        {
+            "open_value": 39.4,
+            "close_value": 39.4,
+            "high_value": 39.4,
+            "low_value": 39.4,
+            "volume_value": 36485
+        },
+        {
+            "open_value": 128.67,
+            "close_value": 128.67,
+            "high_value": 128.67,
+            "low_value": 128.67,
+            "volume_value": 49789
+        },
+        {
+            "open_value": 212.56,
+            "close_value": 212.56,
+            "high_value": 212.56,
+            "low_value": 212.56,
+            "volume_value": 1176
+        },
+        {
+            "open_value": 730.28,
+            "close_value": 730.28,
+            "high_value": 730.28,
+            "low_value": 730.28,
+            "volume_value": 760028
+        },
+        {
+            "open_value": 57.02,
+            "close_value": 57.02,
+            "high_value": 57.02,
+            "low_value": 57.02,
+            "volume_value": 30335
+        },
+        {
+            "open_value": 141.42,
+            "close_value": 141.42,
+            "high_value": 141.42,
+            "low_value": 141.42,
+            "volume_value": 161096
+        },
+        {
+            "open_value": 544.71,
+            "close_value": 544.71,
+            "high_value": 544.71,
+            "low_value": 544.71,
+            "volume_value": 161096
+        },
+        {
+            "open_value": 93.48,
+            "close_value": 93.48,
+            "high_value": 93.48,
+            "low_value": 93.48,
+            "volume_value": 195873
+        },
+        {
+            "open_value": 416.82,
+            "close_value": 416.82,
+            "high_value": 416.82,
+            "low_value": 416.82,
+            "volume_value": 195873
+        },
+        {
+            "open_value": 117.0,
+            "close_value": 117.0,
+            "high_value": 117.0,
+            "low_value": 117.0,
+            "volume_value": 7775
+        },
+        {
+            "open_value": 90.1,
+            "close_value": 90.1,
+            "high_value": 90.1,
+            "low_value": 90.1,
+            "volume_value": 2221898
+        },
+        {
+            "open_value": 507.59,
+            "close_value": 507.59,
+            "high_value": 507.59,
+            "low_value": 507.59,
+            "volume_value": 7775
+        },
+        {
+            "open_value": 401.37,
+            "close_value": 401.37,
+            "high_value": 401.37,
+            "low_value": 401.37,
+            "volume_value": 2226897
+        },
+        {
+            "open_value": 6812.35,
+            "close_value": 6812.89,
+            "high_value": 6812.89,
+            "low_value": 6812.35,
+            "volume_value": 23978368
+        },
+        {
+            "open_value": 98.61,
+            "close_value": 98.61,
+            "high_value": 98.61,
+            "low_value": 98.61,
+            "volume_value": 10329
+        },
+        {
+            "open_value": 286.19,
+            "close_value": 286.19,
+            "high_value": 286.19,
+            "low_value": 286.19,
+            "volume_value": 10329
+        },
+        {
+            "open_value": 6045.52,
+            "close_value": 6044.92,
+            "high_value": 6045.52,
+            "low_value": 6044.92,
+            "volume_value": 54224979
+        },
+        {
+            "open_value": 4941.65,
+            "close_value": 4938.91,
+            "high_value": 4941.65,
+            "low_value": 4938.91,
+            "volume_value": 9276332
+        },
+        {
+            "open_value": 1871.47,
+            "close_value": 1869.96,
+            "high_value": 1871.47,
+            "low_value": 1869.96,
+            "volume_value": 813103
+        },
+        {
+            "open_value": 1200.95,
+            "close_value": 1200.33,
+            "high_value": 1200.95,
+            "low_value": 1200.33,
+            "volume_value": 3537797
+        },
+        {
+            "open_value": 5512.13,
+            "close_value": 5514.18,
+            "high_value": 5514.18,
+            "low_value": 5512.13,
+            "volume_value": 6751160
+        },
+        {
+            "open_value": 15181.38,
+            "close_value": 15169.99,
+            "high_value": 15181.38,
+            "low_value": 15169.99,
+            "volume_value": 276208
+        },
+        {
+            "open_value": 1675.17,
+            "close_value": 1674.17,
+            "high_value": 1675.17,
+            "low_value": 1674.17,
+            "volume_value": 4616522
+        },
+        {
+            "open_value": 0.0,
+            "close_value": 0.0,
+            "high_value": 0.0,
+            "low_value": 0.0,
+            "volume_value": 0.0
+        }
+    ],
+    [
+        {
+            "open_value": 2874.0,
+            "close_value": 2878.0,
+            "high_value": 2878.0,
+            "low_value": 2874.0,
+            "volume_value": 15
+        },
+        {
+            "open_value": 1910.0,
+            "close_value": 1908.5,
+            "high_value": 1910.0,
+            "low_value": 1908.5,
+            "volume_value": 6
+        },
+        {
+            "open_value": 842.0,
+            "close_value": 842.6,
+            "high_value": 843.0,
+            "low_value": 842.0,
+            "volume_value": 543
+        },
+        {
+            "open_value": 181.7,
+            "close_value": 181.9,
+            "high_value": 181.9,
+            "low_value": 181.7,
+            "volume_value": 5
+        },
+        {
+            "open_value": 1600.1,
+            "close_value": 1600.1,
+            "high_value": 1600.1,
+            "low_value": 1600.1,
             "volume_value": 20
         },
         {
-            "open_value": 703.0,
-            "close_value": 703.0,
-            "high_value": 703.0,
-            "low_value": 703.0,
-            "volume_value": 1
+            "open_value": 1648.0,
+            "close_value": 1648.0,
+            "high_value": 1648.0,
+            "low_value": 1648.0,
+            "volume_value": 17
         },
         {
-            "open_value": 1113.3,
-            "close_value": 1113.3,
-            "high_value": 1113.3,
-            "low_value": 1113.3,
-            "volume_value": 1
+            "open_value": 2399.0,
+            "close_value": 2398.0,
+            "high_value": 2399.0,
+            "low_value": 2398.0,
+            "volume_value": 19
         },
         {
-            "open_value": 661.2,
-            "close_value": 661.2,
-            "high_value": 661.2,
-            "low_value": 661.2,
+            "open_value": 886.6,
+            "close_value": 886.6,
+            "high_value": 886.6,
+            "low_value": 886.6,
             "volume_value": 2
         },
         {
-            "open_value": 693.0,
-            "close_value": 693.0,
-            "high_value": 693.0,
-            "low_value": 693.0,
+            "open_value": 0.809,
+            "close_value": 0.809,
+            "high_value": 0.809,
+            "low_value": 0.809,
+            "volume_value": 1480
+        },
+        {
+            "open_value": 762.1,
+            "close_value": 762.2,
+            "high_value": 762.2,
+            "low_value": 762.1,
+            "volume_value": 2
+        },
+        {
+            "open_value": 3482.0,
+            "close_value": 3452.0,
+            "high_value": 3482.0,
+            "low_value": 3452.0,
+            "volume_value": 60
+        },
+        {
+            "open_value": 1.1976,
+            "close_value": 1.197,
+            "high_value": 1.1976,
+            "low_value": 1.197,
+            "volume_value": 15159
+        },
+        {
+            "open_value": 2088.0,
+            "close_value": 2088.0,
+            "high_value": 2088.0,
+            "low_value": 2088.0,
+            "volume_value": 7
+        },
+        {
+            "open_value": 1469.5,
+            "close_value": 1469.5,
+            "high_value": 1469.5,
+            "low_value": 1469.5,
             "volume_value": 3
         },
         {
-            "open_value": 1007.9,
-            "close_value": 1007.9,
-            "high_value": 1007.9,
-            "low_value": 1007.9,
+            "open_value": 1227.0,
+            "close_value": 1227.0,
+            "high_value": 1227.0,
+            "low_value": 1227.0,
+            "volume_value": 1
+        },
+        {
+            "open_value": 1106.6,
+            "close_value": 1106.6,
+            "high_value": 1106.6,
+            "low_value": 1106.6,
+            "volume_value": 1
+        },
+        {
+            "open_value": 1089.5,
+            "close_value": 1089.5,
+            "high_value": 1089.5,
+            "low_value": 1089.0,
             "volume_value": 3
+        },
+        {
+            "open_value": 1023.6,
+            "close_value": 1023.6,
+            "high_value": 1023.6,
+            "low_value": 1023.6,
+            "volume_value": 1
+        },
+        {
+            "open_value": 1042.0,
+            "close_value": 1042.4,
+            "high_value": 1042.4,
+            "low_value": 1038.2,
+            "volume_value": 18
+        },
+        {
+            "open_value": 4.975,
+            "close_value": 4.98,
+            "high_value": 4.98,
+            "low_value": 4.965,
+            "volume_value": 1565
+        },
+        {
+            "open_value": 682.2,
+            "close_value": 682.2,
+            "high_value": 682.2,
+            "low_value": 682.2,
+            "volume_value": 2
+        },
+        {
+            "open_value": 1099.3,
+            "close_value": 1099.3,
+            "high_value": 1099.3,
+            "low_value": 1099.3,
+            "volume_value": 100
+        },
+        {
+            "open_value": 637.2,
+            "close_value": 637.2,
+            "high_value": 637.2,
+            "low_value": 637.2,
+            "volume_value": 80
+        },
+        {
+            "open_value": 697.5,
+            "close_value": 697.5,
+            "high_value": 697.5,
+            "low_value": 697.5,
+            "volume_value": 2
+        },
+        {
+            "open_value": 1008.0,
+            "close_value": 1008.0,
+            "high_value": 1008.0,
+            "low_value": 1008.0,
+            "volume_value": 1
         }
     ]
 ]
