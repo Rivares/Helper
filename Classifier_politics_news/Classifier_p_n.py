@@ -765,7 +765,7 @@ def main():
                 # print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1] * 100))
 
                 # оцениваем результат
-                scores = new_model.evaluate(X, Y)
+                scores = new_model.predict(X)
                 print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
 
                 print(scores)
