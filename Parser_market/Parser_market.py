@@ -1,49 +1,18 @@
-from finam.export import Exporter, Market, LookupComparator
-from openpyxl import Workbook
-import matplotlib.pyplot as plt
-import pandas as pd
-import datetime
-import hashlib
-import time
-import json
-import csv
+# coding: UTF-8
+
+import lib_general as my_lib
 
 root_path = 'C:\\Users\\user\\0_Py\\'
 
-curr_moment = datetime.date(datetime.datetime.now().year,
-                            datetime.datetime.now().month,
-                            datetime.datetime.now().day)
-
-
-def md5(fname):
-    hash_md5 = hashlib.md5()
-    with open(fname, "rb") as f:
-        for chunk in iter(lambda: f.read(4096), b""):
-            hash_md5.update(chunk)
-    return hash_md5.hexdigest()
-
-
-def write_data_json(data, path, file_name):
-    extension = '.json'
-
-    with open(path + file_name + extension, "w", encoding="utf-8") as json_file:
-        json.dump(data, json_file, ensure_ascii=False, indent=4)
-
-
-def read_data_json(path, file_name):
-    extension = '.json'
-    data = []
-
-    with open(path + file_name + extension, encoding="utf-8") as json_file:
-        data = json.load(json_file)
-
-    return data
+curr_moment = my_lib.datetime.date(my_lib.datetime.datetime.now().year,
+                                   my_lib.datetime.datetime.now().month,
+                                   my_lib.datetime.datetime.now().day)
 
 
 def main():
     print("\n__________________ Parsing market __________________\n")
 
-    exporter = Exporter()
+    exporter = my_lib.Exporter()
 
     market = []
     list_goods = []
@@ -69,11 +38,11 @@ def main():
                       ]
 
     for goods in list_name_goods:
-        time.sleep(1)  # sec
+        my_lib.time.sleep(1)  # sec
         # print('\n__________________ ' + goods + ' __________________\n')
-        ticker = exporter.lookup(name=goods, market=Market.COMMODITIES,
-                                 name_comparator=LookupComparator.EQUALS)
-        data = exporter.download(ticker.index[0], market=Market.COMMODITIES, start_date=curr_moment)
+        ticker = exporter.lookup(name=goods, market=my_lib.Market.COMMODITIES,
+                                 name_comparator=my_lib.LookupComparator.EQUALS)
+        data = exporter.download(ticker.index[0], market=my_lib.Market.COMMODITIES, start_date=curr_moment)
 
         open_value = data.get('<OPEN>')
         close_value = data.get('<CLOSE>')
@@ -106,11 +75,11 @@ def main():
                          ]
 
     for currency in list_name_currency:
-        time.sleep(1)  # sec
+        my_lib.time.sleep(1)  # sec
         # print('\n__________________ ' + currency + ' __________________\n')
-        ticker = exporter.lookup(name=currency, market=Market.CURRENCIES,
-                                 name_comparator=LookupComparator.EQUALS)
-        data = exporter.download(ticker.index[0], market=Market.CURRENCIES, start_date=curr_moment)
+        ticker = exporter.lookup(name=currency, market=my_lib.Market.CURRENCIES,
+                                 name_comparator=my_lib.LookupComparator.EQUALS)
+        data = exporter.download(ticker.index[0], market=my_lib.Market.CURRENCIES, start_date=curr_moment)
 
         open_value = data.get('<OPEN>')
         close_value = data.get('<CLOSE>')
@@ -177,13 +146,13 @@ def main():
     ]
 
     for index in list_name_indexes_WR:
-        time.sleep(1)  # sec
+        my_lib.time.sleep(1)  # sec
         try:
             # print('\n__________________ ' + index + ' __________________\n')
-            ticker = exporter.lookup(name=index, market=Market.INDEXES,
-                                     name_comparator=LookupComparator.EQUALS)
+            ticker = exporter.lookup(name=index, market=my_lib.Market.INDEXES,
+                                     name_comparator=my_lib.LookupComparator.EQUALS)
 
-            data = exporter.download(ticker.index[0], market=Market.INDEXES, start_date=curr_moment)
+            data = exporter.download(ticker.index[0], market=my_lib.Market.INDEXES, start_date=curr_moment)
 
             open_value = data.get('<OPEN>')
             close_value = data.get('<CLOSE>')
@@ -208,9 +177,9 @@ def main():
                                  "high_value": 0.0,
                                  "low_value": 0.0,
                                  "volume_value": 0.0})
-            print("Problem with – tickers(index)!")
+            print("Problem with – tickers(index) - " + index)
 
-    if (datetime.datetime.now().hour > 14):
+    if (my_lib.datetime.datetime.now().hour > 14):
 
         # print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~ Indexes (World + USA)~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
 
@@ -222,13 +191,13 @@ def main():
         ]
 
         for index in list_name_indexes_W_U:
-            time.sleep(1)  # sec
+            my_lib.time.sleep(1)  # sec
             try:
                 # print('\n__________________ ' + index + ' __________________\n')
-                ticker = exporter.lookup(name=index, market=Market.INDEXES,
-                                         name_comparator=LookupComparator.EQUALS)
+                ticker = exporter.lookup(name=index, market=my_lib.Market.INDEXES,
+                                         name_comparator=my_lib.LookupComparator.EQUALS)
 
-                data = exporter.download(ticker.index[0], market=Market.INDEXES, start_date=curr_moment)
+                data = exporter.download(ticker.index[0], market=my_lib.Market.INDEXES, start_date=curr_moment)
 
                 open_value = data.get('<OPEN>')
                 close_value = data.get('<CLOSE>')
@@ -253,7 +222,7 @@ def main():
                                      "high_value": 0.0,
                                      "low_value": 0.0,
                                      "volume_value": 0.0})
-                print("Problem with – tickers(index)!")
+                print("Problem with – tickers(index) - " + index)
 
     else:
         list_indexes.append({"open_value": 0.0,
@@ -293,11 +262,11 @@ def main():
     ]
 
     for stock in list_name_stocks:
-        time.sleep(1)  # sec
+        my_lib.time.sleep(1)  # sec
         # print('\n__________________ ' + stock + ' __________________\n')
-        ticker = exporter.lookup(name=stock, market=Market.ETF_MOEX,
-                                 name_comparator=LookupComparator.EQUALS)
-        data = exporter.download(ticker.index[0], market=Market.ETF_MOEX, start_date=curr_moment)
+        ticker = exporter.lookup(name=stock, market=my_lib.Market.ETF_MOEX,
+                                 name_comparator=my_lib.LookupComparator.EQUALS)
+        data = exporter.download(ticker.index[0], market=my_lib.Market.ETF_MOEX, start_date=curr_moment)
 
         open_value = data.get('<OPEN>')
         close_value = data.get('<CLOSE>')
@@ -322,20 +291,20 @@ def main():
     market.append(list_indexes)
     market.append(list_stocks)
 
-    path = root_path + 'Helper\\Parser_stocks\\'
+    path = root_path + 'Helper\\Parser_market\\'
     file_name_market = 'market'
 
-    write_data_json(market, path, file_name_market)
+    my_lib.write_data_json(market, path, file_name_market)
 
     # _________________________________________________________________________________
 
     # Check on repeat
 
-    path = root_path + 'Helper\\Parser_stocks\\'
-    hash_market = read_data_json(path, 'hash_market')
+    path = root_path + 'Helper\\Parser_market\\'
+    hash_market = my_lib.read_data_json(path, 'hash_market')
 
     file_name = 'market'
-    new_hash = md5(path + 'market' + '.json')
+    new_hash = my_lib.md5(path + 'market' + '.json')
 
     if new_hash == hash_market[0]["hash"]:
         print("___ No the new market values ___")
@@ -343,7 +312,7 @@ def main():
 
     hash_market = [{"hash": new_hash}]
     file_name = 'hash_market'
-    write_data_json(hash_market, path, file_name)
+    my_lib.write_data_json(hash_market, path, file_name)
 
     # _________________________________________________________________________________
 

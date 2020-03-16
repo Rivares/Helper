@@ -1,6 +1,6 @@
 # coding: UTF-8
 
-
+import lib_general as my_lib
 
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
@@ -8,36 +8,17 @@ from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.app import App
 
-from threading import Thread
-from openpyxl import Workbook
-import matplotlib.pyplot as plt
-import datetime
-import logging
-import random
-import time
-import json
-import csv
-import os
 
-
-from finam.export import Exporter, Market, LookupComparator
 from keras.layers import Dense, Dropout, LSTM, Embedding
 from keras.models import Sequential
-
-import numpy as np
-import pandas as pd
-import requests
 import keras
-
-import lib_general as my_lib
-
-
 
 
 red = [1, 0, 0, 1]
 green = [0, 1, 0, 1]
 blue = [0, 0, 1, 1]
 purple = [1, 0, 1, 1]
+
 
 class HBoxLayoutExample(App):
     def build(self):
@@ -70,16 +51,16 @@ SYMBOLS = ['FXRB',
            'FXWR'
            ]
 
-start = datetime.datetime(2020, 1, 1);
-end = datetime.datetime(datetime.datetime.now().year,
-                        datetime.datetime.now().month,
-                        datetime.datetime.now().day);
+start = my_lib.datetime.datetime(2020, 1, 1);
+end = my_lib.datetime.datetime(my_lib.datetime.datetime.now().year,
+                               my_lib.datetime.datetime.now().month,
+                               my_lib.datetime.datetime.now().day);
 
 
 path_name_class_e_n = 'Classifier_economics_news\\Classifier_e_n.py'
 path_name_class_p_n = 'Classifier_politics_news\\Classifier_p_n.py'
 path_name_ta_stocks = 'TA_stocks\\TA_stocks.py'
-path_name_parser_stocks = 'Parser_stocks\\Parser_stocks.py'
+path_name_parser_stocks = 'Parser_market/Parser_market.py'
 
 prediction_e_n = []
 prediction_p_n = []
@@ -100,28 +81,28 @@ def main():
     # app = HBoxLayoutExample()
     # app.run()
 
-    while (datetime.datetime.now().hour > 9) and (datetime.datetime.now().hour < 23):
+    while (my_lib.datetime.datetime.now().hour > 9) and (my_lib.datetime.datetime.now().hour < 23):
 
-        exec_full(path_name_class_e_n)
-        exec_full(path_name_class_p_n)
-        exec_full(path_name_ta_stocks)
-        exec_full(path_name_parser_stocks)
+        # exec_full(path_name_class_e_n)
+        # exec_full(path_name_class_p_n)
+        # exec_full(path_name_ta_stocks)
+        # exec_full(path_name_parser_stocks)
 
         path = 'Helper\\Classifier_economics_news\\'
         filename = 'prediction_e_n'
-        prediction_e_n = read_data_json(root_path + path, filename)
+        prediction_e_n = my_lib.read_data_json(root_path + path, filename)
 
         path = 'Helper\\Classifier_politics_news\\'
         filename = 'prediction_p_n'
-        prediction_p_n = read_data_json(root_path + path, filename)
+        prediction_p_n = my_lib.read_data_json(root_path + path, filename)
 
         path = 'Helper\\TA_stocks\\'
         filename = 'result_ta'
-        result_ta = read_data_json(root_path + path, filename)
+        result_ta = my_lib.read_data_json(root_path + path, filename)
 
-        path = 'Helper\\Parser_stocks\\'
+        path = 'Helper\\Parser_market\\'
         filename = 'market'
-        market = read_data_json(root_path + path, filename)
+        market = my_lib.read_data_json(root_path + path, filename)
 
         # print(prediction_e_n)
         # print(prediction_p_n)
@@ -130,7 +111,7 @@ def main():
 
         print("__________________ Global training __________________")
 
-        np.random.seed(2)
+        my_lib.np.random.seed(2)
         path = 'Helper\\'
         model_name = root_path + path + 'NN_Main_model.h5'
 
@@ -209,9 +190,9 @@ def main():
         X.append(result_ta[0]['vpt_i'])
 
         count_inputs = len(X)
-        # print("Len NN: " + str(count_inputs))
-        # print("X: "); print(X)
-        # print("Y: "); print(Y)
+        print("Len NN: " + str(count_inputs))
+        print("X: "); print(X)
+        print("Y: "); print(Y)
 
         # создаем модели, добавляем слои один за другим
         model = Sequential()
@@ -239,24 +220,24 @@ def main():
         input_nodes.append(X)
         output_nodes.append(Y)
 
-        input_nodes = np.asarray(input_nodes, dtype=np.float32)
-        output_nodes = np.asarray(output_nodes, dtype=np.float32)
+        input_nodes = my_lib.np.asarray(input_nodes, dtype=my_lib.np.float32)
+        output_nodes = my_lib.np.asarray(output_nodes, dtype=my_lib.np.float32)
 
         input_nodes = input_nodes.reshape((1, 1, count_inputs))
         output_nodes = output_nodes.reshape((1, 1))
         # print(input_nodes.shape)
         # print(output_nodes.shape)
 
-        # path = root_path + 'Helper\\'
-        # filename = 'X'
-        # write_data_json(X, path, filename)
-        #
-        # filename = 'Y'
-        # write_data_json(Y, path, filename)
+        path = root_path + 'Helper\\'
+        filename = 'X'
+        my_lib.write_data_json(X, path, filename)
+
+        filename = 'Y'
+        my_lib.write_data_json(Y, path, filename)
 
         # print(output_nodes)
 
-        if os.path.exists(model_name) != False:
+        if my_lib.os.path.exists(model_name) != False:
             # Recreate the exact same model
             new_model = keras.models.load_model(model_name)
         else:
@@ -277,7 +258,7 @@ def main():
 
         path = root_path + 'Helper\\'
         file_name_prediction = 'main_prediction'
-        write_data_json(main_prediction, path, file_name_prediction)
+        my_lib.write_data_json(main_prediction, path, file_name_prediction)
 
         # except:
         #     print("Problem with – fit(Global)!")

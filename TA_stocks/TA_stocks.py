@@ -1,14 +1,6 @@
-from finam.export import Exporter, Market, LookupComparator
-from openpyxl import Workbook
-import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
-import datetime
-import logging
-import hashlib
-import json
-import csv
-import ta
+# coding: UTF-8
+
+import lib_general as my_lib
 
 root_path = 'C:\\Users\\user\\0_Py\\'
 
@@ -19,53 +11,28 @@ SYMBOLS = ['FXRB ETF',
            'FXWR ETF',
            ]
 
-start = datetime.date(datetime.datetime.now().year - 1,
-                      datetime.datetime.now().month,
-                      datetime.datetime.now().day)
+start = my_lib.datetime.date(my_lib.datetime.datetime.now().year - 1,
+                             my_lib.datetime.datetime.now().month,
+                             my_lib.datetime.datetime.now().day)
 
-curr_moment = datetime.date(datetime.datetime.now().year,
-                            datetime.datetime.now().month,
-                            datetime.datetime.now().day)
-
-
-def md5(fname):
-    hash_md5 = hashlib.md5()
-    with open(fname, "rb") as f:
-        for chunk in iter(lambda: f.read(4096), b""):
-            hash_md5.update(chunk)
-    return hash_md5.hexdigest()
-
-
-def write_data_json(data, path, file_name):
-    extension = '.json'
-
-    with open(path + file_name + extension, "w", encoding="utf-8") as json_file:
-        json.dump(data, json_file, ensure_ascii=False, indent=4)
-
-
-def read_data_json(path, file_name):
-    extension = '.json'
-    data = []
-
-    with open(path + file_name + extension, encoding="utf-8") as json_file:
-        data = json.load(json_file)
-
-    return data
+curr_moment = my_lib.datetime.date(my_lib.datetime.datetime.now().year,
+                                   my_lib.datetime.datetime.now().month,
+                                   my_lib.datetime.datetime.now().day)
 
 
 def main():
     print("\n__________________ TA " + "(FXRB)" + " __________________\n")
 
-    exporter = Exporter()
+    exporter = my_lib.Exporter()
 
     target_ticker = SYMBOLS[0]
 
     list_indicators_target_ticker = []
 
     list_tiker_params = []
-    data = exporter.lookup(name=target_ticker, market=Market.ETF_MOEX)
+    data = exporter.lookup(name=target_ticker, market=my_lib.Market.ETF_MOEX)
     # print(data.head())
-    stock = exporter.download(data.index[0], market=Market.ETF_MOEX, start_date=start, end_date=curr_moment)
+    stock = exporter.download(data.index[0], market=my_lib.Market.ETF_MOEX, start_date=start, end_date=curr_moment)
     # print(stock.head())
 
     open_value = stock.get('<OPEN>')
@@ -92,10 +59,10 @@ def main():
 
     # Load datas
     path = root_path + 'Helper\\TA_stocks\\'
-    df = pd.read_csv(path + 'target_ticker' + '.csv', sep=',')
+    df = my_lib.pd.read_csv(path + 'target_ticker' + '.csv', sep=',')
 
     # Clean NaN values
-    df = ta.utils.dropna(df)
+    df = my_lib.ta.utils.dropna(df)
 
     # _____________________________________________________________________________________________________
     # _______________________________________ Volatility Inidicators ______________________________________
@@ -103,7 +70,7 @@ def main():
     # __________________________________________ Bollinger Bands __________________________________________
 
     # Initialize Bollinger Bands Indicator
-    indicator_bb = ta.volatility.BollingerBands(close=df["<CLOSE>"], n=20, ndev=2, fillna=True)
+    indicator_bb = my_lib.ta.volatility.BollingerBands(close=df["<CLOSE>"], n=20, ndev=2, fillna=True)
 
     # Add Bollinger Bands features
     df['bb_bbm'] = indicator_bb.bollinger_mavg()
@@ -136,8 +103,8 @@ def main():
     # __________________________________________ Keltner Channel __________________________________________
 
     # Initialize Keltner Channel Indicator
-    indicator_kc = ta.volatility.KeltnerChannel(high=df["<HIGH>"],
-                                                low=df["<LOW>"], close=df["<CLOSE>"], n=20, fillna=True)
+    indicator_kc = my_lib.ta.volatility.KeltnerChannel(high=df["<HIGH>"],
+                                                       low=df["<LOW>"], close=df["<CLOSE>"], n=20, fillna=True)
 
     # Add Keltner Channel features
     df['kc_kcc'] = indicator_kc.keltner_channel_central()
@@ -167,9 +134,9 @@ def main():
     # __________________________________________ Average true range (ATR) __________________________________________
 
     # Initialize Average true range Indicator
-    indicator_atr = ta.volatility.AverageTrueRange(high=df["<HIGH>"],
-                                                   low=df["<LOW>"],
-                                                   close=df["<CLOSE>"], n=20, fillna=True)
+    indicator_atr = my_lib.ta.volatility.AverageTrueRange(high=df["<HIGH>"],
+                                                          low=df["<LOW>"],
+                                                          close=df["<CLOSE>"], n=20, fillna=True)
 
     # Add ATR indicator
     df['atr_i'] = indicator_atr.average_true_range()
@@ -187,7 +154,7 @@ def main():
     # __________________________________________ Donchian Channel __________________________________________
 
     # Initialize Donchian Channel Indicator
-    indicator_dc = ta.volatility.DonchianChannel(close=df["<CLOSE>"], n=20, fillna=True)
+    indicator_dc = my_lib.ta.volatility.DonchianChannel(close=df["<CLOSE>"], n=20, fillna=True)
 
     # Add Donchian Channel features
     df['dc_dch'] = indicator_dc.donchian_channel_hband()
@@ -217,9 +184,9 @@ def main():
     # _____________________________ Average Directional Movement Index (ADX) ________________________________
 
     # Initialize ADX Indicator
-    indicator_adx = ta.trend.ADXIndicator(high=df["<HIGH>"],
-                                          low=df["<LOW>"],
-                                          close=df["<CLOSE>"], n=20, fillna=True)
+    indicator_adx = my_lib.ta.trend.ADXIndicator(high=df["<HIGH>"],
+                                                 low=df["<LOW>"],
+                                                 close=df["<CLOSE>"], n=20, fillna=True)
 
     # Add ADX features
     df['adx_aver'] = indicator_adx.adx()
@@ -243,7 +210,7 @@ def main():
     # _____________________________ Aroon Indicator ________________________________
 
     # Initialize ADX Indicator
-    indicator_ai = ta.trend.AroonIndicator(close=df["<CLOSE>"], n=20, fillna=True)
+    indicator_ai = my_lib.ta.trend.AroonIndicator(close=df["<CLOSE>"], n=20, fillna=True)
 
     # Add ADX features
     df['ai_i'] = indicator_ai.aroon_indicator()
@@ -267,9 +234,9 @@ def main():
     # _____________________________ Commodity Channel Index (CCI) ________________________________
 
     # Initialize ADX Indicator
-    indicator_ccl = ta.trend.CCIIndicator(high=df["<HIGH>"],
-                                          low=df["<LOW>"],
-                                          close=df["<CLOSE>"], n=20, c=5, fillna=True)
+    indicator_ccl = my_lib.ta.trend.CCIIndicator(high=df["<HIGH>"],
+                                                 low=df["<LOW>"],
+                                                 close=df["<CLOSE>"], n=20, c=5, fillna=True)
 
     # Add ADX features
     df['ccl_i'] = indicator_ccl.cci()
@@ -287,7 +254,7 @@ def main():
     # _____________________________ Detrended Price Oscillator (DPO) ________________________________
 
     # Initialize DPO Indicator
-    indicator_dpo = ta.trend.DPOIndicator(close=df["<CLOSE>"], n=20, fillna=True)
+    indicator_dpo = my_lib.ta.trend.DPOIndicator(close=df["<CLOSE>"], n=20, fillna=True)
 
     # Add DPO features
     df['dpo_i'] = indicator_dpo.dpo()
@@ -304,7 +271,7 @@ def main():
     # _____________________________ Exponential Moving Average (EMA) ________________________________
 
     # Initialize EMA Indicator
-    indicator_ema = ta.trend.EMAIndicator(close=df["<CLOSE>"], n=20, fillna=True)
+    indicator_ema = my_lib.ta.trend.EMAIndicator(close=df["<CLOSE>"], n=20, fillna=True)
 
     # Add EMA features
     df['ema_i'] = indicator_ema.ema_indicator()
@@ -322,8 +289,8 @@ def main():
     # _____________________________ Ichimoku Kinkō Hyō (Ichimoku) ________________________________
 
     # Initialize Ichimoku Indicator
-    indicator_ichimoku = ta.trend.IchimokuIndicator(high=df["<HIGH>"],
-                                                    low=df["<LOW>"], n1=10, n2=20, n3=30, visual=False, fillna=True)
+    indicator_ichimoku = my_lib.ta.trend.IchimokuIndicator(high=df["<HIGH>"],
+                                                           low=df["<LOW>"], n1=10, n2=20, n3=30, visual=False, fillna=True)
 
     # Add Ichimoku features
     df['ichimoku_a'] = indicator_ichimoku.ichimoku_a()
@@ -344,8 +311,8 @@ def main():
     # _____________________________ KST Oscillator (KST Signal) ________________________________
 
     # Initialize KST Indicator
-    indicator_kst = ta.trend.KSTIndicator(close=df["<CLOSE>"], r1=10, r2=20, r3=30, r4=40,
-                                          n1=10, n2=10, n3=10, n4=15, nsig=9, fillna=True)
+    indicator_kst = my_lib.ta.trend.KSTIndicator(close=df["<CLOSE>"], r1=10, r2=20, r3=30, r4=40,
+                                                 n1=10, n2=10, n3=10, n4=15, nsig=9, fillna=True)
     # Add KST features
     df['kst'] = indicator_kst.kst()
     df['kst_diff'] = indicator_kst.kst_diff()
@@ -368,7 +335,7 @@ def main():
     # _____________________________ Moving Average Convergence Divergence (MACD) ________________________________
 
     # Initialize MACD Indicator
-    indicator_macd = ta.trend.MACD(close=df["<CLOSE>"], n_fast=26, n_slow=12, n_sign=9, fillna=True)
+    indicator_macd = my_lib.ta.trend.MACD(close=df["<CLOSE>"], n_fast=26, n_slow=12, n_sign=9, fillna=True)
     # Add MACD features
     df['macd'] = indicator_macd.macd()
     df['macd_diff'] = indicator_macd.macd_diff()
@@ -391,7 +358,7 @@ def main():
     # # _____________________________ Mass Index (MI) ________________________________
 
     # Initialize MI Indicator
-    indicator_mi = ta.trend.MassIndex(high=df["<HIGH>"], low=df["<LOW>"], n=10, n2=20, fillna=True)
+    indicator_mi = my_lib.ta.trend.MassIndex(high=df["<HIGH>"], low=df["<LOW>"], n=10, n2=20, fillna=True)
     # Add MI features
     df['mi'] = indicator_mi.mass_index()
 
@@ -407,9 +374,9 @@ def main():
     # _____________________________ Parabolic Stop and Reverse (Parabolic SAR) ________________________________
 
     # Initialize PSAR Indicator
-    indicator_psar = ta.trend.PSARIndicator(high=df["<HIGH>"],
-                                            low=df["<LOW>"],
-                                            close=df["<CLOSE>"], step=0.02, max_step=0.2)
+    indicator_psar = my_lib.ta.trend.PSARIndicator(high=df["<HIGH>"],
+                                                   low=df["<LOW>"],
+                                                   close=df["<CLOSE>"], step=0.02, max_step=0.2)
 
     # Add PSAR features
     df['psar_i'] = indicator_psar.psar()
@@ -436,7 +403,7 @@ def main():
     # _____________________________ Trix (TRIX) ________________________________
 
     # Initialize TRIX Indicator
-    indicator_trix = ta.trend.TRIXIndicator(close=df["<CLOSE>"], n=15, fillna=True)
+    indicator_trix = my_lib.ta.trend.TRIXIndicator(close=df["<CLOSE>"], n=15, fillna=True)
 
     # Add TRIX features
     df['trix_i'] = indicator_trix.trix()
@@ -454,9 +421,9 @@ def main():
     # _____________________________ Vortex Indicator (VI) ________________________________
 
     # Initialize VI Indicator
-    indicator_vi = ta.trend.VortexIndicator(high=df["<HIGH>"],
-                                            low=df["<LOW>"],
-                                            close=df["<CLOSE>"], n=15, fillna=True)
+    indicator_vi = my_lib.ta.trend.VortexIndicator(high=df["<HIGH>"],
+                                                   low=df["<LOW>"],
+                                                   close=df["<CLOSE>"], n=15, fillna=True)
 
     # Add VI features
     df['vi_diff'] = indicator_vi.vortex_indicator_diff()
@@ -483,7 +450,7 @@ def main():
     # ______________________________________ Cumulative Return (CR) _______________________________________
 
     # Initialize CR Indicator
-    indicator_cr = ta.others.CumulativeReturnIndicator(close=df["<CLOSE>"], fillna=True)
+    indicator_cr = my_lib.ta.others.CumulativeReturnIndicator(close=df["<CLOSE>"], fillna=True)
 
     # Add CR features
     df['cr_i'] = indicator_cr.cumulative_return()
@@ -500,7 +467,7 @@ def main():
     # # ______________________________________ Daily Log Return (DLR) _______________________________________
     #
     # Initialize DLR Indicator
-    indicator_dlr = ta.others.DailyLogReturnIndicator(close=df["<CLOSE>"], fillna=True)
+    indicator_dlr = my_lib.ta.others.DailyLogReturnIndicator(close=df["<CLOSE>"], fillna=True)
 
     # Add DLR features
     df['dlr_i'] = indicator_dlr.daily_log_return()
@@ -520,9 +487,9 @@ def main():
     # ______________________________ Accumulation/Distribution Index (ADI) ________________________________
     #
     # Initialize ADI Indicator
-    indicator_adi = ta.volume.AccDistIndexIndicator(high=df["<HIGH>"],
-                                                    low=df["<LOW>"],
-                                                    close=df["<CLOSE>"], volume=df["<VOL>"], fillna=True)
+    indicator_adi = my_lib.ta.volume.AccDistIndexIndicator(high=df["<HIGH>"],
+                                                           low=df["<LOW>"],
+                                                           close=df["<CLOSE>"], volume=df["<VOL>"], fillna=True)
 
     # Add ADI features
     df['adi_i'] = indicator_adi.acc_dist_index()
@@ -539,10 +506,10 @@ def main():
     # ______________________________ Chaikin Money Flow (CMF) ________________________________
     #
     # Initialize CMF Indicator
-    indicator_cmf = ta.volume.ChaikinMoneyFlowIndicator(high=df["<HIGH>"],
-                                                        low=df["<LOW>"],
-                                                        close=df["<CLOSE>"],
-                                                        volume=df["<VOL>"], n=20, fillna=True)
+    indicator_cmf = my_lib.ta.volume.ChaikinMoneyFlowIndicator(high=df["<HIGH>"],
+                                                               low=df["<LOW>"],
+                                                               close=df["<CLOSE>"],
+                                                               volume=df["<VOL>"], n=20, fillna=True)
 
     # Add CMF features
     df['cmf_i'] = indicator_cmf.chaikin_money_flow()
@@ -558,9 +525,9 @@ def main():
     # ______________________________ Ease of movement (EoM, EMV) ________________________________
 
     # Initialize (EoM, EMV) Indicator
-    indicator_cmf = ta.volume.EaseOfMovementIndicator(high=df["<HIGH>"],
-                                                      low=df["<LOW>"],
-                                                      volume=df["<VOL>"], n=20, fillna=True)
+    indicator_cmf = my_lib.ta.volume.EaseOfMovementIndicator(high=df["<HIGH>"],
+                                                             low=df["<LOW>"],
+                                                             volume=df["<VOL>"], n=20, fillna=True)
 
     # Add (EoM, EMV) features
     df['cmf_i'] = indicator_cmf.ease_of_movement()
@@ -581,8 +548,8 @@ def main():
     # ______________________________ Force Index (FI) ________________________________
     #
     # Initialize FI Indicator
-    indicator_fi = ta.volume.ForceIndexIndicator(close=df["<CLOSE>"],
-                                                 volume=df["<VOL>"], n=20, fillna=True)
+    indicator_fi = my_lib.ta.volume.ForceIndexIndicator(close=df["<CLOSE>"],
+                                                        volume=df["<VOL>"], n=20, fillna=True)
 
     # Add FI features
     df['fi_i'] = indicator_fi.force_index()
@@ -600,8 +567,8 @@ def main():
     # ______________________________ Negative Volume Index (NVI) ________________________________
     #
     # Initialize NVI Indicator
-    indicator_nvi = ta.volume.NegativeVolumeIndexIndicator(close=df["<CLOSE>"],
-                                                           volume=df["<VOL>"], fillna=True)
+    indicator_nvi = my_lib.ta.volume.NegativeVolumeIndexIndicator(close=df["<CLOSE>"],
+                                                                  volume=df["<VOL>"], fillna=True)
 
     # Add NVI features
     df['nvi_i'] = indicator_nvi.negative_volume_index()
@@ -619,8 +586,8 @@ def main():
     # ______________________________ On-balance volume (OBV) ________________________________
     #
     # Initialize OBV Indicator
-    indicator_obv = ta.volume.OnBalanceVolumeIndicator(close=df["<CLOSE>"],
-                                                       volume=df["<VOL>"], fillna=True)
+    indicator_obv = my_lib.ta.volume.OnBalanceVolumeIndicator(close=df["<CLOSE>"],
+                                                              volume=df["<VOL>"], fillna=True)
 
     # Add OBV features
     df['obv_i'] = indicator_obv.on_balance_volume()
@@ -638,8 +605,8 @@ def main():
     # ______________________________ Volume-price trend (VPT) ________________________________
     #
     # Initialize VPT Indicator
-    indicator_vpt = ta.volume.VolumePriceTrendIndicator(close=df["<CLOSE>"],
-                                                        volume=df["<VOL>"], fillna=True)
+    indicator_vpt = my_lib.ta.volume.VolumePriceTrendIndicator(close=df["<CLOSE>"],
+                                                               volume=df["<VOL>"], fillna=True)
 
     # Add VPT features
     df['vpt_i'] = indicator_vpt.volume_price_trend()
@@ -660,9 +627,9 @@ def main():
     # _________________________________________ Awesome Oscillator ________________________________________
     #
     # Initialize Awesome Oscillator Indicator
-    indicator_ao = ta.momentum.AwesomeOscillatorIndicator(high=df["<HIGH>"],
-                                                          low=df["<LOW>"],
-                                                          s=5, len=34, fillna=True)
+    indicator_ao = my_lib.ta.momentum.AwesomeOscillatorIndicator(high=df["<HIGH>"],
+                                                                 low=df["<LOW>"],
+                                                                 s=5, len=34, fillna=True)
 
     # Add Awesome Oscillator features
     df['ao_i'] = indicator_ao.ao()
@@ -679,9 +646,9 @@ def main():
     # ________________________________ Kaufman’s Adaptive Moving Average (KAMA) __________________________________
     # #
     # Initialize KAMA Indicator
-    indicator_kama = ta.momentum.KAMAIndicator(close=df["<CLOSE>"],
-                                               n=10,
-                                               pow1=2, pow2=30, fillna=True)
+    indicator_kama = my_lib.ta.momentum.KAMAIndicator(close=df["<CLOSE>"],
+                                                      n=10,
+                                                      pow1=2, pow2=30, fillna=True)
 
     # Add KAMA features
     df['kama_i'] = indicator_kama.kama()
@@ -699,11 +666,11 @@ def main():
     # ________________________________ Money Flow Index (MFI) __________________________________
     #
     # Initialize MFI Indicator
-    indicator_mfi = ta.momentum.MFIIndicator(high=df["<HIGH>"],
-                                             low=df["<LOW>"],
-                                             close=df["<CLOSE>"],
-                                             volume=df["<VOL>"],
-                                             n=14, fillna=True)
+    indicator_mfi = my_lib.ta.momentum.MFIIndicator(high=df["<HIGH>"],
+                                                    low=df["<LOW>"],
+                                                    close=df["<CLOSE>"],
+                                                    volume=df["<VOL>"],
+                                                    n=14, fillna=True)
 
     # Add MFI features
     df['mfi_i'] = indicator_mfi.money_flow_index()
@@ -721,8 +688,8 @@ def main():
     # ________________________________ Rate of Change (ROC) __________________________________
     #
     # Initialize ROC Indicator
-    indicator_roc = ta.momentum.ROCIndicator(close=df["<CLOSE>"],
-                                             n=12, fillna=True)
+    indicator_roc = my_lib.ta.momentum.ROCIndicator(close=df["<CLOSE>"],
+                                                    n=12, fillna=True)
 
     # Add ROC features
     df['roc_i'] = indicator_roc.roc()
@@ -740,8 +707,8 @@ def main():
     # ________________________________ Relative Strength Index (RSI) __________________________________
     #
     # Initialize RSI Indicator
-    indicator_rsi = ta.momentum.RSIIndicator(close=df["<CLOSE>"],
-                                             n=12, fillna=True)
+    indicator_rsi = my_lib.ta.momentum.RSIIndicator(close=df["<CLOSE>"],
+                                                    n=12, fillna=True)
 
     # Add RSI features
     df['rsi_i'] = indicator_rsi.rsi()
@@ -758,10 +725,10 @@ def main():
 
     # ________________________________ Stochastic Oscillator __________________________________
     # Initialize RSI Indicator
-    indicator_stoch = ta.momentum.StochasticOscillator(high=df["<HIGH>"],
-                                                       low=df["<LOW>"],
-                                                       close=df["<CLOSE>"],
-                                                       n=14, fillna=True)
+    indicator_stoch = my_lib.ta.momentum.StochasticOscillator(high=df["<HIGH>"],
+                                                              low=df["<LOW>"],
+                                                              close=df["<CLOSE>"],
+                                                              n=14, fillna=True)
 
     # Add RSI features
     df['stoch_i'] = indicator_stoch.stoch()
@@ -782,8 +749,8 @@ def main():
     # ________________________________ True strength index (TSI) __________________________________
     #
     # Initialize TSI Indicator
-    indicator_tsi = ta.momentum.TSIIndicator(close=df["<CLOSE>"],
-                                             r=25, s=13, fillna=True)
+    indicator_tsi = my_lib.ta.momentum.TSIIndicator(close=df["<CLOSE>"],
+                                                    r=25, s=13, fillna=True)
 
     # Add TSI features
     df['tsi_i'] = indicator_tsi.tsi()
@@ -800,11 +767,11 @@ def main():
 
     # ________________________________ Ultimate Oscillator __________________________________
     # Initialize Ultimate Oscillator Indicator
-    indicator_uo = ta.momentum.UltimateOscillator(high=df["<HIGH>"],
-                                                  low=df["<LOW>"],
-                                                  close=df["<CLOSE>"],
-                                                  s=7,
-                                                  m=14, len=28, ws=4.0, wm=2.0, wl=1.0, fillna=True)
+    indicator_uo = my_lib.ta.momentum.UltimateOscillator(high=df["<HIGH>"],
+                                                         low=df["<LOW>"],
+                                                         close=df["<CLOSE>"],
+                                                         s=7,
+                                                         m=14, len=28, ws=4.0, wm=2.0, wl=1.0, fillna=True)
 
     # Add Ultimate Oscillator features
     df['uo_i'] = indicator_uo.uo()
@@ -821,10 +788,10 @@ def main():
 
     # ________________________________ Williams %R __________________________________
     # Initialize Williams Indicator
-    indicator_wr = ta.momentum.WilliamsRIndicator(high=df["<HIGH>"],
-                                                  low=df["<LOW>"],
-                                                  close=df["<CLOSE>"],
-                                                  lbp=14, fillna=True)
+    indicator_wr = my_lib.ta.momentum.WilliamsRIndicator(high=df["<HIGH>"],
+                                                         low=df["<LOW>"],
+                                                         close=df["<CLOSE>"],
+                                                         lbp=14, fillna=True)
 
     # Add Williams features
     df['wr_i'] = indicator_wr.wr()
@@ -839,63 +806,63 @@ def main():
 
     path = root_path + 'Helper\\TA_stocks\\'
     filename = 'result_ta'
-    old_list_indicators_target_ticker = read_data_json(path, filename)
+    old_list_indicators_target_ticker = my_lib.read_data_json(path, filename)
 
     list_indicators_target_ticker.append({
-                                        "diff_value": (float(old_list_indicators_target_ticker[0]["close_value"]) - float(list_open_value[-1])),
-                                        "open_value": list_open_value[-1],
-                                        "close_value": list_close_value[-1],
-                                        "high_value": list_high_value[-1],
-                                        "low_value": list_low_value[-1],
-                                        "volume_value": list_volume_value[-1],
-                                        "bb_bbh": 0.0 if np.isnan(bb_bbh[-1]) else bb_bbh[-1], "bb_bbl": 0.0 if np.isnan(bb_bbl[-1]) else bb_bbl[-1], "bb_bbm": 0.0 if np.isnan(bb_bbm[-1]) else bb_bbm[-1],
-                                        "kc_kcc": 0.0 if np.isnan(kc_kcc[-1]) else kc_kcc[-1], "kc_kch": 0.0 if np.isnan(kc_kch[-1]) else kc_kch[-1], "kc_kcl": 0.0 if np.isnan(kc_kcl[-1]) else kc_kcl[-1],
-                                        "atr_i": 0.0 if np.isnan(atr_i[-1]) else atr_i[-1],
-                                        "dc_dch": 0.0 if np.isnan(dc_dch[-1]) else dc_dch[-1], "dc_dcl": 0.0 if np.isnan(dc_dcl[-1]) else dc_dcl[-1],
-                                        "adx_aver": 0.0 if np.isnan(adx_aver[-1]) else adx_aver[-1], "adx_DI_pos": 0.0 if np.isnan(adx_DI_pos[-1]) else adx_DI_pos[-1], "adx_DI_neg": 0.0 if np.isnan(adx_DI_neg[-1]) else adx_DI_neg[-1],
-                                        "ai_i": 0.0 if np.isnan(ai_i[-1]) else ai_i[-1], "ai_up": 0.0 if np.isnan(ai_up[-1]) else ai_up[-1], "ai_down": 0.0 if np.isnan(ai_down[-1]) else ai_down[-1],
-                                        "ccl_i": 0.0 if np.isnan(ccl_i[-1]) else ccl_i[-1],
-                                        "dpo_i": 0.0 if np.isnan(dpo_i[-1]) else dpo_i[-1],
-                                        "ema_i": 0.0 if np.isnan(ema_i[-1]) else ema_i[-1],
-                                        "ichimoku_a": 0.0 if np.isnan(ichimoku_a[-1]) else ichimoku_a[-1], "ichimoku_b": 0.0 if np.isnan(ichimoku_b[-1]) else ichimoku_b[-1],
-                                        "kst": 0.0 if np.isnan(kst[-1]) else kst[-1], "kst_diff": 0.0 if np.isnan(kst_diff[-1]) else kst_diff[-1], "kst_sig": 0.0 if np.isnan(kst_sig[-1]) else kst_sig[-1],
-                                        "macd": 0.0 if np.isnan(macd[-1]) else macd[-1], "macd_diff": 0.0 if np.isnan(macd_diff[-1]) else macd_diff[-1], "macd_sig": 0.0 if np.isnan(macd_sig[-1]) else macd_sig[-1],
-                                        "mi": 0.0 if np.isnan(mi[-1]) else mi[-1],
-                                        "psar_i": 0.0 if np.isnan(psar_i[-1]) else psar_i[-1], "psar_up": 0.0 if np.isnan(psar_up[-1]) else psar_up[-1], "psar_down": 0.0 if np.isnan(psar_down[-1]) else psar_down[-1],
-                                        "trix_i": 0.0 if np.isnan(trix_i[-1]) else trix_i[-1],
-                                        "vi_diff": 0.0 if np.isnan(vi_diff[-1]) else vi_diff[-1], "vi_neg": 0.0 if np.isnan(vi_neg[-1]) else vi_neg[-1], "vi_pos": 0.0 if np.isnan(vi_pos[-1]) else vi_pos[-1],
-                                        "cr_i": 0.0 if np.isnan(cr_i[-1]) else cr_i[-1],
-                                        "dlr_i": 0.0 if np.isnan(dlr_i[-1]) else dlr_i[-1],
-                                        "adi_i": 0.0 if np.isnan(adi_i[-1]) else adi_i[-1],
-                                        "cmf_i": 0.0 if np.isnan(cmf_i[-1]) else cmf_i[-1], "cmf_signal": 0.0 if np.isnan(cmf_signal[-1]) else cmf_signal[-1],
-                                        "fi_i": 0.0 if np.isnan(fi_i[-1]) else fi_i[-1],
-                                        "nvi_i": 0.0 if np.isnan(nvi_i[-1]) else nvi_i[-1],
-                                        "obv_i": 0.0 if np.isnan(obv_i[-1]) else obv_i[-1],
-                                        "ao_i": 0.0 if np.isnan(ao_i[-1]) else ao_i[-1],
-                                        "vpt_i": 0.0 if np.isnan(vpt_i[-1]) else vpt_i[-1],
-                                        "kama_i": 0.0 if np.isnan(kama_i[-1]) else kama_i[-1],
-                                        "mfi_i": 0.0 if np.isnan(mfi_i[-1]) else mfi_i[-1],
-                                        "roc_i": 0.0 if np.isnan(roc_i[-1]) else roc_i[-1],
-                                        "rsi_i": 0.0 if np.isnan(rsi_i[-1]) else rsi_i[-1],
-                                        "tsi_i": 0.0 if np.isnan(tsi_i[-1]) else tsi_i[-1],
-                                        "stoch_i": 0.0 if np.isnan(stoch_i[-1]) else stoch_i[-1], "stoch_signal": 0.0 if np.isnan(stoch_signal[-1]) else stoch_signal[-1],
-                                        "uo_i": 0.0 if np.isnan(uo_i[-1]) else uo_i[-1],
-                                        "wr_i": 0.0 if np.isnan(wr_i[-1]) else wr_i[-1]
-                                        })
+        "diff_value": (float(old_list_indicators_target_ticker[0]["close_value"]) - float(list_open_value[-1])),
+        "open_value": list_open_value[-1],
+        "close_value": list_close_value[-1],
+        "high_value": list_high_value[-1],
+        "low_value": list_low_value[-1],
+        "volume_value": list_volume_value[-1],
+        "bb_bbh": 0.0 if my_lib.np.isnan(bb_bbh[-1]) else bb_bbh[-1], "bb_bbl": 0.0 if my_lib.np.isnan(bb_bbl[-1]) else bb_bbl[-1], "bb_bbm": 0.0 if my_lib.np.isnan(bb_bbm[-1]) else bb_bbm[-1],
+        "kc_kcc": 0.0 if my_lib.np.isnan(kc_kcc[-1]) else kc_kcc[-1], "kc_kch": 0.0 if my_lib.np.isnan(kc_kch[-1]) else kc_kch[-1], "kc_kcl": 0.0 if my_lib.np.isnan(kc_kcl[-1]) else kc_kcl[-1],
+        "atr_i": 0.0 if my_lib.np.isnan(atr_i[-1]) else atr_i[-1],
+        "dc_dch": 0.0 if my_lib.np.isnan(dc_dch[-1]) else dc_dch[-1], "dc_dcl": 0.0 if my_lib.np.isnan(dc_dcl[-1]) else dc_dcl[-1],
+        "adx_aver": 0.0 if my_lib.np.isnan(adx_aver[-1]) else adx_aver[-1], "adx_DI_pos": 0.0 if my_lib.np.isnan(adx_DI_pos[-1]) else adx_DI_pos[-1], "adx_DI_neg": 0.0 if my_lib.np.isnan(adx_DI_neg[-1]) else adx_DI_neg[-1],
+        "ai_i": 0.0 if my_lib.np.isnan(ai_i[-1]) else ai_i[-1], "ai_up": 0.0 if my_lib.np.isnan(ai_up[-1]) else ai_up[-1], "ai_down": 0.0 if my_lib.np.isnan(ai_down[-1]) else ai_down[-1],
+        "ccl_i": 0.0 if my_lib.np.isnan(ccl_i[-1]) else ccl_i[-1],
+        "dpo_i": 0.0 if my_lib.np.isnan(dpo_i[-1]) else dpo_i[-1],
+        "ema_i": 0.0 if my_lib.np.isnan(ema_i[-1]) else ema_i[-1],
+        "ichimoku_a": 0.0 if my_lib.np.isnan(ichimoku_a[-1]) else ichimoku_a[-1], "ichimoku_b": 0.0 if my_lib.np.isnan(ichimoku_b[-1]) else ichimoku_b[-1],
+        "kst": 0.0 if my_lib.np.isnan(kst[-1]) else kst[-1], "kst_diff": 0.0 if my_lib.np.isnan(kst_diff[-1]) else kst_diff[-1], "kst_sig": 0.0 if my_lib.np.isnan(kst_sig[-1]) else kst_sig[-1],
+        "macd": 0.0 if my_lib.np.isnan(macd[-1]) else macd[-1], "macd_diff": 0.0 if my_lib.np.isnan(macd_diff[-1]) else macd_diff[-1], "macd_sig": 0.0 if my_lib.np.isnan(macd_sig[-1]) else macd_sig[-1],
+        "mi": 0.0 if my_lib.np.isnan(mi[-1]) else mi[-1],
+        "psar_i": 0.0 if my_lib.np.isnan(psar_i[-1]) else psar_i[-1], "psar_up": 0.0 if my_lib.np.isnan(psar_up[-1]) else psar_up[-1], "psar_down": 0.0 if my_lib.np.isnan(psar_down[-1]) else psar_down[-1],
+        "trix_i": 0.0 if my_lib.np.isnan(trix_i[-1]) else trix_i[-1],
+        "vi_diff": 0.0 if my_lib.np.isnan(vi_diff[-1]) else vi_diff[-1], "vi_neg": 0.0 if my_lib.np.isnan(vi_neg[-1]) else vi_neg[-1], "vi_pos": 0.0 if my_lib.np.isnan(vi_pos[-1]) else vi_pos[-1],
+        "cr_i": 0.0 if my_lib.np.isnan(cr_i[-1]) else cr_i[-1],
+        "dlr_i": 0.0 if my_lib.np.isnan(dlr_i[-1]) else dlr_i[-1],
+        "adi_i": 0.0 if my_lib.np.isnan(adi_i[-1]) else adi_i[-1],
+        "cmf_i": 0.0 if my_lib.np.isnan(cmf_i[-1]) else cmf_i[-1], "cmf_signal": 0.0 if my_lib.np.isnan(cmf_signal[-1]) else cmf_signal[-1],
+        "fi_i": 0.0 if my_lib.np.isnan(fi_i[-1]) else fi_i[-1],
+        "nvi_i": 0.0 if my_lib.np.isnan(nvi_i[-1]) else nvi_i[-1],
+        "obv_i": 0.0 if my_lib.np.isnan(obv_i[-1]) else obv_i[-1],
+        "ao_i": 0.0 if my_lib.np.isnan(ao_i[-1]) else ao_i[-1],
+        "vpt_i": 0.0 if my_lib.np.isnan(vpt_i[-1]) else vpt_i[-1],
+        "kama_i": 0.0 if my_lib.np.isnan(kama_i[-1]) else kama_i[-1],
+        "mfi_i": 0.0 if my_lib.np.isnan(mfi_i[-1]) else mfi_i[-1],
+        "roc_i": 0.0 if my_lib.np.isnan(roc_i[-1]) else roc_i[-1],
+        "rsi_i": 0.0 if my_lib.np.isnan(rsi_i[-1]) else rsi_i[-1],
+        "tsi_i": 0.0 if my_lib.np.isnan(tsi_i[-1]) else tsi_i[-1],
+        "stoch_i": 0.0 if my_lib.np.isnan(stoch_i[-1]) else stoch_i[-1], "stoch_signal": 0.0 if my_lib.np.isnan(stoch_signal[-1]) else stoch_signal[-1],
+        "uo_i": 0.0 if my_lib.np.isnan(uo_i[-1]) else uo_i[-1],
+        "wr_i": 0.0 if my_lib.np.isnan(wr_i[-1]) else wr_i[-1]
+    })
 
     path = root_path + 'Helper\\TA_stocks\\'
     file_name_ta = 'result_ta'
-    write_data_json(list_indicators_target_ticker, path, file_name_ta)
+    my_lib.write_data_json(list_indicators_target_ticker, path, file_name_ta)
 
     # _________________________________________________________________________________
 
     # Check on repeat
 
     path = root_path + 'Helper\\TA_stocks\\'
-    hash_result_ta = read_data_json(path, 'hash_result_ta')
+    hash_result_ta = my_lib.read_data_json(path, 'hash_result_ta')
 
     file_name = 'result_ta'
-    new_hash = md5(path + file_name + '.json')
+    new_hash = my_lib.md5(path + file_name + '.json')
 
     if new_hash == hash_result_ta[0]["hash"]:
         print("___ No the new TA values ___")
@@ -904,11 +871,11 @@ def main():
     hash_result_ta = [{"hash": new_hash}]
 
     file_name = 'hash_result_ta'
-    write_data_json(hash_result_ta, path, file_name)
+    my_lib.write_data_json(hash_result_ta, path, file_name)
 
     # _________________________________________________________________________________
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.DEBUG)
+    my_lib.logging.basicConfig(level=my_lib.logging.DEBUG)
     main()

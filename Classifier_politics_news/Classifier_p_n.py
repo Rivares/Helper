@@ -1,28 +1,14 @@
-# coding: utf8
+# coding: UTF-8
 
-from finam.export import Exporter, Market, LookupComparator
+import lib_general as my_lib
+
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
-from openpyxl import Workbook
-import matplotlib.pyplot as plt
-from bs4 import BeautifulSoup
-from fuzzywuzzy import fuzz
-import numpy as np
-import pandas as pd
-import pymorphy2
-import datetime
-import requests
-import logging
-import hashlib
 import keras
-import json
-import xlrd
-import csv
-import os
-import re
 
 
 root_path = 'C:\\Users\\user\\0_Py\\'
+
 
 class Spider(object):
     def __init__(self, title, additionally, href, time):
@@ -52,14 +38,6 @@ class Spider(object):
 #                          })
 
 
-def md5(fname):
-    hash_md5 = hashlib.md5()
-    with open(fname, "rb") as f:
-        for chunk in iter(lambda: f.read(4096), b""):
-            hash_md5.update(chunk)
-    return hash_md5.hexdigest()
-
-
 def write_article_csv(data):
     with open(file_name + extension, 'a', newline='') as f:
         fieldnames = ['title', 'additionally', 'href', 'time']
@@ -78,9 +56,9 @@ def read_article_csv():
     extension = '.csv'
     listSpider_E_N = []
 
-    if os.stat(path + file_name + extension).st_size != 0:
+    if my_lib.os.stat(path + file_name + extension).st_size != 0:
         with open(path + file_name + extension, newline='\n') as csvfile:
-            reader = csv.DictReader(csvfile, delimiter=',')
+            reader = my_lib.csv.DictReader(csvfile, delimiter=',')
             for row in reader:
                 # reader.fieldnames[i] - i = 0 - title; 1 - additionally; 2 - href; 3 - time
                 if str(row.get(reader.fieldnames[0])) != str(reader.fieldnames[0]):
@@ -96,24 +74,15 @@ def read_article_csv():
     return listSpider_E_N
 
 
-def convert_csv_to_xls():
-    wb = Workbook()
-    ws = wb.active
-    with open(file_name + extension, 'r') as f:
-        for row in csv.reader(f):
-            ws.append(row)
-    wb.save(file_name + '.xlsx')
-
-
 def read_params_xlsx():
     country_path = root_path + 'Helper\\Classifier_politics_news\\'
     country_file_name = 'params'
     country_extension = '.xlsx'
 
-    workbook = xlrd.open_workbook(country_path + country_file_name + country_extension, on_demand=True)
+    workbook = my_lib.xlrd.open_workbook(country_path + country_file_name + country_extension, on_demand=True)
     worksheet = workbook.sheet_by_index(0)
 
-    if os.stat(country_path + country_file_name + country_extension).st_size != 0:
+    if my_lib.os.stat(country_path + country_file_name + country_extension).st_size != 0:
         first_row = []
         for col in range(worksheet.ncols):
             first_row.append(worksheet.cell_value(0, col))
@@ -132,43 +101,16 @@ def read_params_xlsx():
     return listParams_E_N
 
 
-def convert_json_to_xlsx():
-    path = root_path + 'Helper\\Classifier_politics_news\\'
-    file_name = 'params'
-    from_extension = '.json'
-    to_extension = '.xlsx'
-
-    pd.read_json(path + file_name + from_extension, encoding="utf-8").to_excel(path + file_name + to_extension,
-                                                                               encoding="utf-8")
-
-
-def write_data_json(data, path, file_name):
-    extension = '.json'
-
-    with open(path + file_name + extension, "w", encoding="utf-8") as json_file:
-        json.dump(data, json_file, ensure_ascii=False, indent=4)
-
-
-def read_data_json(path, file_name):
-    extension = '.json'
-    data = []
-
-    with open(path + file_name + extension, encoding="utf-8") as json_file:
-        data = json.load(json_file)
-
-    return data
-
-
 # ______________________________ Parser ______________________________
 
 
 def get_html(url):
-    r = requests.get(url)
+    r = my_lib.requests.get(url)
     return r.text
 
 
 def get_page_data(html, article_data):
-    soup = BeautifulSoup(html, 'lxml')
+    soup = my_lib.BeautifulSoup(html, 'lxml')
     divs = soup.find('div', class_='list list-tags')
     ads = divs.find_all('div', class_='list-item', limit=10)
 
@@ -209,26 +151,6 @@ def get_page_data(html, article_data):
     return article_data
 
 
-# ______________________________ NN ______________________________
-
-def list_true_value(list_values_to_nn):
-    list_diff_values = []
-    prev_value = list_values_to_nn[0]
-    for idx in range(1, len(list_values_to_nn)):
-        if list_values_to_nn[idx] > prev_value: # prev_value + 3%
-            list_diff_values.append(1)
-
-        if list_values_to_nn[idx] < prev_value: # prev_value + 3%
-            list_diff_values.append(-1)
-
-        if list_values_to_nn[idx] == prev_value:
-            list_diff_values.append(0)
-
-        prev_value = list_values_to_nn[idx]
-
-    return list_diff_values
-
-
 def main():
     print("\n__________________ Politic news __________________\n")
 
@@ -247,16 +169,16 @@ def main():
     # print(article_data.__len__())
     path = root_path + 'Helper\\Classifier_politics_news\\'
     file_name = 'politics_news'
-    write_data_json(article_data, path, file_name)
+    my_lib.write_data_json(article_data, path, file_name)
 
     # _________________________________________________________________________________
 
     # Check on repeat
 
-    hash_news_p_n = read_data_json(path, 'hash_news_p_n')
+    hash_news_p_n = my_lib.read_data_json(path, 'hash_news_p_n')
 
     file_name = 'politics_news'
-    if md5(path + file_name + '.json') == hash_news_p_n[0]["hash"]:
+    if my_lib.md5(path + file_name + '.json') == hash_news_p_n[0]["hash"]:
         print("___ No the new politics news ___")
         return
 
@@ -272,7 +194,7 @@ def main():
 
     path = root_path + 'Helper\\Classifier_politics_news\\'
     file_name = 'politics_news'
-    news = read_data_json(path, file_name)
+    news = my_lib.read_data_json(path, file_name)
 
     listSpider_E_N = []
     for item in news:
@@ -286,7 +208,7 @@ def main():
     # listSpider_E_N = read_article_csv()
     # print(listSpider_E_N.__len__())
 
-    reg = re.compile('[^а-яА-Я -]')
+    reg = my_lib.re.compile('[^а-яА-Я -]')
 
     for obj in listSpider_E_N:
         obj.title = obj.title.lower()
@@ -324,7 +246,7 @@ def main():
 
     # Normalization the list of news
 
-    morph = pymorphy2.MorphAnalyzer()
+    morph = my_lib.pymorphy2.MorphAnalyzer()
 
     for obj in listSpider_E_N:
         obj.title = (' '.join([morph.normal_forms(w)[0] for w in obj.title.split()]))
@@ -337,7 +259,7 @@ def main():
     # listParams_E_N = read_params_xlsx()
     path = root_path + 'Helper\\Classifier_politics_news\\'
     file_name = 'params'
-    listParams_E_N = read_data_json(path, file_name)
+    listParams_E_N = my_lib.read_data_json(path, file_name)
     # write_params_json(listParams_E_N)
     # convert_json_to_xlsx()
 
@@ -401,7 +323,7 @@ def main():
     # print(listWords[0][0])
 
     newListWords = []
-    listWordsToNN = np.zeros((count_sentences, count_words, count_charters))
+    listWordsToNN = my_lib.np.zeros((count_sentences, count_words, count_charters))
 
     idx_sentence = 0
     for sentence in listWords:
@@ -456,7 +378,7 @@ def main():
     # _________________________________________________________________________________
 
     # future_weigths = np.zeros(length_sentence, dtype=float)
-    list_future_weigths = np.zeros((len(listWords), count_words), dtype=float)
+    list_future_weigths = my_lib.np.zeros((len(listWords), count_words), dtype=float)
 
     idx_word = 0
     idx_sentence = 0
@@ -465,14 +387,14 @@ def main():
         for obj in header:
             # print(obj.lower())
             for params in listParams_E_N:
-                if fuzz.ratio(params.get('name'), obj.lower()) > 90:
+                if my_lib.fuzz.ratio(params.get('name'), obj.lower()) > 90:
                     # print("I found of name! --->>> " + str(obj))
                     list_future_weigths[idx_sentence][idx_word] = float(params.get('impact'))
                     break
                 else:
                     if len(params.get('synonyms')) >= 1:
                         for it in params.get('synonyms'):
-                            if fuzz.ratio(str(it), str(obj.lower())) > 80:
+                            if my_lib.fuzz.ratio(str(it), str(obj.lower())) > 80:
                                 # print("I found of synonyms! --->>> " + str(obj.lower()))
                                 list_future_weigths[idx_sentence][idx_word] = float(params.get('impact'))
                                 break
@@ -500,7 +422,7 @@ def main():
         for obj in header:
             if list_future_weigths[idx_sentence][idx_word] == 0:
                 file_name = 'applicants'
-                feature_list_applicants = read_data_json(path, file_name)
+                feature_list_applicants = my_lib.read_data_json(path, file_name)
 
                 # find to feature_list_applicants obj
                 success = 0
@@ -511,24 +433,24 @@ def main():
                         item["count"] = item["count"] + 1
                         # print("I found of name! --->>> " + str(item["count"]))
                         file_name = 'applicants'
-                        write_data_json(feature_list_applicants, path, file_name)
+                        my_lib.write_data_json(feature_list_applicants, path, file_name)
                         success = 1
 
                         if item["count"] >= border:
-                            rng = np.random.default_rng()
+                            rng = my_lib.np.random.default_rng()
                             file_name = 'params'
-                            list_params = read_data_json(path, file_name)
+                            list_params = my_lib.read_data_json(path, file_name)
 
                             list_params.append({"name": item["name"],
                                                 "synonyms": [""],
                                                 "impact": (rng.random() - 0.5)
                                                 })
                             file_name = 'params'
-                            write_data_json(list_params, path, file_name)
+                            my_lib.write_data_json(list_params, path, file_name)
                             feature_list_applicants.remove(item)
 
                             file_name = 'applicants'
-                            write_data_json(feature_list_applicants, path, file_name)
+                            my_lib.write_data_json(feature_list_applicants, path, file_name)
 
                         break
                 # Add new feature
@@ -536,7 +458,7 @@ def main():
                     new_feature_applicant = {"name": obj, "count": 1}
                     feature_list_applicants.append(new_feature_applicant)
                     file_name = 'applicants'
-                    write_data_json(feature_list_applicants, path, file_name)
+                    my_lib.write_data_json(feature_list_applicants, path, file_name)
                     # print(obj)
 
             idx_word = idx_word + 1
@@ -563,14 +485,14 @@ def main():
     # logging.basicConfig(level=logging.DEBUG)
 
     # curr_day = datetime.date(2020, 1, 1)
-    curr_day = datetime.date(datetime.datetime.now().year,
-                             datetime.datetime.now().month,
-                             datetime.datetime.now().day)
+    curr_day = my_lib.datetime.date(my_lib.datetime.datetime.now().year,
+                                    my_lib.datetime.datetime.now().month,
+                                    my_lib.datetime.datetime.now().day)
     # print(curr_day)
-    exporter = Exporter()
-    data = exporter.lookup(name=tickers[0], market=Market.ETF_MOEX)
+    exporter = my_lib.Exporter()
+    data = exporter.lookup(name=tickers[0], market=my_lib.Market.ETF_MOEX)
     # print(data.head())
-    stock = exporter.download(data.index[0], market=Market.ETF_MOEX, start_date=curr_day)
+    stock = exporter.download(data.index[0], market=my_lib.Market.ETF_MOEX, start_date=curr_day)
     # print(stock.head())
 
     file_name = path + 'stocks_' + str(tickers[0]) + '.csv'
@@ -610,7 +532,7 @@ def main():
         for dt in list_time_value:
             regex = r":00$"
             frame_minute = str(dt)
-            matches = re.findall(regex, frame_minute)
+            matches = my_lib.re.findall(regex, frame_minute)
             frame_minute = frame_minute.replace(matches[0], '')
 
             if len(frame_minute) < 3:
@@ -670,12 +592,12 @@ def main():
         listVolumeValuesToNN.insert(0, listVolumeValuesToNN[0])
         listTimePointsToNN.insert(0, listTimePointsToNN[0])
 
-        listTrueValue = list_true_value(listOpenValuesToNN)
+        listTrueValue = my_lib.list_true_value(listOpenValuesToNN)
         # print(listTrueValue)
         # print(len(listTrueValue))
 
         # задаем для воспроизводимости результатов
-        np.random.seed(2)
+        my_lib.np.random.seed(2)
         model_name = path + 'NN_model.h5'
 
         # создаем модели, добавляем слои один за другим
@@ -700,7 +622,7 @@ def main():
         # print("Old")
         # print(len(native_weights))
 
-        new_weights = np.zeros((len(native_weights), len(native_weights[0])), dtype=float)
+        new_weights = my_lib.np.zeros((len(native_weights), len(native_weights[0])), dtype=float)
         for future_news in list_future_weigths:
             idx_1 = 0
             for weights in native_weights:
@@ -729,10 +651,10 @@ def main():
 
                 X.append(one_sentence_news)
 
-            X = np.asarray(X, dtype=np.float32)
-            Y = np.asarray(listTrueValue, dtype=np.float32)
+            X = my_lib.np.asarray(X, dtype=my_lib.np.float32)
+            Y = my_lib.np.asarray(listTrueValue, dtype=my_lib.np.float32)
 
-            if os.path.exists(model_name) != False:
+            if my_lib.os.path.exists(model_name) != False:
                 # Recreate the exact same model
                 new_model = keras.models.load_model(model_name)
             else:
@@ -760,16 +682,16 @@ def main():
                 path = root_path + 'Helper\\Classifier_politics_news\\'
                 file_name_prediction = 'prediction_p_n'
 
-                write_data_json(prediction, path, file_name_prediction)
+                my_lib.write_data_json(prediction, path, file_name_prediction)
 
             except:
                 print("Problem with – fit(C_P_N)!")
 
     path = root_path + 'Helper\\Classifier_politics_news\\'
-    hash_news_p_n = [{"hash": md5(path + 'politics_news' + '.json')}]
+    hash_news_p_n = [{"hash": my_lib.md5(path + 'politics_news' + '.json')}]
 
     file_name = 'hash_news_p_n'
-    write_data_json(hash_news_p_n, path, file_name)
+    my_lib.write_data_json(hash_news_p_n, path, file_name)
 
 
 if __name__ == '__main__':
