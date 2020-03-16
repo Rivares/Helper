@@ -228,21 +228,6 @@ def list_true_value(list_values_to_nn):
 
     return list_diff_values
 
-def sigmoid(x):
-    # Функция активации sigmoid:: f(x) = 1 / (1 + e^(-x))
-    return 1 / (1 + np.exp(-x))
-
-
-def deriv_sigmoid(x):
-    # Производная от sigmoid: f'(x) = f(x) * (1 - f(x))
-    fx = sigmoid(x)
-    return fx * (1 - fx)
-
-
-def mse_loss(y_true, y_pred):
-    # y_true и y_pred являются массивами numpy с одинаковой длиной
-    return ((y_true - y_pred) ** 2).mean()
-
 
 def main():
     print("\n__________________ Politic news __________________\n")

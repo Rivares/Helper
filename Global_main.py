@@ -29,6 +29,8 @@ import pandas as pd
 import requests
 import keras
 
+import lib_general as my_lib
+
 
 
 
@@ -83,23 +85,6 @@ prediction_e_n = []
 prediction_p_n = []
 market = []
 result_ta = []
-
-
-def write_data_json(data, path, file_name):
-    extension = '.json'
-
-    with open(path + file_name + extension, "w", encoding="utf-8") as json_file:
-        json.dump(data, json_file, ensure_ascii=False, indent=4)
-
-
-def read_data_json(path, file_name):
-    extension = '.json'
-    data = []
-
-    with open(path + file_name + extension, encoding="utf-8") as json_file:
-        data = json.load(json_file)
-
-    return data
 
 
 def exec_full(file_path):
@@ -224,12 +209,9 @@ def main():
         X.append(result_ta[0]['vpt_i'])
 
         count_inputs = len(X)
-        print("Len NN: " + str(count_inputs))
+        # print("Len NN: " + str(count_inputs))
         # print("X: "); print(X)
         # print("Y: "); print(Y)
-
-        x_train = np.random.random((1, 1, count_inputs))
-        print("np.random: " + str(x_train))
 
         # создаем модели, добавляем слои один за другим
         model = Sequential()
@@ -237,7 +219,7 @@ def main():
         model.add(LSTM(int(count_inputs / 2), return_sequences=True, input_shape=(1, count_inputs)))
         model.add(LSTM(int(count_inputs / 4), return_sequences=True))
         model.add(LSTM(int(count_inputs / 6), return_sequences=True))
-        model.add(LSTM(int(count_inputs / 8), return_sequences=True))
+        model.add(LSTM(int(count_inputs / 8)))
         model.add(Dense(int(count_inputs / 10), activation='relu'))
         model.add(Dense(int(count_inputs / 12), activation='relu'))
         model.add(Dense(int(count_inputs / 14), activation='softmax'))
@@ -248,9 +230,9 @@ def main():
         model.add(Dense(int(count_inputs / 60), activation='sigmoid'))
         model.add(Dense(1, activation='sigmoid'))
 
-        model.summary()
+        # model.summary()
 
-        model.compile(loss="categorical_crossentropy", optimizer="rmsprop", metrics=['accuracy'])
+        model.compile(loss="binary_crossentropy", optimizer="rmsprop", metrics=['accuracy'])
 
         input_nodes = []
         output_nodes = []
@@ -260,12 +242,17 @@ def main():
         input_nodes = np.asarray(input_nodes, dtype=np.float32)
         output_nodes = np.asarray(output_nodes, dtype=np.float32)
 
-        path = root_path + 'Helper\\'
-        filename = 'X'
-        write_data_json(X, path, filename)
+        input_nodes = input_nodes.reshape((1, 1, count_inputs))
+        output_nodes = output_nodes.reshape((1, 1))
+        # print(input_nodes.shape)
+        # print(output_nodes.shape)
 
-        filename = 'Y'
-        write_data_json(Y, path, filename)
+        # path = root_path + 'Helper\\'
+        # filename = 'X'
+        # write_data_json(X, path, filename)
+        #
+        # filename = 'Y'
+        # write_data_json(Y, path, filename)
 
         # print(output_nodes)
 
