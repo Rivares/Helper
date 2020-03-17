@@ -1,12 +1,7 @@
 # coding: UTF-8
 
-import lib_general as my_lib
-
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.button import Button
-from kivy.uix.image import Image
-from kivy.uix.label import Label
-from kivy.app import App
+import lib_general as my_general
+import lib_gui as my_gui
 
 
 from keras.layers import Dense, Dropout, LSTM, Embedding
@@ -14,47 +9,12 @@ from keras.models import Sequential
 import keras
 
 
-red = [1, 0, 0, 1]
-green = [0, 1, 0, 1]
-blue = [0, 0, 1, 1]
-purple = [1, 0, 1, 1]
-
-
-class HBoxLayoutExample(App):
-    def build(self):
-        layout = BoxLayout(padding=10)
-        colors = [red, green, blue, purple]
-
-        button = Button(text='Hello from Kivy',
-                        background_color=green)
-        button.bind(on_press=self.on_press_button)
-        layout.add_widget(button)
-        for i in range(5):
-            btn = Button(text="Button #%s" % (i + 1),
-                         background_color=red
-                         )
-
-            layout.add_widget(btn)
-        return layout
-
-    def on_press_button(self, instance):
-        print('Вы нажали на кнопку!')
-
-
 root_path = 'C:\\Users\\user\\0_Py\\'
 
-SYMBOLS = ['FXRB',
-           'FXMM',
-           'FXRU',
-           'FXRB',
-           'FXWO',
-           'FXWR'
-           ]
-
-start = my_lib.datetime.datetime(2020, 1, 1);
-end = my_lib.datetime.datetime(my_lib.datetime.datetime.now().year,
-                               my_lib.datetime.datetime.now().month,
-                               my_lib.datetime.datetime.now().day);
+start = my_general.datetime.datetime(2020, 1, 1);
+end = my_general.datetime.datetime(my_general.datetime.datetime.now().year,
+                                   my_general.datetime.datetime.now().month,
+                                   my_general.datetime.datetime.now().day);
 
 
 path_name_class_e_n = 'Classifier_economics_news\\Classifier_e_n.py'
@@ -68,21 +28,24 @@ market = []
 result_ta = []
 
 
-def exec_full(file_path):
-    global_namespace = {
+def exec_full(file_path, globals=None, locals=None):
+    if globals is None:
+        globals = {}
+    globals.update({
         "__file__": file_path,
         "__name__": "__main__",
-    }
+    })
     with open(file_path, 'rb') as file:
-        exec(compile(file.read(), file_path, 'exec'), global_namespace)
+        exec(compile(file.read(), file_path, 'exec'), globals, locals)
 
 
 def main():
-    # app = HBoxLayoutExample()
+    # app = my_gui.MainApp()
     # app.run()
 
-    while (my_lib.datetime.datetime.now().hour > 9) and (my_lib.datetime.datetime.now().hour < 23):
+    while (my_general.datetime.datetime.now().hour >= 0) and (my_general.datetime.datetime.now().hour < 23):
 
+        my_general.set_ticker('FXRB ETF')
         exec_full(path_name_class_e_n)
         exec_full(path_name_class_p_n)
         exec_full(path_name_ta_stocks)
@@ -90,19 +53,19 @@ def main():
 
         path = 'Helper\\Classifier_economics_news\\'
         filename = 'prediction_e_n'
-        prediction_e_n = my_lib.read_data_json(root_path + path, filename)
+        prediction_e_n = my_general.read_data_json(root_path + path, filename)
 
         path = 'Helper\\Classifier_politics_news\\'
         filename = 'prediction_p_n'
-        prediction_p_n = my_lib.read_data_json(root_path + path, filename)
+        prediction_p_n = my_general.read_data_json(root_path + path, filename)
 
         path = 'Helper\\TA_stocks\\'
         filename = 'result_ta'
-        result_ta = my_lib.read_data_json(root_path + path, filename)
+        result_ta = my_general.read_data_json(root_path + path, filename)
 
         path = 'Helper\\Parser_market\\'
         filename = 'market'
-        market = my_lib.read_data_json(root_path + path, filename)
+        market = my_general.read_data_json(root_path + path, filename)
 
         # print(prediction_e_n)
         # print(prediction_p_n)
@@ -111,7 +74,7 @@ def main():
 
         print("__________________ Global training __________________")
 
-        my_lib.np.random.seed(2)
+        my_general.np.random.seed(2)
         path = 'Helper\\'
         model_name = root_path + path + 'NN_Main_model.h5'
 
@@ -219,8 +182,8 @@ def main():
         input_nodes.append(X)
         output_nodes.append(Y)
 
-        input_nodes = my_lib.np.asarray(input_nodes, dtype=my_lib.np.float32)
-        output_nodes = my_lib.np.asarray(output_nodes, dtype=my_lib.np.float32)
+        input_nodes = my_general.np.asarray(input_nodes, dtype=my_general.np.float32)
+        output_nodes = my_general.np.asarray(output_nodes, dtype=my_general.np.float32)
 
         input_nodes = input_nodes.reshape((1, 1, count_inputs))
         output_nodes = output_nodes.reshape((1, 1))
@@ -229,14 +192,14 @@ def main():
 
         path = root_path + 'Helper\\'
         filename = 'X'
-        my_lib.write_data_json(X, path, filename)
+        my_general.write_data_json(X, path, filename)
 
         filename = 'Y'
-        my_lib.write_data_json(Y, path, filename)
+        my_general.write_data_json(Y, path, filename)
 
         # print(output_nodes)
 
-        if my_lib.os.path.exists(model_name) != False:
+        if my_general.os.path.exists(model_name) != False:
             # Recreate the exact same model
             new_model = keras.models.load_model(model_name)
         else:
@@ -257,7 +220,7 @@ def main():
 
         path = root_path + 'Helper\\'
         file_name_prediction = 'main_prediction'
-        my_lib.write_data_json(main_prediction, path, file_name_prediction)
+        my_general.write_data_json(main_prediction, path, file_name_prediction)
 
         # except:
         #     print("Problem with – fit(Global)!")
