@@ -212,7 +212,6 @@ def main():
         model.add(Dense(1, activation='sigmoid'))
 
         # model.summary()
-
         model.compile(loss="binary_crossentropy", optimizer="rmsprop", metrics=['accuracy'])
 
         input_nodes = []

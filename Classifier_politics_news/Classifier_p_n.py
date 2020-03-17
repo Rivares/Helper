@@ -615,6 +615,7 @@ def main():
         model.add(Dense(count_words - 27, activation='sigmoid'))
         model.add(Dense(1, activation='sigmoid'))
 
+
         number_layer_words = 5
         native_weights = model.layers[number_layer_words].get_weights()[0]  # 0 - weights
         native_biases = model.layers[number_layer_words].get_weights()[1]   # 1 - biases
@@ -641,7 +642,7 @@ def main():
             model.layers[number_layer_words].set_weights(keras_weights)
 
             # компилируем модель, используем градиентный спуск adam
-            model.compile(loss="mean_squared_error", optimizer="adam", metrics=['accuracy'])
+            model.compile(loss="mean_squared_error", optimizer="rmsprop", metrics=['accuracy'])
 
             X = []
 
@@ -676,7 +677,7 @@ def main():
                 print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
 
                 print(scores)
-                prediction = {"score": int(scores[-1] * 100)}
+                prediction = {"score": float(scores[-1])}
                 print(prediction)
 
                 path = root_path + 'Helper\\Classifier_politics_news\\'

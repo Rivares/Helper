@@ -105,7 +105,6 @@ def main():
     list_name_indexes_WR = [
         'CSI200 (Китай)',
         'CSI300 (Китай)',
-        'Futsee-100*',
         'Hang Seng (Гонконг)',
         'KOSPI (Корея)',
         'N225Jap*',
@@ -179,57 +178,51 @@ def main():
                                  "volume_value": 0.0})
             print("Problem with – tickers(index) - " + index)
 
-    if (my_lib.datetime.datetime.now().hour > 14):
+    # print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~ Indexes (World + USA)~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
 
-        # print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~ Indexes (World + USA)~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
+    list_name_indexes_W_U = [
+        'D&J-Ind*',
+        'NASDAQ 100**',
+        'NASDAQ**',
+        'SandP-500*'
+    ]
 
-        list_name_indexes_W_U = [
-            'D&J-Ind*',
-            'NASDAQ 100**',
-            'NASDAQ**',
-            'SandP-500*'
-        ]
+    for index in list_name_indexes_W_U:
 
-        for index in list_name_indexes_W_U:
+        # if (my_lib.datetime.datetime.now().hour > 15) and (my_lib.datetime.datetime.now().minute > 40):
+
+        try:
             my_lib.time.sleep(1)  # sec
-            try:
-                # print('\n__________________ ' + index + ' __________________\n')
-                ticker = exporter.lookup(name=index, market=my_lib.Market.INDEXES,
-                                         name_comparator=my_lib.LookupComparator.EQUALS)
+            # print('\n__________________ ' + index + ' __________________\n')
+            ticker = exporter.lookup(name=index, market=my_lib.Market.INDEXES,
+                                     name_comparator=my_lib.LookupComparator.EQUALS)
 
-                data = exporter.download(ticker.index[0], market=my_lib.Market.INDEXES, start_date=curr_moment)
+            data = exporter.download(ticker.index[0], market=my_lib.Market.INDEXES, start_date=curr_moment)
 
-                open_value = data.get('<OPEN>')
-                close_value = data.get('<CLOSE>')
-                high_value = data.get('<HIGH>')
-                low_value = data.get('<LOW>')
-                volume_value = data.get('<VOL>')
+            open_value = data.get('<OPEN>')
+            close_value = data.get('<CLOSE>')
+            high_value = data.get('<HIGH>')
+            low_value = data.get('<LOW>')
+            volume_value = data.get('<VOL>')
 
-                list_open_value = open_value.to_list()
-                list_close_value = close_value.to_list()
-                list_high_value = high_value.to_list()
-                list_low_value = low_value.to_list()
-                list_volume_value = volume_value.to_list()
+            list_open_value = open_value.to_list()
+            list_close_value = close_value.to_list()
+            list_high_value = high_value.to_list()
+            list_low_value = low_value.to_list()
+            list_volume_value = volume_value.to_list()
 
-                list_indexes.append({"open_value": list_open_value[-1],
-                                     "close_value": list_close_value[-1],
-                                     "high_value": list_high_value[-1],
-                                     "low_value": list_low_value[-1],
-                                     "volume_value": list_volume_value[-1]})
-            except:
-                list_indexes.append({"open_value": 0.0,
-                                     "close_value": 0.0,
-                                     "high_value": 0.0,
-                                     "low_value": 0.0,
-                                     "volume_value": 0.0})
-                print("Problem with – tickers(index) - " + index)
-
-    else:
-        list_indexes.append({"open_value": 0.0,
-                             "close_value": 0.0,
-                             "high_value": 0.0,
-                             "low_value": 0.0,
-                             "volume_value": 0.0})
+            list_indexes.append({"open_value": list_open_value[-1],
+                                 "close_value": list_close_value[-1],
+                                 "high_value": list_high_value[-1],
+                                 "low_value": list_low_value[-1],
+                                 "volume_value": list_volume_value[-1]})
+        # else:
+        except:
+            list_indexes.append({"open_value": 0.0,
+                                 "close_value": 0.0,
+                                 "high_value": 0.0,
+                                 "low_value": 0.0,
+                                 "volume_value": 0.0})
 
     # print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~ Stock ~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
 

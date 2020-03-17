@@ -637,7 +637,7 @@ def main():
             model.layers[number_layer_words].set_weights(keras_weights)
 
             # компилируем модель, используем градиентный спуск adam
-            model.compile(loss="mean_squared_error", optimizer="adam", metrics=['accuracy'])
+            model.compile(loss="mean_squared_error", optimizer="rmsprop", metrics=['accuracy'])
 
             X = []
 
@@ -672,7 +672,7 @@ def main():
                 print("\n%s: %.2f%%" % (new_model.metrics_names[1], scores[1] * 100))
 
                 print(scores)
-                prediction = {"score": int(scores[-1] * 100)}
+                prediction = {"score": float(scores[-1])}
                 print(prediction)
 
                 path = root_path + 'Helper\\Classifier_economics_news\\'
