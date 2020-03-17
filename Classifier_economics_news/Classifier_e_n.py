@@ -39,7 +39,7 @@ class Spider(object):
 
 
 def write_article_csv(data):
-    with open(file_name + extension, 'a', newline='') as f:
+    with open(file_name + '.csv', 'a', newline='') as f:
         fieldnames = ['title', 'additionally', 'href', 'time']
         writer = my_lib.csv.DictWriter(f, delimiter=',', fieldnames=fieldnames)
         writer.writeheader()
