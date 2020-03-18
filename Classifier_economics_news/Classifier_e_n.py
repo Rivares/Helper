@@ -7,7 +7,7 @@ from keras.layers import Dense, Dropout
 import keras
 
 
-root_path = 'C:\\Users\\user\\0_Py\\'
+root_path = my_general.root_path
 curr_ticker = my_general.name_ticker
 
 class Spider(object):

@@ -26,7 +26,7 @@ import ta
 
 
 name_ticker = ''
-
+root_path = ''
 
 def md5(fname):
     hash_md5 = hashlib.md5()

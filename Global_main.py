@@ -9,8 +9,6 @@ from keras.models import Sequential
 import keras
 
 
-root_path = 'C:\\Users\\user\\0_Py\\'
-
 start = my_general.datetime.datetime(2020, 1, 1);
 end = my_general.datetime.datetime(my_general.datetime.datetime.now().year,
                                    my_general.datetime.datetime.now().month,
@@ -43,9 +41,12 @@ def main():
     # app = my_gui.MainApp()
     # app.run()
 
-    while (my_general.datetime.datetime.now().hour >= 0) and (my_general.datetime.datetime.now().hour < 23):
+    my_general.name_ticker = 'FXRB ETF'
+    my_general.root_path = 'C:\\Users\\user\\0_Py\\'
+    root_path = 'C:\\Users\\user\\0_Py\\'
 
-        my_general.name_ticker = "FXRB ETF"
+    while (my_general.datetime.datetime.now().hour > 9) and (my_general.datetime.datetime.now().hour < 23):
+
         exec_full(path_name_class_e_n)
         exec_full(path_name_class_p_n)
         exec_full(path_name_ta_stocks)

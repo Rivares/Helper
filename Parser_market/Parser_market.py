@@ -2,7 +2,7 @@
 
 import lib_general as my_general
 
-root_path = 'C:\\Users\\user\\0_Py\\'
+root_path = my_general.root_path
 curr_ticker = my_general.name_ticker
 
 curr_moment = my_general.datetime.date(my_general.datetime.datetime.now().year,
