@@ -45,7 +45,7 @@ def main():
 
     while (my_general.datetime.datetime.now().hour >= 0) and (my_general.datetime.datetime.now().hour < 23):
 
-        my_general.set_ticker('FXRB ETF')
+        my_general.name_ticker = "FXRB ETF"
         exec_full(path_name_class_e_n)
         exec_full(path_name_class_p_n)
         exec_full(path_name_ta_stocks)

@@ -3,21 +3,15 @@
 import lib_general as my_general
 
 root_path = 'C:\\Users\\user\\0_Py\\'
-
-SYMBOLS = ['FXRB ETF',
-           'FXMM ETF',
-           'FXRU ETF',
-           'FXWO ETF',
-           'FXWR ETF',
-           ]
+curr_ticker = my_general.name_ticker
 
 start = my_general.datetime.date(my_general.datetime.datetime.now().year - 1,
-                             my_general.datetime.datetime.now().month,
-                             my_general.datetime.datetime.now().day)
+                                 my_general.datetime.datetime.now().month,
+                                 my_general.datetime.datetime.now().day)
 
 curr_moment = my_general.datetime.date(my_general.datetime.datetime.now().year,
-                                   my_general.datetime.datetime.now().month,
-                                   my_general.datetime.datetime.now().day)
+                                       my_general.datetime.datetime.now().month,
+                                       my_general.datetime.datetime.now().day)
 
 
 def main():
@@ -25,7 +19,7 @@ def main():
 
     exporter = my_general.Exporter()
 
-    target_ticker = SYMBOLS[0]
+    target_ticker = curr_ticker
 
     list_indicators_target_ticker = []
 

@@ -12,7 +12,6 @@ import numpy as np
 import pymorphy2
 import requests
 import datetime
-import argparse
 import logging
 import hashlib
 import random
@@ -27,21 +26,6 @@ import ta
 
 
 name_ticker = ''
-
-
-def set_ticker(ticker):
-    name_ticker = ticker
-
-
-def get_ticker():
-    return name_ticker
-
-
-def createParser():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('name', nargs='?', default=name_ticker)
-
-    return parser
 
 
 def md5(fname):

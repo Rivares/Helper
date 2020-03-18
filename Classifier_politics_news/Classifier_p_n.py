@@ -8,6 +8,7 @@ import keras
 
 
 root_path = 'C:\\Users\\user\\0_Py\\'
+curr_ticker = my_general.name_ticker
 
 
 class Spider(object):
@@ -470,18 +471,6 @@ def main():
 
     # ______________________________ NN ______________________________
 
-    tickers = ['FXRB',
-               'FXMM',
-               'FXRU',
-               'FXRB',
-               'FXWO',
-               'FXWR',
-               'SU26214RMFS5',
-               'RU000A100089',
-               'RU000A0ZZH84',
-               'RU000A0ZYBS1'
-               ]
-
     # logging.basicConfig(level=logging.DEBUG)
 
     # curr_day = datetime.date(2020, 1, 1)
@@ -490,12 +479,12 @@ def main():
                                     my_general.datetime.datetime.now().day)
     # print(curr_day)
     exporter = my_general.Exporter()
-    data = exporter.lookup(name=tickers[0], market=my_general.Market.ETF_MOEX)
+    data = exporter.lookup(name=curr_ticker, market=my_general.Market.ETF_MOEX)
     # print(data.head())
     stock = exporter.download(data.index[0], market=my_general.Market.ETF_MOEX, start_date=curr_day)
     # print(stock.head())
 
-    file_name = path + 'stocks_' + str(tickers[0]) + '.csv'
+    file_name = path + 'stocks_' + str(curr_ticker) + '.csv'
     stock.to_csv(file_name)
 
     time_value = stock.get('<TIME>')
