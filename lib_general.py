@@ -28,6 +28,7 @@ import ta
 name_ticker = ''
 root_path = ''
 
+
 def md5(fname):
     hash_md5 = hashlib.md5()
     with open(fname, "rb") as f:
@@ -53,23 +54,21 @@ def read_data_json(path, file_name):
     return data
 
 
-def convert_csv_to_xls():
+def convert_csv_to_xls(file_name):
     wb = Workbook()
     ws = wb.active
-    with open(file_name + extension, 'r') as f:
+    with open(file_name + '.csv', 'r') as f:
         for row in csv.reader(f):
             ws.append(row)
     wb.save(file_name + '.xlsx')
 
 
-def convert_json_to_xlsx():
-    path = root_path + 'Helper\\Classifier_politics_news\\'
-    file_name = 'params'
+def convert_json_to_xlsx(path_with_name):
     from_extension = '.json'
     to_extension = '.xlsx'
 
-    pd.read_json(path + file_name + from_extension, encoding="utf-8").to_excel(path + file_name + to_extension,
-                                                                               encoding="utf-8")
+    pd.read_json(path_with_name + from_extension, encoding="utf-8").to_excel(path_with_name + to_extension, encoding="utf-8")
+
 
 # ______________________________ NN ______________________________
 

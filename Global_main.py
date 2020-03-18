@@ -47,7 +47,7 @@ def main():
 
     while (my_general.datetime.datetime.now().hour > 9) and (my_general.datetime.datetime.now().hour < 23):
 
-        exec_full(path_name_class_e_n)
+        # exec_full(path_name_class_e_n)
         exec_full(path_name_class_p_n)
         exec_full(path_name_ta_stocks)
         exec_full(path_name_parser_stocks)
