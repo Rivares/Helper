@@ -12,7 +12,13 @@ root_path = my_general.root_path
 curr_ticker = my_general.name_ticker
 spider = my_cust.spider
 
-curr_path = root_path + 'Helper\\Classifier_politics_news\\'
+curr_path = root_path + 'Helper\\Classifier_economics_news\\'
+file_name_e_n = 'economics_news'
+file_name_params = 'params'
+file_name_applicants = 'applicants'
+file_name_prediction = 'prediction_e_n'
+file_name_hash = 'hash_news_e_n'
+
 
 # ______________________________ Parser ______________________________
 
@@ -72,7 +78,6 @@ def main():
     hash_news_e_n = []
 
     # os.remove(file_name + '.csv')
-    # os.remove(file_name + '.xlsx')
     # os.remove(file_name + '.json')
 
     url_gen = base_url
@@ -80,18 +85,16 @@ def main():
     article_data = get_page_data(html, article_data)
 
     # print(article_data.__len__())
-    path = root_path + 'Helper\\Classifier_economics_news\\'
-    file_name = 'economics_news'
-    my_general.write_data_json(article_data, path, file_name)
+
+    my_general.write_data_json(article_data, curr_path, file_name_e_n)
 
     # _________________________________________________________________________________
 
     # Check on repeat
 
-    hash_news_e_n = my_general.read_data_json(path, 'hash_news_e_n')
+    hash_news_e_n = my_general.read_data_json(curr_path, 'hash_news_e_n')
 
-    file_name = 'economics_news'
-    if my_general.md5(path + file_name + '.json') == hash_news_e_n[0]["hash"]:
+    if my_general.md5(curr_path + file_name_e_n + '.json') == hash_news_e_n[0]["hash"]:
         print("___ No the new economics news ___")
         return
 
@@ -105,18 +108,11 @@ def main():
 
     # Creating list of news + to Lower Case + delete ',' and  '.'
 
-    path = root_path + 'Helper\\Classifier_economics_news\\'
-    file_name = 'economics_news'
-    news = my_general.read_data_json(path, file_name)
+    news = my_general.read_data_json(curr_path, file_name_e_n)
 
     listSpider_E_N = []
     for item in news:
-        listSpider_E_N.append(Spider(item['title']
-                                     , item['additionally']
-                                     , item['href']
-                                     , item['time']
-                                     )
-                              )
+        listSpider_E_N.append(item)
 
     # listSpider_E_N = read_article_csv()
     # print(listSpider_E_N.__len__())
@@ -124,10 +120,10 @@ def main():
     reg = my_general.re.compile('[^а-яА-Я -]')
 
     for obj in listSpider_E_N:
-        obj.title = obj.title.lower()
-        obj.title = reg.sub('', obj.title)
-        obj.additionally = obj.additionally.lower()
-        obj.additionally = reg.sub('', obj.additionally)
+        obj['title'] = obj['title'].lower()
+        obj['title'] = reg.sub('', obj['title'])
+        obj['additionally'] = obj['additionally'].lower()
+        obj['additionally'] = reg.sub('', obj['additionally'])
         # print(obj.title, obj.additionally, obj.href, obj.time, sep=' ')
 
     # _________________________________________________________________________________
@@ -143,10 +139,10 @@ def main():
     idx_1 = 0
     idx_2 = 0
     for idx_1 in range(1, len(listSpider_E_N) - 1):
-        ref_href = listSpider_E_N[idx_1].href
+        ref_href = listSpider_E_N[idx_1]['href']
         idx_2 = idx_1 + 1
         for j in range(idx_2, len(listSpider_E_N) - 1):
-            if listSpider_E_N[j].href == ref_href:
+            if listSpider_E_N[j]['href'] == ref_href:
                 listSpider_E_N.remove(listSpider_E_N[j])
 
     # print(listSpider_E_N[0].title,
@@ -162,17 +158,15 @@ def main():
     morph = my_general.pymorphy2.MorphAnalyzer()
 
     for obj in listSpider_E_N:
-        obj.title = (' '.join([morph.normal_forms(w)[0] for w in obj.title.split()]))
-        obj.additionally = (' '.join([morph.normal_forms(w)[0] for w in obj.additionally.split()]))
+        obj['title'] = (' '.join([morph.normal_forms(w)[0] for w in obj['title'].split()]))
+        obj['additionally'] = (' '.join([morph.normal_forms(w)[0] for w in obj['additionally'].split()]))
 
     # _________________________________________________________________________________
 
     # Read reference words from json file
 
     # listParams_E_N = read_params_xlsx()
-    path = root_path + 'Helper\\Classifier_economics_news\\'
-    file_name = 'params'
-    listParams_E_N = my_general.read_data_json(path, file_name)
+    listParams_E_N = my_general.read_data_json(curr_path, file_name_params)
     # write_params_json(listParams_E_N)
     # convert_json_to_xlsx()
 
@@ -199,8 +193,8 @@ def main():
     newListSpider_E_N = []
     time_news = []
     for news in listSpider_E_N:
-        newListSpider_E_N.append(news.title + ' ' + news.additionally)
-        time_news.append(news.time)
+        newListSpider_E_N.append(news['title'] + ' ' + news['additionally'])
+        time_news.append(news['time'])
 
     listSpider_E_N = newListSpider_E_N
 
@@ -286,7 +280,7 @@ def main():
 
     # _________________________________________________________________________________
 
-    # For Trainging NN
+    # # For Trainging NN
 
     # _________________________________________________________________________________
 
@@ -326,7 +320,6 @@ def main():
     # 3 day for appending to params.json
 
     border = 100
-    path = root_path + 'Helper\\Classifier_economics_news\\'
 
     idx_word = 0
     idx_sentence = 0
@@ -334,8 +327,8 @@ def main():
         # print(header)
         for obj in header:
             if list_future_weigths[idx_sentence][idx_word] == 0:
-                file_name = 'applicants'
-                feature_list_applicants = my_general.read_data_json(path, file_name)
+
+                feature_list_applicants = my_general.read_data_json(curr_path, file_name_applicants)
 
                 # find to feature_list_applicants obj
                 success = 0
@@ -345,33 +338,28 @@ def main():
                     if obj == item["name"]:
                         item["count"] = item["count"] + 1
                         # print("I found of name! --->>> " + str(item["count"]))
-                        file_name = 'applicants'
-                        my_general.write_data_json(feature_list_applicants, path, file_name)
+                        my_general.write_data_json(feature_list_applicants, curr_path, file_name_applicants)
                         success = 1
 
                         if item["count"] >= border:
                             rng = my_general.np.random.default_rng()
-                            file_name = 'params'
-                            list_params = my_general.read_data_json(path, file_name)
+                            list_params = my_general.read_data_json(curr_path, file_name_params)
 
                             list_params.append({"name": item["name"],
                                                 "synonyms": [""],
                                                 "impact": (rng.random() - 0.5)
                                                 })
-                            file_name = 'params'
-                            my_general.write_data_json(list_params, path, file_name)
+                            my_general.write_data_json(list_params, curr_path, file_name_params)
                             feature_list_applicants.remove(item)
 
-                            file_name = 'applicants'
-                            my_general.write_data_json(feature_list_applicants, path, file_name)
+                            my_general.write_data_json(feature_list_applicants, curr_path, file_name_applicants)
 
                         break
                 # Add new feature
                 if success == 0:
                     new_feature_applicant = {"name": obj, "count": 1}
                     feature_list_applicants.append(new_feature_applicant)
-                    file_name = 'applicants'
-                    my_general.write_data_json(feature_list_applicants, path, file_name)
+                    my_general.write_data_json(feature_list_applicants, curr_path, file_name_applicants)
                     # print(obj)
 
             idx_word = idx_word + 1
@@ -387,8 +375,8 @@ def main():
 
     # curr_day = datetime.date(2020, 1, 1)
     curr_day = my_general.datetime.date(my_general.datetime.datetime.now().year,
-                                    my_general.datetime.datetime.now().month,
-                                    my_general.datetime.datetime.now().day)
+                                        my_general.datetime.datetime.now().month,
+                                        my_general.datetime.datetime.now().day)
     # print(curr_day)
     exporter = my_general.Exporter()
     data = exporter.lookup(name=curr_ticker, market=my_general.Market.ETF_MOEX)
@@ -396,7 +384,7 @@ def main():
     stock = exporter.download(data.index[0], market=my_general.Market.ETF_MOEX, start_date=curr_day)
     print(stock.head())
 
-    file_name = path + 'stocks_' + str(curr_ticker) + '.csv'
+    file_name = curr_path + 'stocks_' + str(curr_ticker) + '.csv'
     stock.to_csv(file_name)
 
     time_value = stock.get('<TIME>')
@@ -499,7 +487,7 @@ def main():
 
         # задаем для воспроизводимости результатов
         my_general.np.random.seed(2)
-        model_name = path + 'NN_model.h5'
+        model_name = curr_path + 'NN_model.h5'
 
         # создаем модели, добавляем слои один за другим
         model = Sequential()
@@ -580,19 +568,13 @@ def main():
                 prediction = {"score": float(scores[-1])}
                 print(prediction)
 
-                path = root_path + 'Helper\\Classifier_economics_news\\'
-                file_name_prediction = 'prediction_e_n'
-
-                my_general.write_data_json(prediction, path, file_name_prediction)
+                my_general.write_data_json(prediction, curr_path, file_name_prediction)
 
             except:
                 print("Problem with – fit(C_E_N)!")
 
-    path = root_path + 'Helper\\Classifier_economics_news\\'
-    hash_news_e_n = [{"hash": my_general.md5(path + 'economics_news' + '.json')}]
-
-    file_name = 'hash_news_e_n'
-    my_general.write_data_json(hash_news_e_n, path, file_name)
+    hash_news_e_n = [{"hash": my_general.md5(curr_path + 'economics_news' + '.json')}]
+    my_general.write_data_json(hash_news_e_n, curr_path, file_name_hash)
 
 
 if __name__ == "__main__":

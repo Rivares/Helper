@@ -5,6 +5,8 @@ import lib_general as my_general
 root_path = my_general.root_path
 curr_ticker = my_general.name_ticker
 
+curr_path = root_path + 'Helper\\TA_stocks\\'
+
 start = my_general.datetime.date(my_general.datetime.datetime.now().year - 1,
                                  my_general.datetime.datetime.now().month,
                                  my_general.datetime.datetime.now().day)
@@ -42,8 +44,7 @@ def main():
     # volume_value.plot()
     # plt.show()
 
-    path = root_path + 'Helper\\TA_stocks\\'
-    stock.to_csv(path + 'target_ticker' + '.csv')
+    stock.to_csv(curr_path + 'target_ticker' + '.csv')
 
     list_open_value = open_value.to_list()
     list_close_value = close_value.to_list()
@@ -52,8 +53,7 @@ def main():
     list_volume_value = volume_value.to_list()
 
     # Load datas
-    path = root_path + 'Helper\\TA_stocks\\'
-    df = my_general.pd.read_csv(path + 'target_ticker' + '.csv', sep=',')
+    df = my_general.pd.read_csv(curr_path + 'target_ticker' + '.csv', sep=',')
 
     # Clean NaN values
     df = my_general.ta.utils.dropna(df)
@@ -798,9 +798,8 @@ def main():
 
     wr_i = df['wr_i'].to_list()
 
-    path = root_path + 'Helper\\TA_stocks\\'
     filename = 'result_ta'
-    old_list_indicators_target_ticker = my_general.read_data_json(path, filename)
+    old_list_indicators_target_ticker = my_general.read_data_json(curr_path, filename)
 
     list_indicators_target_ticker.append({
         "diff_value": (float(old_list_indicators_target_ticker[0]["close_value"]) - float(list_open_value[-1])),
@@ -844,19 +843,16 @@ def main():
         "wr_i": 0.0 if my_general.np.isnan(wr_i[-1]) else wr_i[-1]
     })
 
-    path = root_path + 'Helper\\TA_stocks\\'
     file_name_ta = 'result_ta'
-    my_general.write_data_json(list_indicators_target_ticker, path, file_name_ta)
+    my_general.write_data_json(list_indicators_target_ticker, curr_path, file_name_ta)
 
     # _________________________________________________________________________________
 
     # Check on repeat
-
-    path = root_path + 'Helper\\TA_stocks\\'
-    hash_result_ta = my_general.read_data_json(path, 'hash_result_ta')
+    hash_result_ta = my_general.read_data_json(curr_path, 'hash_result_ta')
 
     file_name = 'result_ta'
-    new_hash = my_general.md5(path + file_name + '.json')
+    new_hash = my_general.md5(curr_path + file_name + '.json')
 
     if new_hash == hash_result_ta[0]["hash"]:
         print("___ No the new TA values ___")
@@ -865,7 +861,7 @@ def main():
     hash_result_ta = [{"hash": new_hash}]
 
     file_name = 'hash_result_ta'
-    my_general.write_data_json(hash_result_ta, path, file_name)
+    my_general.write_data_json(hash_result_ta, curr_path, file_name)
 
     # _________________________________________________________________________________
 

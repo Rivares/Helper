@@ -5,6 +5,8 @@ import lib_general as my_general
 root_path = my_general.root_path
 curr_ticker = my_general.name_ticker
 
+curr_path = root_path + 'Helper\\Parser_market\\'
+
 curr_moment = my_general.datetime.date(my_general.datetime.datetime.now().year,
                                        my_general.datetime.datetime.now().month,
                                        my_general.datetime.datetime.now().day)
@@ -285,20 +287,17 @@ def main():
     market.append(list_indexes)
     market.append(list_stocks)
 
-    path = root_path + 'Helper\\Parser_market\\'
     file_name_market = 'market'
 
-    my_general.write_data_json(market, path, file_name_market)
+    my_general.write_data_json(market, curr_path, file_name_market)
 
     # _________________________________________________________________________________
 
     # Check on repeat
-
-    path = root_path + 'Helper\\Parser_market\\'
-    hash_market = my_general.read_data_json(path, 'hash_market')
+    hash_market = my_general.read_data_json(curr_path, 'hash_market')
 
     file_name = 'market'
-    new_hash = my_general.md5(path + 'market' + '.json')
+    new_hash = my_general.md5(curr_path + 'market' + '.json')
 
     if new_hash == hash_market[0]["hash"]:
         print("___ No the new market values ___")
@@ -306,7 +305,7 @@ def main():
 
     hash_market = [{"hash": new_hash}]
     file_name = 'hash_market'
-    my_general.write_data_json(hash_market, path, file_name)
+    my_general.write_data_json(hash_market, curr_path, file_name)
 
     # _________________________________________________________________________________
 
