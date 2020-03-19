@@ -1,8 +1,24 @@
+# coding: UTF-8
+
+from matplotlib import pyplot as plt
+import numpy as np
+
+
+from kivy_garden.graph import Graph, MeshLinePlot
+
+from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty, StringProperty
+from kivy.uix.relativelayout import RelativeLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
+from kivy.core.window import Window
 from kivy.uix.button import Button
+from kivy.uix.widget import Widget
 from kivy.uix.image import Image
 from kivy.uix.label import Label
+from kivy.uix.label import Label
+from kivy.graphics import Color
+from kivy.vector import Vector
+from kivy.clock import Clock
 from kivy.app import App
 
 
@@ -12,29 +28,39 @@ blue = [0, 0, 1, 1]
 purple = [1, 0, 1, 1]
 
 
-# class HBoxLayoutExample(App):
-#     def build(self):
-#         layout = BoxLayout(padding=10)
-#         colors = [red, green, blue, purple]
-#
-#         button = Button(text='Hello from Kivy',
-#                         background_color=green)
-#         button.bind(on_press=self.on_press_button)
-#         layout.add_widget(button)
-#         for i in range(5):
-#             btn = Button(text="Button #%s" % (i + 1),
-#                          background_color=red
-#                          )
-#
-#             layout.add_widget(btn)
-#         return layout
-#
-#     def on_press_button(self, instance):
-#         print('Вы нажали на кнопку!')
+class HBoxLayoutExample(App):
+    def build(self):
+        layout = BoxLayout(padding=10)
+        colors = [red, green, blue, purple]
+
+        button = Button(text='Hello from Kivy',
+                        background_color=green)
+        button.bind(on_press=self.on_press_button)
+        layout.add_widget(button)
+        for i in range(5):
+            btn = Button(text="Button #%s" % (i + 1),
+                         background_color=red
+                         )
+
+            layout.add_widget(btn)
+        return layout
+
+    def on_press_button(self, instance):
+        print('Вы нажали на кнопку!')
 
 
 class MainApp(App):
     def build(self):
+        graph = Graph(xlabel='X', ylabel='Y', x_ticks_minor=5,
+                      x_ticks_major=25, y_ticks_major=1,
+                      y_grid_label=True, x_grid_label=True, padding=5,
+                      x_grid=True, y_grid=True, xmin=-0, xmax=100, ymin=-1, ymax=1)
+
+        plot = MeshLinePlot(color=[1, 0, 0, 1])
+        plot.points = [(x, np.sin(x / 10.)) for x in range(0, 101)]
+
+        graph.add_plot(plot)
+
         self.operators = ["/", "*", "+", "-"]
         self.last_was_operator = None
         self.last_button = None
@@ -94,3 +120,47 @@ class MainApp(App):
         if text:
             solution = str(eval(self.solution.text))
             self.solution.text = solution
+
+
+
+class GT(BoxLayout):
+
+    """Receives custom widget from corresponding <name>.kv file"""
+    label_widget = ObjectProperty()
+    graph_widget = ObjectProperty()
+
+    def __init__(self, **kwargs):
+        print('GT // __init__')
+        super(GT, self).__init__(**kwargs)
+        Window.clearcolor = (0.9, 0.93, 0.95, 1)
+
+    def do_action(self):
+        print('GT // do_action')
+        self.label_widget.text = 'Graph was clicked.' # This works
+        self.info = 'Important info!'
+
+
+class framework_app(App):
+    def build(self):
+        return GT()
+
+    print('framework_app // body')
+
+    x = np.linspace(-np.pi, np.pi, 201)
+    plt.plot(x, np.sin(x))
+    plt.xlabel('Angle [rad]')
+    plt.ylabel('sin(x)')
+    plt.axis('tight')
+    plt.show()
+
+
+def main():
+    app = MainApp()
+    app.run()
+
+    framework_app().run()
+
+
+if __name__ == "__main__":
+    main()
+
