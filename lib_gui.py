@@ -1,8 +1,9 @@
 # coding: UTF-8
 
+from lib_gui_table import Table, TableView, TableColumn, TableRow
+
 from matplotlib import pyplot as plt
 import numpy as np
-
 
 from kivy_garden.graph import Graph, MeshLinePlot
 
@@ -18,14 +19,105 @@ from kivy.uix.label import Label
 from kivy.uix.label import Label
 from kivy.graphics import Color
 from kivy.vector import Vector
+from kivy.config import Config
 from kivy.clock import Clock
 from kivy.app import App
+
+
+Config.set("input", "mouse", "mouse, disable_multitouch")
 
 
 red = [1, 0, 0, 1]
 green = [0, 1, 0, 1]
 blue = [0, 0, 1, 1]
 purple = [1, 0, 1, 1]
+
+
+class MainScreen(BoxLayout):
+    """docstring for MainScreen"""
+    def __init__(self):
+        super(MainScreen, self).__init__()
+        self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
+        self._keyboard.bind(on_key_down=self._on_keyboard_down)
+        self.my_table = Table()
+        self.my_table.cols = 2
+        self.my_table.add_button_row('123', '456')
+        for i in range(110):
+            self.my_table.add_row([Button, {'text': 'button%s' % i,
+                                            'color_widget': [0, 0, 0.5, 1],
+                                            'color_click': [0, 1, 0, 1]
+                                            }],
+                                  [TextInput, {'text': 'textinput%s' % i,
+                                               'color_click': [1, 0, .5, 1]
+                                               }])
+        self.my_table.label_panel.visible = False
+        self.my_table.label_panel.height_widget = 50
+        self.my_table.number_panel.auto_width = False
+        self.my_table.number_panel.width_widget = 100
+        self.my_table.number_panel.visible = False
+        self.my_table.choose_row(3)
+        self.my_table.del_row(5)
+        self.my_table.grid.color = [1, 0, 0, 1]
+        self.my_table.label_panel.color = [0, 1, 0, 1]
+        self.my_table.number_panel.color = [0, 0, 1, 1]
+        self.my_table.scroll_view.bar_width = 10
+        self.my_table.scroll_view.scroll_type = ['bars']
+        self.my_table.grid.cells[0][0].text = 'edited button text'
+        self.my_table.grid.cells[1][1].text = 'edited textinput text'
+        self.my_table.grid.cells[3][0].height = 100
+        self.my_table.label_panel.labels[1].text = 'New name'
+        print("ROW COUNT:", self.my_table.row_count)
+        self.add_widget(self.my_table)
+
+    def _keyboard_closed(self):
+        pass
+
+    def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
+        """ Method of pressing keyboard  """
+        if keycode[0] == 273:   # UP
+            print(keycode)
+            self.my_table.scroll_view.up()
+        if keycode[0] == 274:   # DOWN
+            print(keycode)
+            self.my_table.scroll_view.down()
+        if keycode[0] == 281:   # PageDown
+            print(keycode)
+            self.my_table.scroll_view.pgdn()
+        if keycode[0] == 280:   # PageUp
+            print(keycode)
+            self.my_table.scroll_view.pgup()
+        if keycode[0] == 278:   # Home
+            print(keycode)
+            self.my_table.scroll_view.home()
+        if keycode[0] == 279:   # End
+            print(keycode)
+            self.my_table.scroll_view.end()
+
+
+class TestApp(App):
+    """ App class """
+    def build(self):
+        return MainScreen()
+
+    def on_pause(self):
+        return True
+
+
+class TableApp(App):
+    def build(self):
+        # create a default grid layout with custom width/height
+        table = TableView(size=(500,2320), pos_hint={'x':0.1, 'center_y':.5})
+        # columns
+        table.add_column(TableColumn("Col1", key="1", hint_text='0'))
+        table.add_column(TableColumn("Col2", key="2", hint_text='0'))
+        # table.add_column(TableColumn("Col2", key="3", hint_text='0'))
+        # table.add_column(TableColumn("Col2", key="4", hint_text='0'))
+        # table.add_column(TableColumn("Col2", key="5", hint_text='0'))
+        # content
+        for i in range(10):
+            row = {'1': str(2 * i + 0), '2': str(2 * i + 1)}
+            table.add_row(row)
+        return table
 
 
 class HBoxLayoutExample(App):
@@ -142,25 +234,43 @@ class GT(BoxLayout):
 
 class framework_app(App):
     def build(self):
+        print('framework_app // body')
+
+        x = np.linspace(-np.pi, np.pi, 201)
+        plt.plot(x, np.sin(x))
+        plt.xlabel('Angle [rad]')
+        plt.ylabel('sin(x)')
+        plt.axis('tight')
+        plt.show()
+
         return GT()
-
-    print('framework_app // body')
-
-    x = np.linspace(-np.pi, np.pi, 201)
-    plt.plot(x, np.sin(x))
-    plt.xlabel('Angle [rad]')
-    plt.ylabel('sin(x)')
-    plt.axis('tight')
-    plt.show()
 
 
 def main():
-    app = MainApp()
-    app.run()
+    # app = MainApp()
+    # app.run()
+    #
+    # framework_app().run()
 
-    framework_app().run()
+    TableApp().run()
+    # TestApp().run()
 
+    # table = Table()
+    # table.cols = 2
+    # table.add_button_row('123','456')
+    # table.add_row([Button, {'text':'button2',
+    #                         'color_widget': [0, 0, .5, 1],
+    #                         'color_click': [0, 1, 0, 1]
+    #                        }],
+    #               [TextInput, {'text':'textinput2',
+    #                            'color_click': [1, 0, .5, 1]
+    #                           }])
+    # table.choose_row(3)
+    # table.del_row(5)
+    # table.grid.color = [1, 0, 0, 1]
+    # table.grid.cells[1][1].text = 'edited textinput text'
+    # table.grid.cells[3][0].height = 100
+    # table.label_panel.labels[1].text = 'New name'
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
-
